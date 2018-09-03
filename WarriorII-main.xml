@@ -67,7 +67,7 @@
 				<path></path>
 			</electrical>
 			<autopilot n="0">
-				<path>Aircraft/PA28-Warrior/Systems/it-autoflight.xml</path>
+				<path>Aircraft/PA28-Warrior/Systems/stec-55x.xml</path>
 			</autopilot>
 			<autopilot n="1">
 				<path>Aircraft/PA28-Warrior/Systems/libraries.xml</path>
@@ -821,41 +821,6 @@
 		</stby-ai>
 	</instrumentation>
 	
-	<it-autoflight>
-		<config>
-			<roll>
-				<kp-low>0.05</kp-low> <!-- Kp at low speed -->
-				<kp-high>0.03</kp-high> <!-- Kp at high speed -->
-				<ti>1.5</ti>
-				<td>0.0001</td>
-			</roll>
-			<pitch>
-				<kp-low>-0.06</kp-low> <!-- Kp at low speed -->
-				<kp-high>-0.04</kp-high> <!-- Kp at high speed -->
-				<ti>1.0</ti>
-				<td>0.001</td>
-			</pitch>
-			<cmd>
-				<roll-kp>-1.0</roll-kp>
-				<vorloc>-2.0</vorloc>
-				<alt-gain>-5</alt-gain>
-				<vs-low>0.0051</vs-low> <!-- Kp at low speed -->
-				<vs-high>0.0029</vs-high> <!-- Kp at high speed -->
-			</cmd>
-		</config>
-		<settings>
-			<enable-stby>0</enable-stby> <!-- If disabled, LVL and V/S become active when AP on. -->
-			<pitch-mode>2</pitch-mode> <!-- 0 = Elevator trim only, 1 = Elevator only, 2 = Elevator and Autotrim -->
-			<auto-arm-alt>0</auto-arm-alt> <!-- Enable automatic altitude arm -->
-			<bank-limit>20</bank-limit> <!-- Set the bank limit -->
-		</settings>
-		<kap140>
-			<ap type="int">0</ap>
-			<pt type="int">0</pt>
-			<display-mode type="string">ALT</display-mode>
-		</kap140>
-	</it-autoflight>
-	
 	<options n="0">
 		<autocoordinate type="bool">0</autocoordinate>
 		<nav-source type="int">1</nav-source>
@@ -899,12 +864,9 @@
 			<file>Aircraft/PA28-Warrior/Nasal/engines.nas</file>
 			<file>Aircraft/PA28-Warrior/Nasal/fuel.nas</file>
 		</systems>
-		<itaf>
-			<file>Aircraft/PA28-Warrior/Nasal/it-autoflight.nas</file>
-		</itaf>
-		<kap140>
-			<file>Aircraft/PA28-Warrior/Nasal/kap140.nas</file>
-		</kap140>
+		<stec55x>
+			<file>Aircraft/PA28-Warrior/Nasal/stec-55x.nas</file>
+		</stec55x>
 		<tyresmoke>
 			<file>Aircraft/PA28-Warrior/Nasal/tyresmoke.nas</file>
 		</tyresmoke>

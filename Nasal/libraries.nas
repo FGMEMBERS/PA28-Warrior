@@ -56,14 +56,17 @@ var systemsInit = func {
 	systems.ELEC.init();
 	systems.ENG.init();
 	systems.FUEL.init();
-	itaf.ap_init();
 	variousReset();
-	var autopilot = gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/PA28-Warrior/Systems/kap140-dlg.xml");
-	setprop("/it-autoflight/settings/slave-gps-nav", 0);
+	var autopilot = gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/PA28-Warrior/Systems/stec-55x-dlg.xml");
 	setprop("/engines/engine[0]/fuel-flow-gph", 0.0);
 	setprop("/sim/model/material/LandingLight/factor", 0.0);
 	setprop("/sim/model/material/LandingLight/factorAGL", 0.0);
 	systemsLoop.start();
+}
+
+var systemsReset = func {
+	systemsInit();
+	stec55x.ITAF.init();
 }
 
 setlistener("sim/signals/fdm-initialized", func {
@@ -76,9 +79,6 @@ var systemsLoop = maketimer(0.1, func {
 });
 
 var variousReset = func {
-	setprop("/it-autoflight/input/hdg", math.round(getprop("/orientation/heading-magnetic-deg")));
-	setprop("/it-autoflight/input/alt", 2000);
-	setprop("/it-autoflight/settings/slave-gps-nav", 0);
 	setprop("/controls/switches/beacon", 0);
 	setprop("/controls/switches/fuel-pump", 0);
 	setprop("/controls/switches/landing-light", 0);
@@ -90,19 +90,6 @@ var variousReset = func {
 	setprop("/controls/engines/engine[0]/mixture", 0);
 	setprop("/fdm/jsbsim/extra/door-main-cmd", 0);
 }
-
-setlistener("/options/nav-source", func {
-	if (getprop("/options/nav-source") == 1) {
-		setprop("/it-autoflight/settings/use-nav2-radio", 0);
-		setprop("/it-autoflight/settings/slave-gps-nav", 0);
-	} else if (getprop("/options/nav-source") == 2) {
-		setprop("/it-autoflight/settings/use-nav2-radio", 0);
-		setprop("/it-autoflight/settings/slave-gps-nav", 1);
-	} else if (getprop("/options/nav-source") == 3) {
-		setprop("/it-autoflight/settings/use-nav2-radio", 1);
-		setprop("/it-autoflight/settings/slave-gps-nav", 0);
-	}
-});
 
 if (getprop("/controls/flight/auto-coordination") == 1) {
 	setprop("/controls/flight/auto-coordination", 0);

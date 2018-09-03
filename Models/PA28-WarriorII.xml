@@ -376,16 +376,6 @@
 	</model>
 
 	<model>
-		<name>NSVV</name>
-		<path>Aircraft/PA28-Warrior/Models/Instruments/NavSV/NavSourceSwitch.xml</path>
-		<offsets>
-			<x-m>1.935</x-m>
-			<y-m>-0.476</y-m>
-			<z-m>0.231</z-m>
-		</offsets>
-	</model>
-
-	<model>
 		<name>Avionics</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/avionics-sw/avionics-sw.xml</path>
 		<offsets>

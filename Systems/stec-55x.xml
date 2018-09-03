@@ -1,0 +1,480 @@
+<?xml version="1.0"?>
+
+<!-- S-TEC Fifty Five X Autopilot System -->
+<!-- Copyright (c) 2018 Joshua Davidson (it0uchpods) -->
+
+<PropertyList>
+
+	<!-- Roll Axis -->
+	
+	<filter>
+		<name>TARGET INTERCAPT ANGLE</name>
+		<type>gain</type>
+		<gain>/it-autoflight/internal/nav-gain</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/output/roll</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<expression>
+				<table>
+					<property>/instrumentation/nav[0]/heading-needle-deflection</property>
+					<entry><ind>-8</ind><dep>-45</dep></entry>
+					<entry><ind> 0</ind><dep>  0</dep></entry>
+					<entry><ind> 8</ind><dep> 45</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<input>0</input>
+		<output>/it-autoflight/internal/intercept-angle</output>
+	</filter>
+	
+	<filter> <!-- GPS would provides this, not the autopilot, but lets leave it in this file for ease of implementation -->
+		<name>GPS ERROR DEG</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/output/roll</property>
+					<value>2</value>
+				</equals>
+			</condition>
+			<expression>
+				<sum>
+					<property>/autopilot/route-manager/wp[0]/true-bearing-deg</property>
+					<difference>
+						<property>/orientation/track-magnetic-deg</property>
+						<property>/orientation/heading-magnetic-deg</property>
+					</difference>
+					<product>
+						<property>/orientation/heading-deg</property>
+						<value>-1</value>
+					</product>
+				</sum>
+			</expression>
+		</input>
+		<input>0</input>
+		<output>/it-autoflight/internal/gps-error-deg</output>
+		<period>
+			<min>-180</min>
+			<max>180</max>
+		</period>
+	</filter>
+	
+	<filter>
+		<name>HDG/NAV ERROR DEG</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/output/roll</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<property>/it-autoflight/input/hdg</property>
+			<offset>
+				<property>/instrumentation/heading-indicator/indicated-heading-deg</property>
+				<scale>-1.0</scale>
+			</offset>
+		</input>
+		<input>
+			<condition>
+				<and>
+					<equals>
+						<property>/it-autoflight/output/roll</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-autoflight/internal/hsi-equipped</property>
+						<value>0</value>
+					</equals>
+				</and>
+			</condition>
+			<expression>
+				<sum>
+					<property>/it-autoflight/input/hdg</property>
+					<property>/it-autoflight/internal/intercept-angle</property>
+				</sum>
+			</expression>
+			<offset>
+				<property>/instrumentation/heading-indicator/indicated-heading-deg</property>
+				<scale>-1.0</scale>
+			</offset>
+		</input>
+		<input>
+			<condition>
+				<and>
+					<equals>
+						<property>/it-autoflight/output/roll</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-autoflight/internal/hsi-equipped</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</condition>
+			<expression>
+				<sum>
+					<property>/instrumentation/nav[0]/radials/selected-deg</property>
+					<property>/it-autoflight/internal/intercept-angle</property>
+				</sum>
+			</expression>
+			<offset>
+				<property>/instrumentation/heading-indicator/indicated-heading-deg</property>
+				<scale>-1.0</scale>
+			</offset>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/output/roll</property>
+					<value>2</value>
+				</equals>
+			</condition>
+			<property>/it-autoflight/internal/gps-error-deg</property>
+		</input>
+		<input>0</input>
+		<output>/it-autoflight/internal/heading-error-deg</output>
+		<period>
+			<min>-180</min>
+			<max>180</max>
+		</period>
+	</filter>
+	
+	<filter>
+		<name>TARGET TURN RATE</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<greater-than>
+					<property>/it-autoflight/output/roll</property>
+					<value>-1</value>
+				</greater-than>
+			</condition>
+			<expression>
+				<table>
+					<property>/it-autoflight/internal/heading-error-deg</property>
+					<entry><ind>-30</ind><dep>-1.0</dep></entry>
+					<entry><ind> -5</ind><dep>-0.2</dep></entry>
+					<entry><ind>  5</ind><dep> 0.2</dep></entry>
+					<entry><ind> 30</ind><dep> 1.0</dep></entry>
+				</table>
+			</expression>
+		</input>
+		<input>0</input>
+		<output>/it-autoflight/internal/target-turn-rate</output>
+		<min>/it-autoflight/internal/min-turn-rate</min>
+		<max>/it-autoflight/internal/max-turn-rate</max>
+	</filter>
+	
+	<predict-simple>
+		<name>TURN RATE PREDICTOR</name>
+		<debug>false</debug>
+		<input>/instrumentation/turn-indicator/indicated-turn-rate</input>
+		<output>/it-autoflight/internal/predicted-turn-rate</output>
+		<seconds>2.0</seconds>
+		<filter-gain>0.0</filter-gain>
+	</predict-simple>
+	
+	<filter>
+		<name>IT-CONTROLLER: TARGET TURN RATE FILTER</name>
+		<debug>false</debug>
+		<input>
+			<condition>
+				<greater-than>
+					<property>/it-autoflight/output/roll</property>
+					<value>-1</value>
+				</greater-than>
+			</condition>
+			<property>/it-autoflight/internal/target-turn-rate</property>
+		</input>
+		<input>/it-autoflight/internal/predicted-turn-rate</input>
+		<output>/it-autoflight/internal/turn-rate-cmd</output>
+		<type>noise-spike</type>
+		<max-rate-of-change>
+			<condition>
+				<greater-than>
+					<property>/it-autoflight/output/roll</property>
+					<value>-1</value>
+				</greater-than>
+			</condition>
+			<value>0.2</value>
+		</max-rate-of-change>
+		<max-rate-of-change>10</max-rate-of-change>
+	</filter>
+	
+	<pi-simple-controller>
+		<name>IT-CONTROLLER: ROLL PI</name>
+		<debug>false</debug>
+		<enable>
+			<condition>
+				<greater-than>
+					<property>/it-autoflight/output/roll</property>
+					<value>-1</value>
+				</greater-than>
+			</condition>
+		</enable>
+		<input>/it-autoflight/internal/turn-rate-cmd</input>
+		<reference>/it-autoflight/internal/predicted-turn-rate</reference>
+		<output>/it-autoflight/internal/aileron-pi</output>
+		<config>
+			<Kp>-0.05</Kp>
+			<Ki>-0.015</Ki>
+			<min>-0.25</min>
+			<max>0.25</max>
+		</config>
+	</pi-simple-controller>
+	
+	<filter>
+		<name>IT-CONTROLLER: ROLL D</name>
+		<type>derivative</type>
+		<input>/it-autoflight/internal/predicted-turn-rate</input>
+		<reference>/it-autoflight/internal/turn-rate-cmd</reference>
+		<output>/it-autoflight/internal/aileron-d</output>
+		<filter-time>-0.01</filter-time>
+		<min>-0.25</min>
+		<max>0.25</max>
+	</filter>
+	
+	<filter>
+		<name>IT-CONTROLLER: ROLL CMD</name>
+		<debug>false</debug>
+		<enable>
+			<condition>
+				<greater-than>
+					<property>/it-autoflight/output/roll</property>
+					<value>-1</value>
+				</greater-than>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<sum>
+					<property>/it-autoflight/internal/aileron-pi</property>
+					<property>/it-autoflight/internal/aileron-d</property>
+				</sum>
+			</expression>
+		</input>
+		<output>/controls/flight/aileron</output>
+		<type>noise-spike</type>
+		<max-rate-of-change>1.2</max-rate-of-change>
+	</filter>
+	
+	<!-- Pitch Axis -->
+	
+	<filter>
+		<name>PRESSURE RATE COMPUTER</name>
+		<debug>false</debug>
+		<type>derivative</type>
+		<input>/systems/static[0]/pressure-inhg</input>
+		<output>/it-autoflight/internal/pressure-rate-raw</output>
+		<filter-time>1.0</filter-time>
+	</filter>
+
+	<filter>
+		<name>PRESSURE RATE DAMPER</name>
+		<debug>false</debug>
+		<type>double-exponential</type>
+		<input>/it-autoflight/internal/pressure-rate-raw</input>
+		<output>/it-autoflight/internal/pressure-rate</output>
+		<filter-time>0.08</filter-time>
+	</filter>
+	
+	<predict-simple>
+		<name>VERTICAL SPEED PREDICTOR</name>
+		<debug>false</debug>
+		<input>
+			<expression> <!-- Pressure Rate to Vertical Speed FPM -->
+				<product>
+					<property>/it-autoflight/internal/pressure-rate</property>
+					<value>-58000</value>
+				</product>
+			</expression>
+		</input>
+		<output>/it-autoflight/internal/predicted-vertical-speed</output>
+		<seconds>1.0</seconds>
+		<filter-gain>0.0</filter-gain>
+	</predict-simple>
+	
+	<filter>
+		<name>V/S SYNC</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<enable>
+			<condition>
+				<not-equals>
+					<property>/it-autoflight/output/pitch</property>
+					<value>1</value>
+				</not-equals>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<product>
+					<floor>
+						<div>
+							<sum>
+								<property>/it-autoflight/internal/predicted-vertical-speed</property>
+								<value>50</value>
+							</sum>
+							<value>100</value>
+						</div>
+					</floor>
+					<value>100</value>
+				</product>
+			</expression>
+		</input>
+		<output>/it-autoflight/input/vs</output>
+		<min>-1600</min>
+		<max>1600</max>
+	</filter>
+	
+	<filter>
+		<name>ALTITUDE CAPTURE/HOLD</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>3625</gain>
+		<input>/systems/static[0]/pressure-inhg</input>
+		<reference>
+			<expression>
+				<sum>
+					<property>/it-autoflight/input/alt</property>
+					<property>/it-autoflight/input/alt-offset</property>	
+				</sum>
+			</expression>
+		</reference>
+		<output>/it-autoflight/internal/alt-vs</output>
+		<min>-200</min>
+		<max>200</max>
+	</filter>
+	
+	<filter>
+		<name>VERT SPEED FILTER</name>
+		<debug>false</debug>
+		<feedback-if-disabled>true</feedback-if-disabled>
+		<initialize-to>output</initialize-to>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-autoflight/output/pitch</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<property>/it-autoflight/internal/alt-vs</property>
+		</input>
+		<input>/it-autoflight/input/vs</input>
+		<output>/it-autoflight/internal/vs</output>
+		<type>noise-spike</type>
+		<max-rate-of-change>
+			<condition>
+				<greater-than>
+					<property>/it-autoflight/output/roll</property>
+					<value>-1</value>
+				</greater-than>
+			</condition>
+			<value>300</value>
+		</max-rate-of-change>
+		<max-rate-of-change>2000</max-rate-of-change>
+	</filter>
+	
+	<pi-simple-controller>
+		<name>IT-CONTROLLER: ACCEL PI</name>
+		<debug>false</debug>
+		<enable>
+			<condition>
+				<greater-than>
+					<property>/it-autoflight/output/roll</property>
+					<value>-1</value>
+				</greater-than>
+			</condition>
+		</enable>
+		<input>/it-autoflight/internal/vs</input>
+		<reference>/it-autoflight/internal/predicted-vertical-speed</reference>
+		<output>/it-autoflight/internal/target-accel</output>
+		<config>
+			<Kp>-0.00023</Kp>
+			<Ki>-0.00002</Ki>
+			<min>-0.3</min>
+			<max>0.4</max>
+		</config>
+	</pi-simple-controller>
+	
+	<filter>
+		<name>INTERNAL G ACCEL</name>
+		<type>exponential</type>
+		<input>/accelerations/pilot-g</input>
+		<output>/it-autoflight/internal/g-damped</output>
+		<filter-time>0.04</filter-time>
+	</filter>
+	
+	<filter>
+		<name>TARGET ACCEL</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<greater-than>
+					<property>/it-autoflight/output/pitch</property>
+					<value>-1</value>
+				</greater-than>
+			</condition>
+			<expression>
+				<sum>
+					<property>/it-autoflight/internal/target-accel</property>
+					<value>1</value>
+				</sum>
+			</expression>
+		</input>
+		<input>/it-autoflight/internal/g-damped</input>
+		<output>/it-autoflight/internal/accel-cmd</output>
+	</filter>
+	
+	<pi-simple-controller>
+		<name>IT-CONTROLLER: PITCH</name>
+		<debug>false</debug>
+		<enable>
+			<condition>
+				<greater-than>
+					<property>/it-autoflight/output/pitch</property>
+					<value>-1</value>
+				</greater-than>
+			</condition>
+		</enable>
+		<input>/it-autoflight/internal/accel-cmd</input>
+		<reference>/it-autoflight/internal/g-damped</reference>
+		<output>/it-autoflight/internal/elevator</output>
+		<config>
+			<Kp>0.35</Kp>
+			<Ki>0.7</Ki>
+			<min>-0.25</min>
+			<max>0.25</max>
+		</config>
+	</pi-simple-controller>
+	
+	<filter>
+		<name>IT-CONTROLLER: Pitch CMD</name>
+		<debug>false</debug>
+		<enable>
+			<condition>
+				<greater-than>
+					<property>/it-autoflight/output/pitch</property>
+					<value>-1</value>
+				</greater-than>
+			</condition>
+		</enable>
+		<input>/it-autoflight/internal/elevator</input>
+		<output>/controls/flight/elevator</output>
+		<type>noise-spike</type>
+		<max-rate-of-change>1.2</max-rate-of-change>
+	</filter>
+
+</PropertyList>

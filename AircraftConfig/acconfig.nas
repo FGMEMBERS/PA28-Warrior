@@ -75,20 +75,28 @@ setlistener("/sim/signals/fdm-initialized", func {
 
 var readSettings = func {
 	io.read_properties(getprop("/sim/fg-home") ~ "/Export/PA28-Warrior-config.xml", "/systems/acconfig/options");
-	setprop("/options/panel", getprop("/systems/acconfig/options/panel"));
 	setprop("/options/autocoordinate", getprop("/systems/acconfig/options/autocoordinate"));
 	setprop("/options/show-l-yoke", getprop("/systems/acconfig/options/show-l-yoke"));
 	setprop("/options/show-r-yoke", getprop("/systems/acconfig/options/show-r-yoke"));
 	setprop("/options/panel", getprop("/systems/acconfig/options/panel"));
+	autopilotSettings();
 }
 
 var writeSettings = func {
-	setprop("/systems/acconfig/options/panel", getprop("/options/panel"));
 	setprop("/systems/acconfig/options/autocoordinate", getprop("/options/autocoordinate"));
 	setprop("/systems/acconfig/options/show-l-yoke", getprop("/options/show-l-yoke"));
 	setprop("/systems/acconfig/options/show-r-yoke", getprop("/options/show-r-yoke"));
 	setprop("/systems/acconfig/options/panel", getprop("/options/panel"));
+	autopilotSettings();
 	io.write_properties(getprop("/sim/fg-home") ~ "/Export/PA28-Warrior-config.xml", "/systems/acconfig/options");
+}
+
+var autopilotSettings = func {
+	if (getprop("/options/panel") == "HSI Panel") {
+		setprop("/it-autoflight/internal/hsi-equipped", 1);
+	} else {
+		setprop("/it-autoflight/internal/hsi-equipped", 0);
+	}
 }
 
 ################
@@ -103,7 +111,7 @@ var colddark = func {
 	# Initial shutdown, and reinitialization.
 	setprop("/controls/flight/flaps", 0.0);
 	setprop("/controls/flight/elevator-trim", 0);
-	libraries.systemsInit();
+	libraries.systemsReset();
 	if (getprop("/engines/engine[0]/rpm") < 421) {
 		colddark_b();
 	} else {
@@ -131,7 +139,7 @@ var beforestart = func {
 	# First, we set everything to cold and dark.
 	setprop("/controls/flight/flaps", 0.0);
 	setprop("/controls/flight/elevator-trim", 0);
-	libraries.systemsInit();
+	libraries.systemsReset();
 	
 	# Now the Startup!
 	setprop("/controls/electrical/battery", 1);
@@ -154,7 +162,7 @@ var taxi = func {
 	# First, we set everything to cold and dark.
 	setprop("/controls/flight/flaps", 0.0);
 	setprop("/controls/flight/elevator-trim", 0);
-	libraries.systemsInit();
+	libraries.systemsReset();
 	
 	# Now the Startup!
 	setprop("/controls/electrical/battery", 1);

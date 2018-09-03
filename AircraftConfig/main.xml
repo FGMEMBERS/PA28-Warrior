@@ -231,6 +231,12 @@
 				<halign>left</halign>
 				<name>panel-type</name>
 				<pref-width>150</pref-width>
+				<enable>
+					<equals> <!-- Changing panel type while the AP is running could cause problems -->
+						<property>/it-autoflight/output/roll</property>
+						<value>-1</value>
+					</equals>
+				</enable>
 				<property>/options/panel</property>
 				<value>HSI Panel</value>
 				<value>DG Panel</value>
