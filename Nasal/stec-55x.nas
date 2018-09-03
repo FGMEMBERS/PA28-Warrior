@@ -53,6 +53,7 @@ var ITAF = {
 			}
 		}
 		
+		# Annunciators
 		if (getprop("/it-autoflight/output/roll") == 0) {
 			setprop("/it-autoflight/annun/hdg", 1);
 		} else {
@@ -89,6 +90,7 @@ var ITAF = {
 			setprop("/it-autoflight/annun/gpss", 0);
 		}
 		
+		# NAV mode gain, reduces as the system captures the course
 		if (getprop("/it-autoflight/output/roll") == 1) {
 			cdiDefl = getprop("/instrumentation/nav[0]/heading-needle-deflection");
 			if (abs(cdiDefl) <= 1.5 and getprop("/it-autoflight/internal/nav-gain") == 1.0) { # CAP mode
@@ -107,6 +109,7 @@ var ITAF = {
 			}
 		}
 		
+		# Limit the turn rate depending on the mode
 		if (getprop("/it-autoflight/output/roll") == 1 or getprop("/it-autoflight/output/roll") == 2) {
 			if (getprop("/it-autoflight/internal/nav-gain") == 0.75) {
 				setprop("/it-autoflight/internal/min-turn-rate", -0.45);
@@ -125,7 +128,7 @@ var ITAF = {
 			setprop("/it-autoflight/internal/max-turn-rate", 1.0);
 		}
 	},
-	killAP: func() {
+	killAP: func() { # Kill all AP modes
 		NAVt.stop();
 		GPSt.stop();
 		setprop("/it-autoflight/output/roll", -1);
@@ -133,7 +136,7 @@ var ITAF = {
 		setprop("/controls/flight/aileron", 0);
 		setprop("/controls/flight/elevator", 0);
 	},
-	killAPPitch: func() {
+	killAPPitch: func() { # Kill only the pitch modes
 		setprop("/it-autoflight/output/pitch", -1);
 		setprop("/controls/flight/elevator", 0);
 	},
@@ -151,13 +154,13 @@ var button = {
 	},
 	NAV: func() {
 		if (getprop("/it-autoflight/internal/hasPower") == 1) {
-			if (getprop("/it-autoflight/output/roll") == 1 or getprop("/it-autoflight/output/roll") == 3) {
+			if (getprop("/it-autoflight/output/roll") == 1 or getprop("/it-autoflight/output/roll") == 3) { # If NAV active or armed, switch to GPSS NAV mode
 				setprop("/it-autoflight/output/roll", 4);
 				GPSchk();
 				GPSt.start();
-			} else if (getprop("/it-autoflight/output/roll") == 2 or getprop("/it-autoflight/output/roll") == 4) {
+			} else if (getprop("/it-autoflight/output/roll") == 2 or getprop("/it-autoflight/output/roll") == 4) { # If GPSS NAV active or armed, turn off AP
 				ITAF.killAP();
-			} else {
+			} else { # If not in NAV mode, switch to NAV
 				setprop("/it-autoflight/output/roll", 3);
 				NAVchk();
 				NAVt.start();
@@ -188,7 +191,7 @@ var button = {
 
 var NAVchk = func {
 	if (getprop("/it-autoflight/output/roll") == 3) {
-		if (getprop("/instrumentation/nav[0]/in-range") == 1) {
+		if (getprop("/instrumentation/nav[0]/in-range") == 1) { # Only engage NAV if OBS reports in range
 			NAVt.stop();
 			setprop("/it-autoflight/annun/nav-flash", 0);
 			setprop("/it-autoflight/output/roll", 1);
@@ -208,7 +211,7 @@ var NAVchk = func {
 
 var GPSchk = func {
 	if (getprop("/it-autoflight/output/roll") == 4) {
-		if (getprop("/autopilot/route-manager/active") == 1) {
+		if (getprop("/autopilot/route-manager/active") == 1) { # Only engage GPSS NAV if GPS is activated
 			GPSt.stop();
 			setprop("/it-autoflight/annun/nav-flash", 0);
 			setprop("/it-autoflight/output/roll", 2);
@@ -220,7 +223,7 @@ var GPSchk = func {
 	}
 }
 
-var NAVl = maketimer(0.4, func {
+var NAVl = maketimer(0.4, func { # Flashes the NAV (and sometimes GPSS) lights when NAV modes are armed
 	if ((getprop("/it-autoflight/output/roll") == 3 or getprop("/it-autoflight/output/roll") == 4) and getprop("/it-autoflight/annun/nav-flash") != 1) {
 		setprop("/it-autoflight/annun/nav-flash", 1);
 	} else if ((getprop("/it-autoflight/output/roll") == 3 or getprop("/it-autoflight/output/roll") == 4) and getprop("/it-autoflight/annun/nav-flash") != 0) {
