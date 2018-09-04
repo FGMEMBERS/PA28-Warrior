@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+
+<!-- S-TEC Fifty Five X Autopilot System -->
+<!-- Copyright (c) 2018 Joshua Davidson (it0uchpods) -->
+<!-- 3D by Matthew Anderson (Talons), Texture by Jonathan Redpath (legoboyvdlp) -->
+
+<PropertyList>
+	
+    <path>stec-55x.ac</path>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>HDG.button</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>stec55x.button.HDG();</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>NAV.button</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>stec55x.button.NAV();</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>ALT.button</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>stec55x.button.ALT();</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>VS.button</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>stec55x.button.VS();</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>Knob</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>stec55x.button.Knob(1);</script>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>stec55x.button.Knob(-1);</script>
+			</binding>
+		</action>
+	</animation>
+
+</PropertyList>

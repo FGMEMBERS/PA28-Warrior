@@ -15,6 +15,7 @@ setlistener("/sim/signals/fdm-initialized", func {
 	var roll = 0;
 	var pitch = 0;
 	var cdiDefl = 0;
+	var vs = 0;
 	ITAF.init();
 });
 
@@ -184,6 +185,23 @@ var button = {
 				ITAF.killAPPitch();
 			} else {
 				setprop("/it-autoflight/output/pitch", 1);
+			}
+		}
+	},
+	Knob: func(d) {
+		if (getprop("/it-autoflight/output/pitch") == 1) {
+			if (d < 0) {
+				vs = getprop("/it-autoflight/input/vs") - 100;
+				if (vs < -1600) {
+					vs = -1600;
+				}
+				setprop("/it-autoflight/input/vs", vs);
+			} else {
+				vs = getprop("/it-autoflight/input/vs") + 100;
+				if (vs > 1600) {
+					vs = 1600;
+				}
+				setprop("/it-autoflight/input/vs", vs);
 			}
 		}
 	},

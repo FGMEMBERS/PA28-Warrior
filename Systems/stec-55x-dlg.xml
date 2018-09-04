@@ -428,17 +428,8 @@
 			<legend>DECR</legend>
 			<pref-width>45</pref-width>
 			<binding>
-				<condition>
-					<equals>
-						<property>/it-autoflight/output/pitch</property>
-						<value>1</value>
-					</equals>
-				</condition>
-				<command>property-adjust</command>
-				<property>/it-autoflight/input/vs</property>
-				<step>-100</step>
-				<min>-1600</min>
-				<max>1600</max>
+				<command>nasal</command>
+				<script>stec55x.button.Knob(-1);</script>
 			</binding>
 		</button>
 		
@@ -450,17 +441,8 @@
 			<legend>INCR</legend>
 			<pref-width>45</pref-width>
 			<binding>
-				<condition>
-					<equals>
-						<property>/it-autoflight/output/pitch</property>
-						<value>1</value>
-					</equals>
-				</condition>
-				<command>property-adjust</command>
-				<property>/it-autoflight/input/vs</property>
-				<step>100</step>
-				<min>-1600</min>
-				<max>1600</max>
+				<command>nasal</command>
+				<script>stec55x.button.Knob(1);</script>
 			</binding>
 		</button>
 

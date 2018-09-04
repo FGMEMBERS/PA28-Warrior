@@ -566,8 +566,8 @@
 	</model>
 
 	<model>
-		<name>KAP140</name>
-		<path>Aircraft/PA28-Warrior/Models/Instruments/radio_stack/kap140/KAP140TwoAxisAlt.xml</path>
+		<name>STEC-55X</name>
+		<path>Aircraft/PA28-Warrior/Models/Instruments/stec-55x/stec-55x.xml</path>
 		<offsets>
 			<x-m>1.929</x-m>
 			<y-m>0.1225</y-m>
