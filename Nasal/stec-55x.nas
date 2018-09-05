@@ -9,6 +9,8 @@ setprop("/it-autoflight/internal/nav-gain", 1.0);
 setprop("/it-autoflight/internal/nav-step1-time", 0);
 setprop("/it-autoflight/internal/nav-step2-time", 0);
 setprop("/it-autoflight/internal/nav-step3-time", 0);
+setprop("/it-autoflight/internal/nav-over50-time", 0);
+setprop("/it-autoflight/internal/nav-over50-counting", 0);
 
 setlistener("/sim/signals/fdm-initialized", func {
 	var hasPower = 0;
@@ -96,28 +98,46 @@ var ITAF = {
 		if (getprop("/it-autoflight/output/roll") == 1) {
 			cdiDefl = getprop("/instrumentation/nav[0]/heading-needle-deflection");
 			if (abs(cdiDefl) <= 1.5 and getprop("/it-autoflight/internal/nav-gain") == 1.0) { # CAP mode
-				setprop("/it-autoflight/internal/nav-gain", 0.85);
+				setprop("/it-autoflight/internal/nav-gain", 0.9);
 				setprop("/it-autoflight/internal/nav-step1-time", getprop("/sim/time/elapsed-sec"));
-			} else if (getprop("/it-autoflight/internal/nav-step1-time") + 15 <= getprop("/sim/time/elapsed-sec") and getprop("/it-autoflight/internal/nav-gain") == 0.85) { # CAP SOFT mode
-				setprop("/it-autoflight/internal/nav-gain", 0.75);
+			} else if (getprop("/it-autoflight/internal/nav-step1-time") + 15 <= getprop("/sim/time/elapsed-sec") and getprop("/it-autoflight/internal/nav-gain") == 0.9) { # CAP SOFT mode
+				setprop("/it-autoflight/internal/nav-gain", 0.8);
 				setprop("/it-autoflight/internal/nav-step2-time", getprop("/sim/time/elapsed-sec"));
-			} else if (getprop("/it-autoflight/internal/nav-step2-time") + 75 <= getprop("/sim/time/elapsed-sec") and getprop("/it-autoflight/internal/nav-gain") == 0.75) { # SOFT mode
-				setprop("/it-autoflight/internal/nav-gain", 0.65);
+			} else if (getprop("/it-autoflight/internal/nav-step2-time") + 75 <= getprop("/sim/time/elapsed-sec") and getprop("/it-autoflight/internal/nav-gain") == 0.8) { # SOFT mode
+				setprop("/it-autoflight/internal/nav-gain", 0.6);
 				setprop("/it-autoflight/internal/nav-step3-time", getprop("/sim/time/elapsed-sec"));
+			}
+			
+			# Return to CAP SOFT if needle deflection is >= 50% for 60 seconds
+			if (cdiDefl >= 5 and getprop("/it-autoflight/internal/nav-gain") == 0.6) {
+				if (getprop("/it-autoflight/internal/nav-over50-counting") != 1) { # Prevent it from constantly updaing the time
+					setprop("/it-autoflight/internal/nav-over50-counting", 1);
+					setprop("/it-autoflight/internal/nav-over50-time", getprop("/sim/time/elapsed-sec"));
+				}
+				if (getprop("/it-autoflight/internal/nav-over50-time") + 60 < getprop("/sim/time/elapsed-sec")) { # CAP SOFT mode
+					setprop("/it-autoflight/internal/nav-gain", 0.8);
+					setprop("/it-autoflight/internal/nav-step2-time", getprop("/sim/time/elapsed-sec"));
+					if (getprop("/it-autoflight/internal/nav-over50-counting") != 0) {
+						setprop("/it-autoflight/internal/nav-over50-counting", 0);
+					}
+				}
 			}
 		} else {
 			if (getprop("/it-autoflight/internal/nav-gain") != 1.0) {
 				setprop("/it-autoflight/internal/nav-gain", 1.0);
 			}
+			if (getprop("/it-autoflight/internal/nav-over50-counting") != 0) {
+				setprop("/it-autoflight/internal/nav-over50-counting", 0);
+			}
 		}
 		
 		# Limit the turn rate depending on the mode
 		if (getprop("/it-autoflight/output/roll") == 1 or getprop("/it-autoflight/output/roll") == 2) {
-			if (getprop("/it-autoflight/internal/nav-gain") == 0.75) {
+			if (getprop("/it-autoflight/internal/nav-gain") == 0.8) {
 				setprop("/it-autoflight/internal/min-turn-rate", -0.45);
 				setprop("/it-autoflight/internal/max-turn-rate", 0.45);
 
-			} else if (getprop("/it-autoflight/internal/nav-gain") == 0.65) {
+			} else if (getprop("/it-autoflight/internal/nav-gain") == 0.6) {
 				setprop("/it-autoflight/internal/min-turn-rate", -0.15);
 				setprop("/it-autoflight/internal/max-turn-rate", 0.15);
 
