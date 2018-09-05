@@ -404,7 +404,7 @@
 			<Kp>-0.00023</Kp>
 			<Ki>-0.00002</Ki>
 			<min>-0.3</min>
-			<max>0.4</max>
+			<max>0.3</max>
 		</config>
 	</pi-simple-controller>
 	

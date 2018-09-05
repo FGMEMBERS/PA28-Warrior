@@ -3,8 +3,8 @@
 
 setprop("/systems/electrical/outputs/autopilot", 0); # Autopilot power source
 setprop("/it-autoflight/internal/hsi-equipped", 1);
-setprop("/it-autoflight/internal/min-turn-rate", -1.0);
-setprop("/it-autoflight/internal/max-turn-rate", 1.0);
+setprop("/it-autoflight/internal/min-turn-rate", -0.9);
+setprop("/it-autoflight/internal/max-turn-rate", 0.9);
 setprop("/it-autoflight/internal/nav-gain", 1.0);
 setprop("/it-autoflight/internal/nav-step1-time", 0);
 setprop("/it-autoflight/internal/nav-step2-time", 0);
@@ -25,6 +25,7 @@ var ITAF = {
 		setprop("/it-autoflight/input/alt", 0);
 		setprop("/it-autoflight/input/alt-offset", 0);
 		setprop("/it-autoflight/input/vs", 0);
+		setprop("/it-autoflight/input/cws-switch", 0);
 		setprop("/it-autoflight/output/roll", -1);
 		setprop("/it-autoflight/output/pitch", -1);
 		setprop("/it-autoflight/annun/hdg", 0);
@@ -125,8 +126,8 @@ var ITAF = {
 				setprop("/it-autoflight/internal/max-turn-rate", 0.9);
 			}
 		} else {
-			setprop("/it-autoflight/internal/min-turn-rate", -1.0);
-			setprop("/it-autoflight/internal/max-turn-rate", 1.0);
+			setprop("/it-autoflight/internal/min-turn-rate", -0.9);
+			setprop("/it-autoflight/internal/max-turn-rate", 0.9);
 		}
 	},
 	killAP: func() { # Kill all AP modes
