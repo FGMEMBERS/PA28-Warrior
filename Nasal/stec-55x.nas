@@ -110,7 +110,7 @@ var ITAF = {
 			
 			# Return to CAP SOFT if needle deflection is >= 50% for 60 seconds
 			if (cdiDefl >= 5 and getprop("/it-autoflight/internal/nav-gain") == 0.6) {
-				if (getprop("/it-autoflight/internal/nav-over50-counting") != 1) { # Prevent it from constantly updaing the time
+				if (getprop("/it-autoflight/internal/nav-over50-counting") != 1) { # Prevent it from constantly updating the time
 					setprop("/it-autoflight/internal/nav-over50-counting", 1);
 					setprop("/it-autoflight/internal/nav-over50-time", getprop("/sim/time/elapsed-sec"));
 				}
