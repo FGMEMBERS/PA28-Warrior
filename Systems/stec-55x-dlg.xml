@@ -362,7 +362,7 @@
 					</equals>
 				</and>
 			</visible>
-			<property>/it-autoflight/input/vs</property>
+			<property>/it-autoflight/input/vs-abs</property>
 			<live>1</live>
         </text>
 	</group>

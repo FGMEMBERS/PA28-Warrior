@@ -339,6 +339,19 @@
 	</filter>
 	
 	<filter>
+		<name>V/S ABS</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<expression>
+				<abs><property>/it-autoflight/input/vs</property></abs>
+			</expression>
+		</input>
+		<output>/it-autoflight/input/vs-abs</output>
+	</filter>
+	
+	<filter>
 		<name>ALTITUDE CAPTURE/HOLD</name>
 		<debug>false</debug>
 		<type>gain</type>
