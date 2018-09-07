@@ -28,19 +28,16 @@
         <max-m>10</max-m>
     </animation>
     
-    <animation>
-      <type>material</type>
-      <property-base>sim/model/material/cockpit</property-base>
-      <object-name>face</object-name>
-      <object-name>auto</object-name>
-      <object-name>direction</object-name>
-      <emission>
-        <red-prop>red</red-prop>
-        <green-prop>green</green-prop>
-        <blue-prop>blue</blue-prop>
-        <factor-prop>factor</factor-prop>
-      </emission>
-    </animation>
+	<animation>
+		<type>material</type>
+		<object-name>GroupLighting</object-name>
+		<emission>
+			<red>0.1</red>
+			<green>0.1</green>
+			<blue>0.1</blue>
+		  <factor-prop>sim/model/material/instruments/factor</factor-prop>
+		</emission>
+	</animation>
 
     <animation>
         <type>rotate</type>

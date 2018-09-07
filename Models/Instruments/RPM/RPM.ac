@@ -7,7 +7,7 @@ OBJECT world
 kids 4
 OBJECT poly
 name "Case"
-loc 0.362091 -0.10107 -0.312438
+loc 0.375047 -0.10107 -0.312438
 data 10
 Circle.008
 texture "case.png"
@@ -593,7 +593,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Face"
-loc -0.00177023 0 0
+loc 0.0111856 0 0
 texture "RPM.png"
 crease 45.000000
 numvert 33
@@ -826,7 +826,7 @@ refs 3
 kids 0
 OBJECT poly
 name "PointerCentre"
-loc -0.00177023 0 0
+loc 0.0111856 0 0
 texture "needle.png"
 crease 45.000000
 numvert 66
@@ -1508,7 +1508,7 @@ refs 4
 kids 0
 OBJECT poly
 name "PointerTip"
-loc -0.00177023 0 0
+loc 0.0111856 0 0
 texture "needle.png"
 crease 45.000000
 numvert 8
