@@ -193,10 +193,16 @@
 					<property>it-autoflight/internal/hasPower</property>
 					<value>1</value>
 				</equals>
-				<equals>
-					<property>it-autoflight/annun/trim</property>
-					<value>1</value>
-				</equals>
+				<or>
+					<equals>
+						<property>/it-autoflight/annun/up</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-autoflight/annun/dn</property>
+						<value>1</value>
+					</equals>
+				</or>
 			</and>
 		</condition>
 	</animation>

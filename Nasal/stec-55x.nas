@@ -28,6 +28,7 @@ var ITAF = {
 		setprop("/it-autoflight/input/alt-offset", 0);
 		setprop("/it-autoflight/input/vs", 0);
 		setprop("/it-autoflight/input/cws-switch", 0);
+		setprop("/it-autoflight/input/electric-trim-sw", 0);
 		setprop("/it-autoflight/output/roll", -1);
 		setprop("/it-autoflight/output/pitch", -1);
 		setprop("/it-autoflight/annun/hdg", 0);
@@ -35,7 +36,6 @@ var ITAF = {
 		setprop("/it-autoflight/annun/nav-flash", 0);
 		setprop("/it-autoflight/annun/apr", 0);
 		setprop("/it-autoflight/annun/rev", 0);
-		setprop("/it-autoflight/annun/trim", 0);
 		setprop("/it-autoflight/annun/alt", 0);
 		setprop("/it-autoflight/annun/gs", 0);
 		setprop("/it-autoflight/annun/vs", 0);
@@ -92,6 +92,22 @@ var ITAF = {
 			setprop("/it-autoflight/annun/gpss", 1);
 		} else {
 			setprop("/it-autoflight/annun/gpss", 0);
+		}
+		
+		# Electric Pitch Trim
+		if (getprop("/it-autoflight/output/pitch") != -1 and getprop("/controls/flight/elevator") < -0.05) {
+			setprop("/it-autoflight/annun/up", 1);
+		} else if (getprop("/it-autoflight/output/pitch") != -1 and getprop("/it-autoflight/annun/up") == 1 and getprop("/controls/flight/elevator") < -0.015) {
+			setprop("/it-autoflight/annun/dn", 1);
+		} else {
+			setprop("/it-autoflight/annun/up", 0);
+		}
+		if (getprop("/it-autoflight/output/pitch") != -1 and getprop("/controls/flight/elevator") > 0.05) {
+			setprop("/it-autoflight/annun/dn", 1);
+		} else if (getprop("/it-autoflight/output/pitch") != -1 and getprop("/it-autoflight/annun/dn") == 1 and getprop("/controls/flight/elevator") > 0.015) {
+			setprop("/it-autoflight/annun/dn", 1);
+		} else {
+			setprop("/it-autoflight/annun/dn", 0);
 		}
 		
 		# NAV mode gain, reduces as the system captures the course
