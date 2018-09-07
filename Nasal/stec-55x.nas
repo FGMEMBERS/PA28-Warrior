@@ -262,7 +262,7 @@ var GPSchk = func {
 	}
 }
 
-var NAVl = maketimer(0.4, func { # Flashes the NAV (and sometimes GPSS) lights when NAV modes are armed
+var NAVl = maketimer(0.5, func { # Flashes the NAV (and sometimes GPSS) lights when NAV modes are armed
 	if ((getprop("/it-autoflight/output/roll") == 3 or getprop("/it-autoflight/output/roll") == 4) and getprop("/it-autoflight/annun/nav-flash") != 1) {
 		setprop("/it-autoflight/annun/nav-flash", 1);
 	} else if ((getprop("/it-autoflight/output/roll") == 3 or getprop("/it-autoflight/output/roll") == 4) and getprop("/it-autoflight/annun/nav-flash") != 0) {
