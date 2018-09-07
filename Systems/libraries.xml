@@ -103,60 +103,6 @@
 		<filter-time>0.04</filter-time>
 	</filter>
 	
-	<filter>
-		<name>STBY Attitude Indicator Roll lowpass</name>
-		<debug>false</debug>
-		<type>exponential</type>
-		<input>
-			<condition>
-				<less-than>
-					<property>/systems/electrical/outputs/stby</property>
-					<value>9</value>
-				</less-than>
-			</condition>
-			<value>34</value>
-		</input>
-		<input>/orientation/roll-deg</input>
-		<output>/instrumentation/stby-ai/roll-deg</output>
-		<filter-time>
-			<condition>
-				<less-than>
-					<property>/systems/electrical/outputs/stby</property>
-					<value>9</value>
-				</less-than>
-			</condition>
-			<value>2.0</value>
-		</filter-time>
-		<filter-time>0.02</filter-time>
-	</filter>
-	
-	<filter>
-		<name>STBY Attitude Indicator Pitch lowpass</name>
-		<debug>false</debug>
-		<type>exponential</type>
-		<input>
-			<condition>
-				<less-than>
-					<property>/systems/electrical/outputs/stby</property>
-					<value>9</value>
-				</less-than>
-			</condition>
-			<value>18</value>
-		</input>
-		<input>/orientation/pitch-deg</input>
-		<output>/instrumentation/stby-ai/pitch-deg</output>
-		<filter-time>
-			<condition>
-				<less-than>
-					<property>/systems/electrical/outputs/stby</property>
-					<value>9</value>
-				</less-than>
-			</condition>
-			<value>2.0</value>
-		</filter-time>
-		<filter-time>0.02</filter-time>
-	</filter>
-	
 	<!-- Instrument filters -->
 	
 	<filter>

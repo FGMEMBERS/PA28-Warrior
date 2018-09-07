@@ -817,9 +817,6 @@
 		<oat>
 			<mode type="int">0</mode>
 		</oat>
-		<stby-ai n="0">
-			<pitch-reference-offset-deg type="double">0</pitch-reference-offset-deg>
-		</stby-ai>
 	</instrumentation>
 	
 	<options n="0">
