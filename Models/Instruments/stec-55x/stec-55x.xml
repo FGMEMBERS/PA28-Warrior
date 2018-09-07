@@ -36,11 +36,11 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/it-autoflight/internal/hasPower</property>
+					<property>it-autoflight/internal/hasPower</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>/it-autoflight/annun/hdg</property>
+					<property>it-autoflight/annun/hdg</property>
 					<value>1</value>
 				</equals>
 			</and>
@@ -53,11 +53,11 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/it-autoflight/internal/hasPower</property>
+					<property>it-autoflight/internal/hasPower</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>/it-autoflight/annun/rdy</property>
+					<property>it-autoflight/annun/rdy</property>
 					<value>1</value>
 				</equals>
 			</and>
@@ -70,16 +70,16 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/it-autoflight/internal/hasPower</property>
+					<property>it-autoflight/internal/hasPower</property>
 					<value>1</value>
 				</equals>
 				<or>
 					<equals>
-						<property>/it-autoflight/annun/nav</property>
+						<property>it-autoflight/annun/nav</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>/it-autoflight/annun/nav-flash</property>
+						<property>it-autoflight/annun/nav-flash</property>
 						<value>1</value>
 					</equals>
 				</or>
@@ -93,11 +93,11 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/it-autoflight/internal/hasPower</property>
+					<property>it-autoflight/internal/hasPower</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>/it-autoflight/annun/cws</property>
+					<property>it-autoflight/annun/cws</property>
 					<value>1</value>
 				</equals>
 			</and>
@@ -110,11 +110,11 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/it-autoflight/internal/hasPower</property>
+					<property>it-autoflight/internal/hasPower</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>/it-autoflight/annun/apr</property>
+					<property>it-autoflight/annun/apr</property>
 					<value>1</value>
 				</equals>
 			</and>
@@ -127,11 +127,11 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/it-autoflight/internal/hasPower</property>
+					<property>it-autoflight/internal/hasPower</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>/it-autoflight/annun/fail</property>
+					<property>it-autoflight/annun/fail</property>
 					<value>1</value>
 				</equals>
 			</and>
@@ -144,21 +144,21 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/it-autoflight/internal/hasPower</property>
+					<property>it-autoflight/internal/hasPower</property>
 					<value>1</value>
 				</equals>
 				<or>
 					<equals>
-						<property>/it-autoflight/annun/gpss</property>
+						<property>it-autoflight/annun/gpss</property>
 						<value>1</value>
 					</equals>
 					<and>
 						<equals>
-							<property>/it-autoflight/annun/nav-flash</property>
+							<property>it-autoflight/annun/nav-flash</property>
 							<value>1</value>
 						</equals>
 						<equals>
-							<property>/it-autoflight/output/roll</property>
+							<property>it-autoflight/output/roll</property>
 							<value>4</value>
 						</equals>
 					</and>
@@ -173,11 +173,11 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/it-autoflight/internal/hasPower</property>
+					<property>it-autoflight/internal/hasPower</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>/it-autoflight/annun/rev</property>
+					<property>it-autoflight/annun/rev</property>
 					<value>1</value>
 				</equals>
 			</and>
@@ -190,11 +190,11 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/it-autoflight/internal/hasPower</property>
+					<property>it-autoflight/internal/hasPower</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>/it-autoflight/annun/trim</property>
+					<property>it-autoflight/annun/trim</property>
 					<value>1</value>
 				</equals>
 			</and>
@@ -207,11 +207,11 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/it-autoflight/internal/hasPower</property>
+					<property>it-autoflight/internal/hasPower</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>/it-autoflight/annun/up</property>
+					<property>it-autoflight/annun/up</property>
 					<value>1</value>
 				</equals>
 			</and>
@@ -224,11 +224,11 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/it-autoflight/internal/hasPower</property>
+					<property>it-autoflight/internal/hasPower</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>/it-autoflight/annun/dn</property>
+					<property>it-autoflight/annun/dn</property>
 					<value>1</value>
 				</equals>
 			</and>
@@ -241,11 +241,11 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/it-autoflight/internal/hasPower</property>
+					<property>it-autoflight/internal/hasPower</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>/it-autoflight/annun/alt</property>
+					<property>it-autoflight/annun/alt</property>
 					<value>1</value>
 				</equals>
 			</and>
@@ -258,11 +258,11 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/it-autoflight/internal/hasPower</property>
+					<property>it-autoflight/internal/hasPower</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>/it-autoflight/annun/gs</property>
+					<property>it-autoflight/annun/gs</property>
 					<value>1</value>
 				</equals>
 			</and>
@@ -275,11 +275,11 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/it-autoflight/internal/hasPower</property>
+					<property>it-autoflight/internal/hasPower</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>/it-autoflight/annun/vs</property>
+					<property>it-autoflight/annun/vs</property>
 					<value>1</value>
 				</equals>
 			</and>
@@ -292,11 +292,11 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/it-autoflight/internal/hasPower</property>
+					<property>it-autoflight/internal/hasPower</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>/it-autoflight/output/pitch</property>
+					<property>it-autoflight/annun/vs</property>
 					<value>1</value>
 				</equals>
 			</and>
@@ -309,19 +309,70 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/it-autoflight/internal/hasPower</property>
+					<property>it-autoflight/internal/hasPower</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>/it-autoflight/output/pitch</property>
+					<property>it-autoflight/annun/vs</property>
 					<value>1</value>
 				</equals>
 				<greater-than-equals>
-					<property>/it-autoflight/input/vs</property>
+					<property>it-autoflight/input/vs</property>
 					<value>0</value>
 				</greater-than-equals>
 			</and>
 		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>ONE.ind</object-name>
+		<condition>
+			<and>
+				<equals>
+					<property>it-autoflight/internal/hasPower</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>it-autoflight/annun/vs</property>
+					<value>1</value>
+				</equals>
+				<greater-than-equals>
+					<property>it-autoflight/input/vs-abs</property>
+					<value>1000</value>
+				</greater-than-equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>DIGITS.ind</object-name>
+		<condition>
+			<and>
+				<equals>
+					<property>it-autoflight/internal/hasPower</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>it-autoflight/annun/vs</property>
+					<value>1</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>textranslate</type>
+		<object-name>DIGITS.ind</object-name>
+		<property>it-autoflight/input/vs-abs</property>
+		<factor>0.001</factor>
+		<step>100</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	
 	<animation>

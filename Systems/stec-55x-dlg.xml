@@ -313,7 +313,7 @@
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>/it-autoflight/output/pitch</property>
+						<property>it-autoflight/annun/vs</property>
 						<value>1</value>
 					</equals>
 					<greater-than-equals>
@@ -335,7 +335,7 @@
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>/it-autoflight/output/pitch</property>
+						<property>it-autoflight/annun/vs</property>
 						<value>1</value>
 					</equals>
 					<less-than>
@@ -357,7 +357,7 @@
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>/it-autoflight/output/pitch</property>
+						<property>it-autoflight/annun/vs</property>
 						<value>1</value>
 					</equals>
 				</and>
