@@ -544,8 +544,8 @@
 		<name>kx165-1</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/radio_stack/kx165-1.xml</path>
 		<offsets>
-			<x-m>1.92</x-m>
-			<y-m>0.123</y-m>
+			<x-m>1.915</x-m>
+			<y-m>0.124</y-m>
 			<z-m>0.32</z-m>
 		</offsets>
 	</model>
@@ -554,8 +554,8 @@
 		<name>kx165-2</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/radio_stack/kx165-2.xml</path>
 		<offsets>
-			<x-m>1.92</x-m>
-			<y-m>0.123</y-m>
+			<x-m>1.915</x-m>
+			<y-m>0.124</y-m>
 			<z-m>0.265</z-m>
 		</offsets>
 	</model>
@@ -564,8 +564,8 @@
 		<name>STEC-55X</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/stec-55x/stec-55x.xml</path>
 		<offsets>
-			<x-m>1.929</x-m>
-			<y-m>0.1225</y-m>
+			<x-m>1.925</x-m>
+			<y-m>0.124</y-m>
 			<z-m>0.213</z-m>
 		</offsets>
 	</model>
@@ -574,9 +574,9 @@
 		<name>kma20</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/kma20/kma20.xml</path>
 		<offsets>
-			<x-m>1.92</x-m>
-			<y-m>0.292</y-m>
-			<z-m>0.24</z-m>
+			<x-m>1.915</x-m>
+			<y-m>0.285</y-m>
+			<z-m>0.225</z-m>
 		</offsets>
 	</model>
 
@@ -584,19 +584,19 @@
 		<name>dme</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/ki266/ki266.xml</path>
 		<offsets>
-			<x-m>1.93</x-m>
-			<y-m>0.292</y-m>
-			<z-m>0.19</z-m>
+			<x-m>1.932</x-m>
+			<y-m>0.285</y-m>
+			<z-m>0.179</z-m>
 		</offsets>
 	</model>
 
 	<model>
-		<name>Transponder</name>
+		<name>kt70</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/kt70/kt70.xml</path>
 		<offsets>
-			<x-m>1.9312</x-m>
-			<y-m>0.292</y-m>
-			<z-m>0.28</z-m>
+			<x-m>1.922</x-m>
+			<y-m>0.285</y-m>
+			<z-m>0.27</z-m>
 		</offsets>
 	</model>
 
@@ -604,8 +604,8 @@
 		<name>kr87</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/kr87-adf/kr87.xml</path>
 		<offsets>
-			<x-m>1.92</x-m>
-			<y-m>0.1225</y-m>
+			<x-m>1.915</x-m>
+			<y-m>0.124</y-m>
 			<z-m>0.173</z-m>
 		</offsets>
 	</model>
