@@ -3,7 +3,7 @@ MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5  shi 
 MATERIAL "BlackPlastic" rgb 0.153331 0.153331 0.153331  amb 0.153331 0.153331 0.153331  emis 0 0 0  spec 0.186866 0.186866 0.186866  shi 32  trans 0
 MATERIAL "InstrumentBezel" rgb 0.042666 0.042666 0.042666  amb 0.042666 0.042666 0.042666  emis 0 0 0  spec 0.123149 0.123149 0.123149  shi 32  trans 0
 OBJECT world
-kids 12
+kids 10
 OBJECT group
 name "RollReference"
 kids 2
@@ -71,44 +71,6 @@ refs 4
 3 0.0125 0.8875
 2 0.1125 0.8875
 1 0.1125 0.9875
-kids 0
-OBJECT poly
-name "AdjustCCW"
-data 9
-Plane.004
-crease 30.000000
-numvert 4
-0.006 -0.024357 -9.8e-005
-0.006 -0.044357 -9.8e-005
-0.006 -0.044357 0.009902
-0.006 -0.024357 0.009902
-numsurf 1
-SURF 0x20
-mat 0
-refs 4
-0 0 0
-3 0 0
-2 0 0
-1 0 0
-kids 0
-OBJECT poly
-name "AdjustCW"
-data 5
-Plane
-crease 30.000000
-numvert 4
-0.006 -0.024357 -0.010098
-0.006 -0.044357 -0.010098
-0.006 -0.044357 -9.8e-005
-0.006 -0.024357 -9.8e-005
-numsurf 1
-SURF 0x20
-mat 0
-refs 4
-0 0 0
-3 0 0
-2 0 0
-1 0 0
 kids 0
 OBJECT poly
 name "AdjustKnob"

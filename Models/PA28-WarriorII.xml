@@ -350,8 +350,8 @@
 	</model>
 
 	<model>
-		<name>SwitchKcs51b</name>
-		<path>Aircraft/PA28-Warrior/Models/Instruments/kcs55/ka51b.xml</path>
+		<name>blank</name>
+		<path>Aircraft/PA28-Warrior/Models/Instruments/blank/blank.xml</path>
 		<condition>
 			<equals>
 				<property>options/panel</property>

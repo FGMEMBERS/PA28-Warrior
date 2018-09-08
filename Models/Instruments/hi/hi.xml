@@ -86,9 +86,9 @@
 				<command>property-adjust</command>
 				<property>it-autoflight/input/hdg</property>
 				<step>1</step>
-				<min>0</min>
-				<max>360</max>
-				<wrap>1</wrap>
+				<min>1</min>
+				<max>361</max>
+				<wrap>true</wrap>
 			</binding>
 		</action>
 		<action>
@@ -99,9 +99,9 @@
 				<command>property-adjust</command>
 				<property>it-autoflight/input/hdg</property>
 				<step>-1</step>
-				<min>0</min>
-				<max>360</max>
-				<wrap>1</wrap>
+				<min>1</min>
+				<max>361</max>
+				<wrap>true</wrap>
 			</binding>
 		</action>
 		<hovered>

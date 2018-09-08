@@ -27,20 +27,6 @@
 	</animation>
 	
 	<animation>
-		<type>pick</type>
-		<object-name>Aircraft</object-name>
-		<object-name>CagedIndicator</object-name>
-		<object-name>Pitch</object-name>
-		<object-name>Roll</object-name>
-		<object-name>RollReference</object-name>
-		<binding>
-			<command>property-assign</command>
-			<property>sim/current-view/goal-pitch-offset-deg</property>
-			<value>-7</value>
-		</binding>
-	</animation>
-	
-	<animation>
 		<name>Pitch</name>
 		<type>translate</type>
 		<object-name>Pitch</object-name>
@@ -94,41 +80,40 @@
 		</axis>
 	</animation>
 	
-	<!-- simply hide these -->
 	<animation>
 		<type>pick</type>
-		<visible>false</visible>
-		<object-name>AdjustCW</object-name>
-		<object-name>AdjustCCW</object-name>
-	</animation>
-	
-	<animation>
-		<type>knob</type>
 		<object-name>AdjustKnob</object-name>
 		<action>
-		<repeatable>true</repeatable>
-		<binding>
-			<command>property-adjust</command>
-			<property>instrumentation/attitude-indicator/horizon-offset-deg</property>
-			<factor type="double">0.5</factor>
-		</binding>
+			<button>0</button>
+			<button>3</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/attitude-indicator/horizon-offset-deg</property>
+				<step>0.5</step>
+				<min>-5</min>
+				<max>5</max>
+				<wrap>false</wrap>
+			</binding>
 		</action>
-		<value>0.0</value>
-		<axis>
-			<x>1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>0.0</x-m>
-			<y-m>0.0</y-m>
-			<z-m>-0.0353</z-m>
-		</center>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/attitude-indicator/horizon-offset-deg</property>
+				<step>-0.5</step>
+				<min>-5</min>
+				<max>5</max>
+				<wrap>false</wrap>
+			</binding>
+		</action>
 		<hovered>
 			<binding>
 				<command>set-tooltip</command>
 				<tooltip-id>ai-horizon-offset</tooltip-id>
-				<label>Horizon Offset: %2d</label>
+				<label>Horizon Offset: %1.1f</label>
 				<property>instrumentation/attitude-indicator/horizon-offset-deg</property>
 			</binding>
 		</hovered>

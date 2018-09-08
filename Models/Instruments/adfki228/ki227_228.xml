@@ -60,20 +60,6 @@
     <max-m>10</max-m>
   </animation>
   
-   <animation>
-    <type>pick</type>
-    <object-name>CompassRose</object-name>
-  <hovered>
-            <binding>
-                <command>set-tooltip</command>
-                <tooltip-id>adfbearing</tooltip-id>
-                <mapping>bearing</mapping>
-                <label>Bearing: %3d</label>
-                <property>instrumentation/adf/indicated-bearing-deg</property>
-            </binding>
-        </hovered>
-    </animation>
-
   <animation>
     <type>material</type>
     <object-name>CompassRose</object-name>
@@ -151,36 +137,44 @@
     </center>
   </animation>
 
-
-  <animation>
-    <type>pick</type>
-    <object-name>HDGSelector</object-name>
-    <action>
-      <button>0</button>
-      <button>3</button>
-      <repeatable>true</repeatable>
-      <binding>
-        <command>property-adjust</command>
-        <property alias="../../../../params/rotation-deg"/>
-        <step>1</step>
-        <min>1</min>
-        <max>361</max>
-        <wrap>1</wrap>
-      </binding>
-    </action>
-    <action>
-	  <button>1</button>
-      <button>4</button>
-      <repeatable>true</repeatable>
-      <binding>
-        <command>property-adjust</command>
-        <property alias="../../../../params/rotation-deg"/>
-        <step>-1</step>
-        <min>1</min>
-        <max>361</max>
-        <wrap>1</wrap>
-      </binding>
-    </action>
-  </animation>
+	<animation>
+		<type>pick</type>
+		<object-name>HDGSelector</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property alias="../../../../params/rotation-deg"/>
+				<step>1</step>
+				<min>1</min>
+				<max>361</max>
+				<wrap>1</wrap>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property alias="../../../../params/rotation-deg"/>
+				<step>-1</step>
+				<min>1</min>
+				<max>361</max>
+				<wrap>1</wrap>
+			</binding>
+		</action>
+		<hovered>
+			<binding>
+				<command>set-tooltip</command>
+				<tooltip-id>adfbearing</tooltip-id>
+				<mapping>bearing</mapping>
+				<label>Bearing: %3d</label>
+				<property alias="../../../../params/rotation-deg"/>
+			</binding>
+		</hovered>
+	</animation>
 
 </PropertyList>
