@@ -424,7 +424,17 @@
 	<filter>
 		<name>INTERNAL G ACCEL</name>
 		<type>exponential</type>
-		<input>/accelerations/pilot-g</input>
+		<input>
+			<expression>
+				<difference>
+					<property>/accelerations/pilot-g</property>
+					<product> <!-- Tries to correct G when banked -->
+						<abs><property>/instrumentation/turn-indicator/indicated-turn-rate</property></abs>
+						<value>0.0225</value>
+					</product>
+				</difference>
+			</expression>
+		</input>
 		<output>/it-autoflight/internal/g-damped</output>
 		<filter-time>0.04</filter-time>
 	</filter>
