@@ -185,6 +185,17 @@ var ITAF = {
 };
 
 var button = {
+	HDGB: func(d) {
+		if (d == 1) { # Button pushed
+			setprop("/it-autoflight/input/hdg-button", 1);
+			setprop("/it-autoflight/internal/hdg-button-time", getprop("/sim/time/elapsed-sec"));
+		} else if (d == 0) { # Button released
+			if (getprop("/it-autoflight/internal/hdg-button-time") + 1.5 >= getprop("/sim/time/elapsed-sec")) { # Button pops out and HDG gets engaged only if depressed for less than 1.5 seconds
+				me.HDG();
+				setprop("/it-autoflight/input/hdg-button", 0);
+			}
+		}
+	},
 	HDG: func() {
 		if (getprop("/it-autoflight/internal/hasPower") == 1) {
 			if (getprop("/it-autoflight/output/roll") == 0) {
@@ -195,23 +206,40 @@ var button = {
 			}
 		}
 	},
+	HDGInt: func() { # Heading Custom Intercept Mode
+		if (getprop("/it-autoflight/internal/hasPower") == 1) {
+			setprop("/it-autoflight/internal/nav-man-intercept", 1);
+			setprop("/it-autoflight/output/roll", 0);
+		}
+	},
+	HDGNoInt: func() { # Disable Heading Custom Intercept Mode and return to regular Heading Mode
+		if (getprop("/it-autoflight/internal/hasPower") == 1) {
+			setprop("/it-autoflight/internal/nav-man-intercept", 0);
+			setprop("/it-autoflight/output/roll", 0);
+		}
+	},
 	NAV: func() {
 		if (getprop("/it-autoflight/internal/hasPower") == 1) {
-			if (getprop("/it-autoflight/output/roll") == 1 or getprop("/it-autoflight/output/roll") == 3) { # If NAV active or armed, switch to GPSS NAV mode
+			CNAV = getprop("/it-autoflight/output/roll") == 0 and getprop("/it-autoflight/internal/nav-man-intercept") == 1;
+			if (CNAV == 1) { # If NAV is armed with a custom heading intercept, go back to HDG mode
+				me.HDGNoInt();
+			} else if (getprop("/it-autoflight/output/roll") == 1 or getprop("/it-autoflight/output/roll") == 3) { # If NAV active or armed, switch to GPSS NAV mode
 				setprop("/it-autoflight/output/roll", 4);
 				GPSchk();
 				GPSt.start();
 			} else if (getprop("/it-autoflight/output/roll") == 2 or getprop("/it-autoflight/output/roll") == 4) { # If GPSS NAV active or armed, turn off AP
 				ITAF.killAP();
 			} else { # If not in NAV mode, switch to NAV
-				if (getprop("/it-autoflight/output/roll") == 0 and getprop("/it-autoflight/internal/nav-man-intercept") == 1) { # If the HDG button was held, arm NAV for custom intercept angle
+				if (getprop("/it-autoflight/output/roll") == 0 and getprop("/it-autoflight/input/hdg-button") == 1) { # If the HDG button is being pushed, arm NAV for custom intercept angle
+					me.HDGInt();
 					NAVchk();
-					NAVchk.start();
+					NAVt.start();
+					setprop("/it-autoflight/input/hdg-button", 0);
 				} else {
 					setprop("/it-autoflight/output/roll", 3);
+					NAVchk();
+					NAVt.start();
 				}
-				NAVchk();
-				NAVt.start();
 			}
 		}
 	},

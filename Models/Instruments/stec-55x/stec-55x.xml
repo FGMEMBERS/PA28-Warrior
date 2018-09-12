@@ -392,19 +392,13 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<command>property-assign</command>
-				<property>/it-autoflight/input/hdg-button</property>
-				<value>1</value>
-			</binding>
-			<binding>
 				<command>nasal</command>
-				<script>stec55x.button.HDG();</script>
+				<script>stec55x.button.HDGB(1);</script>
 			</binding>
 			<mod-up>
 				<binding>
-					<command>property-assign</command>
-					<property>/it-autoflight/input/hdg-button</property>
-					<value>0</value>
+					<command>nasal</command>
+					<script>stec55x.button.HDGB(0);</script>
 				</binding>
 			</mod-up>
 		</action>
@@ -433,15 +427,15 @@
 				<property>/it-autoflight/input/nav-button</property>
 				<value>1</value>
 			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>stec55x.button.NAV();</script>
-			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
 					<property>/it-autoflight/input/nav-button</property>
 					<value>0</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>stec55x.button.NAV();</script>
 				</binding>
 			</mod-up>
 		</action>
@@ -461,6 +455,72 @@
 	
 	<animation>
 		<type>pick</type>
+		<object-name>APR.button</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/apr-button</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/it-autoflight/input/apr-button</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>APR.button</object-name>
+		<property>/it-autoflight/input/apr-button</property>
+		<factor alias="../../params/button-translate"/>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>REV.button</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/rev-button</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/it-autoflight/input/rev-button</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>REV.button</object-name>
+		<property>/it-autoflight/input/rev-button</property>
+		<factor alias="../../params/button-translate"/>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
 		<object-name>ALT.button</object-name>
 		<action>
 			<button>0</button>
@@ -470,15 +530,15 @@
 				<property>/it-autoflight/input/alt-button</property>
 				<value>1</value>
 			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>stec55x.button.ALT();</script>
-			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
 					<property>/it-autoflight/input/alt-button</property>
 					<value>0</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>stec55x.button.ALT();</script>
 				</binding>
 			</mod-up>
 		</action>
@@ -507,15 +567,15 @@
 				<property>/it-autoflight/input/vs-button</property>
 				<value>1</value>
 			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>stec55x.button.VS();</script>
-			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
 					<property>/it-autoflight/input/vs-button</property>
 					<value>0</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>stec55x.button.VS();</script>
 				</binding>
 			</mod-up>
 		</action>
