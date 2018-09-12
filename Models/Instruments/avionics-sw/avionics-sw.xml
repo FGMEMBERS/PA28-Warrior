@@ -10,14 +10,14 @@
 			<red>0.1</red>
 			<green>0.1</green>
 			<blue>0.1</blue>
-		  <factor-prop>sim/model/material/instruments/factor</factor-prop>
+			<factor-prop>sim/model/material/instruments/factor</factor-prop>
 		</emission>
 	</animation>
 	
 	<animation>
+		<object-name>Base</object-name>
 		<object-name>Lever</object-name>
 		<type>pick</type>
-		<visible>true</visible>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -30,13 +30,6 @@
 				<script>setprop("/sim/sounde/switch1", 1);</script>
 			</binding>
 		</action>
-		<hovered>
-			<binding>
-				<command>set-tooltip</command>
-				<tooltip-id>Avionics</tooltip-id>
-				<label>Avionics Master</label>
-			</binding>
-		</hovered>
 	</animation>
 	
 	<animation>
@@ -52,29 +45,3 @@
 	</animation>
 
 </PropertyList>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

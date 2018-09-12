@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+	
+	<path>ap-sw.ac</path>
+	
+	<animation>
+		<type>material</type>
+		<emission>
+			<red>0.1</red>
+			<green>0.1</green>
+			<blue>0.1</blue>
+			<factor-prop>sim/model/material/instruments/factor</factor-prop>
+		</emission>
+	</animation>
+	
+	<animation>
+		<object-name>APSW</object-name>
+		<object-name>APBase</object-name>
+		<type>pick</type>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>it-autoflight/input/ap-master-sw</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/switch1", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>APSW</object-name>
+		<property>it-autoflight/input/ap-master-sw</property>
+		<factor>32</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<object-name>TrimSW</object-name>
+		<object-name>TrimBase</object-name>
+		<type>pick</type>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>it-autoflight/input/electric-trim-sw</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/switch1", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>TrimSW</object-name>
+		<property>it-autoflight/input/electric-trim-sw</property>
+		<factor>32</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+
+</PropertyList>

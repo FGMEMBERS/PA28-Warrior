@@ -26,11 +26,14 @@ setlistener("/sim/signals/fdm-initialized", func {
 
 var ITAF = {
 	init: func() {
+		setprop("/it-autoflight/serviceable", 0);
 		setprop("/it-autoflight/input/hdg", 360);
 		setprop("/it-autoflight/input/alt", 0);
 		setprop("/it-autoflight/input/alt-offset", 0);
 		setprop("/it-autoflight/input/vs", 0);
-		setprop("/it-autoflight/input/cws-switch", 0);
+		setprop("/it-autoflight/input/cws", 0);
+		setprop("/it-autoflight/input/disc", 0);
+		setprop("/it-autoflight/input/ap-master-sw", 0);
 		setprop("/it-autoflight/input/electric-trim-sw", 0);
 		setprop("/it-autoflight/internal/nav-man-intercept", 0);
 		setprop("/it-autoflight/output/roll", -1);
@@ -51,17 +54,17 @@ var ITAF = {
 		setprop("/it-autoflight/annun/dn", 0);
 		update.start();
 	},
-	loop: func () {
-		if (getprop("/systems/electrical/outputs/autopilot") >= 8) {
+	loop: func() {
+		if (getprop("/systems/electrical/outputs/autopilot") >= 8 and getprop("/it-autoflight/input/ap-master-sw") == 1) {
 			setprop("/it-autoflight/internal/hasPower", 1);
 		} else {
 			setprop("/it-autoflight/internal/hasPower", 0);
 			if (getprop("/it-autoflight/output/roll") != -1 or getprop("/it-autoflight/output/pitch") != -1) {
-				me.killAP();
+				ITAF.killAP();
 			}
 		}
 		
-		# Annunciators
+		# Mode Annunciators
 		if (getprop("/it-autoflight/output/roll") == 0) {
 			setprop("/it-autoflight/annun/hdg", 1);
 		} else {
@@ -72,12 +75,6 @@ var ITAF = {
 			setprop("/it-autoflight/annun/nav", 1);
 		} else {
 			setprop("/it-autoflight/annun/nav", 0);
-		}
-		
-		if (getprop("/it-autoflight/output/roll") == 5) {
-			setprop("/it-autoflight/annun/rev", 1);
-		} else {
-			setprop("/it-autoflight/annun/rev", 0);
 		}
 		
 		if (getprop("/it-autoflight/output/pitch") == 0) {
@@ -185,25 +182,26 @@ var ITAF = {
 };
 
 var button = {
+	DISC: func() {
+		ITAF.killAP();
+	},
 	HDGB: func(d) {
-		if (d == 1) { # Button pushed
-			setprop("/it-autoflight/input/hdg-button", 1);
-			setprop("/it-autoflight/internal/hdg-button-time", getprop("/sim/time/elapsed-sec"));
-		} else if (d == 0) { # Button released
-			if (getprop("/it-autoflight/internal/hdg-button-time") + 1.5 >= getprop("/sim/time/elapsed-sec")) { # Button pops out and HDG gets engaged only if depressed for less than 1.5 seconds
-				me.HDG();
-				setprop("/it-autoflight/input/hdg-button", 0);
+		if (getprop("/it-autoflight/internal/hasPower") == 1) {
+			if (d == 1) { # Button pushed
+				setprop("/it-autoflight/input/hdg-button", 1);
+				setprop("/it-autoflight/internal/hdg-button-time", getprop("/sim/time/elapsed-sec"));
+			} else if (d == 0) { # Button released
+				if (getprop("/it-autoflight/internal/hdg-button-time") + 0.48 >= getprop("/sim/time/elapsed-sec")) { # Button pops out and HDG gets engaged only if depressed for less than 0.48 seconds
+					me.HDG();
+					setprop("/it-autoflight/input/hdg-button", 0);
+				}
 			}
 		}
 	},
 	HDG: func() {
 		if (getprop("/it-autoflight/internal/hasPower") == 1) {
-			if (getprop("/it-autoflight/output/roll") == 0) {
-				ITAF.killAP();
-			} else {
-				setprop("/it-autoflight/internal/nav-man-intercept", 0);
-				setprop("/it-autoflight/output/roll", 0);
-			}
+			setprop("/it-autoflight/internal/nav-man-intercept", 0);
+			setprop("/it-autoflight/output/roll", 0);
 		}
 	},
 	HDGInt: func() { # Heading Custom Intercept Mode
@@ -220,21 +218,15 @@ var button = {
 	},
 	NAV: func() {
 		if (getprop("/it-autoflight/internal/hasPower") == 1) {
-			CNAV = getprop("/it-autoflight/output/roll") == 0 and getprop("/it-autoflight/internal/nav-man-intercept") == 1;
-			if (CNAV == 1) { # If NAV is armed with a custom heading intercept, go back to HDG mode
-				me.HDGNoInt();
-			} else if (getprop("/it-autoflight/output/roll") == 1 or getprop("/it-autoflight/output/roll") == 3) { # If NAV active or armed, switch to GPSS NAV mode
+			if (getprop("/it-autoflight/output/roll") == 1 or getprop("/it-autoflight/output/roll") == 3) { # If NAV active or armed, switch to GPSS NAV mode
 				setprop("/it-autoflight/output/roll", 4);
 				GPSchk();
 				GPSt.start();
 			} else if (getprop("/it-autoflight/output/roll") == 2 or getprop("/it-autoflight/output/roll") == 4) { # If GPSS NAV active or armed, turn off AP
 				ITAF.killAP();
-			} else { # If not in NAV mode, switch to NAV
+			} else { # If not regular NAV mode, switch to NAV
 				if (getprop("/it-autoflight/output/roll") == 0 and getprop("/it-autoflight/input/hdg-button") == 1) { # If the HDG button is being pushed, arm NAV for custom intercept angle
-					me.HDGInt();
-					NAVchk();
-					NAVt.start();
-					setprop("/it-autoflight/input/hdg-button", 0);
+					me.CNAV();
 				} else {
 					setprop("/it-autoflight/output/roll", 3);
 					NAVchk();
@@ -243,24 +235,22 @@ var button = {
 			}
 		}
 	},
+	CNAV: func() {
+		me.HDGInt();
+		NAVchk();
+		NAVt.start();
+		setprop("/it-autoflight/input/hdg-button", 0);
+	},
 	ALT: func() {
 		if (getprop("/it-autoflight/internal/hasPower") == 1 and getprop("/it-autoflight/output/roll") != -1) {
-			if (getprop("/it-autoflight/output/pitch") == 0) {
-				ITAF.killAPPitch();
-			} else {
-				setprop("/it-autoflight/input/alt-offset", 0);
-				setprop("/it-autoflight/input/alt", getprop("/systems/static[0]/pressure-inhg"));
-				setprop("/it-autoflight/output/pitch", 0);
-			}
+			setprop("/it-autoflight/input/alt-offset", 0);
+			setprop("/it-autoflight/input/alt", getprop("/systems/static[0]/pressure-inhg"));
+			setprop("/it-autoflight/output/pitch", 0);
 		}
 	},
 	VS: func() {
 		if (getprop("/it-autoflight/internal/hasPower") == 1 and getprop("/it-autoflight/output/roll") != -1) {
-			if (getprop("/it-autoflight/output/pitch") == 1) {
-				ITAF.killAPPitch();
-			} else {
-				setprop("/it-autoflight/output/pitch", 1);
-			}
+			setprop("/it-autoflight/output/pitch", 1);
 		}
 	},
 	Knob: func(d) {

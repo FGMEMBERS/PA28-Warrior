@@ -4,11 +4,23 @@
 
 <PropertyList> 
 	
-	<path>yoke.ac</path> 
-
+	<path>yoke-sw.ac</path> 
+	
+	<animation>
+		<type>material</type>
+		<object-name>Buttons</object-name>
+		<emission>
+			<red>0.05</red>
+			<green>0.05</green>
+			<blue>0.05</blue>
+			<factor-prop>sim/model/material/instruments/factor</factor-prop>
+		</emission>
+	</animation>
+	
 	<animation>
 		<type>translate</type>
 		<object-name>Yoke</object-name>
+		<object-name>Buttons</object-name>
 		<property>fdm/jsbsim/fcs/pitch-input</property>
 		<factor>-0.12</factor>
 		<axis>
@@ -21,6 +33,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>Yoke</object-name>
+		<object-name>Buttons</object-name>
 		<property>fdm/jsbsim/fcs/roll-input</property>
 		<factor>-90.0</factor>
 		<axis>
@@ -46,6 +59,7 @@
 	<animation>
 		<type>select</type>
 		<object-name>Yoke</object-name>
+		<object-name>Buttons</object-name>
 		<condition>
 			<property>options/show-l-yoke</property>
 		</condition>
@@ -53,7 +67,7 @@
  
  	<animation>
 		<type>pick</type>
-		<object-name>Yoke</object-name>
+		<object-name>rod</object-name>
 		<object-name>Stud</object-name>
 		<action>
 			<button>0</button>
@@ -70,4 +84,75 @@
 			</binding>
 		</action>
 	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>button.DISC</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/disc</property>
+				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>stec55x.button.DISC();</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/it-autoflight/input/disc</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>button.DISC</object-name>
+		<property>/it-autoflight/input/disc</property>
+		<factor>-0.002</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>button.CWS</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/cws</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/it-autoflight/input/cws</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>button.CWS</object-name>
+		<property>/it-autoflight/input/cws</property>
+		<factor>-0.002</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
 </PropertyList>

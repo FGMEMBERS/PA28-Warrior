@@ -5,7 +5,7 @@
 <PropertyList> 
 	
 	<path>yoke.ac</path> 
-
+	
 	<animation>
 		<type>translate</type>
 		<object-name>Yoke</object-name>
@@ -53,7 +53,7 @@
  
  	<animation>
 		<type>pick</type>
-		<object-name>Yoke</object-name>
+		<object-name>rod</object-name>
 		<object-name>Stud</object-name>
 		<action>
 			<button>0</button>
@@ -70,4 +70,5 @@
 			</binding>
 		</action>
 	</animation>
+
 </PropertyList>

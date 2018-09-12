@@ -7,7 +7,6 @@
 
 	<name>autopilot</name>
 	<layout>vbox</layout>
-    <pref-width>520</pref-width>
 	
     <group>
         <layout>hbox</layout>
@@ -388,6 +387,15 @@
 		</button>
 		
 		<button>
+			<legend>+</legend>
+			<pref-width>15</pref-width>
+			<binding>
+				<command>nasal</command>
+				<script>stec55x.button.CNAV();</script>
+			</binding>
+		</button>
+		
+		<button>
 			<legend>NAV</legend>
 			<pref-width>40</pref-width>
 			<binding>
@@ -451,5 +459,41 @@
 				<script>stec55x.button.Knob(1);</script>
 			</binding>
 		</button>
+		
+		<button>
+			<legend>DISC</legend>
+			<pref-width>40</pref-width>
+			<binding>
+				<command>nasal</command>
+				<script>stec55x.button.DISC();</script>
+			</binding>
+		</button>
+	</group>
+	
+	<hrule/>
+	
+	<group>
+		<layout>hbox</layout>
+		
+		<checkbox>
+			<label>Autopilot Master</label>
+			<halign>center</halign>
+			<property>/it-autoflight/input/ap-master-sw</property>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+			<live>true</live>
+		</checkbox>
+		
+		<checkbox>
+			<label>Elec Trim Servo</label>
+			<halign>center</halign>
+			<property>/it-autoflight/input/electric-trim-sw</property>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+			<live>true</live>
+		</checkbox>
+	</group>
 
 </PropertyList>
