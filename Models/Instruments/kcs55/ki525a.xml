@@ -427,7 +427,7 @@
 		<type>rotate</type>
 		<object-name>ArrowBody</object-name>
 		<property alias="../../params/cdi-needle-deflection"/>
-		<factor>2.5</factor>
+		<factor>2.0</factor>
 		<axis>
 			<x>0.0</x>
 			<y>0.0</y>
