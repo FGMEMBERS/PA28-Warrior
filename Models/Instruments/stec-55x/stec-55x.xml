@@ -8,6 +8,10 @@
 	
     <path>stec-55x.ac</path>
 	
+	<params>
+		<button-translate>-0.002</button-translate> <!-- Button translate factor -->
+	</params>
+	
 	<animation>
 		<type>material</type>
 		<object-name>GroupLighting</object-name>
@@ -386,12 +390,36 @@
 		<object-name>HDG.button</object-name>
 		<action>
 			<button>0</button>
-			<repeatable>true</repeatable>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/hdg-button</property>
+				<value>1</value>
+			</binding>
 			<binding>
 				<command>nasal</command>
 				<script>stec55x.button.HDG();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/it-autoflight/input/hdg-button</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>HDG.button</object-name>
+		<property>/it-autoflight/input/hdg-button</property>
+		<factor alias="../../params/button-translate"/>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -399,12 +427,36 @@
 		<object-name>NAV.button</object-name>
 		<action>
 			<button>0</button>
-			<repeatable>true</repeatable>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/nav-button</property>
+				<value>1</value>
+			</binding>
 			<binding>
 				<command>nasal</command>
 				<script>stec55x.button.NAV();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/it-autoflight/input/nav-button</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>NAV.button</object-name>
+		<property>/it-autoflight/input/nav-button</property>
+		<factor alias="../../params/button-translate"/>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -412,12 +464,36 @@
 		<object-name>ALT.button</object-name>
 		<action>
 			<button>0</button>
-			<repeatable>true</repeatable>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/alt-button</property>
+				<value>1</value>
+			</binding>
 			<binding>
 				<command>nasal</command>
 				<script>stec55x.button.ALT();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/it-autoflight/input/alt-button</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>ALT.button</object-name>
+		<property>/it-autoflight/input/alt-button</property>
+		<factor alias="../../params/button-translate"/>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -425,12 +501,36 @@
 		<object-name>VS.button</object-name>
 		<action>
 			<button>0</button>
-			<repeatable>true</repeatable>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>/it-autoflight/input/vs-button</property>
+				<value>1</value>
+			</binding>
 			<binding>
 				<command>nasal</command>
 				<script>stec55x.button.VS();</script>
 			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/it-autoflight/input/vs-button</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>VS.button</object-name>
+		<property>/it-autoflight/input/vs-button</property>
+		<factor alias="../../params/button-translate"/>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -439,7 +539,7 @@
 		<action>
 			<button>0</button>
 			<button>3</button>
-			<repeatable>true</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
 				<script>stec55x.button.Knob(1);</script>
@@ -448,7 +548,7 @@
 		<action>
 			<button>1</button>
 			<button>4</button>
-			<repeatable>true</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>nasal</command>
 				<script>stec55x.button.Knob(-1);</script>

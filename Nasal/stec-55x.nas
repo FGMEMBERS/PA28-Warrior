@@ -11,6 +11,7 @@ setprop("/it-autoflight/internal/nav-step2-time", 0);
 setprop("/it-autoflight/internal/nav-step3-time", 0);
 setprop("/it-autoflight/internal/nav-over50-time", 0);
 setprop("/it-autoflight/internal/nav-over50-counting", 0);
+setprop("/it-autoflight/internal/hdg-button-time", 0);
 
 setlistener("/sim/signals/fdm-initialized", func {
 	var hasPower = 0;
@@ -18,6 +19,8 @@ setlistener("/sim/signals/fdm-initialized", func {
 	var pitch = 0;
 	var cdiDefl = 0;
 	var vs = 0;
+	var NAV = 0;
+	var CNAV = 0;
 	ITAF.init();
 });
 
@@ -29,6 +32,7 @@ var ITAF = {
 		setprop("/it-autoflight/input/vs", 0);
 		setprop("/it-autoflight/input/cws-switch", 0);
 		setprop("/it-autoflight/input/electric-trim-sw", 0);
+		setprop("/it-autoflight/internal/nav-man-intercept", 0);
 		setprop("/it-autoflight/output/roll", -1);
 		setprop("/it-autoflight/output/pitch", -1);
 		setprop("/it-autoflight/annun/hdg", 0);
@@ -186,6 +190,7 @@ var button = {
 			if (getprop("/it-autoflight/output/roll") == 0) {
 				ITAF.killAP();
 			} else {
+				setprop("/it-autoflight/internal/nav-man-intercept", 0);
 				setprop("/it-autoflight/output/roll", 0);
 			}
 		}
@@ -199,7 +204,12 @@ var button = {
 			} else if (getprop("/it-autoflight/output/roll") == 2 or getprop("/it-autoflight/output/roll") == 4) { # If GPSS NAV active or armed, turn off AP
 				ITAF.killAP();
 			} else { # If not in NAV mode, switch to NAV
-				setprop("/it-autoflight/output/roll", 3);
+				if (getprop("/it-autoflight/output/roll") == 0 and getprop("/it-autoflight/internal/nav-man-intercept") == 1) { # If the HDG button was held, arm NAV for custom intercept angle
+					NAVchk();
+					NAVchk.start();
+				} else {
+					setprop("/it-autoflight/output/roll", 3);
+				}
 				NAVchk();
 				NAVt.start();
 			}
@@ -259,6 +269,20 @@ var NAVchk = func {
 		} else {
 			NAVl.start();
 		}
+	} else if (getprop("/it-autoflight/output/roll") == 0 and getprop("/it-autoflight/internal/nav-man-intercept") == 1) {
+		if (abs(getprop("/instrumentation/nav[0]/heading-needle-deflection")) < 8) { # Only engage NAV if OBS is within capture
+			NAVt.stop();
+			setprop("/it-autoflight/annun/nav-flash", 0);
+			setprop("/it-autoflight/output/roll", 1);
+			if (abs(getprop("/instrumentation/nav[0]/heading-needle-deflection")) <= 0.1) { # Immediately go to SOFT mode if within 10% of deflection
+				setprop("/it-autoflight/internal/nav-gain", 0.65);
+				setprop("/it-autoflight/internal/nav-step1-time", getprop("/sim/time/elapsed-sec") - 90);
+				setprop("/it-autoflight/internal/nav-step2-time", getprop("/sim/time/elapsed-sec") - 75);
+				setprop("/it-autoflight/internal/nav-step3-time", getprop("/sim/time/elapsed-sec"));
+			}
+		} else {
+			NAVl.start();
+		}
 	} else {
 		NAVt.stop();
 	}
@@ -279,9 +303,11 @@ var GPSchk = func {
 }
 
 var NAVl = maketimer(0.5, func { # Flashes the NAV (and sometimes GPSS) lights when NAV modes are armed
-	if ((getprop("/it-autoflight/output/roll") == 3 or getprop("/it-autoflight/output/roll") == 4) and getprop("/it-autoflight/annun/nav-flash") != 1) {
+	NAV = getprop("/it-autoflight/output/roll") == 3 or getprop("/it-autoflight/output/roll") == 4; # Is NAV armed?
+	CNAV = getprop("/it-autoflight/output/roll") == 0 and getprop("/it-autoflight/internal/nav-man-intercept") == 1; # Is NAV with custom intercept heading armed?
+	if ((NAV or CNAV) and getprop("/it-autoflight/annun/nav-flash") != 1) {
 		setprop("/it-autoflight/annun/nav-flash", 1);
-	} else if ((getprop("/it-autoflight/output/roll") == 3 or getprop("/it-autoflight/output/roll") == 4) and getprop("/it-autoflight/annun/nav-flash") != 0) {
+	} else if ((NAV or CNAV) and getprop("/it-autoflight/annun/nav-flash") != 0) {
 		setprop("/it-autoflight/annun/nav-flash", 0);
 	} else {
 		NAVl.stop();
