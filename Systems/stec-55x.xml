@@ -300,8 +300,8 @@
 			</expression>
 		</input>
 		<output>/it-autoflight/internal/predicted-vertical-speed</output>
-		<seconds>1.0</seconds>
-		<filter-gain>0.0</filter-gain>
+		<seconds>2.0</seconds>
+		<filter-gain>0.1</filter-gain>
 	</predict-simple>
 	
 	<filter>
@@ -323,7 +323,10 @@
 					<floor>
 						<div>
 							<sum>
-								<property>/it-autoflight/internal/predicted-vertical-speed</property>
+								<product>
+									<property>/it-autoflight/internal/pressure-rate</property>
+									<value>-58000</value>
+								</product>
 								<value>50</value>
 							</sum>
 							<value>100</value>
@@ -394,7 +397,7 @@
 					<value>-1</value>
 				</greater-than>
 			</condition>
-			<value>300</value>
+			<value>200</value>
 		</max-rate-of-change>
 		<max-rate-of-change>2000</max-rate-of-change>
 	</filter>
@@ -414,8 +417,8 @@
 		<reference>/it-autoflight/internal/predicted-vertical-speed</reference>
 		<output>/it-autoflight/internal/target-accel</output>
 		<config>
-			<Kp>-0.00023</Kp>
-			<Ki>-0.00002</Ki>
+			<Kp>-0.00014</Kp>
+			<Ki>-0.000011</Ki>
 			<min>-0.3</min>
 			<max>0.3</max>
 		</config>
@@ -428,9 +431,9 @@
 			<expression>
 				<difference>
 					<property>/accelerations/pilot-g</property>
-					<product> <!-- Tries to correct G when banked -->
+					<product>
 						<abs><property>/instrumentation/turn-indicator/indicated-turn-rate</property></abs>
-						<value>0.0225</value>
+						<value>0.05</value>
 					</product>
 				</difference>
 			</expression>
@@ -476,8 +479,8 @@
 		<reference>/it-autoflight/internal/g-damped</reference>
 		<output>/it-autoflight/internal/elevator</output>
 		<config>
-			<Kp>0.27</Kp>
-			<Ki>0.58</Ki>
+			<Kp>0.26</Kp>
+			<Ki>0.56</Ki>
 			<min>-0.25</min>
 			<max>0.25</max>
 		</config>
