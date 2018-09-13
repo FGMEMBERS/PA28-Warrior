@@ -2,7 +2,7 @@
 # Copyright (c) 2018 Joshua Davidson (it0uchpods)
 
 setprop("/systems/electrical/outputs/autopilot", 0); # Autopilot power source
-setprop("/it-autoflight/internal/hsi-equipped", 1);
+setprop("/it-autoflight/internal/hsi-equipped", 1); # Does the aircraft have an HSI or DG? The Autopilot behavior changes slightly depending on this
 setprop("/it-autoflight/internal/min-turn-rate", -0.9);
 setprop("/it-autoflight/internal/max-turn-rate", 0.9);
 setprop("/it-autoflight/internal/nav-gain", 1.0);
@@ -12,6 +12,8 @@ setprop("/it-autoflight/internal/nav-step3-time", 0);
 setprop("/it-autoflight/internal/nav-over50-time", 0);
 setprop("/it-autoflight/internal/nav-over50-counting", 0);
 setprop("/it-autoflight/internal/hdg-button-time", 0);
+setprop("/it-autoflight/internal/powerup-time", 0);
+setprop("/it-autoflight/internal/powerup-test", -1); # -1 = Powerup test not done, 0 = Powerup test complete, 1 = Powerup test in progress
 
 setlistener("/sim/signals/fdm-initialized", func {
 	var hasPower = 0;
@@ -21,12 +23,13 @@ setlistener("/sim/signals/fdm-initialized", func {
 	var vs = 0;
 	var NAV = 0;
 	var CNAV = 0;
+	var powerUpTest = 0;
 	ITAF.init();
 });
 
 var ITAF = {
 	init: func() {
-		setprop("/it-autoflight/serviceable", 0);
+		setprop("/it-autoflight/serviceable", 1);
 		setprop("/it-autoflight/input/hdg", 360);
 		setprop("/it-autoflight/input/alt", 0);
 		setprop("/it-autoflight/input/alt-offset", 0);
@@ -55,55 +58,97 @@ var ITAF = {
 		update.start();
 	},
 	loop: func() {
-		if (getprop("/systems/electrical/outputs/autopilot") >= 8 and getprop("/it-autoflight/input/ap-master-sw") == 1) {
+		# AP does not power up or show any signs of life unless if has power (obviously), and the turn coordinator is working
+		if (getprop("/systems/electrical/outputs/autopilot") >= 8 and getprop("/it-autoflight/input/ap-master-sw") == 1 and getprop("/instrumentation/turn-indicator/serviceable") == 1) {
 			setprop("/it-autoflight/internal/hasPower", 1);
+			if (getprop("/it-autoflight/internal/powerup-test") == -1) { # Begin power on test
+				setprop("/it-autoflight/internal/powerup-test", 1);
+				setprop("/it-autoflight/internal/powerup-time", getprop("/sim/time/elapsed-sec"));
+				setprop("/it-autoflight/input/vs", 1800); # For startup test only
+			}
 		} else {
 			setprop("/it-autoflight/internal/hasPower", 0);
+			if (getprop("/it-autoflight/internal/powerup-test") != 0) {
+				setprop("/it-autoflight/internal/powerup-test", -1);
+			}
 			if (getprop("/it-autoflight/output/roll") != -1 or getprop("/it-autoflight/output/pitch") != -1) {
-				ITAF.killAP();
+				ITAF.killAP(); # Called with ITAF.killAP not me.killAP because this function is called from the timer outside this class
+			}
+		}
+		
+		if (getprop("/it-autoflight/serviceable") == 0) { # AP Failed when true
+			setprop("/it-autoflight/annun/rdy", 0);
+			setprop("/it-autoflight/annun/fail", 1);
+		} else {
+			if (getprop("/it-autoflight/internal/powerup-test") == 1 and getprop("/it-autoflight/internal/powerup-time") + 10 < getprop("/sim/time/elapsed-sec")) {
+				setprop("/it-autoflight/internal/powerup-test", 0);
+			}
+			if (getprop("/it-autoflight/output/roll") == -1) {
+				setprop("/it-autoflight/annun/rdy", 1);
+			} else {
+				setprop("/it-autoflight/annun/rdy", 0);
+			}
+			if (getprop("/it-autoflight/internal/powerup-test") == 1) {
+				setprop("/it-autoflight/annun/fail", 1);
+			} else {
+				setprop("/it-autoflight/annun/fail", 0);
 			}
 		}
 		
 		# Mode Annunciators
-		if (getprop("/it-autoflight/output/roll") == 0) {
+		powerUpTest = getprop("/it-autoflight/internal/powerup-test");
+		if (getprop("/it-autoflight/output/roll") == 0 or powerUpTest) {
 			setprop("/it-autoflight/annun/hdg", 1);
 		} else {
 			setprop("/it-autoflight/annun/hdg", 0);
 		}
 		
-		if (getprop("/it-autoflight/output/roll") == 1 or getprop("/it-autoflight/output/roll") == 2) {
+		if (getprop("/it-autoflight/output/roll") == 1 or getprop("/it-autoflight/output/roll") == 2 or powerUpTest) {
 			setprop("/it-autoflight/annun/nav", 1);
 		} else {
 			setprop("/it-autoflight/annun/nav", 0);
 		}
 		
-		if (getprop("/it-autoflight/output/pitch") == 0) {
+		if (getprop("/it-autoflight/output/pitch") == 0 or powerUpTest) {
 			setprop("/it-autoflight/annun/alt", 1);
 		} else {
 			setprop("/it-autoflight/annun/alt", 0);
 		}
 		
-		if (getprop("/it-autoflight/output/pitch") == 1) {
+		if (getprop("/it-autoflight/output/pitch") == 1 or powerUpTest) {
 			setprop("/it-autoflight/annun/vs", 1);
 		} else {
 			setprop("/it-autoflight/annun/vs", 0);
 		}
 		
-		if (getprop("/it-autoflight/output/roll") == 2) {
+		if (getprop("/it-autoflight/output/roll") == 2 or powerUpTest) {
 			setprop("/it-autoflight/annun/gpss", 1);
 		} else {
 			setprop("/it-autoflight/annun/gpss", 0);
 		}
 		
+		# Temporary stuff because these lights aren't implemented yet
+		if (powerUpTest) {
+			setprop("/it-autoflight/annun/apr", 1);
+			setprop("/it-autoflight/annun/rev", 1);
+			setprop("/it-autoflight/annun/gs", 1);
+			setprop("/it-autoflight/annun/cws", 1);
+		} else {
+			setprop("/it-autoflight/annun/apr", 0);
+			setprop("/it-autoflight/annun/rev", 0);
+			setprop("/it-autoflight/annun/gs", 0);
+			setprop("/it-autoflight/annun/cws", 0);
+		}
+		
 		# Electric Pitch Trim
-		if (getprop("/it-autoflight/output/pitch") != -1 and getprop("/controls/flight/elevator") < -0.05) {
+		if (powerUpTest or (getprop("/it-autoflight/output/pitch") != -1 and getprop("/controls/flight/elevator") < -0.05)) {
 			setprop("/it-autoflight/annun/up", 1);
 		} else if (getprop("/it-autoflight/output/pitch") != -1 and getprop("/it-autoflight/annun/up") == 1 and getprop("/controls/flight/elevator") < -0.015) {
 			setprop("/it-autoflight/annun/dn", 1);
 		} else {
 			setprop("/it-autoflight/annun/up", 0);
 		}
-		if (getprop("/it-autoflight/output/pitch") != -1 and getprop("/controls/flight/elevator") > 0.05) {
+		if (powerUpTest or (getprop("/it-autoflight/output/pitch") != -1 and getprop("/controls/flight/elevator") > 0.05)) {
 			setprop("/it-autoflight/annun/dn", 1);
 		} else if (getprop("/it-autoflight/output/pitch") != -1 and getprop("/it-autoflight/annun/dn") == 1 and getprop("/controls/flight/elevator") > 0.015) {
 			setprop("/it-autoflight/annun/dn", 1);

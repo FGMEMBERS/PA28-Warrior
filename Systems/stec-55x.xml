@@ -311,10 +311,16 @@
 		<gain>1.0</gain>
 		<enable>
 			<condition>
-				<not-equals>
-					<property>/it-autoflight/output/pitch</property>
-					<value>1</value>
-				</not-equals>
+				<and>
+					<not-equals>
+						<property>/it-autoflight/output/pitch</property>
+						<value>1</value>
+					</not-equals>
+					<not-equals>
+						<property>/it-autoflight/internal/powerup-test</property>
+						<value>1</value>
+					</not-equals>
+				</and>
 			</condition>
 		</enable>
 		<input>
