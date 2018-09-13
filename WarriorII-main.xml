@@ -636,6 +636,20 @@
 				</script>
 				</binding>
 			</key>
+			<key n="99">
+				<name>c</name>
+				<desc>S-TEC 55X CWS Button</desc>
+				<binding>
+					<command>nasal</command>
+					<script>stec55x.button.CWS(1);</script>
+				</binding>
+				<mod-up>
+					<binding>
+						<command>nasal</command>
+						<script>stec55x.button.CWS(0);</script>
+					</binding>
+				</mod-up>
+			</key>
 			<key n="100">
 				<name>d</name>
 				<desc>toggle door</desc>

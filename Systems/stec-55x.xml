@@ -154,6 +154,15 @@
 		<gain>1.0</gain>
 		<input>
 			<condition>
+				<equals>
+					<property>/it-autoflight/output/roll</property>
+					<value>5</value>
+				</equals>
+			</condition>
+			<property>/it-autoflight/internal/man-turn-rate</property>
+		</input>
+		<input>
+			<condition>
 				<greater-than>
 					<property>/it-autoflight/output/roll</property>
 					<value>-1</value>

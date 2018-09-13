@@ -129,15 +129,13 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<command>property-assign</command>
-				<property>/it-autoflight/input/cws</property>
-				<value>1</value>
+				<command>nasal</command>
+				<script>stec55x.button.CWS(1);</script>
 			</binding>
 			<mod-up>
 				<binding>
-					<command>property-assign</command>
-					<property>/it-autoflight/input/cws</property>
-					<value>0</value>
+					<command>nasal</command>
+					<script>stec55x.button.CWS(0);</script>
 				</binding>
 			</mod-up>
 		</action>

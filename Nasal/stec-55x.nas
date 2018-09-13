@@ -5,6 +5,7 @@ setprop("/systems/electrical/outputs/autopilot", 0); # Autopilot power source
 setprop("/it-autoflight/internal/hsi-equipped", 1); # Does the aircraft have an HSI or DG? The Autopilot behavior changes slightly depending on this
 setprop("/it-autoflight/internal/min-turn-rate", -0.9);
 setprop("/it-autoflight/internal/max-turn-rate", 0.9);
+setprop("/it-autoflight/internal/man-turn-rate", 0);
 setprop("/it-autoflight/internal/nav-gain", 1.0);
 setprop("/it-autoflight/internal/nav-step1-time", 0);
 setprop("/it-autoflight/internal/nav-step2-time", 0);
@@ -115,10 +116,16 @@ var ITAF = {
 			setprop("/it-autoflight/annun/alt", 0);
 		}
 		
-		if (getprop("/it-autoflight/output/pitch") == 1 or powerUpTest) {
+		if (getprop("/it-autoflight/output/pitch") == 1 or getprop("/it-autoflight/output/pitch") == -2 or powerUpTest) {
 			setprop("/it-autoflight/annun/vs", 1);
 		} else {
 			setprop("/it-autoflight/annun/vs", 0);
+		}
+		
+		if (getprop("/it-autoflight/output/roll") == 5 or getprop("/it-autoflight/output/roll") == -2 or powerUpTest) {
+			setprop("/it-autoflight/annun/cws", 1);
+		} else {
+			setprop("/it-autoflight/annun/cws", 0);
 		}
 		
 		if (getprop("/it-autoflight/output/roll") == 2 or powerUpTest) {
@@ -132,25 +139,23 @@ var ITAF = {
 			setprop("/it-autoflight/annun/apr", 1);
 			setprop("/it-autoflight/annun/rev", 1);
 			setprop("/it-autoflight/annun/gs", 1);
-			setprop("/it-autoflight/annun/cws", 1);
 		} else {
 			setprop("/it-autoflight/annun/apr", 0);
 			setprop("/it-autoflight/annun/rev", 0);
 			setprop("/it-autoflight/annun/gs", 0);
-			setprop("/it-autoflight/annun/cws", 0);
 		}
 		
 		# Electric Pitch Trim
-		if (powerUpTest or (getprop("/it-autoflight/output/pitch") != -1 and getprop("/controls/flight/elevator") < -0.05)) {
+		if (powerUpTest or (getprop("/it-autoflight/output/pitch") > -1 and getprop("/controls/flight/elevator") < -0.05)) {
 			setprop("/it-autoflight/annun/up", 1);
-		} else if (getprop("/it-autoflight/output/pitch") != -1 and getprop("/it-autoflight/annun/up") == 1 and getprop("/controls/flight/elevator") < -0.015) {
+		} else if (getprop("/it-autoflight/output/pitch") > -1 and getprop("/it-autoflight/annun/up") == 1 and getprop("/controls/flight/elevator") < -0.015) {
 			setprop("/it-autoflight/annun/dn", 1);
 		} else {
 			setprop("/it-autoflight/annun/up", 0);
 		}
-		if (powerUpTest or (getprop("/it-autoflight/output/pitch") != -1 and getprop("/controls/flight/elevator") > 0.05)) {
+		if (powerUpTest or (getprop("/it-autoflight/output/pitch") > -1 and getprop("/controls/flight/elevator") > 0.05)) {
 			setprop("/it-autoflight/annun/dn", 1);
-		} else if (getprop("/it-autoflight/output/pitch") != -1 and getprop("/it-autoflight/annun/dn") == 1 and getprop("/controls/flight/elevator") > 0.015) {
+		} else if (getprop("/it-autoflight/output/pitch") > -1 and getprop("/it-autoflight/annun/dn") == 1 and getprop("/controls/flight/elevator") > 0.015) {
 			setprop("/it-autoflight/annun/dn", 1);
 		} else {
 			setprop("/it-autoflight/annun/dn", 0);
@@ -312,6 +317,24 @@ var button = {
 					vs = 1600;
 				}
 				setprop("/it-autoflight/input/vs", vs);
+			}
+		}
+	},
+	CWS: func(d) {
+		if (d == 1) { # Button pushed
+			setprop("/it-autoflight/input/cws", 1);
+			if (getprop("/it-autoflight/internal/hasPower") == 1 and getprop("/it-autoflight/output/roll") != -1) {
+				setprop("/it-autoflight/output/roll", -2);
+				setprop("/it-autoflight/output/pitch", -2);
+				setprop("/controls/flight/aileron", 0);
+				setprop("/controls/flight/elevator", 0);
+			}
+		} else if (d == 0) { # Button released
+			setprop("/it-autoflight/input/cws", 0);
+			if (getprop("/it-autoflight/internal/hasPower") == 1 and getprop("/it-autoflight/output/roll") != -1) {
+				setprop("/it-autoflight/internal/man-turn-rate", math.clamp(getprop("/instrumentation/turn-indicator/indicated-turn-rate"), -0.9, 0.9));
+				setprop("/it-autoflight/output/roll", 5);
+				me.VS();
 			}
 		}
 	},
