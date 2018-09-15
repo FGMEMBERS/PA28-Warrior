@@ -292,6 +292,12 @@ var button = {
 					hdgButton.setBoolValue(0);
 				}
 			}
+		} else {
+			if (d == 1) { # Button pushed
+				hdgButton.setBoolValue(1);
+			} else if (d == 0) { # Button released
+				hdgButton.setBoolValue(0);
+			}
 		}
 	},
 	HDG: func() {

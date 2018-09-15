@@ -692,21 +692,6 @@
 					<value>0</value>
 				</binding>
 			</key>
-			<key n="103">
-				<name>g</name>
-				<desc>reset DH</desc>
-				<binding>
-					<command>property-cycle</command>
-					<property>/instrumentation/radar-altimeter/decision-height</property>
-					<value>0</value>
-				</binding>
-				<binding>
-					<command>show-message</command>
-					<id>dh</id>
-					<label>Decision Height reset</label>
-					<delay>1.75</delay>
-				</binding>
-			</key>
 			<key n="106">
 				<name>j</name>
 				<desc>toggle tanks</desc>

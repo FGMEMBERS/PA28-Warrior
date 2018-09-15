@@ -276,7 +276,7 @@
 		</input>
 		<output>/controls/flight/aileron</output>
 		<type>noise-spike</type>
-		<max-rate-of-change>1.2</max-rate-of-change>
+		<max-rate-of-change>0.5</max-rate-of-change>
 	</filter>
 	
 	<!-- Pitch Axis -->
@@ -517,7 +517,7 @@
 		<input>/it-autoflight/internal/elevator</input>
 		<output>/controls/flight/elevator</output>
 		<type>noise-spike</type>
-		<max-rate-of-change>1.2</max-rate-of-change>
+		<max-rate-of-change>0.5</max-rate-of-change>
 	</filter>
 	
 	<filter>

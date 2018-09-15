@@ -375,7 +375,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/rudder-deg</property></toradians>
-				<value>0.01</value>
+				<value>0.1</value>
 			</product>
 		</function>
 	
