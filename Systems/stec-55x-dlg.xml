@@ -59,16 +59,10 @@
 						<property>/it-autoflight/internal/hasPower</property>
 						<value>1</value>
 					</equals>
-					<or>
-						<equals>
-							<property>/it-autoflight/annun/nav</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/annun/nav-flash</property>
-							<value>1</value>
-						</equals>
-					</or>
+					<equals>
+						<property>/it-autoflight/annun/nav</property>
+						<value>1</value>
+					</equals>
 				</and>
 			</visible>
         </text>
@@ -251,22 +245,10 @@
 						<property>/it-autoflight/internal/hasPower</property>
 						<value>1</value>
 					</equals>
-					<or>
-						<equals>
-							<property>/it-autoflight/annun/gpss</property>
-							<value>1</value>
-						</equals>
-						<and>
-							<equals>
-								<property>/it-autoflight/annun/nav-flash</property>
-								<value>1</value>
-							</equals>
-							<equals>
-								<property>/it-autoflight/output/roll</property>
-								<value>4</value>
-							</equals>
-						</and>
-					</or>
+					<equals>
+						<property>/it-autoflight/annun/gpss</property>
+						<value>1</value>
+					</equals>
 				</and>
 			</visible>
         </text>
@@ -408,7 +390,8 @@
 			<legend>APR</legend>
 			<pref-width>40</pref-width>
 			<binding>
-
+				<command>nasal</command>
+				<script>stec55x.button.APR();</script>
 			</binding>
 		</button>
 		

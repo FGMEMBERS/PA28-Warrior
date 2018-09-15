@@ -77,16 +77,10 @@
 					<property>it-autoflight/internal/hasPower</property>
 					<value>1</value>
 				</equals>
-				<or>
-					<equals>
-						<property>it-autoflight/annun/nav</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>it-autoflight/annun/nav-flash</property>
-						<value>1</value>
-					</equals>
-				</or>
+				<equals>
+					<property>it-autoflight/annun/nav</property>
+					<value>1</value>
+				</equals>
 			</and>
 		</condition>
 	</animation>
@@ -151,22 +145,10 @@
 					<property>it-autoflight/internal/hasPower</property>
 					<value>1</value>
 				</equals>
-				<or>
-					<equals>
-						<property>it-autoflight/annun/gpss</property>
-						<value>1</value>
-					</equals>
-					<and>
-						<equals>
-							<property>it-autoflight/annun/nav-flash</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>it-autoflight/output/roll</property>
-							<value>4</value>
-						</equals>
-					</and>
-				</or>
+				<equals>
+					<property>it-autoflight/annun/gpss</property>
+					<value>1</value>
+				</equals>
 			</and>
 		</condition>
 	</animation>
@@ -469,6 +451,10 @@
 					<command>property-assign</command>
 					<property>/it-autoflight/input/apr-button</property>
 					<value>0</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>stec55x.button.APR();</script>
 				</binding>
 			</mod-up>
 		</action>

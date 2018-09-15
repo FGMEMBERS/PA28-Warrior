@@ -29,6 +29,8 @@
 		</input>
 		<input>0</input>
 		<output>/it-autoflight/internal/intercept-angle</output>
+		<min>-45</min>
+		<max>45</max>
 	</filter>
 	
 	<filter> <!-- GPS would provides this, not the autopilot, but lets leave it in this file for ease of implementation -->
