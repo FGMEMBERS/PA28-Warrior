@@ -147,7 +147,7 @@ var ITAF = {
 			NAV_annun.setBoolValue(0);
 		}
 		
-		if (((roll.getValue() == 1 or NAVFlash_annun.getBoolValue()) and APRGainActive.getBoolValue() == 1) or powerUpTest.getValue()) {
+		if (((roll.getValue() == 1 or ((CNAV or roll.getValue() == 3) and NAVFlash_annun.getBoolValue())) and APRGainActive.getBoolValue() == 1) or powerUpTest.getValue()) {
 			APR_annun.setBoolValue(1);
 		} else {
 			APR_annun.setBoolValue(0);
@@ -315,14 +315,14 @@ var button = {
 	NAV: func() {
 		if (hasPower.getBoolValue() == 1 and powerUpTest.getValue() != 1) {
 			APRGainActive.setBoolValue(0);
-			if (roll.getValue() == 1 or roll.getValue() == 3) { # If NAV active or armed, switch to GPSS NAV mode
-				roll.setValue(4);
-				GPSchk();
-				GPSt.start();
-			} else { # If not regular NAV mode, switch to NAV
-				if (hdgButton.getBoolValue() == 1) { # If the HDG button is being pushed, arm NAV for custom intercept angle
-					me.CNAV();
-				} else {
+			if (hdgButton.getBoolValue() == 1) { # If the HDG button is being pushed, arm NAV for custom intercept angle
+				me.CNAV();
+			} else {
+				if (roll.getValue() == 1 or roll.getValue() == 3) { # If NAV active or armed, switch to GPSS NAV mode
+					roll.setValue(4);
+					GPSchk();
+					GPSt.start();
+				} else { # If not regular NAV mode, switch to NAV
 					roll.setValue(3);
 					NAVchk();
 					NAVt.start();
@@ -331,7 +331,9 @@ var button = {
 		}
 	},
 	APR: func() {
-		if (hasPower.getBoolValue() == 1 and powerUpTest.getValue() != 1 and (roll.getValue() == 1 or roll.getValue() == 3)) {
+		hdgButton.setBoolValue(0);
+		CNAV = roll.getValue() == 0 and NAVManIntercept.getBoolValue(); # Is NAV with custom intercept heading armed?
+		if (hasPower.getBoolValue() == 1 and powerUpTest.getValue() != 1 and (CNAV or roll.getValue() == 1 or roll.getValue() == 3)) {
 			APRGainActive.setBoolValue(1);
 		}
 	},
@@ -342,6 +344,7 @@ var button = {
 		hdgButton.setBoolValue(0);
 	},
 	ALT: func() {
+		hdgButton.setBoolValue(0);
 		if (hasPower.getBoolValue() == 1 and powerUpTest.getValue() != 1 and roll.getValue() != -1) {
 			altOffset.setValue(0);
 			alt.setValue(staticPress.getValue());
@@ -349,6 +352,7 @@ var button = {
 		}
 	},
 	VS: func() {
+		hdgButton.setBoolValue(0);
 		if (hasPower.getBoolValue() == 1 and powerUpTest.getValue() != 1 and roll.getValue() != -1) {
 			pitch.setValue(1);
 		}
