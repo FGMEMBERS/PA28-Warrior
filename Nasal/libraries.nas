@@ -1,20 +1,7 @@
 # PA28-161 Libraries
 # Joshua Davidson (it0uchpods)
 
-# doors ============================================================
 rightDoor = aircraft.door.new("/sim/model/door-positions/rightDoor", 2, 0);
-
-# reset compass rose rotation for the ki228
-setlistener("/instrumentation/adf[0]/model", func(n) {
-	if (n != nil) {
-		var v = n.getValue();
-		if (v != nil and v == "ki228")
-		setprop("/instrumentation/adf[0]/rotation-deg", 0);
-	}
-}, 1, 0);
-
-gui.Dialog.new("sim/gui/dialogs/windsim/dialog", "Aircraft/PA28-Warrior/Dialogs/windsim.xml");
-gui.Dialog.new("sim/gui/dialogs/sounddialog/dialog", "Aircraft/PA28-Warrior/Dialogs/sounddialog.xml");
 
 setlistener("/sim/sounde/switch1", func {
 	if (!getprop("/sim/sounde/switch1")) {
@@ -61,6 +48,7 @@ var systemsInit = func {
 	setprop("/engines/engine[0]/fuel-flow-gph", 0.0);
 	setprop("/sim/model/material/LandingLight/factor", 0.0);
 	setprop("/sim/model/material/LandingLight/factorAGL", 0.0);
+	setprop("/instrumentation/adf[0]/rotation-deg", 0);
 	systemsLoop.start();
 }
 
