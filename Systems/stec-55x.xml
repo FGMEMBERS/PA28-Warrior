@@ -425,7 +425,7 @@
 		<enable>
 			<condition>
 				<greater-than>
-					<property>/it-autoflight/output/roll</property>
+					<property>/it-autoflight/output/pitch</property>
 					<value>-1</value>
 				</greater-than>
 			</condition>
