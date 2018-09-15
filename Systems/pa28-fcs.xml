@@ -90,10 +90,11 @@
 		</summer>
 		
 		<aerosurface_scale name="fcs/elevator-deg">
-			<input>fcs/pitch-input</input>
+			<input>fcs/pitch-input</input>.
+			<zero_centered>false</zero_centered>
 			<range>
-				<min>-12</min>
-				<max>12</max>
+				<min>-12.5</min>
+				<max>11.5</max>
 			</range>
 		</aerosurface_scale>
 		
