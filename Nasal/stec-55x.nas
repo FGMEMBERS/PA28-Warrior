@@ -105,7 +105,7 @@ var ITAF = {
 			}
 		} else {
 			hasPower.setBoolValue(0);
-			if (powerUpTest.getValue() != 1) {
+			if (powerUpTest.getValue() != -1) {
 				powerUpTest.setValue(-1);
 			}
 			if (roll.getValue() != -1 or pitch.getValue() != -1) {
