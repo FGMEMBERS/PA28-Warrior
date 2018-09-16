@@ -113,6 +113,9 @@ var ITAF = {
 			}
 		}
 		
+		NAV = roll.getValue() == 3 or roll.getValue() == 4; # Is NAV armed?
+		CNAV = roll.getValue() == 0 and NAVManIntercept.getBoolValue(); # Is NAV with custom intercept heading armed?
+		
 		if (serviceable.getBoolValue() == 0) { # AP Failed when true
 			RDY_annun.setBoolValue(0);
 			FAIL_annun.setBoolValue(1);
@@ -125,7 +128,9 @@ var ITAF = {
 			} else {
 				RDY_annun.setBoolValue(0);
 			}
-			if (powerUpTest.getValue()) {
+			if (powerUpTest.getValue() or ((roll.getValue() == 1 or roll.getValue() == 3 or CNAV) and OBSActive.getBoolValue() != 1)) {
+				FAIL_annun.setBoolValue(1);
+			} else if (powerUpTest.getValue() or ((roll.getValue() == 2 or roll.getValue() == 4) and GPSActive.getBoolValue() != 1)) {
 				FAIL_annun.setBoolValue(1);
 			} else {
 				FAIL_annun.setBoolValue(0);
@@ -139,8 +144,6 @@ var ITAF = {
 			HDG_annun.setBoolValue(0);
 		}
 		
-		NAV = roll.getValue() == 3 or roll.getValue() == 4; # Is NAV armed?
-		CNAV = roll.getValue() == 0 and NAVManIntercept.getBoolValue(); # Is NAV with custom intercept heading armed?
 		if (roll.getValue() == 1 or roll.getValue() == 2 or ((NAV or CNAV) and NAVFlash_annun.getBoolValue()) or powerUpTest.getValue()) {
 			NAV_annun.setBoolValue(1);
 		} else {
