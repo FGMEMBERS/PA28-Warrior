@@ -36,16 +36,10 @@
 			<col>0</col>
             <label>HDG</label>
 			<visible>
-				<and>
-					<equals>
-						<property>/it-autoflight/internal/hasPower</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/annun/hdg</property>
-						<value>1</value>
-					</equals>
-				</and>
+				<equals>
+					<property>/it-autoflight/annun/hdg</property>
+					<value>1</value>
+				</equals>
 			</visible>
         </text>
 		
@@ -54,16 +48,10 @@
 			<col>1</col>
             <label>NAV</label>
 			<visible>
-				<and>
-					<equals>
-						<property>/it-autoflight/internal/hasPower</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/annun/nav</property>
-						<value>1</value>
-					</equals>
-				</and>
+				<equals>
+					<property>/it-autoflight/annun/nav</property>
+					<value>1</value>
+				</equals>
 			</visible>
         </text>
 		
@@ -72,16 +60,10 @@
 			<col>2</col>
             <label>APR</label>
 			<visible>
-				<and>
-					<equals>
-						<property>/it-autoflight/internal/hasPower</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/annun/apr</property>
-						<value>1</value>
-					</equals>
-				</and>
+				<equals>
+					<property>/it-autoflight/annun/apr</property>
+					<value>1</value>
+				</equals>
 			</visible>
         </text>
 		
@@ -90,16 +72,10 @@
 			<col>3</col>
             <label>REV</label>
 			<visible>
-				<and>
-					<equals>
-						<property>/it-autoflight/internal/hasPower</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/annun/rev</property>
-						<value>1</value>
-					</equals>
-				</and>
+				<equals>
+					<property>/it-autoflight/annun/rev</property>
+					<value>1</value>
+				</equals>
 			</visible>
         </text>
 		
@@ -108,22 +84,16 @@
 			<col>4</col>
             <label>TRIM</label>
 			<visible>
-				<and>
+				<or>
 					<equals>
-						<property>/it-autoflight/internal/hasPower</property>
+						<property>/it-autoflight/annun/up</property>
 						<value>1</value>
 					</equals>
-					<or>
-						<equals>
-							<property>/it-autoflight/annun/up</property>
-							<value>1</value>
-						</equals>
-						<equals>
-							<property>/it-autoflight/annun/dn</property>
-							<value>1</value>
-						</equals>
-					</or>
-				</and>
+					<equals>
+						<property>/it-autoflight/annun/dn</property>
+						<value>1</value>
+					</equals>
+				</or>
 			</visible>
         </text>
 		
@@ -132,16 +102,10 @@
 			<col>5</col>
             <label>ALT</label>
 			<visible>
-				<and>
-					<equals>
-						<property>/it-autoflight/internal/hasPower</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/annun/alt</property>
-						<value>1</value>
-					</equals>
-				</and>
+				<equals>
+					<property>/it-autoflight/annun/alt</property>
+					<value>1</value>
+				</equals>
 			</visible>
         </text>
 		
@@ -150,16 +114,10 @@
 			<col>6</col>
             <label>GS</label>
 			<visible>
-				<and>
-					<equals>
-						<property>/it-autoflight/internal/hasPower</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/annun/gs</property>
-						<value>1</value>
-					</equals>
-				</and>
+				<equals>
+					<property>/it-autoflight/annun/gs</property>
+					<value>1</value>
+				</equals>
 			</visible>
         </text>
 		
@@ -168,16 +126,10 @@
 			<col>7</col>
             <label>VS</label>
 			<visible>
-				<and>
-					<equals>
-						<property>/it-autoflight/internal/hasPower</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/annun/vs</property>
-						<value>1</value>
-					</equals>
-				</and>
+				<equals>
+					<property>/it-autoflight/annun/vs</property>
+					<value>1</value>
+				</equals>
 			</visible>
         </text>
 		
@@ -186,16 +138,10 @@
 			<col>0</col>
             <label>RDY</label>
 			<visible>
-				<and>
-					<equals>
-						<property>/it-autoflight/internal/hasPower</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/annun/rdy</property>
-						<value>1</value>
-					</equals>
-				</and>
+				<equals>
+					<property>/it-autoflight/annun/rdy</property>
+					<value>1</value>
+				</equals>
 			</visible>
         </text>
 		
@@ -204,16 +150,10 @@
 			<col>1</col>
             <label>CWS</label>
 			<visible>
-				<and>
-					<equals>
-						<property>/it-autoflight/internal/hasPower</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/annun/cws</property>
-						<value>1</value>
-					</equals>
-				</and>
+				<equals>
+					<property>/it-autoflight/annun/cws</property>
+					<value>1</value>
+				</equals>
 			</visible>
         </text>
 		
@@ -222,16 +162,10 @@
 			<col>2</col>
             <label>FAIL</label>
 			<visible>
-				<and>
-					<equals>
-						<property>/it-autoflight/internal/hasPower</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/annun/fail</property>
-						<value>1</value>
-					</equals>
-				</and>
+				<equals>
+					<property>/it-autoflight/annun/fail</property>
+					<value>1</value>
+				</equals>
 			</visible>
         </text>
 		
@@ -240,16 +174,10 @@
 			<col>3</col>
             <label>GPSS</label>
 			<visible>
-				<and>
-					<equals>
-						<property>/it-autoflight/internal/hasPower</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/annun/gpss</property>
-						<value>1</value>
-					</equals>
-				</and>
+				<equals>
+					<property>/it-autoflight/annun/gpss</property>
+					<value>1</value>
+				</equals>
 			</visible>
         </text>
 		
@@ -258,16 +186,10 @@
 			<col>4</col>
             <label>UP</label>
 			<visible>
-				<and>
-					<equals>
-						<property>/it-autoflight/internal/hasPower</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/annun/up</property>
-						<value>1</value>
-					</equals>
-				</and>
+				<equals>
+					<property>/it-autoflight/annun/up</property>
+					<value>1</value>
+				</equals>
 			</visible>
         </text>
 		
@@ -276,16 +198,10 @@
 			<col>4</col>
             <label>DN</label>
 			<visible>
-				<and>
-					<equals>
-						<property>/it-autoflight/internal/hasPower</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-autoflight/annun/dn</property>
-						<value>1</value>
-					</equals>
-				</and>
+				<equals>
+					<property>/it-autoflight/annun/dn</property>
+					<value>1</value>
+				</equals>
 			</visible>
         </text>
 		
@@ -295,10 +211,6 @@
             <label>+</label>
 			<visible>
 				<and>
-					<equals>
-						<property>/it-autoflight/internal/hasPower</property>
-						<value>1</value>
-					</equals>
 					<equals>
 						<property>it-autoflight/annun/vs</property>
 						<value>1</value>
@@ -318,10 +230,6 @@
 			<visible>
 				<and>
 					<equals>
-						<property>/it-autoflight/internal/hasPower</property>
-						<value>1</value>
-					</equals>
-					<equals>
 						<property>it-autoflight/annun/vs</property>
 						<value>1</value>
 					</equals>
@@ -338,16 +246,10 @@
 			<col>7</col>
             <label>99</label>
 			<visible>
-				<and>
-					<equals>
-						<property>/it-autoflight/internal/hasPower</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>it-autoflight/annun/vs</property>
-						<value>1</value>
-					</equals>
-				</and>
+				<equals>
+					<property>/it-autoflight/annun/vs</property>
+					<value>1</value>
+				</equals>
 			</visible>
 			<property>/it-autoflight/input/vs-abs</property>
 			<live>1</live>

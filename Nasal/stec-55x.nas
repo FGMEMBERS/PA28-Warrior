@@ -8,6 +8,7 @@ var NAVGainSoft = 0.6;
 var elapsedSec = props.globals.getNode("/sim/time/elapsed-sec");
 var powerSrc = props.globals.initNode("/systems/electrical/outputs/autopilot", 0, "DOUBLE"); # Autopilot power source
 var serviceable = props.globals.initNode("/it-autoflight/serviceable", 1, "BOOL");
+var systemAlive = props.globals.initNode("/it-autoflight/internal/system-alive", 0, "BOOL");
 var hdg = props.globals.initNode("/it-autoflight/input/hdg", 360, "DOUBLE");
 var hdgButton = props.globals.initNode("/it-autoflight/input/hdg-button", 0, "BOOL");
 var alt = props.globals.initNode("/it-autoflight/input/alt", 0, "DOUBLE"); # Altitude is in static pressure, not feet
@@ -50,11 +51,13 @@ var hdgButtonTime = props.globals.initNode("/it-autoflight/internal/hdg-button-t
 var powerUpTime = props.globals.initNode("/it-autoflight/internal/powerup-time", 0, "DOUBLE");
 var powerUpTest = props.globals.initNode("/it-autoflight/internal/powerup-test", -1, "INT"); # -1 = Powerup test not done, 0 = Powerup test complete, 1 = Powerup test in progress
 var APRGainActive = props.globals.initNode("/it-autoflight/internal/apr-gain-active", 0, "BOOL");
-var GPSActive = props.globals.getNode("/autopilot/route-manager/active");
+var HDGIndicator = props.globals.getNode("/instrumentation/heading-indicator/indicated-heading-deg");
 var OBSNeedle = props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection");
+var OBSCourse = props.globals.getNode("/instrumentation/nav[0]/radials/selected-deg");
 var OBSActive = props.globals.getNode("/instrumentation/nav[0]/in-range");
+var GPSActive = props.globals.getNode("/autopilot/route-manager/active");
 var turnRate = props.globals.getNode("/instrumentation/turn-indicator/indicated-turn-rate");
-var turnRateOK = props.globals.getNode("/instrumentation/turn-indicator/serviceable");
+var turnRateSpin = props.globals.getNode("/instrumentation/turn-indicator/spin");
 var staticPress = props.globals.getNode("/systems/static[0]/pressure-inhg");
 
 setlistener("/sim/signals/fdm-initialized", func {
@@ -95,17 +98,25 @@ var ITAF = {
 		update.start();
 	},
 	loop: func() {
-		# AP does not power up or show any signs of life unless if has power (obviously), and the turn coordinator is working
-		if (powerSrc.getValue() >= 8 and masterSW.getBoolValue() == 1 and turnRateOK.getBoolValue() == 1) {
+		if (hasPower.getBoolValue() == 1 and turnRateSpin.getValue() >= 0.2) { # Requires turn indicator spin over 20%
+			systemAlive.setBoolValue(1);
+		} else {
+			systemAlive.setBoolValue(0);
+			if (roll.getValue() != -1 or pitch.getValue() != -1) {
+				ITAF.killAP(); # Called with ITAF.killAP not me.killAP because this function is called from the timer outside this class
+			}
+		}
+		
+		if (powerSrc.getValue() >= 8 and masterSW.getBoolValue() == 1) {
 			hasPower.setBoolValue(1);
-			if (powerUpTest.getValue() == -1) { # Begin power on test
+			if (powerUpTest.getValue() == -1 and systemAlive.getBoolValue() == 1) { # Begin power on test
 				powerUpTest.setValue(1);
 				powerUpTime.setValue(elapsedSec.getValue());
 				vs.setValue(1800); # For startup test only
 			}
 		} else {
 			hasPower.setBoolValue(0);
-			if (powerUpTest.getValue() != -1) {
+			if (powerUpTest.getValue() != -1 or systemAlive.getBoolValue() != 1) {
 				powerUpTest.setValue(-1);
 			}
 			if (roll.getValue() != -1 or pitch.getValue() != -1) {
@@ -116,9 +127,8 @@ var ITAF = {
 		NAV = roll.getValue() == 3 or roll.getValue() == 4; # Is NAV armed?
 		CNAV = roll.getValue() == 0 and NAVManIntercept.getBoolValue(); # Is NAV with custom intercept heading armed?
 		
-		if (serviceable.getBoolValue() == 0) { # AP Failed when true
+		if (systemAlive.getBoolValue() == 0) { # AP Failed when false
 			RDY_annun.setBoolValue(0);
-			FAIL_annun.setBoolValue(1);
 		} else {
 			if (powerUpTest.getValue() == 1 and powerUpTime.getValue() + 10 < elapsedSec.getValue()) {
 				powerUpTest.setValue(0);
@@ -128,7 +138,9 @@ var ITAF = {
 			} else {
 				RDY_annun.setBoolValue(0);
 			}
-			if (powerUpTest.getValue() or ((roll.getValue() == 1 or roll.getValue() == 3 or CNAV) and OBSActive.getBoolValue() != 1)) {
+			if (serviceable.getBoolValue() != 1) {
+				FAIL_annun.setBoolValue(1);
+			} else if (powerUpTest.getValue() or ((roll.getValue() == 1 or roll.getValue() == 3 or CNAV) and OBSActive.getBoolValue() != 1)) {
 				FAIL_annun.setBoolValue(1);
 			} else if (powerUpTest.getValue() or ((roll.getValue() == 2 or roll.getValue() == 4) and GPSActive.getBoolValue() != 1)) {
 				FAIL_annun.setBoolValue(1);
@@ -138,50 +150,51 @@ var ITAF = {
 		}
 		
 		# Mode Annunciators
-		if (roll.getValue() == 0 or powerUpTest.getValue()) {
+		# AP does not power up or show any signs of life unless if has power (obviously), and the turn coordinator is working
+		if ((roll.getValue() == 0 or powerUpTest.getValue()) and systemAlive.getBoolValue() == 1) {
 			HDG_annun.setBoolValue(1);
 		} else {
 			HDG_annun.setBoolValue(0);
 		}
 		
-		if (roll.getValue() == 1 or roll.getValue() == 2 or ((NAV or CNAV) and NAVFlash_annun.getBoolValue()) or powerUpTest.getValue()) {
+		if ((roll.getValue() == 1 or roll.getValue() == 2 or ((NAV or CNAV) and NAVFlash_annun.getBoolValue()) or powerUpTest.getValue()) and systemAlive.getBoolValue() == 1) {
 			NAV_annun.setBoolValue(1);
 		} else {
 			NAV_annun.setBoolValue(0);
 		}
 		
-		if (((roll.getValue() == 1 or ((CNAV or roll.getValue() == 3) and NAVFlash_annun.getBoolValue())) and APRGainActive.getBoolValue() == 1) or powerUpTest.getValue()) {
+		if ((((roll.getValue() == 1 or ((CNAV or roll.getValue() == 3) and NAVFlash_annun.getBoolValue())) and APRGainActive.getBoolValue() == 1) or powerUpTest.getValue()) and systemAlive.getBoolValue() == 1) {
 			APR_annun.setBoolValue(1);
 		} else {
 			APR_annun.setBoolValue(0);
 		}
 		
-		if (pitch.getValue() == 0 or powerUpTest.getValue()) {
+		if ((pitch.getValue() == 0 or powerUpTest.getValue()) and systemAlive.getBoolValue() == 1) {
 			ALT_annun.setBoolValue(1);
 		} else {
 			ALT_annun.setBoolValue(0);
 		}
 		
-		if (pitch.getValue() == 1 or pitch.getValue() == -2 or powerUpTest.getValue()) {
+		if ((pitch.getValue() == 1 or pitch.getValue() == -2 or powerUpTest.getValue()) and systemAlive.getBoolValue() == 1) {
 			VS_annun.setBoolValue(1);
 		} else {
 			VS_annun.setBoolValue(0);
 		}
 		
-		if (roll.getValue() == 5 or roll.getValue() == -2 or powerUpTest.getValue()) {
+		if ((roll.getValue() == 5 or roll.getValue() == -2 or powerUpTest.getValue()) and systemAlive.getBoolValue() == 1) {
 			CWS_annun.setBoolValue(1);
 		} else {
 			CWS_annun.setBoolValue(0);
 		}
 		
-		if (roll.getValue() == 2 or (roll.getValue() == 4 and NAVFlash_annun.getBoolValue()) or powerUpTest.getValue()) {
+		if ((roll.getValue() == 2 or (roll.getValue() == 4 and NAVFlash_annun.getBoolValue()) or powerUpTest.getValue()) and systemAlive.getBoolValue() == 1) {
 			GPSS_annun.setBoolValue(1);
 		} else {
 			GPSS_annun.setBoolValue(0);
 		}
 		
 		# Temporary stuff because these lights aren't implemented yet
-		if (powerUpTest.getValue()) {
+		if (powerUpTest.getValue() and systemAlive.getBoolValue() == 1) {
 			REV_annun.setBoolValue(1);
 			GS_annun.setBoolValue(1);
 		} else {
@@ -190,18 +203,23 @@ var ITAF = {
 		}
 		
 		# Electric Pitch Trim
-		if (powerUpTest.getValue() or (pitch.getValue() > -1 and getprop("/controls/flight/elevator") < -0.05)) {
-			UP_annun.setBoolValue(1);
-		} else if (pitch.getValue() > -1 and UP_annun.getBoolValue() == 1 and getprop("/controls/flight/elevator") < -0.015) {
-			UP_annun.setBoolValue(1);
+		if (systemAlive.getBoolValue() == 1) {
+			if (powerUpTest.getValue() or (pitch.getValue() > -1 and getprop("/controls/flight/elevator") < -0.05)) {
+				UP_annun.setBoolValue(1);
+			} else if (pitch.getValue() > -1 and UP_annun.getBoolValue() == 1 and getprop("/controls/flight/elevator") < -0.015) {
+				UP_annun.setBoolValue(1);
+			} else {
+				UP_annun.setBoolValue(0);
+			}
+			if (powerUpTest.getValue() or (pitch.getValue() > -1 and getprop("/controls/flight/elevator") > 0.05)) {
+				DN_annun.setBoolValue(1);
+			} else if (pitch.getValue() > -1 and DN_annun.getBoolValue() == 1 and getprop("/controls/flight/elevator") > 0.015) {
+				DN_annun.setBoolValue(1);
+			} else {
+				DN_annun.setBoolValue(0);
+			}
 		} else {
 			UP_annun.setBoolValue(0);
-		}
-		if (powerUpTest.getValue() or (pitch.getValue() > -1 and getprop("/controls/flight/elevator") > 0.05)) {
-			DN_annun.setBoolValue(1);
-		} else if (pitch.getValue() > -1 and DN_annun.getBoolValue() == 1 and getprop("/controls/flight/elevator") > 0.015) {
-			DN_annun.setBoolValue(1);
-		} else {
 			DN_annun.setBoolValue(0);
 		}
 		
@@ -285,7 +303,7 @@ var button = {
 		ITAF.killAP();
 	},
 	HDGB: func(d) {
-		if (hasPower.getBoolValue() == 1 and powerUpTest.getValue() != 1) {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1) {
 			if (d == 1) { # Button pushed
 				hdgButton.setBoolValue(1);
 				hdgButtonTime.setValue(elapsedSec.getValue());
@@ -304,19 +322,19 @@ var button = {
 		}
 	},
 	HDG: func() {
-		if (hasPower.getBoolValue() == 1 and powerUpTest.getValue() != 1) {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1) {
 			NAVManIntercept.setBoolValue(0);
 			roll.setValue(0);
 		}
 	},
 	HDGInt: func() { # Heading Custom Intercept Mode
-		if (hasPower.getBoolValue() == 1 and powerUpTest.getValue() != 1) {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1) {
 			NAVManIntercept.setBoolValue(1);
 			roll.setValue(0);
 		}
 	},
 	NAV: func() {
-		if (hasPower.getBoolValue() == 1 and powerUpTest.getValue() != 1) {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1) {
 			APRGainActive.setBoolValue(0);
 			if (hdgButton.getBoolValue() == 1) { # If the HDG button is being pushed, arm NAV for custom intercept angle
 				me.CNAV();
@@ -336,7 +354,7 @@ var button = {
 	APR: func() {
 		hdgButton.setBoolValue(0);
 		CNAV = roll.getValue() == 0 and NAVManIntercept.getBoolValue(); # Is NAV with custom intercept heading armed?
-		if (hasPower.getBoolValue() == 1 and powerUpTest.getValue() != 1 and (CNAV or roll.getValue() == 1 or roll.getValue() == 3)) {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and (CNAV or roll.getValue() == 1 or roll.getValue() == 3)) {
 			APRGainActive.setBoolValue(1);
 		}
 	},
@@ -348,7 +366,7 @@ var button = {
 	},
 	ALT: func() {
 		hdgButton.setBoolValue(0);
-		if (hasPower.getBoolValue() == 1 and powerUpTest.getValue() != 1 and roll.getValue() != -1) {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and roll.getValue() != -1) {
 			altOffset.setValue(0);
 			alt.setValue(staticPress.getValue());
 			pitch.setValue(0);
@@ -356,7 +374,7 @@ var button = {
 	},
 	VS: func() {
 		hdgButton.setBoolValue(0);
-		if (hasPower.getBoolValue() == 1 and powerUpTest.getValue() != 1 and roll.getValue() != -1) {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and roll.getValue() != -1) {
 			pitch.setValue(1);
 		}
 	},
@@ -379,7 +397,7 @@ var button = {
 	CWS: func(d) {
 		if (d == 1) { # Button pushed
 			cwsSW.setBoolValue(1);
-			if (hasPower.getBoolValue() == 1 and powerUpTest.getValue() != 1 and roll.getValue() != -1) {
+			if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and roll.getValue() != -1) {
 				roll.setValue(-2);
 				pitch.setValue(-2);
 				setprop("/controls/flight/aileron", 0);
@@ -387,7 +405,7 @@ var button = {
 			}
 		} else if (d == 0) { # Button released
 			cwsSW.setBoolValue(0);
-			if (hasPower.getBoolValue() == 1 and powerUpTest.getValue() != 1 and roll.getValue() != -1) {
+			if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and roll.getValue() != -1) {
 				manTurnRate.setValue(math.clamp(turnRate.getValue(), -0.9, 0.9));
 				roll.setValue(5);
 				me.VS();
@@ -402,7 +420,7 @@ var NAVchk = func {
 			NAVt.stop();
 			NAVFlash_annun.setBoolValue(0);
 			roll.setValue(1);
-			if (abs(OBSNeedle.getValue()) <= 1) { # Immediately go to SOFT mode if within 10% of deflection
+			if (abs(OBSNeedle.getValue()) <= 1 and abs(HDGIndicator.getValue() - OBSCourse.getValue()) < 5) { # Immediately go to SOFT mode if within 10% of deflection and within 5 degrees of course.
 				NAVPreGain.setValue(NAVGainSoft);
 				NAVStep1Time.setValue(elapsedSec.getValue() - 90);
 				NAVStep2Time.setValue(elapsedSec.getValue() - 75);
@@ -416,7 +434,7 @@ var NAVchk = func {
 			NAVt.stop();
 			NAVFlash_annun.setBoolValue(0);
 			roll.setValue(1);
-			if (abs(OBSNeedle.getValue()) <= 1) { # Immediately go to SOFT mode if within 10% of deflection
+			if (abs(OBSNeedle.getValue()) <= 1 and abs(HDGIndicator.getValue() - OBSCourse.getValue()) < 5) { # Immediately go to SOFT mode if within 10% of deflection and within 5 degrees of course.
 				NAVPreGain.setValue(NAVGainSoft);
 				NAVStep1Time.setValue(elapsedSec.getValue() - 90);
 				NAVStep2Time.setValue(elapsedSec.getValue() - 75);
