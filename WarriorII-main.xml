@@ -797,6 +797,13 @@
 		</oat>
 	</instrumentation>
 	
+	<it-autoflight n="0"> <!-- S-TEC 55X Settings -->
+		<settings n="0">
+			<hsi-equipped type="bool">1</hsi-equipped> <!-- Does the aircraft have an HSI or DG? -->
+			<is-turboprop type="bool">0</is-turboprop> <!-- Does the aircraft have turboprop engines? -->
+		</settings>
+	</it-autoflight>
+	
 	<options n="0">
 		<autocoordinate type="bool">0</autocoordinate>
 		<nav-source type="int">1</nav-source>

@@ -1,6 +1,7 @@
 # S-TEC Fifty Five X Autopilot System
 # Copyright (c) 2018 Joshua Davidson (it0uchpods)
 
+# Initialize all used property nodes
 var NAVGainStd = 1.0;
 var NAVGainCap = 0.9;
 var NAVGainCapSoft = 0.8;
@@ -35,7 +36,6 @@ var GPSS_annun = props.globals.initNode("/it-autoflight/annun/gpss", 0, "BOOL");
 var UP_annun = props.globals.initNode("/it-autoflight/annun/up", 0, "BOOL");
 var DN_annun = props.globals.initNode("/it-autoflight/annun/dn", 0, "BOOL");
 var NAVFlash_annun = props.globals.initNode("/it-autoflight/annun/nav-flash", 0, "BOOL");
-var HSIequipped = props.globals.initNode("/it-autoflight/internal/hsi-equipped", 1, "BOOL"); # Does the aircraft have an HSI or DG? The Autopilot behavior changes slightly depending on this
 var NAVManIntercept = props.globals.initNode("/it-autoflight/internal/nav-man-intercept", 1, "BOOL");
 var minTurnRate = props.globals.initNode("/it-autoflight/internal/min-turn-rate", -0.9, "DOUBLE");
 var maxTurnRate = props.globals.initNode("/it-autoflight/internal/max-turn-rate", 0.9, "DOUBLE");
@@ -60,8 +60,13 @@ var turnRate = props.globals.getNode("/instrumentation/turn-indicator/indicated-
 var turnRateSpin = props.globals.getNode("/instrumentation/turn-indicator/spin");
 var staticPress = props.globals.getNode("/systems/static[0]/pressure-inhg");
 
+# Initialize setting property nodes
+var HSIequipped = props.globals.getNode("/it-autoflight/settings/hsi-equipped"); # Does the aircraft have an HSI or DG?
+var isTurboprop = props.globals.getNode("/it-autoflight/settings/is-turboprop"); # Does the aircraft have turboprop engines?
+
 setlistener("/sim/signals/fdm-initialized", func {
 	var cdiDefl = 0;
+	var aoffset = 0;
 	var vspeed = 0;
 	var NAV = 0;
 	var CNAV = 0;
@@ -268,20 +273,38 @@ var ITAF = {
 		}
 		
 		# Limit the turn rate depending on the mode
-		if (roll.getValue() == 1 or roll.getValue() == 2) {
-			if (NAVPreGain.getValue() == NAVGainCapSoft) {
-				minTurnRate.setValue(-0.45);
-				maxTurnRate.setValue(0.45);
-			} else if (NAVPreGain.getValue() == NAVGainSoft) {
-				minTurnRate.setValue(-0.15);
-				maxTurnRate.setValue(0.15);
-			} else {
+		if (isTurboprop.getBoolValue() == 1) { # Turboprop aircraft have lower turn rates
+			if (roll.getValue() == 1) { # Turn rate in NAV mode
+				if (NAVPreGain.getValue() == NAVGainCapSoft) {
+					minTurnRate.setValue(-0.375);
+					maxTurnRate.setValue(0.375);
+				} else if (NAVPreGain.getValue() == NAVGainSoft) {
+					minTurnRate.setValue(-0.125);
+					maxTurnRate.setValue(0.125);
+				} else {
+					minTurnRate.setValue(-0.75);
+					maxTurnRate.setValue(0.75);
+				}
+			} else { # 75% turn rate in all other modes
+				minTurnRate.setValue(-0.75);
+				maxTurnRate.setValue(0.75);
+			}
+		} else {
+			if (roll.getValue() == 1) { # Turn rate in NAV mode
+				if (NAVPreGain.getValue() == NAVGainCapSoft) {
+					minTurnRate.setValue(-0.45);
+					maxTurnRate.setValue(0.45);
+				} else if (NAVPreGain.getValue() == NAVGainSoft) {
+					minTurnRate.setValue(-0.15);
+					maxTurnRate.setValue(0.15);
+				} else {
+					minTurnRate.setValue(-0.9);
+					maxTurnRate.setValue(0.9);
+				}
+			} else { # 90% turn rate in all other modes
 				minTurnRate.setValue(-0.9);
 				maxTurnRate.setValue(0.9);
 			}
-		} else {
-			minTurnRate.setValue(-0.9);
-			maxTurnRate.setValue(0.9);
 		}
 	},
 	killAP: func() { # Kill all AP modes
@@ -379,7 +402,20 @@ var button = {
 		}
 	},
 	Knob: func(d) {
-		if (pitch.getValue() == 1 and powerUpTest.getValue() != 1) {
+		if (pitch.getValue() == 0 and powerUpTest.getValue() != 1) {
+			if (d < 0) {
+				aoffset = altOffset.getValue() + 0.0216;
+				if (aoffset > 0.3888) {
+					aoffset = 0.3888;
+				}
+			} else {
+				aoffset = altOffset.getValue() - 0.0216;
+				if (aoffset < -0.3888) {
+					aoffset = -0.3888;
+				}
+			}
+			altOffset.setValue(aoffset);
+		} else if (pitch.getValue() == 1 and powerUpTest.getValue() != 1) {
 			if (d < 0) {
 				vspeed = vs.getValue() - 100;
 				if (vspeed < -1600) {

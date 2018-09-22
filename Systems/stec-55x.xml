@@ -93,7 +93,7 @@
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>/it-autoflight/internal/hsi-equipped</property>
+						<property>/it-autoflight/settings/hsi-equipped</property>
 						<value>0</value>
 					</equals>
 				</and>
@@ -117,7 +117,7 @@
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>/it-autoflight/internal/hsi-equipped</property>
+						<property>/it-autoflight/settings/hsi-equipped</property>
 						<value>1</value>
 					</equals>
 				</and>
