@@ -59,6 +59,7 @@ var GPSActive = props.globals.getNode("/autopilot/route-manager/active");
 var turnRate = props.globals.getNode("/instrumentation/turn-indicator/indicated-turn-rate");
 var turnRateSpin = props.globals.getNode("/instrumentation/turn-indicator/spin");
 var staticPress = props.globals.getNode("/systems/static[0]/pressure-inhg");
+var ALTOffsetDelta = props.globals.getNode("/it-autoflight/internal/static-20ft-delta");
 
 # Initialize setting property nodes
 var HSIequipped = props.globals.getNode("/it-autoflight/settings/hsi-equipped"); # Does the aircraft have an HSI or DG?
@@ -70,6 +71,7 @@ setlistener("/sim/signals/fdm-initialized", func {
 	var vspeed = 0;
 	var NAV = 0;
 	var CNAV = 0;
+	var ALTOffsetDeltaMax = 0;
 	ITAF.init();
 });
 
@@ -404,14 +406,16 @@ var button = {
 	Knob: func(d) {
 		if (pitch.getValue() == 0 and powerUpTest.getValue() != 1) {
 			if (d < 0) {
-				aoffset = altOffset.getValue() + 0.0216;
-				if (aoffset > 0.3888) {
-					aoffset = 0.3888;
+				aoffset = altOffset.getValue() + ALTOffsetDelta.getValue();
+				ALTOffsetDeltaMax = ALTOffsetDelta.getValue() * 18; # Get the static pressure value and multiply by 18 to limit it at +360
+				if (aoffset > ALTOffsetDeltaMax) {
+					aoffset = ALTOffsetDeltaMax;
 				}
 			} else {
-				aoffset = altOffset.getValue() - 0.0216;
-				if (aoffset < -0.3888) {
-					aoffset = -0.3888;
+				aoffset = altOffset.getValue() - ALTOffsetDelta.getValue();
+				ALTOffsetDeltaMax = ALTOffsetDelta.getValue() * -18; # Get the static pressure value and multiply by -18 to limit it at -360
+				if (aoffset < ALTOffsetDeltaMax) {
+					aoffset = ALTOffsetDeltaMax;
 				}
 			}
 			altOffset.setValue(aoffset);

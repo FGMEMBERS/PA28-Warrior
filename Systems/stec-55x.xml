@@ -282,6 +282,38 @@
 	<!-- Pitch Axis -->
 	
 	<filter>
+		<name>STATIC PRESSURE 20FT DELTA</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<expression>
+				<table>
+					<property>/it-autoflight/input/alt</property>
+					<entry><ind>32.148</ind><dep>0.022600</dep></entry> <!-- -2000 -->
+					<entry><ind>31.018</ind><dep>0.021940</dep></entry> <!-- -1000 -->
+					<entry><ind>29.921</ind><dep>0.021300</dep></entry> <!-- 0 -->
+					<entry><ind>28.856</ind><dep>0.020700</dep></entry> <!-- 1000 -->
+					<entry><ind>27.821</ind><dep>0.020080</dep></entry> <!-- 2000 -->
+					<entry><ind>26.817</ind><dep>0.019500</dep></entry> <!-- 3000 -->
+					<entry><ind>25.842</ind><dep>0.018920</dep></entry> <!-- 4000 -->
+					<entry><ind>24.896</ind><dep>0.018360</dep></entry> <!-- 5000 -->
+					<entry><ind>23.978</ind><dep>0.017800</dep></entry> <!-- 6000 -->
+					<entry><ind>23.088</ind><dep>0.017260</dep></entry> <!-- 7000 -->
+					<entry><ind>22.225</ind><dep>0.016740</dep></entry> <!-- 8000 -->
+					<entry><ind>21.388</ind><dep>0.016220</dep></entry> <!-- 9000 -->
+					<entry><ind>20.577</ind><dep>0.014764</dep></entry> <!-- 10000 -->
+					<entry><ind>16.886</ind><dep>0.012544</dep></entry> <!-- 15000 -->
+					<entry><ind>13.750</ind><dep>0.010584</dep></entry> <!-- 20000 -->
+					<entry><ind>11.104</ind><dep>0.008874</dep></entry> <!-- 25000 -->
+					<entry><ind>8.8855</ind><dep>0.007379</dep></entry> <!-- 30000 -->
+					<entry><ind>8.1475</ind><dep>0.006831</dep></entry> <!-- 32000 -->
+				</table>
+			</expression>
+		</input>
+		<output>/it-autoflight/internal/static-20ft-delta</output>
+	</filter>
+	
+	<filter>
 		<name>PRESSURE RATE COMPUTER</name>
 		<debug>false</debug>
 		<type>derivative</type>
@@ -386,8 +418,8 @@
 			</expression>
 		</reference>
 		<output>/it-autoflight/internal/alt-vs</output>
-		<min>-200</min>
-		<max>200</max>
+		<min>-250</min>
+		<max>250</max>
 	</filter>
 	
 	<filter>
@@ -528,6 +560,10 @@
 		<enable>
 			<condition>
 				<and>
+					<greater-than>
+						<property>/it-autoflight/output/pitch</property>
+						<value>-1</value>
+					</greater-than>
 					<equals>
 						<property>/it-autoflight/input/electric-trim-sw</property>
 						<value>1</value>
