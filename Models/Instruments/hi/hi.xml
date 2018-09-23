@@ -61,7 +61,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>HdgBug</object-name>
-		<property>it-autoflight/input/hdg</property>
+		<property>it-stec55x/input/hdg</property>
 		<axis>
 			<x>-1</x>
 			<y>0</y>
@@ -84,7 +84,7 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
-				<property>it-autoflight/input/hdg</property>
+				<property>it-stec55x/input/hdg</property>
 				<step>1</step>
 				<min>1</min>
 				<max>361</max>
@@ -97,7 +97,7 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
-				<property>it-autoflight/input/hdg</property>
+				<property>it-stec55x/input/hdg</property>
 				<step>-1</step>
 				<min>1</min>
 				<max>361</max>
@@ -110,7 +110,7 @@
 				<tooltip-id>heading-bug</tooltip-id>
 				<mapping>heading</mapping>
 				<label>Heading Bug: %3d</label>
-				<property>it-autoflight/input/hdg</property>
+				<property>it-stec55x/input/hdg</property>
 			</binding>
 		</hovered>
 	</animation>
@@ -118,7 +118,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>Hdg-Knob</object-name>
-		<property>it-autoflight/input/hdg</property>
+		<property>it-stec55x/input/hdg</property>
 		<factor>6</factor>
 		<axis>
 			<x>-1</x>

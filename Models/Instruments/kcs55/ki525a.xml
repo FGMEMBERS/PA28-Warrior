@@ -43,7 +43,7 @@
 		<in-range>instrumentation/nav[0]/in-range</in-range>
 		<gs-needle-deflection>instrumentation/nav[0]/filtered-gsNAV0-deflection</gs-needle-deflection>
 		<cdi-needle-deflection>instrumentation/kcs55/ki525/cdi-deflection</cdi-needle-deflection>
-		<selected-heading>it-autoflight/input/hdg</selected-heading>
+		<selected-heading>it-stec55x/input/hdg</selected-heading>
 		<selected-course>instrumentation/kcs55/ki525/selected-course-deg</selected-course>
 		<to-flag>instrumentation/kcs55/ki525/to-flag</to-flag>
 		<from-flag>instrumentation/kcs55/ki525/from-flag</from-flag>
@@ -255,7 +255,7 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
-				<property>it-autoflight/input/hdg</property>
+				<property>it-stec55x/input/hdg</property>
 				<step>1</step>
 				<min>1</min>
 				<max>361</max>
@@ -268,7 +268,7 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
-				<property>it-autoflight/input/hdg</property>
+				<property>it-stec55x/input/hdg</property>
 				<step>-1</step>
 				<min>1</min>
 				<max>361</max>
@@ -281,7 +281,7 @@
 				<tooltip-id>heading-bug-hsi</tooltip-id>
 				<mapping>headinghsi</mapping>
 				<label>Heading Bug: %3d</label>
-				<property>it-autoflight/input/hdg</property>
+				<property>it-stec55x/input/hdg</property>
 			</binding>
 		</hovered>
 	</animation>

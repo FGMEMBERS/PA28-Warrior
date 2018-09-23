@@ -93,7 +93,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>/it-autoflight/input/disc</property>
+				<property>/it-stec55x/input/disc</property>
 				<value>1</value>
 			</binding>
 			<binding>
@@ -103,7 +103,7 @@
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>/it-autoflight/input/disc</property>
+					<property>/it-stec55x/input/disc</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -113,7 +113,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>button.DISC</object-name>
-		<property>/it-autoflight/input/disc</property>
+		<property>/it-stec55x/input/disc</property>
 		<factor>-0.002</factor>
 		<axis>
 			<x>0</x>
@@ -144,7 +144,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>button.CWS</object-name>
-		<property>/it-autoflight/input/cws</property>
+		<property>/it-stec55x/input/cws</property>
 		<factor>-0.002</factor>
 		<axis>
 			<x>1</x>

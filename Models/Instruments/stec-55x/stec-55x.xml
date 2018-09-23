@@ -39,7 +39,7 @@
 		<object-name>HDG.ind</object-name>
 		<condition>
 			<equals>
-				<property>/it-autoflight/annun/hdg</property>
+				<property>it-stec55x/annun/hdg</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -50,7 +50,7 @@
 		<object-name>RDY.ind</object-name>
 		<condition>
 			<equals>
-				<property>/it-autoflight/annun/rdy</property>
+				<property>it-stec55x/annun/rdy</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -61,7 +61,7 @@
 		<object-name>NAV.ind</object-name>
 		<condition>
 			<equals>
-				<property>/it-autoflight/annun/nav</property>
+				<property>it-stec55x/annun/nav</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -72,7 +72,7 @@
 		<object-name>CWS.ind</object-name>
 		<condition>
 			<equals>
-				<property>/it-autoflight/annun/cws</property>
+				<property>it-stec55x/annun/cws</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -83,7 +83,7 @@
 		<object-name>APR.ind</object-name>
 		<condition>
 			<equals>
-				<property>/it-autoflight/annun/apr</property>
+				<property>it-stec55x/annun/apr</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -94,7 +94,7 @@
 		<object-name>FAIL.ind</object-name>
 		<condition>
 			<equals>
-				<property>/it-autoflight/annun/fail</property>
+				<property>it-stec55x/annun/fail</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -105,7 +105,7 @@
 		<object-name>GPSS.ind</object-name>
 		<condition>
 			<equals>
-				<property>/it-autoflight/annun/gpss</property>
+				<property>it-stec55x/annun/gpss</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -116,7 +116,7 @@
 		<object-name>REV.ind</object-name>
 		<condition>
 			<equals>
-				<property>/it-autoflight/annun/rev</property>
+				<property>it-stec55x/annun/rev</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -128,11 +128,11 @@
 		<condition>
 			<or>
 				<equals>
-					<property>/it-autoflight/annun/up</property>
+					<property>it-stec55x/annun/up</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>/it-autoflight/annun/dn</property>
+					<property>it-stec55x/annun/dn</property>
 					<value>1</value>
 				</equals>
 			</or>
@@ -144,7 +144,7 @@
 		<object-name>TRIMUP.ind</object-name>
 		<condition>
 			<equals>
-				<property>/it-autoflight/annun/up</property>
+				<property>it-stec55x/annun/up</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -155,7 +155,7 @@
 		<object-name>TRIMDN.ind</object-name>
 		<condition>
 			<equals>
-				<property>/it-autoflight/annun/dn</property>
+				<property>it-stec55x/annun/dn</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -166,7 +166,7 @@
 		<object-name>ALT.ind</object-name>
 		<condition>
 			<equals>
-				<property>/it-autoflight/annun/alt</property>
+				<property>it-stec55x/annun/alt</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -177,7 +177,7 @@
 		<object-name>GS.ind</object-name>
 		<condition>
 			<equals>
-				<property>/it-autoflight/annun/gs</property>
+				<property>it-stec55x/annun/gs</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -188,7 +188,7 @@
 		<object-name>VS.ind</object-name>
 		<condition>
 			<equals>
-				<property>/it-autoflight/annun/vs</property>
+				<property>it-stec55x/annun/vs</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -199,7 +199,7 @@
 		<object-name>MINUS.ind</object-name>
 		<condition>
 			<equals>
-				<property>/it-autoflight/annun/vs</property>
+				<property>it-stec55x/annun/vs</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -211,11 +211,11 @@
 		<condition>
 			<and>
 				<equals>
-					<property>it-autoflight/annun/vs</property>
+					<property>it-stec55x/annun/vs</property>
 					<value>1</value>
 				</equals>
 				<greater-than-equals>
-					<property>it-autoflight/input/vs</property>
+					<property>it-stec55x/input/vs</property>
 					<value>0</value>
 				</greater-than-equals>
 			</and>
@@ -228,11 +228,11 @@
 		<condition>
 			<and>
 				<equals>
-					<property>it-autoflight/annun/vs</property>
+					<property>it-stec55x/annun/vs</property>
 					<value>1</value>
 				</equals>
 				<greater-than-equals>
-					<property>it-autoflight/input/vs-abs</property>
+					<property>it-stec55x/input/vs-abs</property>
 					<value>1000</value>
 				</greater-than-equals>
 			</and>
@@ -244,7 +244,7 @@
 		<object-name>DIGITS.ind</object-name>
 		<condition>
 			<equals>
-				<property>/it-autoflight/annun/vs</property>
+				<property>it-stec55x/annun/vs</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -253,7 +253,7 @@
 	<animation>
 		<type>textranslate</type>
 		<object-name>DIGITS.ind</object-name>
-		<property>it-autoflight/input/vs-abs</property>
+		<property>it-stec55x/input/vs-abs</property>
 		<factor>0.001</factor>
 		<step>100</step>
 		<axis>
@@ -285,7 +285,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>HDG.button</object-name>
-		<property>/it-autoflight/input/hdg-button</property>
+		<property>it-stec55x/input/hdg-button</property>
 		<factor alias="../../params/button-translate"/>
 		<axis>
 			<x>1</x>
@@ -302,13 +302,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>/it-autoflight/input/nav-button</property>
+				<property>it-stec55x/input/nav-button</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>/it-autoflight/input/nav-button</property>
+					<property>it-stec55x/input/nav-button</property>
 					<value>0</value>
 				</binding>
 				<binding>
@@ -322,7 +322,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>NAV.button</object-name>
-		<property>/it-autoflight/input/nav-button</property>
+		<property>it-stec55x/input/nav-button</property>
 		<factor alias="../../params/button-translate"/>
 		<axis>
 			<x>1</x>
@@ -339,13 +339,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>/it-autoflight/input/apr-button</property>
+				<property>it-stec55x/input/apr-button</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>/it-autoflight/input/apr-button</property>
+					<property>it-stec55x/input/apr-button</property>
 					<value>0</value>
 				</binding>
 				<binding>
@@ -359,7 +359,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>APR.button</object-name>
-		<property>/it-autoflight/input/apr-button</property>
+		<property>it-stec55x/input/apr-button</property>
 		<factor alias="../../params/button-translate"/>
 		<axis>
 			<x>1</x>
@@ -376,13 +376,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>/it-autoflight/input/rev-button</property>
+				<property>it-stec55x/input/rev-button</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>/it-autoflight/input/rev-button</property>
+					<property>it-stec55x/input/rev-button</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -392,7 +392,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>REV.button</object-name>
-		<property>/it-autoflight/input/rev-button</property>
+		<property>it-stec55x/input/rev-button</property>
 		<factor alias="../../params/button-translate"/>
 		<axis>
 			<x>1</x>
@@ -409,13 +409,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>/it-autoflight/input/alt-button</property>
+				<property>it-stec55x/input/alt-button</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>/it-autoflight/input/alt-button</property>
+					<property>it-stec55x/input/alt-button</property>
 					<value>0</value>
 				</binding>
 				<binding>
@@ -429,7 +429,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>ALT.button</object-name>
-		<property>/it-autoflight/input/alt-button</property>
+		<property>it-stec55x/input/alt-button</property>
 		<factor alias="../../params/button-translate"/>
 		<axis>
 			<x>1</x>
@@ -446,13 +446,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>/it-autoflight/input/vs-button</property>
+				<property>it-stec55x/input/vs-button</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>/it-autoflight/input/vs-button</property>
+					<property>it-stec55x/input/vs-button</property>
 					<value>0</value>
 				</binding>
 				<binding>
@@ -466,7 +466,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>VS.button</object-name>
-		<property>/it-autoflight/input/vs-button</property>
+		<property>it-stec55x/input/vs-button</property>
 		<factor alias="../../params/button-translate"/>
 		<axis>
 			<x>1</x>

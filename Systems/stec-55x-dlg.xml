@@ -12,7 +12,7 @@
         <layout>hbox</layout>
         <text>
             <halign>left</halign>
-            <label>IT-AUTOFLIGHT System (S-TEC Fifty Five X)</label>
+            <label>it-stec55x System (S-TEC Fifty Five X)</label>
         </text>
         <button>
             <halign>right</halign>
@@ -37,7 +37,7 @@
             <label>HDG</label>
 			<visible>
 				<equals>
-					<property>/it-autoflight/annun/hdg</property>
+					<property>/it-stec55x/annun/hdg</property>
 					<value>1</value>
 				</equals>
 			</visible>
@@ -49,7 +49,7 @@
             <label>NAV</label>
 			<visible>
 				<equals>
-					<property>/it-autoflight/annun/nav</property>
+					<property>/it-stec55x/annun/nav</property>
 					<value>1</value>
 				</equals>
 			</visible>
@@ -61,7 +61,7 @@
             <label>APR</label>
 			<visible>
 				<equals>
-					<property>/it-autoflight/annun/apr</property>
+					<property>/it-stec55x/annun/apr</property>
 					<value>1</value>
 				</equals>
 			</visible>
@@ -73,7 +73,7 @@
             <label>REV</label>
 			<visible>
 				<equals>
-					<property>/it-autoflight/annun/rev</property>
+					<property>/it-stec55x/annun/rev</property>
 					<value>1</value>
 				</equals>
 			</visible>
@@ -86,11 +86,11 @@
 			<visible>
 				<or>
 					<equals>
-						<property>/it-autoflight/annun/up</property>
+						<property>/it-stec55x/annun/up</property>
 						<value>1</value>
 					</equals>
 					<equals>
-						<property>/it-autoflight/annun/dn</property>
+						<property>/it-stec55x/annun/dn</property>
 						<value>1</value>
 					</equals>
 				</or>
@@ -103,7 +103,7 @@
             <label>ALT</label>
 			<visible>
 				<equals>
-					<property>/it-autoflight/annun/alt</property>
+					<property>/it-stec55x/annun/alt</property>
 					<value>1</value>
 				</equals>
 			</visible>
@@ -115,7 +115,7 @@
             <label>GS</label>
 			<visible>
 				<equals>
-					<property>/it-autoflight/annun/gs</property>
+					<property>/it-stec55x/annun/gs</property>
 					<value>1</value>
 				</equals>
 			</visible>
@@ -127,7 +127,7 @@
             <label>VS</label>
 			<visible>
 				<equals>
-					<property>/it-autoflight/annun/vs</property>
+					<property>/it-stec55x/annun/vs</property>
 					<value>1</value>
 				</equals>
 			</visible>
@@ -139,7 +139,7 @@
             <label>RDY</label>
 			<visible>
 				<equals>
-					<property>/it-autoflight/annun/rdy</property>
+					<property>/it-stec55x/annun/rdy</property>
 					<value>1</value>
 				</equals>
 			</visible>
@@ -151,7 +151,7 @@
             <label>CWS</label>
 			<visible>
 				<equals>
-					<property>/it-autoflight/annun/cws</property>
+					<property>/it-stec55x/annun/cws</property>
 					<value>1</value>
 				</equals>
 			</visible>
@@ -163,7 +163,7 @@
             <label>FAIL</label>
 			<visible>
 				<equals>
-					<property>/it-autoflight/annun/fail</property>
+					<property>/it-stec55x/annun/fail</property>
 					<value>1</value>
 				</equals>
 			</visible>
@@ -175,7 +175,7 @@
             <label>GPSS</label>
 			<visible>
 				<equals>
-					<property>/it-autoflight/annun/gpss</property>
+					<property>/it-stec55x/annun/gpss</property>
 					<value>1</value>
 				</equals>
 			</visible>
@@ -187,7 +187,7 @@
             <label>UP</label>
 			<visible>
 				<equals>
-					<property>/it-autoflight/annun/up</property>
+					<property>/it-stec55x/annun/up</property>
 					<value>1</value>
 				</equals>
 			</visible>
@@ -199,7 +199,7 @@
             <label>DN</label>
 			<visible>
 				<equals>
-					<property>/it-autoflight/annun/dn</property>
+					<property>/it-stec55x/annun/dn</property>
 					<value>1</value>
 				</equals>
 			</visible>
@@ -212,11 +212,11 @@
 			<visible>
 				<and>
 					<equals>
-						<property>it-autoflight/annun/vs</property>
+						<property>it-stec55x/annun/vs</property>
 						<value>1</value>
 					</equals>
 					<greater-than-equals>
-						<property>/it-autoflight/input/vs</property>
+						<property>/it-stec55x/input/vs</property>
 						<value>0</value>
 					</greater-than-equals>
 				</and>
@@ -230,11 +230,11 @@
 			<visible>
 				<and>
 					<equals>
-						<property>it-autoflight/annun/vs</property>
+						<property>it-stec55x/annun/vs</property>
 						<value>1</value>
 					</equals>
 					<less-than>
-						<property>/it-autoflight/input/vs</property>
+						<property>/it-stec55x/input/vs</property>
 						<value>0</value>
 					</less-than>
 				</and>
@@ -247,11 +247,11 @@
             <label>99</label>
 			<visible>
 				<equals>
-					<property>/it-autoflight/annun/vs</property>
+					<property>/it-stec55x/annun/vs</property>
 					<value>1</value>
 				</equals>
 			</visible>
-			<property>/it-autoflight/input/vs-abs</property>
+			<property>/it-stec55x/input/vs-abs</property>
 			<live>1</live>
         </text>
 	</group>
@@ -363,7 +363,7 @@
 		<checkbox>
 			<label>Autopilot Master</label>
 			<halign>center</halign>
-			<property>/it-autoflight/input/ap-master-sw</property>
+			<property>/it-stec55x/input/ap-master-sw</property>
 			<binding>
 				<command>dialog-apply</command>
 			</binding>
@@ -373,7 +373,7 @@
 		<checkbox>
 			<label>Elec Trim Servo</label>
 			<halign>center</halign>
-			<property>/it-autoflight/input/electric-trim-sw</property>
+			<property>/it-stec55x/input/electric-trim-sw</property>
 			<binding>
 				<command>dialog-apply</command>
 			</binding>

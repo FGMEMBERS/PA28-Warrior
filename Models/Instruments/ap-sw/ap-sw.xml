@@ -23,7 +23,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>it-autoflight/input/ap-master-sw</property>
+				<property>it-stec55x/input/ap-master-sw</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -35,7 +35,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>APSW</object-name>
-		<property>it-autoflight/input/ap-master-sw</property>
+		<property>it-stec55x/input/ap-master-sw</property>
 		<factor>32</factor>
 		<axis>
 			<x>0</x>
@@ -53,7 +53,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>it-autoflight/input/electric-trim-sw</property>
+				<property>it-stec55x/input/electric-trim-sw</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -65,7 +65,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>TrimSW</object-name>
-		<property>it-autoflight/input/electric-trim-sw</property>
+		<property>it-stec55x/input/electric-trim-sw</property>
 		<factor>32</factor>
 		<axis>
 			<x>0</x>
