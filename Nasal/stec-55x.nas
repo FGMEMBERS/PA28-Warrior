@@ -51,6 +51,7 @@ var hdgButtonTime = props.globals.initNode("/it-autoflight/internal/hdg-button-t
 var powerUpTime = props.globals.initNode("/it-autoflight/internal/powerup-time", 0, "DOUBLE");
 var powerUpTest = props.globals.initNode("/it-autoflight/internal/powerup-test", -1, "INT"); # -1 = Powerup test not done, 0 = Powerup test complete, 1 = Powerup test in progress
 var APRGainActive = props.globals.initNode("/it-autoflight/internal/apr-gain-active", 0, "BOOL");
+var ALTOffsetDelta = props.globals.getNode("/it-autoflight/internal/static-20ft-delta");
 var HDGIndicator = props.globals.getNode("/instrumentation/heading-indicator/indicated-heading-deg");
 var OBSNeedle = props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection");
 var OBSCourse = props.globals.getNode("/instrumentation/nav[0]/radials/selected-deg");
@@ -59,7 +60,6 @@ var GPSActive = props.globals.getNode("/autopilot/route-manager/active");
 var turnRate = props.globals.getNode("/instrumentation/turn-indicator/indicated-turn-rate");
 var turnRateSpin = props.globals.getNode("/instrumentation/turn-indicator/spin");
 var staticPress = props.globals.getNode("/systems/static[0]/pressure-inhg");
-var ALTOffsetDelta = props.globals.getNode("/it-autoflight/internal/static-20ft-delta");
 
 # Initialize setting property nodes
 var HSIequipped = props.globals.getNode("/it-autoflight/settings/hsi-equipped"); # Does the aircraft have an HSI or DG?

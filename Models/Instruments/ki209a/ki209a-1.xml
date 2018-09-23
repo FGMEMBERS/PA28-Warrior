@@ -32,6 +32,8 @@
 		<gs-needle-deflection>instrumentation/nav[0]/gs-needle-deflection</gs-needle-deflection>
 		<heading-needle-deflection>instrumentation/nav[0]/heading-needle-deflection</heading-needle-deflection>
 		<has-gs>instrumentation/nav[0]/has-gs</has-gs>
+		<in-range>instrumentation/nav[0]/in-range</in-range>
+		<nav-flag>instrumentation/nav[0]/nav-flag</nav-flag>
 	</params>
 	
 	<animation>
@@ -73,13 +75,8 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>NAV</object-name>
-		<property alias="../../params/signal-quality"/>
-		<interpolation>
-			<entry><ind>0.0</ind><dep> 0</dep></entry>
-			<entry><ind>0.5</ind><dep> 0</dep></entry>
-			<entry><ind>0.9</ind><dep>70</dep></entry>
-			<entry><ind>1.0</ind><dep>90</dep></entry>
-		</interpolation>
+		<property alias="../../params/nav-flag"/>
+		<factor>45</factor>
 		<axis>
 			<x>-1.0</x>
 			<y>0.0</y>
@@ -88,16 +85,25 @@
 		<center>
 			<x-m>0</x-m>
 			<y-m>0</y-m>
-			<z-m>0.0128645</z-m>
+			<z-m>0.01713</z-m>
 		</center>
 	</animation>
 	
 	<animation>
-		<type>select</type>
+		<type>rotate</type>
 		<object-name>GS</object-name>
-		<condition>
-			<not><property alias="../../../../params/has-gs"/></not>
-		</condition>
+		<property alias="../../params/nav-flag"/>
+		<factor>45</factor>
+		<axis>
+			<x>-1.0</x>
+			<y>0.0</y>
+			<z>0.0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.01722</y-m>
+			<z-m>0</z-m>
+		</center>
 	</animation>
 	
 	<animation>

@@ -103,6 +103,84 @@
 		<filter-time>0.04</filter-time>
 	</filter>
 	
+	<filter>
+		<name>NAV0 FLAG</name>
+		<debug>false</debug>
+		<type>exponential</type>
+		<input>
+			<condition>
+				<less-than>
+					<property>/systems/electrical/outputs/nav[0]</property>
+					<value>8</value>
+				</less-than>
+			</condition>
+			<value>0</value>
+		</input>
+		<input>/instrumentation/nav[0]/in-range</input>
+		<output>/instrumentation/nav[0]/nav-flag</output>
+		<filter-time>0.64</filter-time>
+	</filter>
+	
+	<filter>
+		<name>GS0 FLAG</name>
+		<debug>false</debug>
+		<type>exponential</type>
+		<input>
+			<condition>
+				<or>
+					<not><property>/instrumentation/nav[0]/has-gs</property></not>
+					<less-than>
+						<property>/systems/electrical/outputs/nav[0]</property>
+						<value>8</value>
+					</less-than>
+				</or>
+			</condition>
+			<value>0</value>
+		</input>
+		<input>/instrumentation/nav[0]/in-range</input>
+		<output>/instrumentation/nav[0]/gs-flag</output>
+		<filter-time>0.64</filter-time>
+	</filter>
+	
+	<filter>
+		<name>NAV1 FLAG</name>
+		<debug>false</debug>
+		<type>exponential</type>
+		<input>
+			<condition>
+				<less-than>
+					<property>/systems/electrical/outputs/nav[1]</property>
+					<value>8</value>
+				</less-than>
+			</condition>
+			<value>0</value>
+		</input>
+		<input>/instrumentation/nav[1]/in-range</input>
+		<output>/instrumentation/nav[1]/nav-flag</output>
+		<filter-time>0.64</filter-time>
+	</filter>
+	
+	<filter>
+		<name>GS1 FLAG</name>
+		<debug>false</debug>
+		<type>exponential</type>
+		<input>
+			<condition>
+				<or>
+					<not><property>/instrumentation/nav[1]/has-gs</property></not>
+					<less-than>
+						<property>/systems/electrical/outputs/nav[1]</property>
+						<value>8</value>
+					</less-than>
+				</or>
+			</condition>
+			<value>0</value>
+		</input>
+		<input>/instrumentation/nav[1]/in-range</input>
+		<output>/instrumentation/nav[1]/gs-flag</output>
+		<filter-time>0.64</filter-time>
+	</filter>
+	
 	<!-- Instrument filters -->
 	
 	<filter>
