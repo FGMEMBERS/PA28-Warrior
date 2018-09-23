@@ -805,6 +805,7 @@
 		<settings n="0">
 			<hsi-equipped type="bool">1</hsi-equipped> <!-- Does the aircraft have an HSI or DG? -->
 			<is-turboprop type="bool">0</is-turboprop> <!-- Does the aircraft have turboprop engines? -->
+			<fd-equipped type="bool">0</fd-equipped> <!-- Does the aircraft have a flight director installed? -->
 		</settings>
 	</it-stec55x>
 	

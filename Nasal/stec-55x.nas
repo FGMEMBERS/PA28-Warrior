@@ -17,7 +17,8 @@ var altOffset = props.globals.initNode("/it-stec55x/input/alt-offset", 0, "DOUBL
 var vs = props.globals.initNode("/it-stec55x/input/vs", 0, "DOUBLE");
 var cwsSW = props.globals.initNode("/it-stec55x/input/cws", 0, "BOOL");
 var discSW = props.globals.initNode("/it-stec55x/input/disc", 0, "BOOL");
-var masterSW = props.globals.initNode("/it-stec55x/input/ap-master-sw", 0, "BOOL");
+var masterAPSW = props.globals.initNode("/it-stec55x/input/ap-master-sw", 0, "BOOL");
+var masterAPFDSW = props.globals.initNode("/it-stec55x/input/apfd-master-sw", 0, "INT");
 var elecTrimSW = props.globals.initNode("/it-stec55x/input/electric-trim-sw", 0, "BOOL");
 var hasPower = props.globals.initNode("/it-stec55x/internal/hasPower", 0, "BOOL");
 var roll = props.globals.initNode("/it-stec55x/output/roll", -1, "INT");
@@ -52,6 +53,9 @@ var powerUpTime = props.globals.initNode("/it-stec55x/internal/powerup-time", 0,
 var powerUpTest = props.globals.initNode("/it-stec55x/internal/powerup-test", -1, "INT"); # -1 = Powerup test not done, 0 = Powerup test complete, 1 = Powerup test in progress
 var APRGainActive = props.globals.initNode("/it-stec55x/internal/apr-gain-active", 0, "BOOL");
 var ALTOffsetDelta = props.globals.getNode("/it-stec55x/internal/static-20ft-delta");
+var masterSW = props.globals.initNode("/it-stec55x/internal/master-sw", 0, "INT"); # 0 = OFF, 1 = FD, 2 = AP/FD
+var servoRollPower = props.globals.initNode("/it-stec55x/internal/servo-roll-power", 0, "BOOL");
+var servoPitchPower = props.globals.initNode("/it-stec55x/internal/servo-pitch-power", 0, "BOOL");
 var HDGIndicator = props.globals.getNode("/instrumentation/heading-indicator/indicated-heading-deg");
 var OBSNeedle = props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection");
 var OBSCourse = props.globals.getNode("/instrumentation/nav[0]/radials/selected-deg");
@@ -64,6 +68,7 @@ var staticPress = props.globals.getNode("/systems/static[0]/pressure-inhg");
 # Initialize setting property nodes
 var HSIequipped = props.globals.getNode("/it-stec55x/settings/hsi-equipped"); # Does the aircraft have an HSI or DG?
 var isTurboprop = props.globals.getNode("/it-stec55x/settings/is-turboprop"); # Does the aircraft have turboprop engines?
+var FDequipped = props.globals.getNode("/it-stec55x/settings/fd-equipped"); # Does the aircraft have a flight director installed?
 
 setlistener("/sim/signals/fdm-initialized", func {
 	var cdiDefl = 0;
@@ -83,7 +88,8 @@ var ITAF = {
 		vs.setValue(0);
 		cwsSW.setValue(0);
 		discSW.setValue(0);
-		masterSW.setValue(0);
+		masterAPSW.setValue(0);
+		masterAPFDSW.setValue(0);
 		elecTrimSW.setValue(0);
 		NAVManIntercept.setValue(0);
 		roll.setValue(-1);
@@ -103,8 +109,21 @@ var ITAF = {
 		DN_annun.setBoolValue(0);
 		NAVFlash_annun.setBoolValue(0);
 		update.start();
+		updateFast.start();
 	},
 	loop: func() {
+		if (FDequipped.getBoolValue() == 1) {
+			masterSW.setValue(masterAPFDSW.getValue());
+			if (masterAPFDSW.getValue() == 2) { # Just in case the FD equipped option is changed while system operating
+				masterAPSW.setBoolValue(1);
+			} else {
+				masterAPSW.setBoolValue(0);
+			}
+		} else {
+			masterSW.setValue(masterAPSW.getValue() * 2);
+			masterAPFDSW.setValue(masterAPSW.getValue() * 2); # Just in case the FD equipped option is changed while system operating
+		}
+		
 		if (hasPower.getBoolValue() == 1 and turnRateSpin.getValue() >= 0.2) { # Requires turn indicator spin over 20%
 			systemAlive.setBoolValue(1);
 		} else {
@@ -114,7 +133,7 @@ var ITAF = {
 			}
 		}
 		
-		if (powerSrc.getValue() >= 8 and masterSW.getBoolValue() == 1) {
+		if (powerSrc.getValue() >= 8 and masterSW.getValue() > 0) {
 			hasPower.setBoolValue(1);
 			if (powerUpTest.getValue() == -1 and systemAlive.getBoolValue() == 1) { # Begin power on test
 				powerUpTest.setValue(1);
@@ -136,6 +155,7 @@ var ITAF = {
 		
 		if (systemAlive.getBoolValue() == 0) { # AP Failed when false
 			RDY_annun.setBoolValue(0);
+			FAIL_annun.setBoolValue(0);
 		} else {
 			if (powerUpTest.getValue() == 1 and powerUpTime.getValue() + 10 < elapsedSec.getValue()) {
 				powerUpTest.setValue(0);
@@ -147,9 +167,9 @@ var ITAF = {
 			}
 			if (serviceable.getBoolValue() != 1) {
 				FAIL_annun.setBoolValue(1);
-			} else if (powerUpTest.getValue() or ((roll.getValue() == 1 or roll.getValue() == 3 or CNAV) and OBSActive.getBoolValue() != 1)) {
+			} else if (powerUpTest.getValue() == 1 or ((roll.getValue() == 1 or roll.getValue() == 3 or CNAV) and OBSActive.getBoolValue() != 1)) {
 				FAIL_annun.setBoolValue(1);
-			} else if (powerUpTest.getValue() or ((roll.getValue() == 2 or roll.getValue() == 4) and GPSActive.getBoolValue() != 1)) {
+			} else if (powerUpTest.getValue() == 1 or ((roll.getValue() == 2 or roll.getValue() == 4) and GPSActive.getBoolValue() != 1)) {
 				FAIL_annun.setBoolValue(1);
 			} else {
 				FAIL_annun.setBoolValue(0);
@@ -158,50 +178,50 @@ var ITAF = {
 		
 		# Mode Annunciators
 		# AP does not power up or show any signs of life unless if has power (obviously), and the turn coordinator is working
-		if ((roll.getValue() == 0 or powerUpTest.getValue()) and systemAlive.getBoolValue() == 1) {
+		if ((roll.getValue() == 0 or powerUpTest.getValue() == 1) and systemAlive.getBoolValue() == 1) {
 			HDG_annun.setBoolValue(1);
 		} else {
 			HDG_annun.setBoolValue(0);
 		}
 		
-		if ((roll.getValue() == 1 or roll.getValue() == 2 or ((NAV or CNAV) and NAVFlash_annun.getBoolValue()) or powerUpTest.getValue()) and systemAlive.getBoolValue() == 1) {
+		if ((roll.getValue() == 1 or roll.getValue() == 2 or ((NAV or CNAV) and NAVFlash_annun.getBoolValue()) or powerUpTest.getValue() == 1) and systemAlive.getBoolValue() == 1) {
 			NAV_annun.setBoolValue(1);
 		} else {
 			NAV_annun.setBoolValue(0);
 		}
 		
-		if ((((roll.getValue() == 1 or ((CNAV or roll.getValue() == 3) and NAVFlash_annun.getBoolValue())) and APRGainActive.getBoolValue() == 1) or powerUpTest.getValue()) and systemAlive.getBoolValue() == 1) {
+		if ((((roll.getValue() == 1 or ((CNAV or roll.getValue() == 3) and NAVFlash_annun.getBoolValue())) and APRGainActive.getBoolValue() == 1) or powerUpTest.getValue() == 1) and systemAlive.getBoolValue() == 1) {
 			APR_annun.setBoolValue(1);
 		} else {
 			APR_annun.setBoolValue(0);
 		}
 		
-		if ((pitch.getValue() == 0 or powerUpTest.getValue()) and systemAlive.getBoolValue() == 1) {
+		if ((pitch.getValue() == 0 or powerUpTest.getValue() == 1) and systemAlive.getBoolValue() == 1) {
 			ALT_annun.setBoolValue(1);
 		} else {
 			ALT_annun.setBoolValue(0);
 		}
 		
-		if ((pitch.getValue() == 1 or pitch.getValue() == -2 or powerUpTest.getValue()) and systemAlive.getBoolValue() == 1) {
+		if ((pitch.getValue() == 1 or pitch.getValue() == -2 or powerUpTest.getValue() == 1) and systemAlive.getBoolValue() == 1) {
 			VS_annun.setBoolValue(1);
 		} else {
 			VS_annun.setBoolValue(0);
 		}
 		
-		if ((roll.getValue() == 5 or roll.getValue() == -2 or powerUpTest.getValue()) and systemAlive.getBoolValue() == 1) {
+		if ((roll.getValue() == 5 or roll.getValue() == -2 or powerUpTest.getValue() == 1) and systemAlive.getBoolValue() == 1) {
 			CWS_annun.setBoolValue(1);
 		} else {
 			CWS_annun.setBoolValue(0);
 		}
 		
-		if ((roll.getValue() == 2 or (roll.getValue() == 4 and NAVFlash_annun.getBoolValue()) or powerUpTest.getValue()) and systemAlive.getBoolValue() == 1) {
+		if ((roll.getValue() == 2 or (roll.getValue() == 4 and NAVFlash_annun.getBoolValue()) or powerUpTest.getValue() == 1) and systemAlive.getBoolValue() == 1) {
 			GPSS_annun.setBoolValue(1);
 		} else {
 			GPSS_annun.setBoolValue(0);
 		}
 		
 		# Temporary stuff because these lights aren't implemented yet
-		if (powerUpTest.getValue() and systemAlive.getBoolValue() == 1) {
+		if (powerUpTest.getValue() == 1 and systemAlive.getBoolValue() == 1) {
 			REV_annun.setBoolValue(1);
 			GS_annun.setBoolValue(1);
 		} else {
@@ -211,14 +231,14 @@ var ITAF = {
 		
 		# Electric Pitch Trim
 		if (systemAlive.getBoolValue() == 1) {
-			if (powerUpTest.getValue() or (pitch.getValue() > -1 and getprop("/controls/flight/elevator") < -0.05)) {
+			if (powerUpTest.getValue() == 1 or (pitch.getValue() > -1 and getprop("/controls/flight/elevator") < -0.05)) {
 				UP_annun.setBoolValue(1);
 			} else if (pitch.getValue() > -1 and UP_annun.getBoolValue() == 1 and getprop("/controls/flight/elevator") < -0.015) {
 				UP_annun.setBoolValue(1);
 			} else {
 				UP_annun.setBoolValue(0);
 			}
-			if (powerUpTest.getValue() or (pitch.getValue() > -1 and getprop("/controls/flight/elevator") > 0.05)) {
+			if (powerUpTest.getValue() == 1 or (pitch.getValue() > -1 and getprop("/controls/flight/elevator") > 0.05)) {
 				DN_annun.setBoolValue(1);
 			} else if (pitch.getValue() > -1 and DN_annun.getBoolValue() == 1 and getprop("/controls/flight/elevator") > 0.015) {
 				DN_annun.setBoolValue(1);
@@ -309,17 +329,39 @@ var ITAF = {
 			}
 		}
 	},
+	loopFast: func() {
+		# Roll Servo
+		if (masterSW.getValue() == 2 and roll.getValue() > -1) {
+			if (servoRollPower.getBoolValue() != 1) {
+				servoRollPower.setBoolValue(1);
+			}
+		} else {
+			if (servoRollPower.getBoolValue() != 0) {
+				servoRollPower.setBoolValue(0);
+				setprop("/controls/flight/aileron", 0);
+			}
+		}
+		
+		# Pitch Servo
+		if (masterSW.getValue() == 2 and pitch.getValue() > -1) {
+			if (servoPitchPower.getBoolValue() != 1) {
+				servoPitchPower.setBoolValue(1);
+			}
+		} else {
+			if (servoPitchPower.getBoolValue() != 0) {
+				servoPitchPower.setBoolValue(0);
+				setprop("/controls/flight/elevator", 0);
+			}
+		}
+	},
 	killAP: func() { # Kill all AP modes
 		NAVt.stop();
 		GPSt.stop();
 		roll.setValue(-1);
 		pitch.setValue(-1);
-		setprop("/controls/flight/aileron", 0);
-		setprop("/controls/flight/elevator", 0);
 	},
 	killAPPitch: func() { # Kill only the pitch modes
 		pitch.setValue(-1);
-		setprop("/controls/flight/elevator", 0);
 	},
 };
 
@@ -440,8 +482,6 @@ var button = {
 			if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and roll.getValue() != -1) {
 				roll.setValue(-2);
 				pitch.setValue(-2);
-				setprop("/controls/flight/aileron", 0);
-				setprop("/controls/flight/elevator", 0);
 			}
 		} else if (d == 0) { # Button released
 			cwsSW.setBoolValue(0);
@@ -518,3 +558,4 @@ var NAVl = maketimer(0.5, func { # Flashes the NAV (and sometimes GPSS) lights w
 var NAVt = maketimer(0.5, NAVchk);
 var GPSt = maketimer(0.5, GPSchk);
 var update = maketimer(0.1, ITAF.loop);
+var updateFast = maketimer(0.05, ITAF.loopFast);

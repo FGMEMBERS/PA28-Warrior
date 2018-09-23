@@ -4,7 +4,7 @@
 <!-- Copyright (c) 2018 Joshua Davidson (it0uchpods) -->
 
 <PropertyList>
-
+	
 	<!-- Roll Axis -->
 	
 	<filter>
@@ -227,10 +227,16 @@
 		<debug>false</debug>
 		<enable>
 			<condition>
-				<greater-than>
-					<property>/it-stec55x/output/roll</property>
-					<value>-1</value>
-				</greater-than>
+				<and>
+					<greater-than>
+						<property>/it-stec55x/output/roll</property>
+						<value>-1</value>
+					</greater-than>
+					<equals>
+						<property>/it-stec55x/internal/servo-roll-power</property>
+						<value>1</value>
+					</equals>
+				</and>
 			</condition>
 		</enable>
 		<input>/it-stec55x/internal/turn-rate-cmd</input>
@@ -260,10 +266,16 @@
 		<debug>false</debug>
 		<enable>
 			<condition>
-				<greater-than>
-					<property>/it-stec55x/output/roll</property>
-					<value>-1</value>
-				</greater-than>
+				<and>
+					<greater-than>
+						<property>/it-stec55x/output/roll</property>
+						<value>-1</value>
+					</greater-than>
+					<equals>
+						<property>/it-stec55x/internal/servo-roll-power</property>
+						<value>1</value>
+					</equals>
+				</and>
 			</condition>
 		</enable>
 		<input>
@@ -456,10 +468,16 @@
 		<debug>false</debug>
 		<enable>
 			<condition>
-				<greater-than>
-					<property>/it-stec55x/output/pitch</property>
-					<value>-1</value>
-				</greater-than>
+				<and>
+					<greater-than>
+						<property>/it-stec55x/output/pitch</property>
+						<value>-1</value>
+					</greater-than>
+					<equals>
+						<property>/it-stec55x/internal/servo-pitch-power</property>
+						<value>1</value>
+					</equals>
+				</and>
 			</condition>
 		</enable>
 		<input>/it-stec55x/internal/vs</input>
@@ -497,10 +515,16 @@
 		<gain>1.0</gain>
 		<input>
 			<condition>
-				<greater-than>
-					<property>/it-stec55x/output/pitch</property>
-					<value>-1</value>
-				</greater-than>
+				<and>
+					<greater-than>
+						<property>/it-stec55x/output/pitch</property>
+						<value>-1</value>
+					</greater-than>
+					<equals>
+						<property>/it-stec55x/internal/servo-pitch-power</property>
+						<value>1</value>
+					</equals>
+				</and>
 			</condition>
 			<expression>
 				<sum>
@@ -518,10 +542,16 @@
 		<debug>false</debug>
 		<enable>
 			<condition>
-				<greater-than>
-					<property>/it-stec55x/output/pitch</property>
-					<value>-1</value>
-				</greater-than>
+				<and>
+					<greater-than>
+						<property>/it-stec55x/output/pitch</property>
+						<value>-1</value>
+					</greater-than>
+					<equals>
+						<property>/it-stec55x/internal/servo-pitch-power</property>
+						<value>1</value>
+					</equals>
+				</and>
 			</condition>
 		</enable>
 		<input>/it-stec55x/internal/accel-cmd</input>
@@ -540,10 +570,16 @@
 		<debug>false</debug>
 		<enable>
 			<condition>
-				<greater-than>
-					<property>/it-stec55x/output/pitch</property>
-					<value>-1</value>
-				</greater-than>
+				<and>
+					<greater-than>
+						<property>/it-stec55x/output/pitch</property>
+						<value>-1</value>
+					</greater-than>
+					<equals>
+						<property>/it-stec55x/internal/servo-pitch-power</property>
+						<value>1</value>
+					</equals>
+				</and>
 			</condition>
 		</enable>
 		<input>/it-stec55x/internal/elevator</input>
@@ -564,6 +600,10 @@
 						<property>/it-stec55x/output/pitch</property>
 						<value>-1</value>
 					</greater-than>
+					<equals>
+						<property>/it-stec55x/internal/servo-pitch-power</property>
+						<value>1</value>
+					</equals>
 					<equals>
 						<property>/it-stec55x/input/electric-trim-sw</property>
 						<value>1</value>
