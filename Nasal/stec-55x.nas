@@ -114,14 +114,14 @@ var ITAF = {
 	loop: func() {
 		if (FDequipped.getBoolValue() == 1) {
 			masterSW.setValue(masterAPFDSW.getValue());
-			if (masterAPFDSW.getValue() == 2) { # Just in case the FD equipped option is changed while system operating
-				masterAPSW.setBoolValue(1);
-			} else {
+			if (masterAPSW.getBoolValue() != 0) { # Just in case the FD equipped option is changed while system operating
 				masterAPSW.setBoolValue(0);
 			}
 		} else {
 			masterSW.setValue(masterAPSW.getValue() * 2);
-			masterAPFDSW.setValue(masterAPSW.getValue() * 2); # Just in case the FD equipped option is changed while system operating
+			if (masterAPFDSW.getValue() != 0) { # Just in case the FD equipped option is changed while system operating
+				masterAPFDSW.setValue(0);
+			}
 		}
 		
 		if (hasPower.getBoolValue() == 1 and turnRateSpin.getValue() >= 0.2) { # Requires turn indicator spin over 20%
