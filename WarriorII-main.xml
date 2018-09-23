@@ -425,6 +425,9 @@
 			<helpers n="0">
 				<a-c-pid>0</a-c-pid>
 			</helpers>
+			<libraries>
+				<av-fan-rpm-feedback type="double">0</av-fan-rpm-feedback>
+			</libraries>
 		</jsbsim>
 	</fdm>
 	
@@ -815,6 +818,10 @@
 	
 	<systems n="0">
 		<electrical n="0">
+			<bus n="0">
+				<elec1 type="double">0</elec1>
+				<elec2 type="double">0</elec2>
+			</bus>
 			<outputs n="0">
 				<fuel-pump type="double">0</fuel-pump>
 			</outputs>

@@ -339,6 +339,17 @@
 		<min>0</min>
 		<max>1800</max>
 	</filter>
+	
+	<!-- Sounds -->
+	
+	<filter>
+		<name>Avionics Fan lowpass</name>
+		<debug>false</debug>
+		<type>exponential</type>
+		<input>/fdm/jsbsim/libraries/av-fan-rpm-feedback</input>
+		<output>/fdm/jsbsim/libraries/av-fan-rpm</output>
+		<filter-time>0.32</filter-time>
+	</filter>
 
 </PropertyList>
 

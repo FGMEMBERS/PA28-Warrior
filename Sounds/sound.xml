@@ -83,7 +83,7 @@
 			</volume>
 			<volume>
 				<property>/engines/engine[0]/rpm</property>
-				<factor>0.000294118</factor>
+				<factor>0.001176472</factor>
 				<offset>0.205882353</offset>
 				<min>0.5</min>
 				<max>0.95</max>
@@ -141,6 +141,23 @@
 				<property>gear/gear[2]/wow</property>
 			</condition>
 		</wow-->
+		
+		<!-- Cockpit -->
+		
+		<avfan>
+			<name>avfan</name>
+			<mode>looped</mode>
+			<path>Sounds/avfan.wav</path>
+			<volume>
+				<property>/fdm/jsbsim/libraries/av-fan-rpm</property>
+				<factor>0.00001089</factor>
+				<max>0.1</max>
+			</volume>
+			<pitch>
+				<property>/fdm/jsbsim/libraries/av-fan-rpm</property>
+				<factor>0.00011627</factor>
+			</pitch>
+		</avfan>
 		
 		<!-- Rain -->
 		

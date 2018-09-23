@@ -11,6 +11,7 @@ var rpm = getprop("/engines/engine[0]/rpm");
 
 setlistener("/controls/engines/engine[0]/magnetos-switch", func {
 	ENG.switch();
+	setprop("/sim/sounde/switch3", 1);
 });
 
 setlistener("/systems/electrical/bus/elec1", func {
@@ -51,6 +52,5 @@ var ENG = {
 			setprop("/controls/engines/engine[0]/magnetos", 0);
 			setprop("/controls/engines/engine[0]/starter", 0);
 		}
-		setprop("/sim/sounde/switch3", 1);
 	},
 };

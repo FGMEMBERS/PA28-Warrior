@@ -1,0 +1,52 @@
+<!-- PA28-161 Libraries -->
+
+<!-- Copyright (c) 2018 Joshua Davidson (it0uchpods) -->
+
+<system name="PA28-161: Libraries">
+	
+	<channel name="Libraries">
+		
+		<fcs_function name="libraries/av-fan-rpm-inc">
+			<function>
+				<sum>
+					<property>libraries/av-fan-rpm-feedback</property>
+					<value>10.0</value>
+				</sum>
+			</function>
+		</fcs_function>
+		
+		<fcs_function name="libraries/av-fan-rpm-dec">
+			<function>
+				<difference>
+					<property>libraries/av-fan-rpm-feedback</property>
+					<value>2.0</value>
+				</difference>
+			</function>
+		</fcs_function>
+		
+		<switch name="libraries/av-fan-rpm-switch">
+			<default value="libraries/av-fan-rpm-switch"/>
+			<test logic="AND" value="libraries/av-fan-rpm-inc">
+				/systems/electrical/bus/elec1 ge 8
+				libraries/av-fan-rpm-feedback lt 6450
+			</test>
+			<test logic="AND" value="libraries/av-fan-rpm-inc">
+				/systems/electrical/bus/elec2 ge 8
+				libraries/av-fan-rpm-feedback lt 6450
+			</test>
+			<test logic="AND" value="libraries/av-fan-rpm-dec">
+				/systems/electrical/bus/elec1 lt 8
+				/systems/electrical/bus/elec2 lt 8
+				libraries/av-fan-rpm-feedback gt 0
+			</test>
+		</switch>
+		
+		<pure_gain name="libraries/av-fan-rpm-update">
+			<input>libraries/av-fan-rpm-switch</input>
+			<gain>1.0</gain>
+			<output>libraries/av-fan-rpm-feedback</output>
+		</pure_gain>
+	
+	</channel>
+
+</system>
