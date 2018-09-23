@@ -110,7 +110,8 @@ var colddark = func {
 	setprop("/systems/acconfig/autoconfig-running", 1);
 	# Initial shutdown, and reinitialization.
 	setprop("/controls/flight/flaps", 0.0);
-	setprop("/controls/flight/elevator-trim", 0);
+	setprop("/controls/flight/elevator-trim", 0.1);
+	setprop("/controls/gear/brake-parking", 0);
 	libraries.systemsReset();
 	if (getprop("/engines/engine[0]/rpm") < 421) {
 		colddark_b();
@@ -138,7 +139,8 @@ var beforestart = func {
 	setprop("/systems/acconfig/autoconfig-running", 1);
 	# First, we set everything to cold and dark.
 	setprop("/controls/flight/flaps", 0.0);
-	setprop("/controls/flight/elevator-trim", 0);
+	setprop("/controls/flight/elevator-trim", 0.1);
+	setprop("/controls/gear/brake-parking", 0);
 	libraries.systemsReset();
 	
 	# Now the Startup!
@@ -161,7 +163,8 @@ var taxi = func {
 	setprop("/systems/acconfig/autoconfig-running", 1);
 	# First, we set everything to cold and dark.
 	setprop("/controls/flight/flaps", 0.0);
-	setprop("/controls/flight/elevator-trim", 0);
+	setprop("/controls/flight/elevator-trim", 0.1);
+	setprop("/controls/gear/brake-parking", 0);
 	libraries.systemsReset();
 	
 	# Now the Startup!
@@ -173,9 +176,15 @@ var taxi = func {
 	setprop("/controls/switches/avionics-master", 1);
 	setprop("/systems/fuel/selected-tank", 1);
 	setprop("/controls/engines/engine[0]/mixture", 1);
-	setprop("/controls/engines/engine[0]/throttle", 0.4);
+	setprop("/controls/engines/engine[0]/throttle", 0.25);
 	setprop("/controls/engines/engine[0]/magnetos-switch", 4);
-	interpolate("/controls/engines/engine[0]/throttle", 0.2, 3);
+	interpolate("/controls/engines/engine[0]/throttle", 0.0, 2);
+	var runchk = setlistener("/engines/engine[0]/running", func {
+		if (getprop("/engines/engine[0]/running") == 1) {
+			removelistener(runchk);
+			interpolate("/controls/engines/engine[0]/throttle", 0.19, 1);
+		}
+	});
 	settimer(func {
 		setprop("/controls/engines/engine[0]/magnetos-switch", 3);
 		setprop("/systems/acconfig/autoconfig-running", 0);
@@ -189,12 +198,11 @@ var taxi = func {
 var takeoff = func {
 	# The same as taxi, except we set some things afterwards.
 	taxi();
-	var eng_one_chk_c = setlistener("/engines/engine[0]/rpm", func {
+	var rpmchk = setlistener("/engines/engine[0]/rpm", func {
 		if (getprop("/engines/engine[0]/rpm") >= 421) {
-			removelistener(eng_one_chk_c);
+			removelistener(rpmchk);
 			setprop("/controls/switches/fuel-pump", 1);
 			setprop("/controls/switches/landing-light", 1);
-			setprop("/controls/flight/elevator-trim", 0.05);
 		}
 	});
 }

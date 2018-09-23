@@ -52,6 +52,16 @@
 		</product>
 	</function>
 	
+	<function name="aero/function/qbar-propwash-psf">
+		<description>Q bar due to the propeller induced velocity </description>
+		<product>
+			<property>propulsion/engine[0]/prop-induced-velocity_fps</property>
+			<property>propulsion/engine[0]/prop-induced-velocity_fps</property>
+			<property>atmosphere/rho-slugs_ft3</property>
+			<value>0.5</value>
+		</product>
+	</function>
+	
 	<axis name="LIFT">
 		
 		<function name="aero/force/Lift_propwash">
@@ -82,30 +92,32 @@
 				<property>aero/function/kCLge</property>
 				<table>
 					<independentVar lookup="row">aero/alpha-rad</independentVar>
+					<independentVar lookup="column">aero/stall-hyst-norm</independentVar>
 					<tableData>
-						-0.09 -0.13
-						 0.00  0.27
-						 0.09  0.91
-						 0.10  1.03
-						 0.12  1.12
-						 0.14  1.22
-						 0.16  1.28
-						 0.17  1.33
-						 0.19  1.39
-						 0.21  1.45
-						 0.24  1.55
-						 0.26  1.64
-						 0.28  1.67
-						 0.30  1.63
-						 0.32  1.58
-						 0.34  1.50
-						 0.36  1.35
-						 0.52  1.47
-						 0.70  1.65
-						 0.87  1.67
-						 1.05  1.37
-						 1.57  0.21
-					</tableData>
+						       0.0   1.0
+						-0.09 -0.13 -0.13
+						 0.00  0.27  0.27
+						 0.09  0.91  0.91
+						 0.10  1.03  0.98
+						 0.12  1.12  0.99
+						 0.14  1.22  1.01
+						 0.16  1.28  1.02
+						 0.17  1.33  1.03
+						 0.19  1.39  1.05
+						 0.21  1.45  1.06
+						 0.24  1.55  1.08
+						 0.26  1.64  1.10
+						 0.28  1.67  1.12
+						 0.30  1.63  1.15
+						 0.32  1.58  1.19
+						 0.34  1.50  1.25
+						 0.36  1.35  1.35
+						 0.52  1.47  1.47
+						 0.70  1.55  1.65
+						 0.87  1.57  1.47
+						 1.05  1.27  1.17
+						 1.57  0.05  0.05
+					</tableData>   
 				</table>
 			</product>
 		</function>
@@ -329,7 +341,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<property>aero/beta-rad</property>
-				<value>-0.1</value>
+				<value>-0.075</value>
 			</product>
 		</function>
 		
@@ -353,7 +365,13 @@
 				<property>metrics/bw-ft</property>
 				<property>aero/bi2vel</property>
 				<property>velocities/r-aero-rad_sec</property>
-				<value>0.005</value>
+				<table>
+					<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
+					<tableData>
+						 0  0.0050
+						40  0.0075
+					</tableData>
+				</table>
 			</product>
 		</function>
 		
@@ -365,6 +383,16 @@
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/aileron-deg</property></toradians>
 				<value>0.32</value>
+				<table>
+					<independentVar lookup="row">aero/alpha-rad</independentVar>
+					<independentVar lookup="column">aero/stall-hyst-norm</independentVar>
+					<tableData>
+						       0.0  1.0
+						0.279  1.0  0.3
+						0.297  0.3  0.3
+						0.349 -0.1 -0.1
+					</tableData>
+				</table>
 			</product>
 		</function>
 		
@@ -375,13 +403,23 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/rudder-deg</property></toradians>
-				<value>0.11</value>
+				<value>0.14</value>
 			</product>
 		</function>
 	
 	</axis>
 	
 	<axis name="PITCH">
+		
+		<function name="aero/moment/Pitch_zero">
+			<description>Pitch moment at zero alpha</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<property>metrics/cbarw-ft</property>
+				<value>0.0285</value>
+			</product>
+		</function>
 		
 		<function name="aero/moment/Pitch_alpha">
 			<description>Pitch moment due to alpha</description>
@@ -402,6 +440,20 @@
 				<property>metrics/cbarw-ft</property>
 				<toradians><property>fcs/elevator-deg</property></toradians>
 				<value>-1.533</value>
+				<table>
+					<independentVar lookup="row">aero/alpha-rad</independentVar>
+					<independentVar lookup="column">fcs/elevator-deg</independentVar>
+					<tableData>
+						      -12   0    12
+						0.314  1.0  1.0  1.0
+						0.436  0.6  0.7  0.9
+						0.610  0.3  0.4  0.8
+						0.785  0.2  0.3  0.7
+						0.959  0.1  0.1  0.6
+						1.134  0.1  0.1  0.5
+						1.570  0.1  0.1  0.4
+					</tableData>
+				</table>
 			</product>
 		</function>
 		
@@ -425,7 +477,7 @@
 				<property>metrics/cbarw-ft</property>
 				<property>aero/ci2vel</property>
 				<property>aero/alphadot-rad_sec</property>
-				<value>-1.2138</value>
+				<value>-6.2138</value>
 			</product>
 		</function>
 	
@@ -470,6 +522,40 @@
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/rudder-deg</property></toradians>
 				<value>0.115</value>
+			</product>
+		</function>
+		
+		<function name="aero/moment/Yaw_prop">
+			<description>Yaw moment due to spiraling propwash</description>
+			<product>
+				<property>aero/function/qbar-propwash-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<property>metrics/bw-ft</property>
+				<value>-0.025</value>
+			</product>
+		</function> 
+		
+		<function name="aero/moment/Yaw_spin">
+			<description>Yaw moment due to flat spin</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<property>metrics/bw-ft</property>
+				<property>aero/bi2vel</property>
+				<table>
+					<independentVar lookup="row">velocities/r-aero-rad_sec</independentVar>
+					<independentVar lookup="column">aero/alpha-rad</independentVar>
+					<tableData>
+						    0.29  0.41
+						-5  0.00  0.00
+						-3  0.00 -0.21
+						-1  0.00  0.00
+						 0  0.00  0.00
+						 1  0.00  0.00
+						 3  0.00  0.21
+						 5  0.00  0.00
+					</tableData>
+				</table>
 			</product>
 		</function>
 		

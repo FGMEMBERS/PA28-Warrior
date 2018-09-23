@@ -173,7 +173,7 @@ var ELEC = {
 
 var ampereCalc = maketimer(0.05, func {
 	if (getprop("/systems/electrical/altn-amp") > 0) {
-		calc = getprop("/systems/electrical/altn-amp") + (rand() - 0.5) * 10;
+		calc = getprop("/systems/electrical/altn-amp") + (rand() - 0.5) * 15;
 		if (calc < 1) {
 			calc = 1;
 		}
