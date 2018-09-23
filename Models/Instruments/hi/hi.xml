@@ -108,7 +108,6 @@
 			<binding>
 				<command>set-tooltip</command>
 				<tooltip-id>heading-bug</tooltip-id>
-				<mapping>heading</mapping>
 				<label>Heading Bug: %3d</label>
 				<property>it-stec55x/input/hdg</property>
 			</binding>
@@ -135,25 +134,15 @@
 	<!-- Heading Offset -->
 	<animation>
 		<type>pick</type>
-		<object-name>OBS-Knob</object-name>
+		<object-name>OFFSET-Knob</object-name>
 		<action>
 			<button>0</button>
 			<button>3</button>
 			<repeatable>true</repeatable>
 			<binding>
-				<command>property-adjust</command>
-				<property>instrumentation/heading-indicator/offset-deg</property>
-				<step>1</step>
-				<min>0</min>
-				<max>360</max>
-				<wrap>1</wrap>
-			</binding>
-		</action>
-		<action>
-			<button>1</button>
-			<button>4</button>
-			<repeatable>true</repeatable>
-			<binding>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
 				<command>property-adjust</command>
 				<property>instrumentation/heading-indicator/offset-deg</property>
 				<step>-1</step>
@@ -161,23 +150,60 @@
 				<max>360</max>
 				<wrap>1</wrap>
 			</binding>
-		</action>
-		<hovered>
 			<binding>
-				<command>set-tooltip</command>
-				<tooltip-id>heading-bug</tooltip-id>
-				<mapping>heading</mapping>
-				<label>Offset: %3d</label>
-				<property>instrumentation/heading-indicator/offset-deg</property>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>property-assign</command>
+				<property>instrumentation/heading-indicator/offset-knob-translate</property>
+				<value>1</value>
 			</binding>
-		</hovered>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/heading-indicator/offset-knob-translate</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable>true</repeatable>
+			<binding>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>property-adjust</command>
+				<property>instrumentation/heading-indicator/offset-deg</property>
+				<step>1</step>
+				<min>0</min>
+				<max>360</max>
+				<wrap>1</wrap>
+			</binding>
+			<binding>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>property-assign</command>
+				<property>instrumentation/heading-indicator/offset-knob-translate</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/heading-indicator/offset-knob-translate</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
 	</animation>
 	
 	<animation>
 		<type>rotate</type>
-		<object-name>OBS-Knob</object-name>
+		<object-name>OFFSET-Knob</object-name>
 		<property>instrumentation/heading-indicator/offset-deg</property>
-		<factor>6</factor>
+		<factor>-6</factor>
 		<axis>
 			<x>-1</x>
 			<y>0</y>
