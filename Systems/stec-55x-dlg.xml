@@ -106,16 +106,10 @@
 			<col>4</col>
             <label>TRIM</label>
 			<visible>
-				<or>
-					<equals>
-						<property>/it-stec55x/annun/up</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-stec55x/annun/dn</property>
-						<value>1</value>
-					</equals>
-				</or>
+				<equals>
+					<property>/it-stec55x/annun/trim</property>
+					<value>1</value>
+				</equals>
 			</visible>
         </text>
 		

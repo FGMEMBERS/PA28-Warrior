@@ -126,16 +126,10 @@
 		<type>select</type>
 		<object-name>TRIM.ind</object-name>
 		<condition>
-			<or>
-				<equals>
-					<property>it-stec55x/annun/up</property>
-					<value>1</value>
-				</equals>
-				<equals>
-					<property>it-stec55x/annun/dn</property>
-					<value>1</value>
-				</equals>
-			</or>
+			<equals>
+				<property>/it-stec55x/annun/trim</property>
+				<value>1</value>
+			</equals>
 		</condition>
 	</animation>
 	

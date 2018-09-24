@@ -35,6 +35,7 @@ var RDY_annun = props.globals.initNode("/it-stec55x/annun/rdy", 0, "BOOL");
 var CWS_annun = props.globals.initNode("/it-stec55x/annun/cws", 0, "BOOL");
 var FAIL_annun = props.globals.initNode("/it-stec55x/annun/fail", 0, "BOOL");
 var GPSS_annun = props.globals.initNode("/it-stec55x/annun/gpss", 0, "BOOL");
+var TRIM_annun = props.globals.initNode("/it-stec55x/annun/trim", 0, "BOOL");
 var UP_annun = props.globals.initNode("/it-stec55x/annun/up", 0, "BOOL");
 var DN_annun = props.globals.initNode("/it-stec55x/annun/dn", 0, "BOOL");
 var NAVFlash_annun = props.globals.initNode("/it-stec55x/annun/nav-flash", 0, "BOOL");
@@ -107,6 +108,7 @@ var ITAF = {
 		CWS_annun.setBoolValue(0);
 		FAIL_annun.setBoolValue(0);
 		GPSS_annun.setBoolValue(0);
+		TRIM_annun.setBoolValue(0);
 		UP_annun.setBoolValue(0);
 		DN_annun.setBoolValue(0);
 		NAVFlash_annun.setBoolValue(0);
@@ -234,16 +236,16 @@ var ITAF = {
 		
 		# Electric Pitch Trim
 		if (systemAlive.getBoolValue() == 1) {
-			if (powerUpTest.getValue() == 1 or (pitch.getValue() > -1 and getprop("/controls/flight/elevator") < -0.05)) {
+			if (powerUpTest.getValue() == 1 or (pitch.getValue() > -1 and getprop("/controls/flight/elevator") < -0.05 and masterSW.getValue() == 2)) {
 				UP_annun.setBoolValue(1);
-			} else if (pitch.getValue() > -1 and UP_annun.getBoolValue() == 1 and getprop("/controls/flight/elevator") < -0.015) {
+			} else if (pitch.getValue() > -1 and UP_annun.getBoolValue() == 1 and getprop("/controls/flight/elevator") < -0.015 and masterSW.getValue() == 2) {
 				UP_annun.setBoolValue(1);
 			} else {
 				UP_annun.setBoolValue(0);
 			}
-			if (powerUpTest.getValue() == 1 or (pitch.getValue() > -1 and getprop("/controls/flight/elevator") > 0.05)) {
+			if (powerUpTest.getValue() == 1 or (pitch.getValue() > -1 and getprop("/controls/flight/elevator") > 0.05 and masterSW.getValue() == 2)) {
 				DN_annun.setBoolValue(1);
-			} else if (pitch.getValue() > -1 and DN_annun.getBoolValue() == 1 and getprop("/controls/flight/elevator") > 0.015) {
+			} else if (pitch.getValue() > -1 and DN_annun.getBoolValue() == 1 and getprop("/controls/flight/elevator") > 0.015 and masterSW.getValue() == 2) {
 				DN_annun.setBoolValue(1);
 			} else {
 				DN_annun.setBoolValue(0);
@@ -251,6 +253,12 @@ var ITAF = {
 		} else {
 			UP_annun.setBoolValue(0);
 			DN_annun.setBoolValue(0);
+		}
+		
+		if ((UP_annun.getBoolValue() == 1 or DN_annun.getBoolValue() == 1 or manTrimSW.getValue() != 0 or powerUpTest.getValue() == 1) and systemAlive.getBoolValue() == 1) {
+			TRIM_annun.setBoolValue(1);
+		} else {
+			TRIM_annun.setBoolValue(0);
 		}
 		
 		# NAV mode gain, reduces as the system captures the course
