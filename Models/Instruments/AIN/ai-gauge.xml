@@ -27,7 +27,50 @@
 	</animation>
 	
 	<animation>
-		<name>Pitch</name>
+		<type>rotate</type>
+		<object-name>Roll</object-name>
+		<object-name>Pitch</object-name>
+		<property>instrumentation/attitude-indicator/actual-indicated-roll-deg</property>
+		<factor>-1</factor>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>FD_bar</object-name>
+		<property>it-stec55x/output/fd-roll</property>
+		<factor>-1</factor>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.00149</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>FD_bar</object-name>
+		<property>it-stec55x/output/fd-pitch</property>
+		<factor>-0.0007</factor>
+		<min-m>-0.01575</min-m>
+		<max-m>0.01575</max-m>
+		<axis>
+			<x>0.0</x>
+			<y>0.0</y>
+			<z>1.0</z>
+		</axis>
+	</animation>
+	
+	<animation>
 		<type>translate</type>
 		<object-name>Pitch</object-name>
 		<property>instrumentation/attitude-indicator/actual-indicated-pitch-deg</property>
@@ -42,7 +85,6 @@
 	</animation>
 	
 	<animation>
-		<name>Horizon Offset</name>
 		<type>translate</type>
 		<object-name>Pitch</object-name>
 		<property>instrumentation/attitude-indicator/horizon-offset-deg</property>
@@ -53,30 +95,6 @@
 			<x>0.0</x>
 			<y>0.0</y>
 			<z>1.0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>rotate</type>
-		<object-name>Roll</object-name>
-		<property>instrumentation/attitude-indicator/actual-indicated-roll-deg</property>
-		<factor>-1</factor>
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-	</animation>
-	
-	<animation>
-		<type>rotate</type>
-		<object-name>Pitch</object-name>
-		<property>instrumentation/attitude-indicator/actual-indicated-roll-deg</property>
-		<factor>-0.5</factor>
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
 		</axis>
 	</animation>
 	
@@ -148,6 +166,28 @@
 		<object-name>CagedIndicator</object-name>
 		<condition>
 			<property>instrumentation/attitude-indicator/caged-flag</property>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Aircraft</object-name>
+		<condition>
+			<not-equals>
+				<property>it-stec55x/settings/fd-equipped</property>
+				<value>1</value>
+			</not-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>FDAircraft</object-name>
+		<condition>
+			<equals>
+				<property>it-stec55x/settings/fd-equipped</property>
+				<value>1</value>
+			</equals>
 		</condition>
 	</animation>
 	

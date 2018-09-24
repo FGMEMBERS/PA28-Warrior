@@ -401,7 +401,7 @@
 		<path>Aircraft/PA28-Warrior/Models/Instruments/ap-sw/ap-sw.xml</path>
 		<offsets>
 			<x-m>1.927</x-m>
-			<y-m>-0.455</y-m>
+			<y-m>-0.45</y-m>
 			<z-m>0.110</z-m>
 			<roll-deg>90</roll-deg>
 		</offsets>

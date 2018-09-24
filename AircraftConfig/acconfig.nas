@@ -31,6 +31,7 @@ setprop("/systems/acconfig/options/panel", "HSI Panel");
 setprop("/systems/acconfig/options/autocoordinate", 0);
 setprop("/systems/acconfig/options/show-l-yoke", 1);
 setprop("/systems/acconfig/options/show-r-yoke", 1);
+setprop("/systems/acconfig/options/fd-equipped", 0);
 var main_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/main/dialog", "Aircraft/PA28-Warrior/AircraftConfig/main.xml");
 var welcome_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/welcome/dialog", "Aircraft/PA28-Warrior/AircraftConfig/welcome.xml");
 var ps_load_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/psload/dialog", "Aircraft/PA28-Warrior/AircraftConfig/psload.xml");
@@ -79,6 +80,7 @@ var readSettings = func {
 	setprop("/options/show-l-yoke", getprop("/systems/acconfig/options/show-l-yoke"));
 	setprop("/options/show-r-yoke", getprop("/systems/acconfig/options/show-r-yoke"));
 	setprop("/options/panel", getprop("/systems/acconfig/options/panel"));
+	setprop("/it-stec55x/settings/fd-equipped", getprop("/systems/acconfig/options/fd-equipped"));
 	autopilotSettings();
 }
 
@@ -87,6 +89,7 @@ var writeSettings = func {
 	setprop("/systems/acconfig/options/show-l-yoke", getprop("/options/show-l-yoke"));
 	setprop("/systems/acconfig/options/show-r-yoke", getprop("/options/show-r-yoke"));
 	setprop("/systems/acconfig/options/panel", getprop("/options/panel"));
+	setprop("/systems/acconfig/options/fd-equipped", getprop("/it-stec55x/settings/fd-equipped"));
 	autopilotSettings();
 	io.write_properties(getprop("/sim/fg-home") ~ "/Export/PA28-Warrior-config.xml", "/systems/acconfig/options");
 }

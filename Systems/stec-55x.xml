@@ -435,10 +435,10 @@
 	</filter>
 	
 	<filter>
-		<name>VERT SPEED FILTER</name>
+		<name>VERT SPEED SWITCH</name>
 		<debug>false</debug>
-		<feedback-if-disabled>true</feedback-if-disabled>
-		<initialize-to>output</initialize-to>
+		<type>gain</type>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<equals>
@@ -450,6 +450,15 @@
 		</input>
 		<input>/it-stec55x/input/vs</input>
 		<output>/it-stec55x/internal/vs</output>
+	</filter>
+	
+	<filter>
+		<name>VERT SPEED FILTER</name>
+		<debug>false</debug>
+		<feedback-if-disabled>true</feedback-if-disabled>
+		<initialize-to>output</initialize-to>
+		<input>/it-stec55x/internal/vs</input>
+		<output>/it-stec55x/internal/vs-slow</output>
 		<type>noise-spike</type>
 		<max-rate-of-change>
 			<condition>
@@ -480,7 +489,7 @@
 				</and>
 			</condition>
 		</enable>
-		<input>/it-stec55x/internal/vs</input>
+		<input>/it-stec55x/internal/vs-slow</input>
 		<reference>/it-stec55x/internal/predicted-vertical-speed</reference>
 		<output>/it-stec55x/internal/target-accel</output>
 		<config>
@@ -642,6 +651,62 @@
 		<output>/controls/flight/elevator-trim</output>
 		<type>noise-spike</type>
 		<max-rate-of-change>0.005</max-rate-of-change>
+	</filter>
+	
+	<!-- Flight Director -->
+	
+	<filter>
+		<name>FD: Roll</name>
+		<type>exponential</type>
+		<input>
+			<condition>
+				<greater-than>
+					<property>/it-stec55x/output/roll</property>
+					<value>-1</value>
+				</greater-than>
+			</condition>
+			<expression>
+				<product>
+					<difference>
+						<property>/it-stec55x/internal/predicted-turn-rate</property>
+						<property>/it-stec55x/internal/target-turn-rate</property>
+					</difference>
+					<value>7.5</value>
+				</product>
+			</expression>
+		</input>
+		<input>0</input>
+		<output>/it-stec55x/output/fd-roll</output>
+		<filter-time>0.08</filter-time>
+		<min>-30</min>
+		<max>30</max>
+	</filter>
+	
+	<filter>
+		<name>FD: Pitch</name>
+		<type>exponential</type>
+		<input>
+			<condition>
+				<greater-than>
+					<property>/it-stec55x/output/roll</property>
+					<value>-1</value>
+				</greater-than>
+			</condition>
+			<expression>
+				<product>
+					<difference>
+						<property>/it-stec55x/internal/predicted-vertical-speed</property>
+						<property>/it-stec55x/internal/vs</property>
+					</difference>
+					<value>0.005</value>
+				</product>
+			</expression>
+		</input>
+		<input>0</input>
+		<output>/it-stec55x/output/fd-pitch</output>
+		<filter-time>0.08</filter-time>
+		<min>-15</min>
+		<max>15</max>
 	</filter>
 
 </PropertyList>

@@ -159,6 +159,17 @@
 			</pitch>
 		</avfan>
 		
+		<apoff>
+			<name>apoff</name>
+			<path>Sounds/apoff.wav</path>
+			<condition>
+				<property>/it-stec55x/sound/disc</property>
+			</condition>
+			<volume>
+				<factor>40.0</factor>
+			</volume>
+		</apoff>
+		
 		<!-- Rain -->
 		
 		<rain>

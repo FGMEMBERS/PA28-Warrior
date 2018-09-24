@@ -9,22 +9,44 @@
 	<layout>vbox</layout>
 	
     <group>
-        <layout>hbox</layout>
-        <text>
-            <halign>left</halign>
-            <label>it-stec55x System (S-TEC Fifty Five X)</label>
-        </text>
-        <button>
-            <halign>right</halign>
-            <pref-width>20</pref-width>
-            <pref-height>20</pref-height>
-            <legend>X</legend>
-            <key>Esc</key>
-            <binding>
-                <command>dialog-close</command>
-            </binding>
-        </button>
-    </group>
+		<row>0</row>
+		<col>0</col>
+		<layout>hbox</layout>
+		<text>
+			<halign>left</halign>
+			<label>IT-AUTOFLIGHT System (S-TEC Fifty Five X)</label>
+		</text>
+		<empty><stretch>1</stretch></empty>
+		
+		<group>
+			<layout>table</layout>
+			
+			<button>
+				<row>0</row>
+				<col>0</col>
+				<halign>right</halign>
+				<pref-width>20</pref-width>
+				<pref-height>20</pref-height>
+				<legend>?</legend>
+				<binding>
+					<command>nasal</command>
+					<script>gui.popupTip("Please refer to the POH, this autopilot operates as per the manual.");</script>
+				</binding>
+			</button>
+			<button>
+				<row>0</row>
+				<col>1</col>
+				<halign>right</halign>
+				<pref-width>20</pref-width>
+				<pref-height>20</pref-height>
+				<legend>X</legend>
+				<key>Esc</key>
+				<binding>
+					<command>dialog-close</command>
+				</binding>
+			</button>
+		</group>
+	</group>
 	
     <hrule/>
 	
@@ -345,6 +367,8 @@
 			</binding>
 		</button>
 		
+		<vrule/>
+		
 		<button>
 			<legend>DISC</legend>
 			<pref-width>40</pref-width>
@@ -353,32 +377,6 @@
 				<script>stec55x.button.DISC();</script>
 			</binding>
 		</button>
-	</group>
-	
-	<hrule/>
-	
-	<group>
-		<layout>hbox</layout>
-		
-		<checkbox>
-			<label>Autopilot Master</label>
-			<halign>center</halign>
-			<property>/it-stec55x/input/ap-master-sw</property>
-			<binding>
-				<command>dialog-apply</command>
-			</binding>
-			<live>true</live>
-		</checkbox>
-		
-		<checkbox>
-			<label>Elec Trim Servo</label>
-			<halign>center</halign>
-			<property>/it-stec55x/input/electric-trim-sw</property>
-			<binding>
-				<command>dialog-apply</command>
-			</binding>
-			<live>true</live>
-		</checkbox>
 	</group>
 
 </PropertyList>

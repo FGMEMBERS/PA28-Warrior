@@ -56,6 +56,7 @@ var ALTOffsetDelta = props.globals.getNode("/it-stec55x/internal/static-20ft-del
 var masterSW = props.globals.initNode("/it-stec55x/internal/master-sw", 0, "INT"); # 0 = OFF, 1 = FD, 2 = AP/FD
 var servoRollPower = props.globals.initNode("/it-stec55x/internal/servo-roll-power", 0, "BOOL");
 var servoPitchPower = props.globals.initNode("/it-stec55x/internal/servo-pitch-power", 0, "BOOL");
+var discSound = props.globals.initNode("/it-stec55x/sound/disc", 0, "BOOL");
 var HDGIndicator = props.globals.getNode("/instrumentation/heading-indicator/indicated-heading-deg");
 var OBSNeedle = props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection");
 var OBSCourse = props.globals.getNode("/instrumentation/nav[0]/radials/selected-deg");
@@ -108,6 +109,7 @@ var ITAF = {
 		UP_annun.setBoolValue(0);
 		DN_annun.setBoolValue(0);
 		NAVFlash_annun.setBoolValue(0);
+		discSound.setBoolValue(0);
 		update.start();
 		updateFast.start();
 	},
@@ -334,11 +336,13 @@ var ITAF = {
 		if (masterSW.getValue() == 2 and roll.getValue() > -1) {
 			if (servoRollPower.getBoolValue() != 1) {
 				servoRollPower.setBoolValue(1);
+				discSound.setBoolValue(0);
 			}
 		} else {
 			if (servoRollPower.getBoolValue() != 0) {
 				servoRollPower.setBoolValue(0);
 				setprop("/controls/flight/aileron", 0);
+				discSound.setBoolValue(1);
 			}
 		}
 		
@@ -346,6 +350,7 @@ var ITAF = {
 		if (masterSW.getValue() == 2 and pitch.getValue() > -1) {
 			if (servoPitchPower.getBoolValue() != 1) {
 				servoPitchPower.setBoolValue(1);
+
 			}
 		} else {
 			if (servoPitchPower.getBoolValue() != 0) {
