@@ -174,7 +174,7 @@
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<value>0.0183</value>
+				<value>0.0143</value>
 			</product>
 		</function>
 		
@@ -184,6 +184,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>aero/function/kCDge</property>
+				<value>0.8718842</value> <!-- Tuning factor -->
 				<table>
 					<independentVar lookup="row">aero/alpha-rad</independentVar>
 					<independentVar lookup="column">fcs/flap-pos-deg</independentVar>
@@ -228,7 +229,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>aero/cl-squared</property>
-				<value>0.0491</value>
+				<value>0.0451</value>
 			</product>
 		</function>
 		
@@ -238,7 +239,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>aero/mag-beta-rad</property>
-				<value>0.1478</value>
+				<value>0.0739</value>
 			</product>
 		</function>
 		
@@ -403,7 +404,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/rudder-deg</property></toradians>
-				<value>0.14</value>
+				<value>0.145</value>
 			</product>
 		</function>
 	
@@ -417,7 +418,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/cbarw-ft</property>
-				<value>0.0285</value>
+				<value>0.0235</value>
 			</product>
 		</function>
 		
@@ -521,7 +522,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/rudder-deg</property></toradians>
-				<value>0.115</value>
+				<value>0.11</value>
 			</product>
 		</function>
 		
