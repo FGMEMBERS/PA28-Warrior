@@ -543,45 +543,39 @@
 					</script>
 				</binding>
 			</key>
-			<key n="33">
-				<name>!</name>
-				<desc>toggle battery</desc>
+			<key n="49">
+				<name>1</name>
+				<desc>Elevator trim down</desc>
+				<repeatable>true</repeatable>
 				<binding>
-					<command>property-cycle</command>
-					<property>/controls/electrical/battery</property>
-					<value>1</value>
-					<value>0</value>
+					<command>nasal</command>
+					<script>controls.elevatorTrim(1);</script>
 				</binding>
+				<mod-shift>
+					<desc>Look back left</desc>
+					<binding>
+						<command>property-assign</command>
+						<property>/sim/current-view/goal-heading-offset-deg</property>
+						<property>/sim/view/config/back-left-direction-deg</property>
+					</binding>
+				</mod-shift>
 			</key>
-			<key n="35">
-				<name>#</name>
-				<desc>toggle fuelpump</desc>
+			<key n="55">
+				<name>7</name>
+				<desc>Elevator trim up</desc>
+				<repeatable>true</repeatable>
 				<binding>
-					<command>property-cycle</command>
-					<property>/controls/switches/fuel-pump</property>
-					<value>1</value>
-					<value>0</value>
+					<command>nasal</command>
+					<script>controls.elevatorTrim(-1);</script>
 				</binding>
-			</key>
-			<key n="42">
-				<name>*</name>
-				<desc>toggle pitot heat</desc>
-				<binding>
-					<command>property-cycle</command>
-					<property>/controls/switches/pitot-heat</property>
-					<value>1</value>
-					<value>0</value>
-				</binding>
-			</key>
-			<key n="64">
-				<name>@</name>
-				<desc>toggle alternator</desc>
-				<binding>
-					<command>property-cycle</command>
-					<property>/controls/electrical/alternator</property>
-					<value>1</value>
-					<value>0</value>
-				</binding>
+				<mod-shift>
+					<desc>Look front left</desc>
+					<binding>
+						<command>property-assign</command>
+						<property>/sim/current-view/goal-heading-offset-deg</property>
+						<property>/sim/view/config/front-left-direction-deg</property>
+					</binding>
+				</mod-shift>
 			</key>
 			<key n="66">
 				<name>Shift-B</name>

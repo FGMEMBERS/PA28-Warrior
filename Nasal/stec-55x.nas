@@ -17,6 +17,7 @@ var altOffset = props.globals.initNode("/it-stec55x/input/alt-offset", 0, "DOUBL
 var vs = props.globals.initNode("/it-stec55x/input/vs", 0, "DOUBLE");
 var cwsSW = props.globals.initNode("/it-stec55x/input/cws", 0, "BOOL");
 var discSW = props.globals.initNode("/it-stec55x/input/disc", 0, "BOOL");
+var manTrimSW = props.globals.initNode("/it-stec55x/input/man-trim", 0, "INT");
 var masterAPSW = props.globals.initNode("/it-stec55x/input/ap-master-sw", 0, "BOOL");
 var masterAPFDSW = props.globals.initNode("/it-stec55x/input/apfd-master-sw", 0, "INT");
 var elecTrimSW = props.globals.initNode("/it-stec55x/input/electric-trim-sw", 0, "BOOL");
@@ -357,6 +358,11 @@ var ITAF = {
 				servoPitchPower.setBoolValue(0);
 				setprop("/controls/flight/elevator", 0);
 			}
+		}
+		
+		# Man Trim AP DISC
+		if (manTrimSW.getValue() != 0 and pitch.getValue() > -1 and masterSW.getValue() == 2) {
+			ITAF.killAPPitch(); # Called with ITAF.killAPPitch not me.killAPPitch because this function is called from the timer outside this class
 		}
 	},
 	killAP: func() { # Kill all AP modes

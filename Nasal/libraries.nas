@@ -85,3 +85,13 @@ if (getprop("/controls/flight/auto-coordination") == 1) {
 } else {
 	setprop("/controls/flight/aileron-drives-tiller", 0);
 }
+
+var slewProp = func(prop, delta) {
+	delta *= getprop("/sim/time/delta-realtime-sec");
+	setprop(prop, getprop(prop) + delta);
+	return getprop(prop);
+}
+
+controls.elevatorTrim = func(speed) {
+	slewProp("/controls/flight/elevator-trim", speed * 0.01);
+}

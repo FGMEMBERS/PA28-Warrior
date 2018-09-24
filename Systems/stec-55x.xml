@@ -600,6 +600,7 @@
 	<filter>
 		<name>IT-CONTROLLER: AUTOMATIC PITCH TRIM</name>
 		<debug>false</debug>
+		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
 		<enable>
@@ -617,6 +618,10 @@
 						<property>/it-stec55x/input/electric-trim-sw</property>
 						<value>1</value>
 					</equals>
+					<greater-than-equals>
+						<property>/systems/electrical/outputs/electrim</property>
+						<value>8</value>
+					</greater-than-equals>
 					<or>
 						<equals>
 							<property>/it-stec55x/annun/up</property>
@@ -649,8 +654,59 @@
 			<value>-1</value>
 		</input>
 		<output>/controls/flight/elevator-trim</output>
+		<max-rate-of-change>0.01</max-rate-of-change>
+	</filter>
+	
+	<filter>
+		<name>IT-CONTROLLER: MANUAL PITCH TRIM</name>
+		<debug>false</debug>
 		<type>noise-spike</type>
-		<max-rate-of-change>0.005</max-rate-of-change>
+		<feedback-if-disabled>true</feedback-if-disabled>
+		<initialize-to>output</initialize-to>
+		<enable>
+			<condition>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/electric-trim-sw</property>
+						<value>1</value>
+					</equals>
+					<greater-than-equals>
+						<property>/systems/electrical/outputs/electrim</property>
+						<value>8</value>
+					</greater-than-equals>
+					<or>
+						<equals>
+							<property>/it-stec55x/input/man-trim</property>
+							<value>-1</value>
+						</equals>
+						<equals>
+							<property>/it-stec55x/input/man-trim</property>
+							<value>1</value>
+						</equals>
+					</or>
+				</and>
+			</condition>
+		</enable>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-stec55x/input/man-trim</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<value>1</value>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-stec55x/input/man-trim</property>
+					<value>-1</value>
+				</equals>
+			</condition>
+			<value>-1</value>
+		</input>
+		<output>/controls/flight/elevator-trim</output>
+		<max-rate-of-change>0.05</max-rate-of-change>
 	</filter>
 	
 	<!-- Flight Director -->

@@ -165,6 +165,7 @@ var ELEC = {
 		
 		setprop("/systems/electrical/outputs/adf", avionics2);
 		setprop("/systems/electrical/outputs/autopilot", avionics2);
+		setprop("/systems/electrical/outputs/electrim", avionics2);
 		setprop("/systems/electrical/outputs/comm[1]", avionics2);
 		setprop("/systems/electrical/outputs/nav[1]", avionics2);
 		setprop("/systems/electrical/outputs/transponder", avionics2);
