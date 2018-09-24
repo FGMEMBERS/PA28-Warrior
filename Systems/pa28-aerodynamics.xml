@@ -511,7 +511,7 @@
 				<property>metrics/bw-ft</property>
 				<property>aero/bi2vel</property>
 				<property>velocities/r-aero-rad_sec</property>
-				<value>-0.19</value>
+				<value>-0.23</value>
 			</product>
 		</function>
 		
