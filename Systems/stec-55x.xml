@@ -706,7 +706,7 @@
 			<value>-1</value>
 		</input>
 		<output>/controls/flight/elevator-trim</output>
-		<max-rate-of-change>0.05</max-rate-of-change>
+		<max-rate-of-change>0.06</max-rate-of-change>
 	</filter>
 	
 	<!-- Flight Director -->

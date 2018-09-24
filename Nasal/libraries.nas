@@ -93,5 +93,5 @@ var slewProp = func(prop, delta) {
 }
 
 controls.elevatorTrim = func(speed) {
-	slewProp("/controls/flight/elevator-trim", speed * 0.01);
+	slewProp("/controls/flight/elevator-trim", speed * 0.04);
 }
