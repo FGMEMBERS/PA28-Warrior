@@ -4267,7 +4267,7 @@ refs 3
 kids 0
 OBJECT poly
 name "FD_bar"
-loc 1.3276e-005 -5.82094e-005 1.20476e-005
+loc 0.000411287 -5.82093e-005 1.20476e-005
 texture "yellow.png"
 crease 45.000000
 numvert 3
@@ -4284,7 +4284,7 @@ refs 3
 kids 0
 OBJECT poly
 name "FD_bar"
-loc 1.3276e-005 -3.47308e-005 -7.45058e-006
+loc 0.000411287 -3.47306e-005 -7.45058e-006
 texture "yellow.png"
 crease 45.000000
 numvert 3

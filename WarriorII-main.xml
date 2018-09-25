@@ -377,7 +377,6 @@
 		<flight>
 			<aileron-drives-tiller type="bool">0</aileron-drives-tiller>
 			<elevator-trim type="double">0.1</elevator-trim>
-			<rudder-trim type="double">0.01</rudder-trim>
 		</flight>
 		<gear>
 			<brake-parking type="double">0</brake-parking>

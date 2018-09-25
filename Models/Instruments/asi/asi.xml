@@ -27,48 +27,18 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>Needle</object-name>
-		<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+		<property>instrumentation/airspeed-indicator/indicated-speed-kt-actual</property>
 		<interpolation>
-			<entry>
-				<ind>   0</ind>
-				<dep>    0</dep>
-			</entry>
-			<entry>
-				<ind>  35</ind>
-				<dep>   27</dep>
-			</entry>
-			<entry>
-				<ind>  40</ind>
-				<dep>   41</dep>
-			</entry>
-			<entry>
-				<ind>  60</ind>
-				<dep>   91</dep>
-			</entry>
-			<entry>
-				<ind>  80</ind>
-				<dep>  143</dep>
-			</entry>
-			<entry>
-				<ind> 100</ind>
-				<dep>  197</dep>
-			</entry>
-			<entry>
-				<ind> 120</ind>
-				<dep>  240</dep>
-			</entry>
-			<entry>
-				<ind> 140</ind>
-				<dep>  282</dep>
-			</entry>
-			<entry>
-				<ind> 160</ind>
-				<dep>  324</dep>
-			</entry>
-			<entry>
-				<ind> 190</ind>
-				<dep>  331</dep>
-			</entry>
+			<entry><ind> 23</ind><dep>  0</dep></entry>
+			<entry><ind> 35</ind><dep> 27</dep></entry>
+			<entry><ind> 40</ind><dep> 41</dep></entry>
+			<entry><ind> 60</ind><dep> 91</dep></entry>
+			<entry><ind> 80</ind><dep>143</dep></entry>
+			<entry><ind>100</ind><dep>197</dep></entry>
+			<entry><ind>120</ind><dep>240</dep></entry>
+			<entry><ind>140</ind><dep>282</dep></entry>
+			<entry><ind>160</ind><dep>324</dep></entry>
+			<entry><ind>190</ind><dep>331</dep></entry>
 		</interpolation>
 		<axis>
 			<x>-1</x>

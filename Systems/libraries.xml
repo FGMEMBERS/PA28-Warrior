@@ -86,24 +86,6 @@
 	</filter>
 	
 	<filter>
-		<name>Attitude Indicator Roll lowpass</name>
-		<debug>false</debug>
-		<type>exponential</type>
-		<input>/instrumentation/attitude-indicator/indicated-roll-deg</input>
-		<output>/instrumentation/attitude-indicator/actual-indicated-roll-deg</output>
-		<filter-time>0.04</filter-time>
-	</filter>
-	
-	<filter>
-		<name>Attitude Indicator Pitch lowpass</name>
-		<debug>false</debug>
-		<type>exponential</type>
-		<input>/instrumentation/attitude-indicator/indicated-pitch-deg</input>
-		<output>/instrumentation/attitude-indicator/actual-indicated-pitch-deg</output>
-		<filter-time>0.04</filter-time>
-	</filter>
-	
-	<filter>
 		<name>NAV0 FLAG</name>
 		<debug>false</debug>
 		<type>exponential</type>
@@ -182,6 +164,67 @@
 	</filter>
 	
 	<!-- Instrument filters -->
+	
+	<filter>
+		<name>Airspeed Indicator lowpass</name>
+		<debug>false</debug>
+		<type>exponential</type>
+		<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
+		<output>/instrumentation/airspeed-indicator/indicated-speed-kt-lowpass</output>
+		<filter-time>0.04</filter-time>
+	</filter>
+	
+	<predict-simple>
+		<name>Airspeed Indicator Delay</name>
+		<debug>false</debug>
+		<input>/instrumentation/airspeed-indicator/indicated-speed-kt-lowpass</input>
+		<output>/instrumentation/airspeed-indicator/indicated-speed-kt-actual</output>
+		<seconds>-1.0</seconds>
+		<filter-gain>0.1</filter-gain>
+	</predict-simple>
+	
+	<filter>
+		<name>Attitude Indicator Roll lowpass</name>
+		<debug>false</debug>
+		<type>exponential</type>
+		<input>/instrumentation/attitude-indicator/indicated-roll-deg</input>
+		<output>/instrumentation/attitude-indicator/indicated-roll-deg-actual</output>
+		<filter-time>0.04</filter-time>
+	</filter>
+	
+	<filter>
+		<name>Attitude Indicator Pitch lowpass</name>
+		<debug>false</debug>
+		<type>exponential</type>
+		<input>/instrumentation/attitude-indicator/indicated-pitch-deg</input>
+		<output>/instrumentation/attitude-indicator/indicated-pitch-deg-actual</output>
+		<filter-time>0.04</filter-time>
+	</filter>
+	
+	<filter>
+		<name>Vertical Speed Indicator lowpass</name>
+		<debug>false</debug>
+		<type>exponential</type>
+		<input>
+			<expression> <!-- Pressure Rate to Vertical Speed FPM -->
+				<product>
+					<property>/it-stec55x/internal/pressure-rate</property>
+					<value>-58000</value>
+				</product>
+			</expression>
+		</input>
+		<output>/instrumentation/vertical-speed-indicator/indicated-speed-fpm-lowpass</output>
+		<filter-time>0.16</filter-time>
+	</filter>
+	
+	<predict-simple>
+		<name>Vertical Speed Indicator Delay</name>
+		<debug>false</debug>
+		<input>/instrumentation/vertical-speed-indicator/indicated-speed-fpm-lowpass</input>
+		<output>/instrumentation/vertical-speed-indicator/indicated-speed-fpm-actual</output>
+		<seconds>-1.0</seconds>
+		<filter-gain>0.1</filter-gain>
+	</predict-simple>
 	
 	<filter>
 		<name>Ampere lowpass</name>

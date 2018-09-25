@@ -32,7 +32,7 @@
 		<type>rotate</type>
 		<object-name>Roll</object-name>
 		<object-name>Pitch</object-name>
-		<property>instrumentation/attitude-indicator/actual-indicated-roll-deg</property>
+		<property>instrumentation/attitude-indicator/indicated-roll-deg-actual</property>
 		<factor>-1</factor>
 		<axis>
 			<x>-1</x>
@@ -75,7 +75,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>Pitch</object-name>
-		<property>instrumentation/attitude-indicator/actual-indicated-pitch-deg</property>
+		<property>instrumentation/attitude-indicator/indicated-pitch-deg-actual</property>
 		<factor>-0.0007</factor>
 		<min-m>-0.01575</min-m>
 		<max-m>0.01575</max-m>
