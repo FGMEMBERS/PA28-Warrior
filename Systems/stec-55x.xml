@@ -39,12 +39,6 @@
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
-			<condition>
-				<equals>
-					<property>/it-stec55x/output/roll</property>
-					<value>2</value>
-				</equals>
-			</condition>
 			<expression>
 				<sum>
 					<property>/autopilot/route-manager/wp[0]/true-bearing-deg</property>
@@ -59,7 +53,6 @@
 				</sum>
 			</expression>
 		</input>
-		<input>0</input>
 		<output>/it-stec55x/internal/gps-error-deg</output>
 		<period>
 			<min>-180</min>
@@ -198,6 +191,7 @@
 	<filter>
 		<name>IT-CONTROLLER: TARGET TURN RATE FILTER</name>
 		<debug>false</debug>
+		<type>noise-spike</type>
 		<input>
 			<condition>
 				<greater-than>
@@ -209,7 +203,6 @@
 		</input>
 		<input>/it-stec55x/internal/predicted-turn-rate</input>
 		<output>/it-stec55x/internal/turn-rate-cmd</output>
-		<type>noise-spike</type>
 		<max-rate-of-change>
 			<condition>
 				<greater-than>
@@ -264,6 +257,7 @@
 	<filter>
 		<name>IT-CONTROLLER: ROLL CMD</name>
 		<debug>false</debug>
+		<type>noise-spike</type>
 		<enable>
 			<condition>
 				<and>
@@ -287,7 +281,6 @@
 			</expression>
 		</input>
 		<output>/controls/flight/aileron</output>
-		<type>noise-spike</type>
 		<max-rate-of-change>0.5</max-rate-of-change>
 	</filter>
 	
@@ -577,6 +570,7 @@
 	<filter>
 		<name>IT-CONTROLLER: Pitch CMD</name>
 		<debug>false</debug>
+		<type>noise-spike</type>
 		<enable>
 			<condition>
 				<and>
@@ -593,7 +587,6 @@
 		</enable>
 		<input>/it-stec55x/internal/elevator</input>
 		<output>/controls/flight/elevator</output>
-		<type>noise-spike</type>
 		<max-rate-of-change>0.5</max-rate-of-change>
 	</filter>
 	

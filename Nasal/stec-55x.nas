@@ -53,14 +53,14 @@ var NAVOver50Counting = props.globals.initNode("/it-stec55x/internal/nav-over50-
 var hdgButtonTime = props.globals.initNode("/it-stec55x/internal/hdg-button-time", 0, "DOUBLE");
 var powerUpTime = props.globals.initNode("/it-stec55x/internal/powerup-time", 0, "DOUBLE");
 var powerUpTest = props.globals.initNode("/it-stec55x/internal/powerup-test", -1, "INT"); # -1 = Powerup test not done, 0 = Powerup test complete, 1 = Powerup test in progress
-var APRGainActive = props.globals.initNode("/it-stec55x/internal/apr-gain-active", 0, "BOOL");
+var APRModeActive = props.globals.initNode("/it-stec55x/internal/apr-mode-active", 0, "BOOL");
 var ALTOffsetDelta = props.globals.getNode("/it-stec55x/internal/static-20ft-delta");
 var masterSW = props.globals.initNode("/it-stec55x/internal/master-sw", 0, "INT"); # 0 = OFF, 1 = FD, 2 = AP/FD
 var servoRollPower = props.globals.initNode("/it-stec55x/internal/servo-roll-power", 0, "BOOL");
 var servoPitchPower = props.globals.initNode("/it-stec55x/internal/servo-pitch-power", 0, "BOOL");
 var discSound = props.globals.initNode("/it-stec55x/sound/disc", 0, "BOOL");
 var HDGIndicator = props.globals.getNode("/instrumentation/heading-indicator/indicated-heading-deg");
-var OBSNeedle = props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection");
+var OBSNAVNeedle = props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection");
 var OBSCourse = props.globals.getNode("/instrumentation/nav[0]/radials/selected-deg");
 var OBSActive = props.globals.getNode("/instrumentation/nav[0]/in-range");
 var GPSActive = props.globals.getNode("/autopilot/route-manager/active");
@@ -89,12 +89,12 @@ var ITAF = {
 		alt.setValue(0);
 		altOffset.setValue(0);
 		vs.setValue(0);
-		cwsSW.setValue(0);
-		discSW.setValue(0);
-		masterAPSW.setValue(0);
+		cwsSW.setBoolValue(0);
+		discSW.setBoolValue(0);
+		masterAPSW.setBoolValue(0);
 		masterAPFDSW.setValue(0);
-		elecTrimSW.setValue(0);
-		NAVManIntercept.setValue(0);
+		elecTrimSW.setBoolValue(0);
+		NAVManIntercept.setBoolValue(0);
 		roll.setValue(-1);
 		pitch.setValue(-1);
 		HDG_annun.setBoolValue(0);
@@ -195,7 +195,7 @@ var ITAF = {
 			NAV_annun.setBoolValue(0);
 		}
 		
-		if ((((roll.getValue() == 1 or ((CNAV or roll.getValue() == 3) and NAVFlash_annun.getBoolValue())) and APRGainActive.getBoolValue() == 1) or powerUpTest.getValue() == 1) and systemAlive.getBoolValue() == 1) {
+		if ((((roll.getValue() == 1 or ((CNAV or roll.getValue() == 3) and NAVFlash_annun.getBoolValue())) and APRModeActive.getBoolValue() == 1) or powerUpTest.getValue() == 1) and systemAlive.getBoolValue() == 1) {
 			APR_annun.setBoolValue(1);
 		} else {
 			APR_annun.setBoolValue(0);
@@ -263,7 +263,7 @@ var ITAF = {
 		
 		# NAV mode gain, reduces as the system captures the course
 		if (roll.getValue() == 1) {
-			cdiDefl = OBSNeedle.getValue();
+			cdiDefl = OBSNAVNeedle.getValue();
 			if (abs(cdiDefl) <= 1.5 and NAVPreGain.getValue() == NAVGainStd) { # CAP mode
 				NAVPreGain.setValue(NAVGainCap);
 				NAVStep1Time.setValue(elapsedSec.getValue());
@@ -299,7 +299,7 @@ var ITAF = {
 		}
 		
 		# Actual NAV mode gain, when APR mode is added, the sensitivity of the entire system is increased
-		if (APRGainActive.getBoolValue()) {
+		if (APRModeActive.getBoolValue()) {
 			NAVGain.setValue(NAVPreGain.getValue() + 0.5);
 		} else {
 			NAVGain.setValue(NAVPreGain.getValue());
@@ -421,7 +421,7 @@ var button = {
 	},
 	NAV: func() {
 		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1) {
-			APRGainActive.setBoolValue(0);
+			APRModeActive.setBoolValue(0);
 			if (hdgButton.getBoolValue() == 1) { # If the HDG button is being pushed, arm NAV for custom intercept angle
 				me.CNAV();
 			} else {
@@ -441,7 +441,7 @@ var button = {
 		hdgButton.setBoolValue(0);
 		CNAV = roll.getValue() == 0 and NAVManIntercept.getBoolValue(); # Is NAV with custom intercept heading armed?
 		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and (CNAV or roll.getValue() == 1 or roll.getValue() == 3)) {
-			APRGainActive.setBoolValue(1);
+			APRModeActive.setBoolValue(1);
 		}
 	},
 	CNAV: func() {
@@ -519,7 +519,7 @@ var NAVchk = func {
 			NAVt.stop();
 			NAVFlash_annun.setBoolValue(0);
 			roll.setValue(1);
-			if (abs(OBSNeedle.getValue()) <= 1 and abs(HDGIndicator.getValue() - OBSCourse.getValue()) < 5) { # Immediately go to SOFT mode if within 10% of deflection and within 5 degrees of course.
+			if (abs(OBSNAVNeedle.getValue()) <= 1 and abs(HDGIndicator.getValue() - OBSCourse.getValue()) < 5) { # Immediately go to SOFT mode if within 10% of deflection and within 5 degrees of course.
 				NAVPreGain.setValue(NAVGainSoft);
 				NAVStep1Time.setValue(elapsedSec.getValue() - 90);
 				NAVStep2Time.setValue(elapsedSec.getValue() - 75);
@@ -529,11 +529,11 @@ var NAVchk = func {
 			NAVl.start();
 		}
 	} else if (roll.getValue() == 0 and NAVManIntercept.getBoolValue() == 1) {
-		if (abs(OBSNeedle.getValue()) < 8) { # Only engage NAV if OBS is within capture
+		if (abs(OBSNAVNeedle.getValue()) < 8) { # Only engage NAV if OBS is within capture
 			NAVt.stop();
 			NAVFlash_annun.setBoolValue(0);
 			roll.setValue(1);
-			if (abs(OBSNeedle.getValue()) <= 1 and abs(HDGIndicator.getValue() - OBSCourse.getValue()) < 5) { # Immediately go to SOFT mode if within 10% of deflection and within 5 degrees of course.
+			if (abs(OBSNAVNeedle.getValue()) <= 1 and abs(HDGIndicator.getValue() - OBSCourse.getValue()) < 5) { # Immediately go to SOFT mode if within 10% of deflection and within 5 degrees of course.
 				NAVPreGain.setValue(NAVGainSoft);
 				NAVStep1Time.setValue(elapsedSec.getValue() - 90);
 				NAVStep2Time.setValue(elapsedSec.getValue() - 75);
