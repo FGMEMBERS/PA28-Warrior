@@ -50,6 +50,12 @@
 			<output>fcs/mixture-pos-norm[0]</output>
 		</fcs_function>
 		
+		<lag_filter name="fcs/carb-heat-lever">
+			<input>/controls/anti-ice/engine[0]/carb-heat-cmd</input>
+			<c1>20</c1>
+			<output>/controls/anti-ice/engine[0]/carb-heat</output>
+		</lag_filter>
+		
 		<fcs_function name="fcs/oil-temp-inc">
 			<function>
 				<sum>

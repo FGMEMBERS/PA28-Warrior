@@ -857,7 +857,7 @@
 		<type>rotate</type>
 		<object-name>CarbHeatKnob</object-name>
 		<object-name>CH-Lever</object-name>
-		<property>controls/anti-ice/engine/carb-heat[0]</property>
+		<property>fdm/jsbsim/fcs/carb-heat-lever</property>
 		<factor>100</factor>
 		<offset-deg>-50</offset-deg>
 		<center>
@@ -881,7 +881,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/anti-ice/engine/carb-heat[0]</property>
+				<property>controls/anti-ice/engine[0]/carb-heat-cmd</property>
 			</binding>
 		</action>
 	</animation>

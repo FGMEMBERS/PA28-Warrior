@@ -5,12 +5,13 @@
 <!-- PA28-161 Aircraft Config Dialog -->
 
 <PropertyList>
-
+	
 	<name>aircraft-config</name>
 	<layout>vbox</layout>
 	
 	<group>
 		<layout>hbox</layout>
+		
 		<text>
 			<halign>left</halign>
 			<label>Aircraft Configuration V1.5.0</label>
@@ -28,7 +29,7 @@
 	</group>
 	
 	<hrule/>
-		
+	
 	<group>
 		<layout>hbox</layout>
 
@@ -186,7 +187,7 @@
 						gui.popupTip("No Air to Air refueling support", 6.0);               			
 					}
 					</script>
-				</binding>				
+				</binding>
 			</button>
 
 			<hrule/>

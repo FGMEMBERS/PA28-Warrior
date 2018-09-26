@@ -41,6 +41,7 @@ var help_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/help/dialog", "Aircraft/
 var about_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/about/dialog", "Aircraft/PA28-Warrior/AircraftConfig/about.xml");
 var update_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/update/dialog", "Aircraft/PA28-Warrior/AircraftConfig/update.xml");
 var updated_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/update/dialog", "Aircraft/PA28-Warrior/AircraftConfig/updated.xml");
+var controlpanel_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/controlpanel/dialog", "Aircraft/PA28-Warrior/AircraftConfig/control-panel.xml");
 spinning.start();
 init_dlg.open();
 
@@ -152,7 +153,6 @@ var beforestart = func {
 	setprop("/controls/switches/beacon", 1);
 	setprop("/controls/switches/strobe-lights", 1);
 	setprop("/controls/switches/avionics-master", 1);
-	setprop("/systems/fuel/selected-tank", 1);
 	setprop("/systems/acconfig/autoconfig-running", 0);
 	ps_load_dlg.close();
 	ps_loaded_dlg.open();
@@ -177,7 +177,6 @@ var taxi = func {
 	setprop("/controls/switches/strobe-lights", 1);
 	setprop("/controls/switches/nav-lights-factor", 1);
 	setprop("/controls/switches/avionics-master", 1);
-	setprop("/systems/fuel/selected-tank", 1);
 	setprop("/controls/engines/engine[0]/mixture", 1);
 	setprop("/controls/engines/engine[0]/throttle", 0.25);
 	setprop("/controls/engines/engine[0]/magnetos-switch", 4);

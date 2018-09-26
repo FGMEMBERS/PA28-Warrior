@@ -67,13 +67,15 @@ var systemsLoop = maketimer(0.1, func {
 });
 
 var variousReset = func {
-	setprop("/controls/switches/beacon", 0);
+	setprop("/controls/switches/beacon", 1);
 	setprop("/controls/switches/fuel-pump", 0);
 	setprop("/controls/switches/landing-light", 0);
 	setprop("/controls/switches/nav-lights-factor", 0);
 	setprop("/controls/switches/panel-lights-factor", 0);
 	setprop("/controls/switches/pitot-heat", 0);
 	setprop("/controls/switches/strobe-lights", 0);
+	setprop("/systems/fuel/selected-tank", 1);
+	setprop("/controls/anti-ice/engine[0]/carb-heat-cmd", 0);
 	setprop("/controls/engines/engine[0]/magnetos-switch", 0);
 	setprop("/controls/engines/engine[0]/mixture", 0);
 	setprop("/fdm/jsbsim/extra/door-main-cmd", 0);

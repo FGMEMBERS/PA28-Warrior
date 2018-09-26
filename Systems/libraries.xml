@@ -41,15 +41,6 @@
 	</filter>
 	
 	<filter>
-		<name>Fuel Selector Knob</name>
-		<type>noise-spike</type>
-		<update-interval-secs type="double">0.05</update-interval-secs>
-		<input>/systems/fuel/selected-tank</input>
-		<output>/systems/fuel/selected-tank-knb</output>
-		<max-rate-of-change>2.0</max-rate-of-change>
-	</filter>
-
-	<filter>
 		<name>CDI0 lowpass</name>
 		<debug>false</debug>
 		<type>exponential</type>
