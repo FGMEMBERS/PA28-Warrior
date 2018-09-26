@@ -52,7 +52,7 @@
 			<red>0.1</red>
 			<green>0.1</green>
 			<blue>0.1</blue>
-		  <factor-prop>sim/model/material/instruments/factor</factor-prop>
+		  <factor-prop>controls/switches/panel-lights</factor-prop>
 		</emission>
 	</animation>
 	

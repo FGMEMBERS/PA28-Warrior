@@ -126,15 +126,11 @@ var ELEC = {
 		
 		if (elec2 >= 8 and getprop("/controls/switches/panel-lights-factor") >= 0.1) {
 			panel_factor = getprop("/controls/switches/panel-lights-factor");
-			setprop("/controls/lighting/panel-lights", panel_factor);
 			setprop("/systems/electrical/outputs/instrument-lights", elec2);
-			setprop("/sim/model/material/instruments/factor", elec2 * 0.071428571 * panel_factor);
-			setprop("/systems/electrical/outputs/instrument-lights-norm", elec2 * 0.071428571 * panel_factor);
+			setprop("/controls/switches/panel-lights-cmd", elec2 * 0.071428571 * panel_factor);
 		} else {
-			setprop("/controls/lighting/panel-lights", 0);
 			setprop("/systems/electrical/outputs/instrument-lights", 0);
-			setprop("/sim/model/material/instruments/factor", 0);
-			setprop("/systems/electrical/outputs/instrument-lights-norm", 0);
+			setprop("/controls/switches/panel-lights-cmd", 0);
 		}
 		
 		if (elec2 >= 8 and getprop("/controls/switches/pitot-heat") == 1) {

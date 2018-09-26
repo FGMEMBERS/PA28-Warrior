@@ -60,7 +60,7 @@
 
 	<effect>
 		<condition>
-		<property>/sim/rendering/rembrandt/enabled</property>
+			<property>/sim/rendering/rembrandt/enabled</property>
 		</condition>
 		<inherits-from>Effects/model-transparent</inherits-from>
 		<object-name>prop disc front</object-name>
@@ -75,7 +75,7 @@
 			<red>0.1</red>
 			<green>0.1</green>
 			<blue>0.1</blue>
-			<factor-prop>/controls/lighting/panel-lights</factor-prop>
+			<factor-prop>controls/switches/panel-lights</factor-prop>
 		</emission>
 	</animation>
 
@@ -86,7 +86,7 @@
 			<red>0.05</red>
 			<green>0.05</green>
 			<blue>0.05</blue>
-			<factor-prop>/controls/lighting/panel-lights</factor-prop>
+			<factor-prop>controls/switches/panel-lights</factor-prop>
 		</emission>
 	</animation>
 

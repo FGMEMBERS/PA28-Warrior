@@ -16,7 +16,7 @@
       <red>0.1</red>
       <green>0.1</green>
       <blue>0.1</blue>
-      <factor-prop>systems/electrical/outputs/instrument-lights-norm</factor-prop>
+      <factor-prop>controls/switches/panel-lights</factor-prop>
    </emission>
   </animation>
 

@@ -384,6 +384,17 @@
 		<output>/fdm/jsbsim/libraries/av-fan-rpm</output>
 		<filter-time>0.32</filter-time>
 	</filter>
+	
+	<!-- Lighting -->
+	
+	<filter>
+		<name>Panel Lights lowpass</name>
+		<debug>false</debug>
+		<type>exponential</type>
+		<input>/controls/switches/panel-lights-cmd</input>
+		<output>/controls/switches/panel-lights</output>
+		<filter-time>0.64</filter-time>
+	</filter>
 
 </PropertyList>
 
