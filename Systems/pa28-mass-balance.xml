@@ -22,21 +22,30 @@
 		<y> 0 </y>
 		<z> 0.2512 </z>
 	</location>
-
-	<pointmass name="Pilot">
-		<weight unit="LBS"> 200.0 </weight>
+	
+	<pointmass name="Left Front Seat">
+		<weight unit="LBS"> 170.0 </weight>
 		<location name="POINTMASS" unit="M">
 			<x> 2.5003 </x>
-			<y> 0 </y>
+			<y> -0.27743 </y>
 			<z> 0.2512 </z>
 		</location>
 	</pointmass>
-
-	<pointmass name="Right Seat">
-		<weight unit="LBS"> 200.0 </weight>
+	
+	<pointmass name="Right Front Seat">
+		<weight unit="LBS"> 170.0 </weight>
 		<location name="POINTMASS" unit="M">
 			<x> 2.5003 </x>
-			<y> 0 </y>
+			<y> 0.27743 </y>
+			<z> 0.2512 </z>
+		</location>
+	</pointmass>
+	
+	<pointmass name="Baggage Compartment">
+		<weight unit="LBS"> 0.0 </weight>
+		<location name="POINTMASS" unit="M">
+			<x> 2.5003 </x>
+			<y> 0.16143 </y>
 			<z> 0.2512 </z>
 		</location>
 	</pointmass>

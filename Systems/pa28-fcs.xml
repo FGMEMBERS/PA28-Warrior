@@ -121,53 +121,11 @@
 	
 	</channel>
 	
-	<channel name="Yaw Helper"> <!-- Autocoordinate -->
-		
-		<switch name="helpers/a-c-gs">
-			<default value="1"/>
-			<test logic="AND" value="0">
-				/options/autocoordinate eq 1
-				gear/unit[1]/WOW eq 0
-				gear/unit[2]/WOW eq 0
-				fcs/rudder-pedal lt 0.1
-				fcs/rudder-pedal gt -0.1
-			</test>
-		</switch>
-		
-		<switch name="helpers/a-c-d-gain">
-			<default value="0"/>
-			<test logic="AND" value="3.8">
-				helpers/a-c-gs eq 0
-			</test>
-		</switch>
-		
-		<pid name="helpers/a-c-pid-v">
-			<input>aero/beta-rad</input>
-			<kp>2.9</kp>
-			<ki>0.0</ki>
-			<kd>helpers/a-c-d-gain</kd>
-			<clipto>
-				<min>-0.3</min>
-				<max>0.3</max>
-			</clipto>
-			<output>helpers/a-c-pid</output>
-		</pid>
-		
-		<switch name="helpers/a-c-f">
-			<default value="0"/>
-			<test value="helpers/a-c-pid">
-				helpers/a-c-gs eq 0
-			</test>
-		</switch>
-	
-	</channel>
-	
 	<channel name="Yaw">
 		
 		<summer name="fcs/yaw-input">
 			<input>fcs/rudder-pedal</input>
 			<input>fcs/rudder-trim-knob</input>
-			<input>helpers/a-c-f</input>
 			<clipto>
 				<min>-1</min>
 				<max>1</max>

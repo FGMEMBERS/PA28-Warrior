@@ -193,22 +193,6 @@
 			<hrule/>
 			
 			<checkbox>
-				<label>Auto Coordination</label>
-				<halign>left</halign>
-				<property>/options/autocoordinate</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<binding>
-					<command>nasal</command>
-					<script>
-					acconfig.writeSettings();
-					</script>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<checkbox>
 				<label>Flt Dir Equipped</label>
 				<halign>left</halign>
 				<enable>

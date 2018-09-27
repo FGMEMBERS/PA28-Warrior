@@ -114,6 +114,17 @@
 						</binding>
 					</item>
 					<item>
+						<label>Mini Panel</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+							acconfig.minipanel_dlg.open();
+							setprop("/options/mini-panel", 1);
+							acconfig.writeSettings();
+							</script>
+						</binding>
+					</item>
+					<item>
 						<label>Control Panel</label>
 						<binding>
 							<command>nasal</command>
@@ -128,30 +139,10 @@
 					<enabled type="bool">true</enabled>
 					<item>
 						<label>Getting Started</label>
+						<enabled type="bool">false</enabled> <!-- Needs to be updated -->
 						<binding>
 							<command>open-browser</command>
-							<path>Aircraft/PA28-Warrior/Docs/FGN_Cockpit.pdf</path>
-						</binding>
-					</item>
-					<item>
-						<label>Fuel Mgmt</label>
-						<binding>
-							<command>open-browser</command>
-							<path>Aircraft/PA28-Warrior/Docs/Fuel.pdf</path>
-						</binding>
-					</item>	
-					<item>
-						<label>Fundamentals</label>
-						<binding>
-							<command>open-browser</command>
-							<path>Aircraft/PA28-Warrior/Docs/Fundamentals.pdf</path>
-						</binding>
-					</item>
-					<item>
-						<label>Go to SkyVector IFR</label>
-						<binding>
-							<command>open-browser</command>
-							<path>https://skyvector.com/</path>
+							<path>Aircraft/PA28-Warrior/Docs/Cockpit.pdf</path>
 						</binding>
 					</item>
 					<item>
@@ -162,17 +153,17 @@
 						</binding>
 					</item>
 					<item>
-						<label>Practise Approaches </label>
+						<label>Fuel Management</label>
 						<binding>
 							<command>open-browser</command>
-							<path>Aircraft/PA28-Warrior/Docs/ApproachP.pdf</path>
+							<path>Aircraft/PA28-Warrior/Docs/Fuel.pdf</path>
 						</binding>
 					</item>
 					<item>
-						<label>About Warrior Nav</label>
+						<label>Mini Panel</label>
 						<binding>
 							<command>open-browser</command>
-							<path>Aircraft/PA28-Warrior/Docs/AboutFGN.pdf</path>
+							<path>Aircraft/PA28-Warrior/Docs/About_Mini_Panel.pdf</path>
 						</binding>
 					</item>
 				</menu>
@@ -715,16 +706,6 @@
 					</script>
 				</binding>
 			</key>
-			<key n="119">
-				<name>w</name>
-				<desc>Show AC Config</desc>
-				<binding>
-					<command>nasal</command>
-					<script>
-					acconfig.main_dlg.open();
-					</script>
-				</binding>
-			</key>
 			<key n="120">
 				<name>x</name>
 				<desc>Decrease field of view</desc>
@@ -848,12 +829,21 @@
 	</it-stec55x>
 	
 	<options n="0">
-		<autocoordinate type="bool">0</autocoordinate>
+		<mini-panel type="bool">0</mini-panel>
 		<nav-source type="int">1</nav-source>
 		<panel type="string">HSI Panel</panel>
 		<show-l-yoke type="bool">1</show-l-yoke>
 		<show-r-yoke type="bool">1</show-r-yoke>
 	</options>
+	
+	<payload>
+		<weight n="4">
+			<name>Baggage Compartment</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[4]"/>
+			<min-lb type="double">0</min-lb>
+			<max-lb type="double">100</max-lb>
+		</weight>
+	</payload>
 	
 	<systems n="0">
 		<electrical n="0">
