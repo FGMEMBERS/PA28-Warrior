@@ -339,6 +339,8 @@
 			</binding>
 		</button>
 		
+		<vrule/>
+		
 		<button>
 			<legend>DECR</legend>
 			<pref-width>45</pref-width>
