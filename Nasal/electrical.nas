@@ -53,7 +53,7 @@ var ELEC = {
 		elec1 = getprop("/systems/electrical/bus/elec1");
 		elec2 = getprop("/systems/electrical/bus/elec2");
 		
-		if (rpm >= 421 and altn_sw) {
+		if (rpm >= 421 and altn_sw and getprop("/systems/failures/alternator") == 0) {
 			setprop("/systems/electrical/altn-volt", 14);
 			setprop("/systems/electrical/altn-amp", 35);
 		} else {
@@ -70,7 +70,7 @@ var ELEC = {
 				setprop("/systems/electrical/bus/elec1", altn_volt);
 				setprop("/systems/electrical/bus/elec2", altn_volt);
 			}
-		} else if (batt_volt >= 8 and batt_sw) {
+		} else if (batt_volt >= 8 and batt_sw and getprop("/systems/failures/battery") == 0) {
 			src = "BATT";
 			if (elec1 != batt_volt) {
 				setprop("/systems/electrical/bus/elec1", batt_volt);

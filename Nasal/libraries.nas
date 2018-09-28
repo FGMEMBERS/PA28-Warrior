@@ -41,7 +41,6 @@ setlistener("/sim/sounde/knob", func {
 
 var systemsInit = func {
 	systems.ELEC.init();
-	systems.ENG.init();
 	systems.FUEL.init();
 	variousReset();
 	var autopilot = gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/PA28-Warrior/Systems/stec-55x-dlg.xml");

@@ -20,6 +20,16 @@ var spinning = maketimer(0.05, func {
 	}
 });
 
+var failReset = func {
+	setprop("/systems/failures/battery", 0);
+	setprop("/systems/failures/alternator", 0);
+	setprop("/systems/failures/eng-suck", 0);
+	setprop("/systems/failures/fuel-pump", 0);
+	setprop("/systems/failures/l-magneto", 0);
+	setprop("/systems/failures/r-magneto", 0);
+};
+
+failReset();
 setprop("/systems/acconfig/autoconfig-running", 0);
 setprop("/systems/acconfig/spinning", 0);
 setprop("/systems/acconfig/spin", "-");
@@ -41,6 +51,7 @@ var help_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/help/dialog", "Aircraft/
 var about_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/about/dialog", "Aircraft/PA28-Warrior/AircraftConfig/about.xml");
 var update_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/update/dialog", "Aircraft/PA28-Warrior/AircraftConfig/update.xml");
 var updated_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/update/dialog", "Aircraft/PA28-Warrior/AircraftConfig/updated.xml");
+var fail_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/fail/dialog", "Aircraft/PA28-Warrior/AircraftConfig/fail.xml");
 var controlpanel_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/controlpanel/dialog", "Aircraft/PA28-Warrior/AircraftConfig/control-panel.xml");
 var minipanel_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/minipanel/dialog", "Aircraft/PA28-Warrior/AircraftConfig/mini-panel.xml");
 spinning.start();
@@ -121,6 +132,7 @@ var colddark = func {
 	setprop("/controls/flight/elevator-trim", 0.1);
 	setprop("/controls/gear/brake-parking", 0);
 	libraries.systemsReset();
+	failReset();
 	if (getprop("/engines/engine[0]/rpm") < 421) {
 		colddark_b();
 	} else {
@@ -150,6 +162,7 @@ var beforestart = func {
 	setprop("/controls/flight/elevator-trim", 0.1);
 	setprop("/controls/gear/brake-parking", 0);
 	libraries.systemsReset();
+	failReset();
 	
 	# Now the Startup!
 	setprop("/controls/electrical/battery", 1);
@@ -173,6 +186,7 @@ var taxi = func {
 	setprop("/controls/flight/elevator-trim", 0.1);
 	setprop("/controls/gear/brake-parking", 0);
 	libraries.systemsReset();
+	failReset();
 	
 	# Now the Startup!
 	setprop("/controls/electrical/battery", 1);

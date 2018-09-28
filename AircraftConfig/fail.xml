@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- Copyright (c) 2018 Joshua Davidson (it0uchpods) -->
+
+<!-- PA28-161 Control Panel Dialog -->
+
+<PropertyList>
+
+	<name>aircraft-config-fail</name>
+	<layout>vbox</layout>
+
+    <group>
+        <layout>hbox</layout>
+        <text>
+            <halign>left</halign>
+            <label>System Failures</label>
+        </text>
+        <button>
+            <halign>right</halign>
+            <pref-width>20</pref-width>
+            <pref-height>20</pref-height>
+            <legend>X</legend>
+            <key>Esc</key>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
+    </group>
+	
+    <hrule/>
+	
+	<text>
+		<halign>left</halign>
+		<label>Failed when Checked</label>
+	</text>
+	
+	<group>
+		<layout>hbox</layout>
+
+		<hrule>
+			<stretch type="bool">true</stretch>
+		</hrule>
+		<text>
+			<label>ELEC SYS Fail</label>
+		</text>
+		<hrule>
+			<stretch type="bool">true</stretch>
+		</hrule>
+	</group>
+	
+	<checkbox>
+		<label>BATTERY</label>
+		<halign>left</halign>
+		<property>/systems/failures/battery</property>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<live>true</live>
+	</checkbox>
+	
+	<checkbox>
+		<label>ALTERNATOR</label>
+		<halign>left</halign>
+		<property>/systems/failures/alternator</property>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<live>true</live>
+	</checkbox>
+	
+	<!--group>
+		<layout>hbox</layout>
+
+		<hrule>
+			<stretch type="bool">true</stretch>
+		</hrule>
+		<text>
+			<label>FUEL SYS Fail</label>
+		</text>
+		<hrule>
+			<stretch type="bool">true</stretch>
+		</hrule>
+	</group>
+	
+	<checkbox>
+		<label>ENG SUCK</label>
+		<halign>left</halign>
+		<property>/systems/failures/eng-suck</property>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<live>true</live>
+	</checkbox>
+	
+	<checkbox>
+		<label>FUEL PUMP</label>
+		<halign>left</halign>
+		<property>/systems/failures/fuel-pump</property>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<live>true</live>
+	</checkbox>
+	
+	<group>
+		<layout>hbox</layout>
+
+		<hrule>
+			<stretch type="bool">true</stretch>
+		</hrule>
+		<text>
+			<label>ENG SYS Fail</label>
+		</text>
+		<hrule>
+			<stretch type="bool">true</stretch>
+		</hrule>
+	</group>
+	
+	<checkbox>
+		<label>L MAGNETO</label>
+		<halign>left</halign>
+		<property>/systems/failures/l-magneto</property>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<live>true</live>
+	</checkbox>
+	
+	<checkbox>
+		<label>R MAGNETO</label>
+		<halign>left</halign>
+		<property>/systems/failures/r-magneto</property>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<live>true</live>
+	</checkbox-->
+
+</PropertyList>
