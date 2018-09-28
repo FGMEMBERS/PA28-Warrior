@@ -160,7 +160,7 @@
 						</binding>
 					</item>
 					<item>
-						<label>Mini Panel</label>
+						<label>About Mini Panel</label>
 						<binding>
 							<command>open-browser</command>
 							<path>Aircraft/PA28-Warrior/Docs/About_Mini_Panel.pdf</path>

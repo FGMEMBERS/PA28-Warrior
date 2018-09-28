@@ -188,7 +188,7 @@ var taxi = func {
 	var runchk = setlistener("/engines/engine[0]/running", func {
 		if (getprop("/engines/engine[0]/running") == 1) {
 			removelistener(runchk);
-			interpolate("/controls/engines/engine[0]/throttle", 0.19, 1);
+			interpolate("/controls/engines/engine[0]/throttle", 0.195, 1);
 		}
 	});
 	settimer(func {

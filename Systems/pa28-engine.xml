@@ -11,22 +11,38 @@
 			<c1>20</c1>
 		</lag_filter>
 		
+		<lag_filter name="fcs/carb-heat-lever">
+			<input>/controls/anti-ice/engine[0]/carb-heat-cmd</input>
+			<c1>20</c1>
+			<output>/controls/anti-ice/engine[0]/carb-heat</output>
+		</lag_filter>
+		
 		<fcs_function name="fcs/throttle-cmd-modified">
 			<function>
-				<table>
-					<independentVar lookup="row">fcs/throttle-cmd-lag</independentVar>
-					<independentVar lookup="column">velocities/vc-kts</independentVar>
-					<tableData>
-						     30    60    120   180
-						0.0  0.00  0.00  0.00  0.00
-						0.2  0.42  0.37  0.34  0.32
-						0.6  0.74  0.66  0.60  0.56
-						1.0  1.00  0.89  0.82  0.76
-					</tableData>
-				</table>
+				<difference>
+					<table>
+						<independentVar lookup="row">fcs/throttle-cmd-lag</independentVar>
+						<independentVar lookup="column">velocities/vc-kts</independentVar>
+						<tableData>
+								 30    60    120   180
+							0.0  0.04  0.04  0.04  0.04
+							0.2  0.42  0.37  0.34  0.32
+							0.6  0.74  0.66  0.60  0.56
+							1.0  1.00  0.89  0.82  0.76
+						</tableData>
+					</table>
+					<product> <!-- Reduces RPM with carb heat on -->
+						<property>fcs/carb-heat-lever</property>
+						<value>0.04</value>
+					</product>
+				</difference>
 			</function>
 			<output>fcs/throttle-cmd-norm[0]</output>
 			<output>fcs/throttle-pos-norm[0]</output>
+			<clipto>
+				<min>0.0</min>
+				<max>1.0</max>
+			</clipto>
 		</fcs_function>
 		
 		<lag_filter name="fcs/mixture-cmd-lag">
@@ -49,12 +65,6 @@
 			<output>fcs/mixture-cmd-norm[0]</output>
 			<output>fcs/mixture-pos-norm[0]</output>
 		</fcs_function>
-		
-		<lag_filter name="fcs/carb-heat-lever">
-			<input>/controls/anti-ice/engine[0]/carb-heat-cmd</input>
-			<c1>20</c1>
-			<output>/controls/anti-ice/engine[0]/carb-heat</output>
-		</lag_filter>
 		
 		<fcs_function name="fcs/oil-temp-inc">
 			<function>
