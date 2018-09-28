@@ -44,6 +44,7 @@ var systemsInit = func {
 	systems.FUEL.init();
 	variousReset();
 	var autopilot = gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/PA28-Warrior/Systems/stec-55x-dlg.xml");
+	setprop("/controls/engines/engine[0]/magnetos-switch", 0);
 	setprop("/engines/engine[0]/fuel-flow-gph", 0.0);
 	setprop("/sim/model/material/LandingLight/factor", 0.0);
 	setprop("/sim/model/material/LandingLight/factorAGL", 0.0);

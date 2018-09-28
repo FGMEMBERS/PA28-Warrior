@@ -4,6 +4,67 @@
 
 <system name="PA28-161: Engine">
 	
+	<channel name="Magnetos-Starter" execrate="8">
+		
+		<switch name="fcs/magneto-l">
+			<default value="0"/>
+			<test logic="AND" value="1"> <!-- L -->
+				/systems/failures/l-magneto ne 1
+				/controls/engines/engine[0]/magnetos-switch eq 1
+				/systems/electrical/bus/elec1 ge 8
+			</test>
+			<test logic="AND" value="1"> <!-- BOTH or START -->
+				/systems/failures/l-magneto ne 1
+				/controls/engines/engine[0]/magnetos-switch ge 3
+				/systems/electrical/bus/elec1 ge 8
+			</test>
+		</switch>
+		
+		<switch name="fcs/magneto-r">
+			<default value="0"/>
+			<test logic="AND" value="1"> <!-- R -->
+				/systems/failures/r-magneto ne 1
+				/controls/engines/engine[0]/magnetos-switch eq 2
+				/systems/electrical/bus/elec2 ge 8
+			</test>
+			<test logic="AND" value="1"> <!-- BOTH or START -->
+				/systems/failures/r-magneto ne 1
+				/controls/engines/engine[0]/magnetos-switch ge 3
+				/systems/electrical/bus/elec2 ge 8
+			</test>
+		</switch>
+		
+		<switch name="fcs/magneto-final">
+			<default value="0"/>
+			<test logic="AND" value="3"> <!-- BOTH -->
+				fcs/magneto-l eq 1
+				fcs/magneto-r eq 1
+			</test>
+			<test logic="AND" value="2"> <!-- R -->
+				fcs/magneto-l ne 1
+				fcs/magneto-r eq 1
+			</test>
+			<test logic="AND" value="1"> <!-- L -->
+				fcs/magneto-l eq 1
+				fcs/magneto-r ne 1
+			</test>
+			<output>/controls/engines/engine[0]/magnetos</output>
+		</switch>
+		
+		<switch name="fcs/start-switch">
+			<default value="0"/>
+			<test logic="AND" value="1">
+				fcs/magneto-l eq 1
+				/controls/engines/engine[0]/magnetos-switch eq 4
+			</test>
+			<test logic="AND" value="1">
+				fcs/magneto-r eq 1
+				/controls/engines/engine[0]/magnetos-switch eq 4
+			</test>
+		</switch>
+	
+	</channel>
+	
 	<channel name="Engine">
 		
 		<lag_filter name="fcs/throttle-cmd-lag">

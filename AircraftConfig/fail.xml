@@ -100,7 +100,7 @@
 			<command>dialog-apply</command>
 		</binding>
 		<live>true</live>
-	</checkbox>
+	</checkbox-->
 	
 	<group>
 		<layout>hbox</layout>
@@ -134,6 +134,21 @@
 			<command>dialog-apply</command>
 		</binding>
 		<live>true</live>
-	</checkbox-->
+	</checkbox>
+	
+	<hrule/>
+	
+	<button>
+		<legend>Reset All</legend>
+		<halign>center</halign>
+		<padding>5</padding>
+		<pref-width>120</pref-width>
+		<binding>
+			<command>nasal</command>
+			<script>
+			acconfig.failReset();
+			</script>
+		</binding>
+	</button>
 
 </PropertyList>

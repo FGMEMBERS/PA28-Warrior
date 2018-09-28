@@ -19,6 +19,10 @@
 				<min>0</min>
 				<max>4</max>
 			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/switch3", 1);</script>
+			</binding>
 			<mod-up>
 				<binding>
 					<condition>
@@ -30,6 +34,10 @@
 					<command>property-assign</command>
 					<property>controls/engines/engine[0]/magnetos-switch</property>
 					<value>3</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>setprop("/sim/sounde/switch3", 1);</script>
 				</binding>
 			</mod-up>
 		</action>
@@ -43,6 +51,10 @@
 				<step>-1</step>
 				<min>0</min>
 				<max>4</max>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/switch3", 1);</script>
 			</binding>
 		</action>
 		<hovered>

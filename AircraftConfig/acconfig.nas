@@ -170,6 +170,7 @@ var beforestart = func {
 	setprop("/controls/switches/beacon", 1);
 	setprop("/controls/switches/strobe-lights", 1);
 	setprop("/controls/switches/avionics-master", 1);
+	setprop("/controls/engines/engine[0]/mixture", 1);
 	setprop("/systems/acconfig/autoconfig-running", 0);
 	ps_load_dlg.close();
 	ps_loaded_dlg.open();

@@ -864,6 +864,10 @@
 				<fuel-pump type="double">0</fuel-pump>
 			</outputs>
 		</electrical>
+		<failures n="0">
+			<l-magneto type="bool">0</l-magneto>
+			<r-magneto type="bool">0</r-magneto>
+		</failures>
 		<fuel n="0">
 			<selected-tank type="int">1</selected-tank>
 			<suck-fuel type="bool">0</suck-fuel>
@@ -888,7 +892,6 @@
 		</acconfig>
 		<systems>
 			<file>Aircraft/PA28-Warrior/Nasal/electrical.nas</file>
-			<file>Aircraft/PA28-Warrior/Nasal/engines.nas</file>
 			<file>Aircraft/PA28-Warrior/Nasal/fuel.nas</file>
 		</systems>
 		<stec55x>

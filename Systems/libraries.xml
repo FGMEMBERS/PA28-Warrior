@@ -40,6 +40,17 @@
 		<max>50000</max>
 	</filter>
 	
+	<logic> <!-- Because this is a "bound" property, whatever that is, so directly from JSBsim doesn't work... -->
+		<name>Starter Command</name>
+		<input>
+			<equals>
+				<property>/fdm/jsbsim/fcs/start-switch</property>
+				<value>1</value>
+			</equals>
+		</input>
+		<output>/controls/engines/engine[0]/starter</output>
+	</logic>
+	
 	<filter>
 		<name>CDI0 lowpass</name>
 		<debug>false</debug>
