@@ -357,7 +357,9 @@ var ITAF = {
 				if (useControlsFlight.getBoolValue()) {
 					setprop("/controls/flight/aileron", 0);
 				}
-				discSound.setBoolValue(1);
+				if (roll.getValue() != -2) {
+					discSound.setBoolValue(1);
+				}
 			}
 		}
 		
