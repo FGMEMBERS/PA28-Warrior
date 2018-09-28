@@ -41,10 +41,10 @@ setlistener("/sim/sounde/knob", func {
 
 var systemsInit = func {
 	systems.ELEC.init();
-	systems.FUEL.init();
+	systems.INIT.ENG();
+	systems.INIT.FUEL();
 	variousReset();
 	var autopilot = gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/PA28-Warrior/Systems/stec-55x-dlg.xml");
-	setprop("/controls/engines/engine[0]/magnetos-switch", 0);
 	setprop("/engines/engine[0]/fuel-flow-gph", 0.0);
 	setprop("/sim/model/material/LandingLight/factor", 0.0);
 	setprop("/sim/model/material/LandingLight/factorAGL", 0.0);
@@ -63,7 +63,6 @@ setlistener("sim/signals/fdm-initialized", func {
 
 var systemsLoop = maketimer(0.1, func {
 	systems.ELEC.loop();
-	systems.FUEL.loop();
 });
 
 var variousReset = func {

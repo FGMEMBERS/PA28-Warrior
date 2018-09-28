@@ -4,21 +4,57 @@
 
 <system name="fuel">
 	
-	<channel name="Fuel Pressure" execrate="8">
+	<channel name="Fuel Logic and Pressure" execrate="8">
+		
+		<switch name="fuel/can-suck">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				/engines/engine[0]/rpm ge 511
+				fcs/start-switch eq 1
+			</test>
+		</switch>
+		
+		<switch name="fuel/pump-dec-value">
+			<default value="0.001"/>
+			<test logic="AND" value="0.5">
+				fuel/can-suck eq 1
+				/systems/fuel/suck-fuel ne 1
+			</test>
+		</switch>
+		
+		<switch name="fuel/suck-dec-value">
+			<default value="0.001"/>
+			<test value="0.5">
+				fuel/can-suck eq 1
+			</test>
+		</switch>
+		
+		<switch name="/systems/fuel/suck-fuel">
+			<default value="0"/>
+			<test logic="AND" value="1"> <!-- If the eng suck is not failed, and the engine is running or started -->
+				/systems/failures/eng-suck ne 1
+				fuel/can-suck eq 1
+			</test>
+			<test logic="AND" value="1">
+				/systems/failures/fuel-pump ne 1
+				/systems/electrical/outputs/fuel-pump ge 8
+			</test>
+		</switch>
 		
 		<fcs_function name="fuel/pump-psi-dec">
 			<function>
 				<difference>
 					<property>fuel/pump-psi-feedback</property>
-					<value>0.001</value>
+					<property>fuel/pump-dec-value</property>
 				</difference>
 			</function>
 		</fcs_function>
 		
 		<switch name="fuel/pump-psi-switch">
 			<default value="fuel/pump-psi-switch"/>
-			<test value="0.4">
+			<test logic="AND" value="0.2">
 				/systems/electrical/outputs/fuel-pump ge 8
+				/systems/failures/fuel-pump ne 1
 			</test>
 			<test value="fuel/pump-psi-dec">
 				fuel/pump-psi-feedback gt 0
@@ -35,15 +71,16 @@
 			<function>
 				<difference>
 					<property>fuel/suck-psi-feedback</property>
-					<value>0.001</value>
+					<property>fuel/suck-dec-value</property>
 				</difference>
 			</function>
 		</fcs_function>
 		
 		<switch name="fuel/suck-psi-switch">
 			<default value="fuel/suck-psi-switch"/>
-			<test value="5.7">
+			<test logic="OR" value="5.7">
 				/systems/fuel/suck-fuel eq 1
+				fuel/pump-psi-switch eq 0.2
 			</test>
 			<test logic="AND" value="fuel/suck-psi-dec">
 				fuel/suck-psi-feedback gt 0
@@ -61,6 +98,10 @@
 			<input>fuel/pump-psi-feedback</input>
 			<input>fuel/suck-psi-feedback</input>
 			<output>/systems/fuel/pressure-psi</output>
+			<clipto>
+				<min>0.0</min>
+				<max>10.0</max>
+			</clipto>
 		</summer>
 	
 	</channel>
@@ -71,8 +112,8 @@
 			<default value="0"/>
 			<test logic="AND" value="0.1">
 				/systems/fuel/selected-tank eq 1
-				/systems/fuel/suck-fuel eq 1
-				propulsion/tank[0]/contents-lbs gt 0
+				/systems/fuel/pressure-psi gt 0
+				propulsion/tank[0]/contents-lbs gt 1
 				propulsion/tank[2]/contents-lbs lt 0.008
 			</test>
 		</switch>
@@ -81,8 +122,8 @@
 			<default value="0"/>
 			<test logic="AND" value="0.1">
 				/systems/fuel/selected-tank eq 2
-				/systems/fuel/suck-fuel eq 1
-				propulsion/tank[1]/contents-lbs gt 0
+				/systems/fuel/pressure-psi gt 0
+				propulsion/tank[1]/contents-lbs gt 1
 				propulsion/tank[2]/contents-lbs lt 0.008
 			</test>
 		</switch>

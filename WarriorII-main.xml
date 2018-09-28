@@ -865,6 +865,8 @@
 			</outputs>
 		</electrical>
 		<failures n="0">
+			<eng-suck type="bool">0</eng-suck>
+			<fuel-pump type="bool">0</fuel-pump>
 			<l-magneto type="bool">0</l-magneto>
 			<r-magneto type="bool">0</r-magneto>
 		</failures>
@@ -892,7 +894,7 @@
 		</acconfig>
 		<systems>
 			<file>Aircraft/PA28-Warrior/Nasal/electrical.nas</file>
-			<file>Aircraft/PA28-Warrior/Nasal/fuel.nas</file>
+			<file>Aircraft/PA28-Warrior/Nasal/init.nas</file>
 		</systems>
 		<stec55x>
 			<file>Aircraft/PA28-Warrior/Nasal/stec-55x.nas</file>

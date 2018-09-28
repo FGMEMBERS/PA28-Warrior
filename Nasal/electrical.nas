@@ -53,7 +53,7 @@ var ELEC = {
 		elec1 = getprop("/systems/electrical/bus/elec1");
 		elec2 = getprop("/systems/electrical/bus/elec2");
 		
-		if (rpm >= 421 and altn_sw and getprop("/systems/failures/alternator") == 0) {
+		if (rpm >= 511 and altn_sw and getprop("/systems/failures/alternator") == 0) {
 			setprop("/systems/electrical/altn-volt", 14);
 			setprop("/systems/electrical/altn-amp", 35);
 		} else {
