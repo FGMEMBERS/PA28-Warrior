@@ -255,7 +255,51 @@
 	</filter>
 	
 	<filter>
-		<name>IT-CONTROLLER: ROLL CMD</name>
+		<name>IT-CONTROLLER: ROLL OUTPUT INTERNAL</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<input>
+			<condition>
+				<and>
+					<greater-than>
+						<property>/it-stec55x/output/roll</property>
+						<value>-1</value>
+					</greater-than>
+					<equals>
+						<property>/it-stec55x/internal/servo-roll-power</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</condition>
+			<expression>
+				<sum>
+					<property>/it-stec55x/internal/aileron-pi</property>
+					<property>/it-stec55x/internal/aileron-d</property>
+				</sum>
+			</expression>
+		</input>
+		<input>0</input>
+		<output>/it-stec55x/internal/aileron</output>
+		<max-rate-of-change>
+			<condition>
+				<and>
+					<greater-than>
+						<property>/it-stec55x/output/roll</property>
+						<value>-1</value>
+					</greater-than>
+					<equals>
+						<property>/it-stec55x/internal/servo-roll-power</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</condition>
+			<value>0.5</value>
+		</max-rate-of-change>
+		<max-rate-of-change>10</max-rate-of-change>
+	</filter>
+	
+	<filter>
+		<name>IT-CONTROLLER: ROLL OUTPUT GENERIC</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<enable>
@@ -267,6 +311,10 @@
 					</greater-than>
 					<equals>
 						<property>/it-stec55x/internal/servo-roll-power</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-stec55x/settings/use-controls-flight</property>
 						<value>1</value>
 					</equals>
 				</and>
@@ -558,7 +606,7 @@
 		</enable>
 		<input>/it-stec55x/internal/accel-cmd</input>
 		<reference>/it-stec55x/internal/g-damped</reference>
-		<output>/it-stec55x/internal/elevator</output>
+		<output>/it-stec55x/internal/elevator-pi</output>
 		<config>
 			<Kp>0.26</Kp>
 			<Ki>0.56</Ki>
@@ -568,7 +616,46 @@
 	</pi-simple-controller>
 	
 	<filter>
-		<name>IT-CONTROLLER: Pitch CMD</name>
+		<name>IT-CONTROLLER: PITCH OUTPUT INTERNAL</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<input>
+			<condition>
+				<and>
+					<greater-than>
+						<property>/it-stec55x/output/pitch</property>
+						<value>-1</value>
+					</greater-than>
+					<equals>
+						<property>/it-stec55x/internal/servo-pitch-power</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</condition>
+			<property>/it-stec55x/internal/elevator-pi</property>
+		</input>
+		<input>0</input>
+		<output>/it-stec55x/internal/elevator</output>
+		<max-rate-of-change>
+			<condition>
+				<and>
+					<greater-than>
+						<property>/it-stec55x/output/pitch</property>
+						<value>-1</value>
+					</greater-than>
+					<equals>
+						<property>/it-stec55x/internal/servo-pitch-power</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</condition>
+			<value>0.5</value>
+		</max-rate-of-change>
+		<max-rate-of-change>10</max-rate-of-change>
+	</filter>
+	
+	<filter>
+		<name>IT-CONTROLLER: PITCH OUTPUT GENERIC</name>
 		<debug>false</debug>
 		<type>noise-spike</type>
 		<enable>
@@ -582,10 +669,14 @@
 						<property>/it-stec55x/internal/servo-pitch-power</property>
 						<value>1</value>
 					</equals>
+					<equals>
+						<property>/it-stec55x/settings/use-controls-flight</property>
+						<value>1</value>
+					</equals>
 				</and>
 			</condition>
 		</enable>
-		<input>/it-stec55x/internal/elevator</input>
+		<input>/it-stec55x/internal/elevator-pi</input>
 		<output>/controls/flight/elevator</output>
 		<max-rate-of-change>0.5</max-rate-of-change>
 	</filter>
@@ -737,7 +828,7 @@
 		<input>
 			<condition>
 				<greater-than>
-					<property>/it-stec55x/output/roll</property>
+					<property>/it-stec55x/output/pitch</property>
 					<value>-1</value>
 				</greater-than>
 			</condition>

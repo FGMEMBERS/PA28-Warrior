@@ -27,7 +27,16 @@ var failReset = func {
 	setprop("/systems/failures/fuel-pump", 0);
 	setprop("/systems/failures/l-magneto", 0);
 	setprop("/systems/failures/r-magneto", 0);
+	setprop("/systems/failures/stec-55x", 0);
 };
+
+setlistener("/systems/failures/stec-55x", func {
+	if (getprop("/systems/failures/stec-55x") == 1) {
+		setprop("/it-stec55x/serviceable", 0);
+	} else {
+		setprop("/it-stec55x/serviceable", 1);
+	}
+});
 
 failReset();
 setprop("/systems/acconfig/autoconfig-running", 0);

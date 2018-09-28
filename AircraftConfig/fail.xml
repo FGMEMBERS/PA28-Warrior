@@ -136,6 +136,30 @@
 		<live>true</live>
 	</checkbox>
 	
+	<group>
+		<layout>hbox</layout>
+
+		<hrule>
+			<stretch type="bool">true</stretch>
+		</hrule>
+		<text>
+			<label>OTHER SYS Fail</label>
+		</text>
+		<hrule>
+			<stretch type="bool">true</stretch>
+		</hrule>
+	</group>
+	
+	<checkbox>
+		<label>S-TEC 55X</label>
+		<halign>left</halign>
+		<property>/systems/failures/stec-55x</property>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<live>true</live>
+	</checkbox>
+	
 	<hrule/>
 	
 	<button>

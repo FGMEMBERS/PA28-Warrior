@@ -4,15 +4,63 @@
 
 <system name="PA28-161: FCS">
 	
-	<channel name="Control Lag">
+	<channel name="Control Inputs">
+		
+		<fcs_function name="fcs/aileron-ap">
+			<function>
+				<sum>
+					<product>
+						<property>/controls/flight/aileron</property>
+						<value>0.5</value>
+					</product>
+					<property>/it-stec55x/internal/aileron</property>
+				</sum>
+			</function>
+			<clipto>
+				<min>-1</min>
+				<max>1</max>
+			</clipto>
+		</fcs_function>
+		
+		<switch name="fcs/aileron-switch">
+			<default value="/controls/flight/aileron"/>
+			<test logic="AND" value="fcs/aileron-ap">
+				/it-stec55x/output/roll gt -1
+				/it-stec55x/internal/servo-roll-power eq 1
+			</test>
+		</switch>
 		
 		<lag_filter name="fcs/aileron-yoke">
-			<input>/controls/flight/aileron</input>
+			<input>fcs/aileron-switch</input>
 			<c1>20</c1>
 		</lag_filter>
 		
+		<fcs_function name="fcs/elevator-ap">
+			<function>
+				<sum>
+					<product>
+						<property>/controls/flight/elevator</property>
+						<value>0.5</value>
+					</product>
+					<property>/it-stec55x/internal/elevator</property>
+				</sum>
+			</function>
+			<clipto>
+				<min>-1</min>
+				<max>1</max>
+			</clipto>
+		</fcs_function>
+		
+		<switch name="fcs/elevator-switch">
+			<default value="/controls/flight/elevator"/>
+			<test logic="AND" value="fcs/elevator-ap">
+				/it-stec55x/output/pitch gt -1
+				/it-stec55x/internal/servo-pitch-power eq 1
+			</test>
+		</switch>
+		
 		<lag_filter name="fcs/elevator-yoke">
-			<input>/controls/flight/elevator</input>
+			<input>fcs/elevator-switch</input>
 			<c1>20</c1>
 		</lag_filter>
 		

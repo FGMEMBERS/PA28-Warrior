@@ -830,10 +830,19 @@
 	</instrumentation>
 	
 	<it-stec55x n="0"> <!-- S-TEC 55X Settings -->
+		<internal n="0">
+			<servo-roll-power type="bool">0</servo-roll-power>
+			<servo-pitch-power type="bool">0</servo-pitch-power>
+		</internal>
+		<output n="0">
+			<roll type="int">-1</roll>
+			<pitch type="int">-1</pitch>
+		</output>
 		<settings n="0">
+			<fd-equipped type="bool">0</fd-equipped> <!-- Does the aircraft have a flight director installed? -->
 			<hsi-equipped type="bool">1</hsi-equipped> <!-- Does the aircraft have an HSI or DG? -->
 			<is-turboprop type="bool">0</is-turboprop> <!-- Does the aircraft have turboprop engines? -->
-			<fd-equipped type="bool">0</fd-equipped> <!-- Does the aircraft have a flight director installed? -->
+			<use-controls-flight type="bool">0</use-controls-flight> <!-- Use generic /controls/flight for flight controls instead of custom properties -->
 		</settings>
 	</it-stec55x>
 	
@@ -889,6 +898,9 @@
 			KCS55.new();]]>
 			</script>
 		</libraries>
+		<stec55x>
+			<file>Aircraft/PA28-Warrior/Nasal/stec-55x.nas</file>
+		</stec55x>
 		<acconfig>
 			<file>Aircraft/PA28-Warrior/AircraftConfig/acconfig.nas</file>
 		</acconfig>
@@ -896,9 +908,6 @@
 			<file>Aircraft/PA28-Warrior/Nasal/electrical.nas</file>
 			<file>Aircraft/PA28-Warrior/Nasal/init.nas</file>
 		</systems>
-		<stec55x>
-			<file>Aircraft/PA28-Warrior/Nasal/stec-55x.nas</file>
-		</stec55x>
 		<HobbsMeter>
 			<file>Aircraft/PA28-Warrior/Models/Instruments/Hobbs/hobbs.nas</file>
 			<script>

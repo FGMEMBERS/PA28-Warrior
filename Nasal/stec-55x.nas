@@ -72,6 +72,7 @@ var staticPress = props.globals.getNode("/systems/static[0]/pressure-inhg");
 var HSIequipped = props.globals.getNode("/it-stec55x/settings/hsi-equipped"); # Does the aircraft have an HSI or DG?
 var isTurboprop = props.globals.getNode("/it-stec55x/settings/is-turboprop"); # Does the aircraft have turboprop engines?
 var FDequipped = props.globals.getNode("/it-stec55x/settings/fd-equipped"); # Does the aircraft have a flight director installed?
+var useControlsFlight = props.globals.getNode("/it-stec55x/settings/use-controls-flight"); # Use generic /controls/flight for flight controls instead of custom properties
 
 setlistener("/sim/signals/fdm-initialized", func {
 	var cdiDefl = 0;
@@ -165,13 +166,16 @@ var ITAF = {
 			if (powerUpTest.getValue() == 1 and powerUpTime.getValue() + 10 < elapsedSec.getValue()) {
 				powerUpTest.setValue(0);
 			}
-			if (roll.getValue() == -1) {
+			if (roll.getValue() == -1 and serviceable.getBoolValue() == 1) {
 				RDY_annun.setBoolValue(1);
 			} else {
 				RDY_annun.setBoolValue(0);
 			}
 			if (serviceable.getBoolValue() != 1) {
 				FAIL_annun.setBoolValue(1);
+				if (roll.getValue() != -1 or pitch.getValue() != -1) {
+					ITAF.killAP(); # Called with ITAF.killAP not me.killAP because this function is called from the timer outside this class
+				}
 			} else if (powerUpTest.getValue() == 1 or ((roll.getValue() == 1 or roll.getValue() == 3 or CNAV) and OBSActive.getBoolValue() != 1)) {
 				FAIL_annun.setBoolValue(1);
 			} else if (powerUpTest.getValue() == 1 or ((roll.getValue() == 2 or roll.getValue() == 4) and GPSActive.getBoolValue() != 1)) {
@@ -236,16 +240,16 @@ var ITAF = {
 		
 		# Electric Pitch Trim
 		if (systemAlive.getBoolValue() == 1) {
-			if (powerUpTest.getValue() == 1 or (pitch.getValue() > -1 and getprop("/controls/flight/elevator") < -0.05 and masterSW.getValue() == 2)) {
+			if (powerUpTest.getValue() == 1 or (pitch.getValue() > -1 and getprop("/it-stec55x/internal/elevator") < -0.05 and masterSW.getValue() == 2)) {
 				UP_annun.setBoolValue(1);
-			} else if (pitch.getValue() > -1 and UP_annun.getBoolValue() == 1 and getprop("/controls/flight/elevator") < -0.015 and masterSW.getValue() == 2) {
+			} else if (pitch.getValue() > -1 and UP_annun.getBoolValue() == 1 and getprop("/it-stec55x/internal/elevator") < -0.015 and masterSW.getValue() == 2) {
 				UP_annun.setBoolValue(1);
 			} else {
 				UP_annun.setBoolValue(0);
 			}
-			if (powerUpTest.getValue() == 1 or (pitch.getValue() > -1 and getprop("/controls/flight/elevator") > 0.05 and masterSW.getValue() == 2)) {
+			if (powerUpTest.getValue() == 1 or (pitch.getValue() > -1 and getprop("/it-stec55x/internal/elevator") > 0.05 and masterSW.getValue() == 2)) {
 				DN_annun.setBoolValue(1);
-			} else if (pitch.getValue() > -1 and DN_annun.getBoolValue() == 1 and getprop("/controls/flight/elevator") > 0.015 and masterSW.getValue() == 2) {
+			} else if (pitch.getValue() > -1 and DN_annun.getBoolValue() == 1 and getprop("/it-stec55x/internal/elevator") > 0.015 and masterSW.getValue() == 2) {
 				DN_annun.setBoolValue(1);
 			} else {
 				DN_annun.setBoolValue(0);
@@ -350,7 +354,9 @@ var ITAF = {
 		} else {
 			if (servoRollPower.getBoolValue() != 0) {
 				servoRollPower.setBoolValue(0);
-				setprop("/controls/flight/aileron", 0);
+				if (useControlsFlight.getBoolValue()) {
+					setprop("/controls/flight/aileron", 0);
+				}
 				discSound.setBoolValue(1);
 			}
 		}
@@ -364,7 +370,9 @@ var ITAF = {
 		} else {
 			if (servoPitchPower.getBoolValue() != 0) {
 				servoPitchPower.setBoolValue(0);
-				setprop("/controls/flight/elevator", 0);
+				if (useControlsFlight.getBoolValue()) {
+					setprop("/controls/flight/elevator", 0);
+				}
 			}
 		}
 		
@@ -389,7 +397,7 @@ var button = {
 		ITAF.killAP();
 	},
 	HDGB: func(d) {
-		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1) {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and serviceable.getBoolValue() == 1) {
 			if (d == 1) { # Button pushed
 				hdgButton.setBoolValue(1);
 				hdgButtonTime.setValue(elapsedSec.getValue());
@@ -408,19 +416,19 @@ var button = {
 		}
 	},
 	HDG: func() {
-		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1) {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and serviceable.getBoolValue() == 1) {
 			NAVManIntercept.setBoolValue(0);
 			roll.setValue(0);
 		}
 	},
 	HDGInt: func() { # Heading Custom Intercept Mode
-		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1) {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and serviceable.getBoolValue() == 1) {
 			NAVManIntercept.setBoolValue(1);
 			roll.setValue(0);
 		}
 	},
 	NAV: func() {
-		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1) {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and serviceable.getBoolValue() == 1) {
 			APRModeActive.setBoolValue(0);
 			if (hdgButton.getBoolValue() == 1) { # If the HDG button is being pushed, arm NAV for custom intercept angle
 				me.CNAV();
@@ -440,7 +448,7 @@ var button = {
 	APR: func() {
 		hdgButton.setBoolValue(0);
 		CNAV = roll.getValue() == 0 and NAVManIntercept.getBoolValue(); # Is NAV with custom intercept heading armed?
-		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and (CNAV or roll.getValue() == 1 or roll.getValue() == 3)) {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and (CNAV or roll.getValue() == 1 or roll.getValue() == 3) and serviceable.getBoolValue() == 1) {
 			APRModeActive.setBoolValue(1);
 		}
 	},
@@ -452,7 +460,7 @@ var button = {
 	},
 	ALT: func() {
 		hdgButton.setBoolValue(0);
-		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and roll.getValue() != -1) {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and roll.getValue() != -1 and serviceable.getBoolValue() == 1) {
 			altOffset.setValue(0);
 			alt.setValue(staticPress.getValue());
 			pitch.setValue(0);
@@ -460,12 +468,12 @@ var button = {
 	},
 	VS: func() {
 		hdgButton.setBoolValue(0);
-		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and roll.getValue() != -1) {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and roll.getValue() != -1 and serviceable.getBoolValue() == 1) {
 			pitch.setValue(1);
 		}
 	},
 	Knob: func(d) {
-		if (pitch.getValue() == 0 and powerUpTest.getValue() != 1) {
+		if (pitch.getValue() == 0 and powerUpTest.getValue() != 1 and serviceable.getBoolValue() == 1) {
 			if (d < 0) {
 				aoffset = altOffset.getValue() + ALTOffsetDelta.getValue();
 				ALTOffsetDeltaMax = ALTOffsetDelta.getValue() * 18; # Get the static pressure value and multiply by 18 to limit it at +360
@@ -498,13 +506,13 @@ var button = {
 	CWS: func(d) {
 		if (d == 1) { # Button pushed
 			cwsSW.setBoolValue(1);
-			if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and roll.getValue() != -1) {
+			if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and roll.getValue() != -1 and serviceable.getBoolValue() == 1) {
 				roll.setValue(-2);
 				pitch.setValue(-2);
 			}
 		} else if (d == 0) { # Button released
 			cwsSW.setBoolValue(0);
-			if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and roll.getValue() != -1) {
+			if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and roll.getValue() != -1 and serviceable.getBoolValue() == 1) {
 				manTurnRate.setValue(math.clamp(turnRate.getValue(), -0.9, 0.9));
 				roll.setValue(5);
 				me.VS();
