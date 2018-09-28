@@ -534,7 +534,7 @@
 		<reference>/it-stec55x/internal/predicted-vertical-speed</reference>
 		<output>/it-stec55x/internal/target-accel</output>
 		<config>
-			<Kp>-0.00014</Kp>
+			<Kp>-0.00015</Kp>
 			<Ki>-0.000011</Ki>
 			<min>-0.3</min>
 			<max>0.3</max>
@@ -608,7 +608,7 @@
 		<reference>/it-stec55x/internal/g-damped</reference>
 		<output>/it-stec55x/internal/elevator-pi</output>
 		<config>
-			<Kp>0.26</Kp>
+			<Kp>0.25</Kp>
 			<Ki>0.56</Ki>
 			<min>-0.25</min>
 			<max>0.25</max>
@@ -838,7 +838,7 @@
 						<property>/it-stec55x/internal/predicted-vertical-speed</property>
 						<property>/it-stec55x/internal/vs</property>
 					</difference>
-					<value>0.005</value>
+					<value>0.006</value>
 				</product>
 			</expression>
 		</input>

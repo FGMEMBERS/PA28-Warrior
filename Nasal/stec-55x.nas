@@ -240,16 +240,16 @@ var ITAF = {
 		
 		# Electric Pitch Trim
 		if (systemAlive.getBoolValue() == 1) {
-			if (powerUpTest.getValue() == 1 or (pitch.getValue() > -1 and getprop("/it-stec55x/internal/elevator") < -0.05 and masterSW.getValue() == 2)) {
+			if (powerUpTest.getValue() == 1 or (pitch.getValue() > -1 and getprop("/it-stec55x/internal/elevator") < -0.025 and masterSW.getValue() == 2)) {
 				UP_annun.setBoolValue(1);
-			} else if (pitch.getValue() > -1 and UP_annun.getBoolValue() == 1 and getprop("/it-stec55x/internal/elevator") < -0.015 and masterSW.getValue() == 2) {
+			} else if (pitch.getValue() > -1 and UP_annun.getBoolValue() == 1 and getprop("/it-stec55x/internal/elevator") < -0.01 and masterSW.getValue() == 2) {
 				UP_annun.setBoolValue(1);
 			} else {
 				UP_annun.setBoolValue(0);
 			}
-			if (powerUpTest.getValue() == 1 or (pitch.getValue() > -1 and getprop("/it-stec55x/internal/elevator") > 0.05 and masterSW.getValue() == 2)) {
+			if (powerUpTest.getValue() == 1 or (pitch.getValue() > -1 and getprop("/it-stec55x/internal/elevator") > 0.025 and masterSW.getValue() == 2)) {
 				DN_annun.setBoolValue(1);
-			} else if (pitch.getValue() > -1 and DN_annun.getBoolValue() == 1 and getprop("/it-stec55x/internal/elevator") > 0.015 and masterSW.getValue() == 2) {
+			} else if (pitch.getValue() > -1 and DN_annun.getBoolValue() == 1 and getprop("/it-stec55x/internal/elevator") > 0.01 and masterSW.getValue() == 2) {
 				DN_annun.setBoolValue(1);
 			} else {
 				DN_annun.setBoolValue(0);
