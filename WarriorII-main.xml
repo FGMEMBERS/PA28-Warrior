@@ -604,7 +604,7 @@
 				</mod-shift>
 			</key>
 			<key n="66">
-				<name>Shift-B</name>
+				<name>B</name>
 				<desc>Toggle parking brake on or off</desc>
 				<binding>
 					<command>nasal</command>
@@ -616,6 +616,26 @@
 						<script>controls.applyParkingBrake(0)</script>
 					</binding>
 				</mod-up>	
+			</key>
+			<key n="68">
+				<name>D</name>
+				<desc>Autopilot Disconnect</desc>
+				<binding>
+					<command>property-assign</command>
+					<property>/it-stec55x/input/disc</property>
+					<value>1</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>stec55x.button.DISC();</script>
+				</binding>
+				<mod-up>
+					<binding>
+						<command>property-assign</command>
+						<property>/it-stec55x/input/disc</property>
+						<value>0</value>
+					</binding>
+				</mod-up>
 			</key>
 			<key n="88">
 				<name>X</name>
@@ -652,48 +672,6 @@
 						<script>stec55x.button.CWS(0);</script>
 					</binding>
 				</mod-up>
-			</key>
-			<key n="100">
-				<name>d</name>
-				<desc>toggle door</desc>
-				<binding>
-					<command>property-cycle</command>
-					<property>/sim/model/door-positions/rightDoor/position-norm</property>
-					<value>0</value>
-					<value>1</value>
-				</binding>
-				<binding>
-					<condition>
-						<property>/sim/model/door-positions/rightDoor/position-norm</property>
-					</condition>
-					<command>show-message</command>
-					<id>openclose</id>
-					<label>Door is Open </label>
-					<property>/sim/model/door-positions/rightDoor/position-norm</property>
-					<value>1</value>
-					<delay>1.75</delay>
-				</binding>
-				<binding>
-					<condition>
-						<not><property>/sim/model/door-positions/rightDoor/position-norm</property></not>
-					</condition>
-					<command>show-message</command>
-					<id>openclose</id>
-					<label>Door is Closed </label>
-					<property>/sim/model/door-positions/rightDoor/position-norm</property>
-					<value>0</value>
-					<delay>1.75</delay>
-				</binding>
-			</key>
-			<key n="102">
-				<name>f</name>
-				<desc>full throttle</desc>
-				<binding>
-					<command>property-cycle</command>
-					<property>/controls/engines/engine/throttle</property>
-					<value>1</value>
-					<value>0</value>
-				</binding>
 			</key>
 			<key n="106">
 				<name>j</name>
