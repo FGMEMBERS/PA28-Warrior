@@ -138,7 +138,7 @@ var colddark = func {
 	setprop("/systems/acconfig/autoconfig-running", 1);
 	# Initial shutdown, and reinitialization.
 	setprop("/controls/flight/flaps", 0.0);
-	setprop("/controls/flight/elevator-trim", 0.1);
+	setprop("/controls/flight/elevator-trim", 0.11);
 	setprop("/controls/gear/brake-parking", 0);
 	libraries.systemsReset();
 	failReset();
@@ -168,7 +168,7 @@ var beforestart = func {
 	setprop("/systems/acconfig/autoconfig-running", 1);
 	# First, we set everything to cold and dark.
 	setprop("/controls/flight/flaps", 0.0);
-	setprop("/controls/flight/elevator-trim", 0.1);
+	setprop("/controls/flight/elevator-trim", 0.11);
 	setprop("/controls/gear/brake-parking", 0);
 	libraries.systemsReset();
 	failReset();
@@ -193,7 +193,7 @@ var taxi = func {
 	setprop("/systems/acconfig/autoconfig-running", 1);
 	# First, we set everything to cold and dark.
 	setprop("/controls/flight/flaps", 0.0);
-	setprop("/controls/flight/elevator-trim", 0.1);
+	setprop("/controls/flight/elevator-trim", 0.11);
 	setprop("/controls/gear/brake-parking", 0);
 	libraries.systemsReset();
 	failReset();

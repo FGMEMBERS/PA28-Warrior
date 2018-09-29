@@ -564,7 +564,7 @@ refs 3
 kids 0
 OBJECT poly
 name "Aircraft"
-loc 0 0 5.99958e-006
+loc -0.00403516 -0.000245642 5.99958e-006
 data 10
 Circle.011
 texture "AI1.png"
@@ -4208,7 +4208,7 @@ refs 3
 kids 0
 OBJECT group
 name "FDAircraft"
-loc -0.00944625 -0.00185417 -2.30223e-006
+loc -0.0134814 -0.00185417 -2.30223e-006
 kids 5
 OBJECT poly
 name "Horizon"
@@ -4267,7 +4267,7 @@ refs 3
 kids 0
 OBJECT poly
 name "FD_bar"
-loc 0.000411287 -5.82093e-005 1.20476e-005
+loc 0.000411287 -5.82095e-005 1.20476e-005
 texture "yellow.png"
 crease 45.000000
 numvert 3
@@ -4284,7 +4284,7 @@ refs 3
 kids 0
 OBJECT poly
 name "FD_bar"
-loc 0.000411287 -3.47306e-005 -7.45058e-006
+loc 0.000411287 -3.47309e-005 -7.45058e-006
 texture "yellow.png"
 crease 45.000000
 numvert 3
