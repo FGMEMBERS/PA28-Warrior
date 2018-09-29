@@ -1,11 +1,18 @@
 # S-TEC Fifty Five X Autopilot System
 # Copyright (c) 2018 Joshua Davidson (it0uchpods)
 
-# Initialize all used property nodes
+var cdiDefl = 0;
+var aoffset = 0;
+var vspeed = 0;
+var NAV = 0;
+var CNAV = 0;
+var ALTOffsetDeltaMax = 0;
 var NAVGainStd = 1.0;
 var NAVGainCap = 0.9;
 var NAVGainCapSoft = 0.8;
 var NAVGainSoft = 0.6;
+
+# Initialize all used property nodes
 var elapsedSec = props.globals.getNode("/sim/time/elapsed-sec");
 var powerSrc = props.globals.initNode("/systems/electrical/outputs/autopilot", 0, "DOUBLE"); # Autopilot power source
 var serviceable = props.globals.initNode("/it-stec55x/serviceable", 1, "BOOL");
@@ -75,12 +82,6 @@ var FDequipped = props.globals.getNode("/it-stec55x/settings/fd-equipped"); # Do
 var useControlsFlight = props.globals.getNode("/it-stec55x/settings/use-controls-flight"); # Use generic /controls/flight for flight controls instead of custom properties
 
 setlistener("/sim/signals/fdm-initialized", func {
-	var cdiDefl = 0;
-	var aoffset = 0;
-	var vspeed = 0;
-	var NAV = 0;
-	var CNAV = 0;
-	var ALTOffsetDeltaMax = 0;
 	ITAF.init();
 });
 

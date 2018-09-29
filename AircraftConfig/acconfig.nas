@@ -23,10 +23,17 @@ var spinning = maketimer(0.05, func {
 var failReset = func {
 	setprop("/systems/failures/battery", 0);
 	setprop("/systems/failures/alternator", 0);
+	setprop("/systems/failures/elec-1", 0);
+	setprop("/systems/failures/elec-2", 0);
+	setprop("/systems/failures/avionics-1", 0);
+	setprop("/systems/failures/avionics-2", 0);
 	setprop("/systems/failures/eng-suck", 0);
 	setprop("/systems/failures/fuel-pump", 0);
+	setprop("/systems/failures/starter", 0);
 	setprop("/systems/failures/l-magneto", 0);
 	setprop("/systems/failures/r-magneto", 0);
+	setprop("/systems/failures/l-brake", 0);
+	setprop("/systems/failures/r-brake", 0);
 	setprop("/systems/failures/stec-55x", 0);
 };
 

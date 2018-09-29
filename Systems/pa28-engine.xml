@@ -54,10 +54,12 @@
 		<switch name="fcs/start-switch">
 			<default value="0"/>
 			<test logic="AND" value="1">
+				/systems/failures/starter ne 1
 				fcs/magneto-l eq 1
 				/controls/engines/engine[0]/magnetos-switch eq 4
 			</test>
 			<test logic="AND" value="1">
+				/systems/failures/starter ne 1
 				fcs/magneto-r eq 1
 				/controls/engines/engine[0]/magnetos-switch eq 4
 			</test>

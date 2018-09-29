@@ -68,6 +68,46 @@
 		<live>true</live>
 	</checkbox>
 	
+	<checkbox>
+		<label>ELEC BUS 1</label>
+		<halign>left</halign>
+		<property>/systems/failures/elec-1</property>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<live>true</live>
+	</checkbox>
+	
+	<checkbox>
+		<label>ELEC BUS 2</label>
+		<halign>left</halign>
+		<property>/systems/failures/elec-2</property>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<live>true</live>
+	</checkbox>
+	
+	<checkbox>
+		<label>AVIONICS BUS 1</label>
+		<halign>left</halign>
+		<property>/systems/failures/avionics-1</property>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<live>true</live>
+	</checkbox>
+	
+	<checkbox>
+		<label>AVIONICS BUS 2</label>
+		<halign>left</halign>
+		<property>/systems/failures/avionics-2</property>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<live>true</live>
+	</checkbox>
+	
 	<group>
 		<layout>hbox</layout>
 
@@ -117,6 +157,16 @@
 	</group>
 	
 	<checkbox>
+		<label>STARTER</label>
+		<halign>left</halign>
+		<property>/systems/failures/starter</property>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<live>true</live>
+	</checkbox>
+	
+	<checkbox>
 		<label>L MAGNETO</label>
 		<halign>left</halign>
 		<property>/systems/failures/l-magneto</property>
@@ -149,6 +199,26 @@
 			<stretch type="bool">true</stretch>
 		</hrule>
 	</group>
+	
+	<checkbox>
+		<label>L BRAKE</label>
+		<halign>left</halign>
+		<property>/systems/failures/l-brake</property>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<live>true</live>
+	</checkbox>
+	
+	<checkbox>
+		<label>R BRAKE</label>
+		<halign>left</halign>
+		<property>/systems/failures/r-brake</property>
+		<binding>
+			<command>dialog-apply</command>
+		</binding>
+		<live>true</live>
+	</checkbox>
 	
 	<checkbox>
 		<label>S-TEC 55X</label>

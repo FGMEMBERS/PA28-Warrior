@@ -856,8 +856,11 @@
 		<failures n="0">
 			<eng-suck type="bool">0</eng-suck>
 			<fuel-pump type="bool">0</fuel-pump>
+			<l-brake type="bool">0</l-brake>
 			<l-magneto type="bool">0</l-magneto>
+			<r-brake type="bool">0</r-brake>
 			<r-magneto type="bool">0</r-magneto>
+			<starter type="bool">0</starter>
 		</failures>
 		<fuel n="0">
 			<selected-tank type="int">1</selected-tank>

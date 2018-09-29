@@ -1,30 +1,28 @@
 # PA28-161 Electrical
 # Copyright (c) 2018 Joshua Davidson (it0uchpods)
 
+var batt_sw = 0;
+var altn_sw = 0;
+var avionics_master = 0;
+var rpm = 0;
+var src = "XX";
+var batt_volt = 12;
+var batt_amp = 35;
+var altn_volt = 0;
+var altn_amp = 0;
+var bus_volt = 0;
+var elec1 = 0;
+var elec2 = 0;
+var avionics1 = 0;
+var avionics2 = 0;
+var nav_factor = 0;
+var panel_factor = 0;
+var calc = 0;
 setprop("/systems/electrical/bus/elec1", 0);
 setprop("/systems/electrical/bus/elec2", 0);
 setprop("/systems/electrical/outputs/autopilot", 0);
 setprop("/systems/electrical/outputs/fuel-pump", 0);
 setprop("/systems/electrical/outputs/stby", 0);
-
-setlistener("/sim/signals/fdm-initialized", func {
-	var batt_sw = getprop("/controls/electrical/battery");
-	var altn_sw = getprop("/controls/electrical/alternator");
-	var avionics_master = getprop("/controls/switches/avionics-master");
-	var rpm = getprop("/engines/engine[0]/rpm");
-	var src = "XX";
-	var batt_volt = 12;
-	var batt_amp = 35;
-	var altn_volt = 0;
-	var altn_amp = 0;
-	var elec1 = 0;
-	var elec2 = 0;
-	var avionics1 = 0;
-	var avionics2 = 0;
-	var nav_factor = 0;
-	var panel_factor = 0;
-	var calc = 0;
-});
 
 var ELEC = {
 	init: func() {
@@ -67,26 +65,41 @@ var ELEC = {
 		if (altn_volt >= 8 and altn_sw) {
 			src = "ALTN";
 			if (elec1 != altn_volt) {
-				setprop("/systems/electrical/bus/elec1", altn_volt);
-				setprop("/systems/electrical/bus/elec2", altn_volt);
+				bus_volt = altn_volt;
 			}
 		} else if (batt_volt >= 8 and batt_sw and getprop("/systems/failures/battery") == 0) {
 			src = "BATT";
 			if (elec1 != batt_volt) {
-				setprop("/systems/electrical/bus/elec1", batt_volt);
-				setprop("/systems/electrical/bus/elec2", batt_volt);
+				bus_volt = batt_volt;
 			}
 		} else {
 			src = "XX";
-			if (elec1 != 0) {
+			bus_volt = 0;
+		}
+		
+		if (getprop("/systems/failures/elec-1") == 0) {
+			if (getprop("/systems/electrical/bus/elec1") != bus_volt) {
+				setprop("/systems/electrical/bus/elec1", bus_volt);
+			}
+		} else {
+			if (getprop("/systems/electrical/bus/elec1") != 0) {
 				setprop("/systems/electrical/bus/elec1", 0);
+			}
+		}
+		
+		if (getprop("/systems/failures/elec-2") == 0) {
+			if (getprop("/systems/electrical/bus/elec2") != bus_volt) {
+				setprop("/systems/electrical/bus/elec2", bus_volt);
+			}
+		} else {
+			if (getprop("/systems/electrical/bus/elec2") != 0) {
 				setprop("/systems/electrical/bus/elec2", 0);
 			}
 		}
 		
-		avionics_master = getprop("/controls/switches/avionics-master");
 		elec1 = getprop("/systems/electrical/bus/elec1");
 		elec2 = getprop("/systems/electrical/bus/elec2");
+		avionics_master = getprop("/controls/switches/avionics-master");
 		
 		setprop("/systems/electrical/outputs/cabin-lights", elec1);
 		setprop("/systems/electrical/outputs/map-lights", elec1);
@@ -139,11 +152,15 @@ var ELEC = {
 			setprop("/systems/electrical/outputs/pitot-heat", 0);
 		}
 		
-		if (avionics_master) {
+		if (avionics_master and getprop("/systems/failures/avionics-1") == 0) {
 			setprop("/systems/electrical/bus/avionics1", elec1);
-			setprop("/systems/electrical/bus/avionics2", elec2);
 		} else {
 			setprop("/systems/electrical/bus/avionics1", 0);
+		}
+		
+		if (avionics_master and getprop("/systems/failures/avionics-2") == 0) {
+			setprop("/systems/electrical/bus/avionics2", elec2);
+		} else {
 			setprop("/systems/electrical/bus/avionics2", 0);
 		}
 		
