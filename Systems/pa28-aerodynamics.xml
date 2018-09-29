@@ -384,7 +384,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/aileron-deg</property></toradians>
-				<value>0.36</value>
+				<value>0.39</value>
 				<table>
 					<independentVar lookup="row">aero/alpha-rad</independentVar>
 					<independentVar lookup="column">aero/stall-hyst-norm</independentVar>

@@ -249,7 +249,7 @@
 		<input>/it-stec55x/internal/predicted-turn-rate</input>
 		<reference>/it-stec55x/internal/turn-rate-cmd</reference>
 		<output>/it-stec55x/internal/aileron-d</output>
-		<filter-time>-0.01</filter-time>
+		<filter-time>-0.014</filter-time>
 		<min>-0.25</min>
 		<max>0.25</max>
 	</filter>

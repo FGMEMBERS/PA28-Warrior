@@ -62,6 +62,8 @@
 			</preview>	
 		</previews>
 		
+		<checklists include="PA28-Checklists.xml"/>
+		
 		<systems>
 			<electrical>
 				<path></path>
