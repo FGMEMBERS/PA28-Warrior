@@ -1101,6 +1101,57 @@
 	</animation>
 	
 	<animation>
+		<type>translate</type>
+		<object-name>NoseGearGroup</object-name>
+		<object-name>NoseGearDnLever</object-name>
+		<object-name>WheelN</object-name>
+		<property>sim/multiplay/generic/float[0]</property>
+		<factor>-0.26</factor>
+		<axis>
+			<x1-m>1.0471</x1-m>
+			<y1-m>0</y1-m>
+			<z1-m>-0.65873</z1-m>
+			<x2-m>1.01726</x2-m>
+			<y2-m>0</y2-m>
+			<z2-m>-0.77844</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>NoseGearUpLever</object-name>
+		<property>sim/multiplay/generic/float[0]</property>
+		<factor>-70</factor>
+		<center>
+			<x-m>1.15826</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.55298</z-m>
+		</center>
+		<axis>
+			<x>0.0</x>
+			<y>1.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>NoseGearDnLever</object-name>
+		<property>sim/multiplay/generic/float[0]</property>
+		<factor>70</factor>
+		<center>
+			<x-m>1.07164</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.81084</z-m>
+		</center>
+		<axis>
+			<x>0.0</x>
+			<y>1.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
+	
+	<animation>
 		<type>spin</type>
 		<object-name>WheelN</object-name>
 		<property>gear/gear[0]/rollspeed-ms</property>
@@ -1118,6 +1169,57 @@
 	</animation>
 	
 	<animation>
+		<type>translate</type>
+		<object-name>LeftGearGroup</object-name>
+		<object-name>LeftGearDnLever</object-name>
+		<object-name>WheelL</object-name>
+		<property>sim/multiplay/generic/float[1]</property>
+		<factor>-0.26</factor>
+		<axis>
+			<x1-m>2.89843</x1-m>
+			<y1-m>0</y1-m>
+			<z1-m>-0.70493</z1-m>
+			<x2-m>2.89843</x2-m>
+			<y2-m>0</y2-m>
+			<z2-m>-0.99206</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>LeftGearUpLever</object-name>
+		<property>sim/multiplay/generic/float[1]</property>
+		<factor>-70</factor>
+		<center>
+			<x-m>2.9705</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.63412</z-m>
+		</center>
+		<axis>
+			<x>0.0</x>
+			<y>1.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>LeftGearDnLever</object-name>
+		<property>sim/multiplay/generic/float[1]</property>
+		<factor>70</factor>
+		<center>
+			<x-m>2.95787</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.97028</z-m>
+		</center>
+		<axis>
+			<x>0.0</x>
+			<y>1.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
+	
+	<animation>
 		<type>spin</type>
 		<object-name>WheelL</object-name>
 		<property>gear/gear[1]/rollspeed-ms</property>
@@ -1132,6 +1234,57 @@
 			<y-m>0</y-m>
 			<z-m>-1.0068</z-m>
 		</center>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>RightGearGroup</object-name>
+		<object-name>RightGearDnLever</object-name>
+		<object-name>WheelR</object-name>
+		<property>sim/multiplay/generic/float[2]</property>
+		<factor>-0.26</factor>
+		<axis>
+			<x1-m>2.89843</x1-m>
+			<y1-m>0</y1-m>
+			<z1-m>-0.70493</z1-m>
+			<x2-m>2.89843</x2-m>
+			<y2-m>0</y2-m>
+			<z2-m>-0.99206</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>RightGearUpLever</object-name>
+		<property>sim/multiplay/generic/float[2]</property>
+		<factor>-70</factor>
+		<center>
+			<x-m>2.9705</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.63412</z-m>
+		</center>
+		<axis>
+			<x>0.0</x>
+			<y>1.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>RightGearDnLever</object-name>
+		<property>sim/multiplay/generic/float[2]</property>
+		<factor>70</factor>
+		<center>
+			<x-m>2.95787</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.97028</z-m>
+		</center>
+		<axis>
+			<x>0.0</x>
+			<y>1.0</y>
+			<z>0.0</z>
+		</axis>
 	</animation>
 	
 	<animation>

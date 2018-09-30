@@ -274,16 +274,12 @@
 			<max-lb>200</max-lb>
 		</weight>
 		
-		<sound>
-			<volume>0.8</volume>
-		</sound>
-		
 		<multiplay>
 			<generic>
 				<bool n="0" alias="/options/wheel-fairing"/>
-				<float n="0" alias="/gear/gear[0]/compression-m"/>
-				<float n="1" alias="/gear/gear[1]/compression-m"/>
-				<float n="2" alias="/gear/gear[2]/compression-m"/>
+				<float n="0" alias="/gear/gear[0]/compression-norm"/>
+				<float n="1" alias="/gear/gear[1]/compression-norm"/>
+				<float n="2" alias="/gear/gear[2]/compression-norm"/>
 				<float n="3" alias="/fdm/jsbsim/fcs/steer-deg"/>
 				<float n="4" alias="/fdm/jsbsim/extra/door-main-norm"/>
 				<float n="5" alias="/fdm/jsbsim/fcs/aileron-deg"/>
