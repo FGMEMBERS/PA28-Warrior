@@ -66,6 +66,16 @@
 	<button>
 		<pref-width>20</pref-width>
 		<pref-height>20</pref-height>
+		<legend>=</legend>
+		<binding>
+			<command>dialog-show</command>
+			<dialog-name>checklist</dialog-name>
+		</binding>
+	</button>
+	
+	<button>
+		<pref-width>20</pref-width>
+		<pref-height>20</pref-height>
 		<legend>&lt;&gt;</legend>
 		<binding>
 			<command>property-cycle</command>

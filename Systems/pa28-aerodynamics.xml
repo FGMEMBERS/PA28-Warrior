@@ -577,7 +577,7 @@
 					<independentVar lookup="row">extra/door-main-norm</independentVar>
 					<tableData> <!-- To cancel out the slight offset from 0 due to the lag_filter -->
 						0.00  0.00
-						0.01  0.00
+						0.04  0.00
 						1.00  0.05
 					</tableData>
 				</table>
