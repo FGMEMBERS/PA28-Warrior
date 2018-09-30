@@ -15,7 +15,7 @@
 		</switch>
 		
 		<switch name="fuel/pump-dec-value">
-			<default value="0.001"/>
+			<default value="0.002"/>
 			<test logic="AND" value="0.5">
 				fuel/can-suck eq 1
 				/systems/fuel/suck-fuel ne 1
@@ -23,7 +23,7 @@
 		</switch>
 		
 		<switch name="fuel/suck-dec-value">
-			<default value="0.001"/>
+			<default value="0.002"/>
 			<test value="0.5">
 				fuel/can-suck eq 1
 			</test>
