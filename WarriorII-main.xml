@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 
-<!-- Copyright (c) 2017 Joshua Davidson (it0uchpods) -->
+<!-- Copyright (c) 2018 Joshua Davidson (it0uchpods) -->
 
 <PropertyList>
 	
-	<sim include="Systems/help.xml">
+	<sim>
 		
 		<author>Gerhard Kick, Joshua Davidson (it0uchpods), Gabriel Hernandez (YV3399)</author>
 		
@@ -450,9 +450,6 @@
 				<pump-psi-feedback type="double">0</pump-psi-feedback>
 				<suck-psi-feedback type="double">0</suck-psi-feedback>
 			</fuel>
-			<helpers n="0">
-				<a-c-pid>0</a-c-pid>
-			</helpers>
 			<libraries>
 				<av-fan-rpm-feedback type="double">0</av-fan-rpm-feedback>
 			</libraries>

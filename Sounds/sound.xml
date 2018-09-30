@@ -99,6 +99,25 @@
 			<max-dist>200.0</max-dist>
 		</engine>
 		
+		<roll>
+			<name>roll on runway</name>
+			<mode>looped</mode>
+			<path>Sounds/roll.wav</path>
+			<condition>
+				<property>/sim/current-view/internal</property>
+				<or>
+					<property>/gear/gear[0]/wow</property>
+					<property>/gear/gear[1]/wow</property>
+					<property>/gear/gear[2]/wow</property>
+				</or>
+			</condition>
+			<volume>
+				<property>/velocities/groundspeed-kt</property>
+				<type>log</type>
+				<factor>0.1</factor>
+			</volume>
+		</roll>
+		
 		<!-- Wind -->
 		
 		<wind>
