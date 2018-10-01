@@ -50,7 +50,6 @@ var NAVManIntercept = props.globals.initNode("/it-stec55x/internal/nav-man-inter
 var minTurnRate = props.globals.initNode("/it-stec55x/internal/min-turn-rate", -0.9, "DOUBLE");
 var maxTurnRate = props.globals.initNode("/it-stec55x/internal/max-turn-rate", 0.9, "DOUBLE");
 var manTurnRate = props.globals.initNode("/it-stec55x/internal/man-turn-rate", 0, "DOUBLE");
-var NAVPreGain = props.globals.initNode("/it-stec55x/internal/nav-pre-gain", NAVGainStd, "DOUBLE");
 var NAVGain = props.globals.initNode("/it-stec55x/internal/nav-gain", NAVGainStd, "DOUBLE");
 var NAVStep1Time = props.globals.initNode("/it-stec55x/internal/nav-step1-time", 0, "DOUBLE");
 var NAVStep2Time = props.globals.initNode("/it-stec55x/internal/nav-step2-time", 0, "DOUBLE");
@@ -70,6 +69,7 @@ var HDGIndicator = props.globals.getNode("/instrumentation/heading-indicator/ind
 var OBSNAVNeedle = props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection");
 var OBSCourse = props.globals.getNode("/instrumentation/nav[0]/radials/selected-deg");
 var OBSActive = props.globals.getNode("/instrumentation/nav[0]/in-range");
+var OBSIsLOC = props.globals.getNode("/instrumentation/nav[0]/nav-loc");
 var GPSActive = props.globals.getNode("/autopilot/route-manager/active");
 var turnRate = props.globals.getNode("/instrumentation/turn-indicator/indicated-turn-rate");
 var turnRateSpin = props.globals.getNode("/instrumentation/turn-indicator/spin");
@@ -269,25 +269,25 @@ var ITAF = {
 		# NAV mode gain, reduces as the system captures the course
 		if (roll.getValue() == 1) {
 			cdiDefl = OBSNAVNeedle.getValue();
-			if (abs(cdiDefl) <= 1.5 and NAVPreGain.getValue() == NAVGainStd) { # CAP mode
-				NAVPreGain.setValue(NAVGainCap);
+			if (abs(cdiDefl) <= 1.5 and NAVGain.getValue() == NAVGainStd) { # CAP mode
+				NAVGain.setValue(NAVGainCap);
 				NAVStep1Time.setValue(elapsedSec.getValue());
-			} else if (NAVStep1Time.getValue() + 15 <= elapsedSec.getValue() and NAVPreGain.getValue() == NAVGainCap) { # CAP SOFT mode
-				NAVPreGain.setValue(NAVGainCapSoft);
+			} else if (NAVStep1Time.getValue() + 15 <= elapsedSec.getValue() and NAVGain.getValue() == NAVGainCap) { # CAP SOFT mode
+				NAVGain.setValue(NAVGainCapSoft);
 				NAVStep2Time.setValue(elapsedSec.getValue());
-			} else if (NAVStep2Time.getValue() + 75 <= elapsedSec.getValue() and NAVPreGain.getValue() == NAVGainCapSoft) { # SOFT mode
-				NAVPreGain.setValue(NAVGainSoft);
+			} else if (NAVStep2Time.getValue() + 75 <= elapsedSec.getValue() and NAVGain.getValue() == NAVGainCapSoft and APRModeActive.getBoolValue() == 0) { # SOFT mode
+				NAVGain.setValue(NAVGainSoft);
 				NAVStep3Time.setValue(elapsedSec.getValue());
 			}
 			
 			# Return to CAP SOFT if needle deflection is >= 50% for 60 seconds
-			if (cdiDefl >= 5 and NAVPreGain.getValue() == NAVGainSoft) {
+			if (cdiDefl >= 5 and NAVGain.getValue() == NAVGainSoft) {
 				if (NAVOver50Counting.getBoolValue() != 1) { # Prevent it from constantly updating the time
 					NAVOver50Counting.setBoolValue(1);
 					NAVOver50Time.setValue(elapsedSec.getValue());
 				}
 				if (NAVOver50Time.getValue() + 60 < elapsedSec.getValue()) { # CAP SOFT mode
-					NAVPreGain.setValue(NAVGainCapSoft);
+					NAVGain.setValue(NAVGainCapSoft);
 					NAVStep2Time.setValue(elapsedSec.getValue());
 					if (NAVOver50Counting.getBoolValue() != 0) {
 						NAVOver50Counting.setBoolValue(0);
@@ -295,28 +295,21 @@ var ITAF = {
 				}
 			}
 		} else {
-			if (NAVPreGain.getValue() != NAVGainStd) {
-				NAVPreGain.setValue(NAVGainStd);
+			if (NAVGain.getValue() != NAVGainStd) {
+				NAVGain.setValue(NAVGainStd);
 			}
 			if (NAVOver50Counting.getBoolValue() != 0) {
 				NAVOver50Counting.setBoolValue(0);
 			}
 		}
 		
-		# Actual NAV mode gain, when APR mode is added, the sensitivity of the entire system is increased
-		if (APRModeActive.getBoolValue()) {
-			NAVGain.setValue(NAVPreGain.getValue() + 0.5);
-		} else {
-			NAVGain.setValue(NAVPreGain.getValue());
-		}
-		
 		# Limit the turn rate depending on the mode
 		if (isTurboprop.getBoolValue() == 1) { # Turboprop aircraft have lower turn rates
 			if (roll.getValue() == 1) { # Turn rate in NAV mode
-				if (NAVPreGain.getValue() == NAVGainCapSoft) {
+				if (NAVGain.getValue() == NAVGainCapSoft) {
 					minTurnRate.setValue(-0.375);
 					maxTurnRate.setValue(0.375);
-				} else if (NAVPreGain.getValue() == NAVGainSoft) {
+				} else if (NAVGain.getValue() == NAVGainSoft) {
 					minTurnRate.setValue(-0.125);
 					maxTurnRate.setValue(0.125);
 				} else {
@@ -329,10 +322,10 @@ var ITAF = {
 			}
 		} else {
 			if (roll.getValue() == 1) { # Turn rate in NAV mode
-				if (NAVPreGain.getValue() == NAVGainCapSoft) {
+				if (NAVGain.getValue() == NAVGainCapSoft) {
 					minTurnRate.setValue(-0.45);
 					maxTurnRate.setValue(0.45);
-				} else if (NAVPreGain.getValue() == NAVGainSoft) {
+				} else if (NAVGain.getValue() == NAVGainSoft) {
 					minTurnRate.setValue(-0.15);
 					maxTurnRate.setValue(0.15);
 				} else {
@@ -453,6 +446,11 @@ var button = {
 		CNAV = roll.getValue() == 0 and NAVManIntercept.getBoolValue(); # Is NAV with custom intercept heading armed?
 		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and (CNAV or roll.getValue() == 1 or roll.getValue() == 3) and serviceable.getBoolValue() == 1) {
 			APRModeActive.setBoolValue(1);
+			# If in SOFT mode, go back to CAP SOFT
+			if (APRModeActive.getBoolValue() and NAVGain.getValue() == NAVGainSoft) {
+				NAVGain.setValue(NAVGainCapSoft);
+				NAVStep2Time.setValue(elapsedSec.getValue());
+			}
 		}
 	},
 	CNAV: func() {
@@ -530,8 +528,11 @@ var NAVchk = func {
 			NAVt.stop();
 			NAVFlash_annun.setBoolValue(0);
 			roll.setValue(1);
+			if (OBSIsLOC.getBoolValue()) {
+				APRModeActive.setBoolValue(1);
+			}
 			if (abs(OBSNAVNeedle.getValue()) <= 1 and abs(HDGIndicator.getValue() - OBSCourse.getValue()) < 5) { # Immediately go to SOFT mode if within 10% of deflection and within 5 degrees of course.
-				NAVPreGain.setValue(NAVGainSoft);
+				NAVGain.setValue(NAVGainSoft);
 				NAVStep1Time.setValue(elapsedSec.getValue() - 90);
 				NAVStep2Time.setValue(elapsedSec.getValue() - 75);
 				NAVStep3Time.setValue(elapsedSec.getValue());
@@ -540,12 +541,15 @@ var NAVchk = func {
 			NAVl.start();
 		}
 	} else if (roll.getValue() == 0 and NAVManIntercept.getBoolValue() == 1) {
-		if (abs(OBSNAVNeedle.getValue()) < 8) { # Only engage NAV if OBS is within capture
+		if (abs(OBSNAVNeedle.getValue()) < 10) { # Only engage NAV if OBS is within capture
 			NAVt.stop();
 			NAVFlash_annun.setBoolValue(0);
 			roll.setValue(1);
+			if (OBSIsLOC.getBoolValue()) {
+				APRModeActive.setBoolValue(1);
+			}
 			if (abs(OBSNAVNeedle.getValue()) <= 1 and abs(HDGIndicator.getValue() - OBSCourse.getValue()) < 5) { # Immediately go to SOFT mode if within 10% of deflection and within 5 degrees of course.
-				NAVPreGain.setValue(NAVGainSoft);
+				NAVGain.setValue(NAVGainSoft);
 				NAVStep1Time.setValue(elapsedSec.getValue() - 90);
 				NAVStep2Time.setValue(elapsedSec.getValue() - 75);
 				NAVStep3Time.setValue(elapsedSec.getValue());
