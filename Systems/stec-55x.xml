@@ -10,7 +10,7 @@
 	<filter>
 		<name>TARGET INTERCAPT ANGLE</name>
 		<type>gain</type>
-		<gain>/it-stec55x/internal/nav-gain</gain>
+		<gain>5.2</gain>
 		<input>
 			<condition>
 				<equals>
@@ -19,12 +19,10 @@
 				</equals>
 			</condition>
 			<expression>
-				<table>
+				<product>
 					<property>/instrumentation/nav[0]/heading-needle-deflection</property>
-					<entry><ind>-10</ind><dep>-45</dep></entry>
-					<entry><ind>  0</ind><dep>  0</dep></entry>
-					<entry><ind> 10</ind><dep> 45</dep></entry>
-				</table>
+					<property>/it-stec55x/internal/nav-gain</property>
+				</product>
 			</expression>
 		</input>
 		<input>0</input>
@@ -476,6 +474,64 @@
 	</filter>
 	
 	<filter>
+		<name>V/S GS SYNC</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<enable>
+			<condition>
+				<not-equals>
+					<property>/it-stec55x/output/pitch</property>
+					<value>2</value>
+				</not-equals>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<product>
+					<property>/it-stec55x/internal/pressure-rate</property>
+					<value>-58000</value>
+				</product>
+			</expression>
+		</input>
+		<output>/it-stec55x/internal/gs-vs</output>
+		<min>-1600</min>
+		<max>0</max>
+	</filter>
+	
+	<predict-simple>
+		<name>GS NEEDLE PREDICTOR</name>
+		<debug>false</debug>
+		<input>/instrumentation/nav[0]/gs-needle-deflection</input>
+		<output>/it-stec55x/internal/predicted-gs-needle</output>
+		<seconds>1.0</seconds>
+		<filter-gain>0.1</filter-gain>
+	</predict-simple>
+	
+	<pid-controller>
+		<name>IT-CONTROLLER: GS CONTROL</name>
+		<debug>false</debug>
+		<enable>
+			<condition>
+				<equals>
+					<property>/it-stec55x/output/pitch</property>
+					<value>2</value>
+				</equals>
+			</condition>
+		</enable>
+		<input>/it-stec55x/internal/predicted-gs-needle</input>
+		<reference>0</reference>
+		<output>/it-stec55x/internal/gs-vs</output>
+		<config>
+			<Kp>-400</Kp>
+			<Ti>20.0</Ti>
+			<Td>0.001</Td>
+			<u_min>-1600</u_min>
+			<u_max>0</u_max>
+		</config>
+	</pid-controller>
+	
+	<filter>
 		<name>VERT SPEED SWITCH</name>
 		<debug>false</debug>
 		<type>gain</type>
@@ -488,6 +544,15 @@
 				</equals>
 			</condition>
 			<property>/it-stec55x/internal/alt-vs</property>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-stec55x/output/pitch</property>
+					<value>2</value>
+				</equals>
+			</condition>
+			<property>/it-stec55x/internal/gs-vs</property>
 		</input>
 		<input>/it-stec55x/input/vs</input>
 		<output>/it-stec55x/internal/vs</output>
