@@ -3,6 +3,9 @@
 
 rightDoor = aircraft.door.new("/sim/model/door-positions/rightDoor", 2, 0);
 
+var beacon = aircraft.light.new("/sim/model/lights/beacon", [0.1, 1], "/controls/lighting/beacon");
+var strobe = aircraft.light.new("/sim/model/lights/strobe", [0.1, 1], "/controls/lighting/strobe");
+
 setlistener("/sim/sounde/switch1", func {
 	if (!getprop("/sim/sounde/switch1")) {
 		return;
