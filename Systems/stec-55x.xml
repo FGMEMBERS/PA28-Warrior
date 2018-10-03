@@ -279,10 +279,13 @@
 				</and>
 			</condition>
 			<expression>
-				<sum>
-					<property>/it-stec55x/internal/aileron-pi</property>
-					<property>/it-stec55x/internal/aileron-d</property>
-				</sum>
+				<product>
+					<sum>
+						<property>/it-stec55x/internal/aileron-pi</property>
+						<property>/it-stec55x/internal/aileron-d</property>
+					</sum>
+					<property>/it-stec55x/settings/gain-roll</property>
+				</product>
 			</expression>
 		</input>
 		<input>0</input>
@@ -329,10 +332,13 @@
 		</enable>
 		<input>
 			<expression>
-				<sum>
-					<property>/it-stec55x/internal/aileron-pi</property>
-					<property>/it-stec55x/internal/aileron-d</property>
-				</sum>
+				<product>
+					<sum>
+						<property>/it-stec55x/internal/aileron-pi</property>
+						<property>/it-stec55x/internal/aileron-d</property>
+					</sum>
+					<property>/it-stec55x/settings/gain-roll</property>
+				</product>
 			</expression>
 		</input>
 		<output>/controls/flight/aileron</output>
@@ -706,7 +712,12 @@
 					</equals>
 				</and>
 			</condition>
-			<property>/it-stec55x/internal/elevator-pi</property>
+			<expression>
+				<product>
+					<property>/it-stec55x/internal/elevator-pi</property>
+					<property>/it-stec55x/settings/gain-pitch</property>
+				</product>
+			</expression>
 		</input>
 		<input>0</input>
 		<output>/it-stec55x/internal/elevator</output>
@@ -750,7 +761,14 @@
 				</and>
 			</condition>
 		</enable>
-		<input>/it-stec55x/internal/elevator-pi</input>
+		<input>
+			<expression>
+				<product>
+					<property>/it-stec55x/internal/elevator-pi</property>
+					<property>/it-stec55x/settings/gain-pitch</property>
+				</product>
+			</expression>
+		</input>
 		<output>/controls/flight/elevator</output>
 		<max-rate-of-change>0.5</max-rate-of-change>
 	</filter>
