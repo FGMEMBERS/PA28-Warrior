@@ -238,7 +238,7 @@
 		
 		<pure_gain name="fcs/steer-switch-deg">
 			<input>fcs/steer-switch</input>
-			<gain>70</gain>
+			<gain>50</gain>
 		</pure_gain>
 		
 		<actuator name="fcs/steer-deg">
