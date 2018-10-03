@@ -886,6 +886,9 @@
 			<file>Aircraft/PA28-Warrior/Nasal/electrical.nas</file>
 			<file>Aircraft/PA28-Warrior/Nasal/init.nas</file>
 		</systems>
+		<lights>
+			<file>Aircraft/PA28-Warrior/Nasal/light-manager.nas</file>
+		</lights>
 		<HobbsMeter>
 			<file>Aircraft/PA28-Warrior/Models/Instruments/Hobbs/hobbs.nas</file>
 			<script>

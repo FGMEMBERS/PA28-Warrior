@@ -133,6 +133,7 @@
 	<!-- Lights -->
 
 	<model>
+		<name>Red nav light</name>
 		<path>Aircraft/PA28-Warrior/Models/light/RedLight.xml</path>
 		<offsets>
 			<x-m>2.68980</x-m>
@@ -142,6 +143,7 @@
 	</model>
 
 	<model>
+		<name>Green nav light</name>
 		<path>Aircraft/PA28-Warrior/Models/light/GreenLight.xml</path>
 		<offsets>
 			<x-m>2.68980</x-m>
@@ -149,7 +151,58 @@
 			<z-m>0.11596</z-m>
 		</offsets>
 	</model>
+	
+	<model>
+		<name>Red nav light ALS</name>
+		<path>Aircraft/PA28-Warrior/Models/light/ALS/rednav.xml</path>
+		<offsets>
+			<x-m>2.68980</x-m>
+			<y-m>-5.18</y-m>
+			<z-m>0.11596</z-m>
+		</offsets>
+	</model>
 
+	<model>
+		<name>Green nav light ALS</name>
+		<path>Aircraft/PA28-Warrior/Models/light/ALS/greennav.xml</path>
+		<offsets>
+			<x-m>2.68980</x-m>
+			<y-m>5.18</y-m>
+			<z-m>0.11596</z-m>
+		</offsets>
+	</model>
+	
+	<model>
+		<name>Left Strobe light ALS</name>
+		<path>Aircraft/PA28-Warrior/Models/light/ALS/left-strobe.xml</path>
+		<offsets>
+			<x-m>2.72</x-m>
+			<y-m>-5.18</y-m>
+			<z-m>0.11596</z-m>
+		</offsets>
+	</model>
+
+	<model>
+		<name>Right Strobe light ALS</name>
+		<path>Aircraft/PA28-Warrior/Models/light/ALS/right-strobe.xml</path>
+		<offsets>
+			<x-m>2.72</x-m>
+			<y-m>5.18</y-m>
+			<z-m>0.11596</z-m>
+		</offsets>
+	</model>
+
+	<model>
+		<name>LandingLight-ALS</name>
+		<path>Aircraft/PA28-Warrior/Models/light/ALS/landinglight.xml</path>
+		<offsets>
+		<x-m>0.5</x-m>
+		<y-m>0.0</y-m>
+		<z-m>-0.225</z-m>
+		<pitch-deg>-15.00</pitch-deg>
+		</offsets>
+	</model>
+	
 	<model>
 		<name>LandingLight-Left</name>
 		<path>Aircraft/PA28-Warrior/Models/light/Landinglight.xml</path>
@@ -160,6 +213,30 @@
 		<pitch-deg>-15.00</pitch-deg>
 		</offsets>
 	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Green nav light</object-name>
+		<object-name>Red nav light</object-name>
+		<object-name>LandingLight-Left</object-name>
+		<condition>
+			<not>
+				<property>sim/rendering/shaders/skydome</property>
+			</not>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Green nav light ALS</object-name>
+		<object-name>Red nav light ALS</object-name>
+		<object-name>Left Strobe light ALS</object-name>
+		<object-name>Right Strobe light ALS</object-name>
+		<object-name>LandingLight-ALS</object-name>
+		<condition>
+			<property>sim/rendering/shaders/skydome</property>
+		</condition>
+	</animation>
 
 	<!-- Effects -->
 
