@@ -609,15 +609,6 @@
 	<!--   Radio Stack  -->
 
 	<model>
-		<path>Aircraft/PA28-Warrior/Models/Instruments/MarkerBeacon/MkrBcn.xml</path>
-		<offsets>
-			<x-m>1.925</x-m>
-			<y-m>-0.05223</y-m>
-			<z-m>0.32864</z-m>
-		</offsets>
-	</model>
-
-	<model>
 		<name>kx165-1</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/radio_stack/kx165-1.xml</path>
 		<offsets>
