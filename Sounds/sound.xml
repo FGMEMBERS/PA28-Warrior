@@ -117,6 +117,26 @@
 				<factor>0.1</factor>
 			</volume>
 		</roll>
+
+                <!-- Flaps -->
+
+                 <flap>
+                     <name>flaps</name>
+                     <mode>in-transit</mode>
+                     <path>Aircraft/PA28-Warrior/Sounds/flaps.wav</path>
+                     <property>surface-positions/flap-pos-norm</property>
+                 <position>
+                  <x>0.5</x>
+                  <y>0.0</y>
+                  <z>0.5</z>
+                 </position>
+                <volume>
+                 <factor>1.1</factor>
+                </volume>
+                  <reference-dist>1.0</reference-dist>
+                  <max-dist>200.0</max-dist>
+               </flap>
+
 		
 		<!-- Wind -->
 		
@@ -137,7 +157,7 @@
 		<!--wow>
 			<mode>once</mode>
 			<name>wow0</name>
-			<path>Sounds/touch.wav</path>
+			<path>Aircraft/PA28-Warrior/Sounds/touch.wav</path>
 			<condition>
 				<property>gear/gear[0]/wow</property>
 			</condition>
@@ -146,7 +166,7 @@
 		<wow>
 			<mode>once</mode>
 			<name>wow1</name>
-			<path>Sounds/touch.wav</path>
+			<path>Aircraft/PA28-Warrior/Sounds/touch.wav</path>
 			<condition>
 				<property>gear/gear[1]/wow</property>
 			</condition>
@@ -155,7 +175,7 @@
 		<wow>
 			<mode>once</mode>
 			<name>wow2</name>
-			<path>Sounds/touch.wav</path>
+			<path>Aircraft/PA28-Warrior/Sounds/touch.wav</path>
 			<condition>
 				<property>gear/gear[2]/wow</property>
 			</condition>
@@ -166,7 +186,7 @@
 		<avfan>
 			<name>avfan</name>
 			<mode>looped</mode>
-			<path>Sounds/avfan.wav</path>
+			<path>Aircraft/PA28-Warrior/Sounds/avfan.wav</path>
 			<volume>
 				<property>/fdm/jsbsim/libraries/av-fan-rpm</property>
 				<factor>0.00001089</factor>
@@ -180,7 +200,7 @@
 		
 		<apoff>
 			<name>apoff</name>
-			<path>Sounds/apoff.wav</path>
+			<path>Aircraft/PA28-Warrior/Sounds/apoff.wav</path>
 			<condition>
 				<property>/it-stec55x/sound/disc</property>
 			</condition>
@@ -194,7 +214,7 @@
 		<rain>
 			<name>rain</name>
 			<mode>looped</mode>
-			<path>Sounds/rain.wav</path>
+			<path>Aircraft/PA28-Warrior/rain.wav</path>
 			<volume>
 				<property>/environment/rain-norm</property>
 				<factor>1.2</factor>
