@@ -161,7 +161,7 @@
 			<z-m>0.11596</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>Green nav light ALS</name>
 		<path>Aircraft/PA28-Warrior/Models/light/ALS/greennav.xml</path>
@@ -172,6 +172,26 @@
 		</offsets>
 	</model>
 	
+	<model>
+		<name>White nav light ALS</name>
+		<path>Aircraft/PA28-Warrior/Models/light/ALS/tailnav.xml</path>
+		<offsets>
+			<x-m>6.95005</x-m>
+			<y-m>0.002974</y-m>
+			<z-m>1.49269</z-m>
+		</offsets>
+	</model>
+
+	<model>
+		<name>Beacon light ALS</name>
+		<path>Aircraft/PA28-Warrior/Models/light/ALS/beacon.xml</path>
+		<offsets>
+			<x-m>6.49112</x-m>
+			<y-m>0.007723</y-m>
+			<z-m>1.72265</z-m>
+		</offsets>
+	</model>
+
 	<model>
 		<name>Left Strobe light ALS</name>
 		<path>Aircraft/PA28-Warrior/Models/light/ALS/left-strobe.xml</path>
@@ -219,6 +239,7 @@
 		<object-name>Green nav light</object-name>
 		<object-name>Red nav light</object-name>
 		<object-name>LandingLight-Left</object-name>
+		<object-name>TailNavLight</object-name> <!-- makes the actual tailnav light look really bad, hide the object. -->
 		<condition>
 			<not>
 				<property>sim/rendering/shaders/skydome</property>
@@ -230,9 +251,11 @@
 		<type>select</type>
 		<object-name>Green nav light ALS</object-name>
 		<object-name>Red nav light ALS</object-name>
+		<object-name>White nav light ALS</object-name>
 		<object-name>Left Strobe light ALS</object-name>
 		<object-name>Right Strobe light ALS</object-name>
 		<object-name>LandingLight-ALS</object-name>
+		<object-name>Beacon light ALS</object-name>
 		<condition>
 			<property>sim/rendering/shaders/skydome</property>
 		</condition>
