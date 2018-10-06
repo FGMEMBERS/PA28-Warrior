@@ -14,6 +14,14 @@ var NAVGainCap = 0.9;
 var NAVGainCapSoft = 0.8;
 var NAVGainSoft = 0.6;
 var GSNeedleInCapt = 0;
+var NAVStep1Time = 0;
+var NAVStep2Time = 0;
+var NAVStep3Time = 0;
+var NAVOver50Time = 0;
+var NAVOver50Counting = 0;
+var hdgButtonTime = 0;
+var powerUpTime = 0;
+var VSFlashTime = 0;
 
 # Initialize all used property nodes
 var elapsedSec = props.globals.getNode("/sim/time/elapsed-sec");
@@ -50,18 +58,12 @@ var UP_annun = props.globals.initNode("/it-stec55x/annun/up", 0, "BOOL");
 var DN_annun = props.globals.initNode("/it-stec55x/annun/dn", 0, "BOOL");
 var NAVFlash_annun = props.globals.initNode("/it-stec55x/annun/nav-flash", 0, "BOOL");
 var GSFlash_annun = props.globals.initNode("/it-stec55x/annun/gs-flash", 0, "BOOL");
+var VSFlash_annun = props.globals.initNode("/it-stec55x/annun/vs-flash", 0, "BOOL");
 var NAVManIntercept = props.globals.initNode("/it-stec55x/internal/nav-man-intercept", 1, "BOOL");
 var minTurnRate = props.globals.initNode("/it-stec55x/internal/min-turn-rate", -0.9, "DOUBLE");
 var maxTurnRate = props.globals.initNode("/it-stec55x/internal/max-turn-rate", 0.9, "DOUBLE");
 var manTurnRate = props.globals.initNode("/it-stec55x/internal/man-turn-rate", 0, "DOUBLE");
 var NAVGain = props.globals.initNode("/it-stec55x/internal/nav-gain", NAVGainStd, "DOUBLE");
-var NAVStep1Time = props.globals.initNode("/it-stec55x/internal/nav-step1-time", 0, "DOUBLE");
-var NAVStep2Time = props.globals.initNode("/it-stec55x/internal/nav-step2-time", 0, "DOUBLE");
-var NAVStep3Time = props.globals.initNode("/it-stec55x/internal/nav-step3-time", 0, "DOUBLE");
-var NAVOver50Time = props.globals.initNode("/it-stec55x/internal/nav-over50-time", 0, "DOUBLE");
-var NAVOver50Counting = props.globals.initNode("/it-stec55x/internal/nav-over50-counting", 0, "BOOL");
-var hdgButtonTime = props.globals.initNode("/it-stec55x/internal/hdg-button-time", 0, "DOUBLE");
-var powerUpTime = props.globals.initNode("/it-stec55x/internal/powerup-time", 0, "DOUBLE");
 var powerUpTest = props.globals.initNode("/it-stec55x/internal/powerup-test", -1, "INT"); # -1 = Powerup test not done, 0 = Powerup test complete, 1 = Powerup test in progress
 var APRModeActive = props.globals.initNode("/it-stec55x/internal/apr-mode-active", 0, "BOOL");
 var ALTOffsetDelta = props.globals.getNode("/it-stec55x/internal/static-20ft-delta");
@@ -126,6 +128,7 @@ var ITAF = {
 		DN_annun.setBoolValue(0);
 		NAVFlash_annun.setBoolValue(0);
 		GSFlash_annun.setBoolValue(0);
+		VSFlash_annun.setBoolValue(0);
 		discSound.setBoolValue(0);
 		update.start();
 		updateFast.start();
@@ -156,7 +159,7 @@ var ITAF = {
 			hasPower.setBoolValue(1);
 			if (powerUpTest.getValue() == -1 and systemAlive.getBoolValue() == 1) { # Begin power on test
 				powerUpTest.setValue(1);
-				powerUpTime.setValue(elapsedSec.getValue());
+				powerUpTime = elapsedSec.getValue();
 				vs.setValue(1800); # For startup test only
 			}
 		} else {
@@ -176,7 +179,7 @@ var ITAF = {
 			RDY_annun.setBoolValue(0);
 			FAIL_annun.setBoolValue(0);
 		} else {
-			if (powerUpTest.getValue() == 1 and powerUpTime.getValue() + 10 < elapsedSec.getValue()) {
+			if (powerUpTest.getValue() == 1 and powerUpTime + 10 < elapsedSec.getValue()) {
 				powerUpTest.setValue(0);
 			}
 			if (roll.getValue() == -1 and serviceable.getBoolValue() == 1) {
@@ -224,7 +227,7 @@ var ITAF = {
 			ALT_annun.setBoolValue(0);
 		}
 		
-		if ((pitch.getValue() == 1 or pitch.getValue() == -2 or powerUpTest.getValue() == 1) and systemAlive.getBoolValue() == 1) {
+		if (((pitch.getValue() == 1 and VSFlash_annun.getBoolValue() != 1) or pitch.getValue() == -2 or powerUpTest.getValue() == 1) and systemAlive.getBoolValue() == 1) {
 			VS_annun.setBoolValue(1);
 		} else {
 			VS_annun.setBoolValue(0);
@@ -289,26 +292,26 @@ var ITAF = {
 		if (roll.getValue() == 1) {
 			if (abs(cdiDefl) <= 1.5 and NAVGain.getValue() == NAVGainStd) { # CAP mode
 				NAVGain.setValue(NAVGainCap);
-				NAVStep1Time.setValue(elapsedSec.getValue());
-			} else if (NAVStep1Time.getValue() + 15 <= elapsedSec.getValue() and NAVGain.getValue() == NAVGainCap) { # CAP SOFT mode
+				NAVStep1Time = elapsedSec.getValue();
+			} else if (NAVStep1Time + 15 <= elapsedSec.getValue() and NAVGain.getValue() == NAVGainCap) { # CAP SOFT mode
 				NAVGain.setValue(NAVGainCapSoft);
-				NAVStep2Time.setValue(elapsedSec.getValue());
-			} else if (NAVStep2Time.getValue() + 75 <= elapsedSec.getValue() and NAVGain.getValue() == NAVGainCapSoft and APRModeActive.getBoolValue() == 0) { # SOFT mode
+				NAVStep2Time = elapsedSec.getValue();
+			} else if (NAVStep2Time + 75 <= elapsedSec.getValue() and NAVGain.getValue() == NAVGainCapSoft and APRModeActive.getBoolValue() == 0) { # SOFT mode
 				NAVGain.setValue(NAVGainSoft);
-				NAVStep3Time.setValue(elapsedSec.getValue());
+				NAVStep3Time = elapsedSec.getValue();
 			}
 			
 			# Return to CAP SOFT if needle deflection is >= 50% for 60 seconds
 			if (cdiDefl >= 5 and NAVGain.getValue() == NAVGainSoft) {
-				if (NAVOver50Counting.getBoolValue() != 1) { # Prevent it from constantly updating the time
-					NAVOver50Counting.setBoolValue(1);
-					NAVOver50Time.setValue(elapsedSec.getValue());
+				if (NAVOver50Counting != 1) { # Prevent it from constantly updating the time
+					NAVOver50Counting = 1;
+					NAVOver50Time = elapsedSec.getValue();
 				}
-				if (NAVOver50Time.getValue() + 60 < elapsedSec.getValue()) { # CAP SOFT mode
+				if (NAVOver50Time + 60 < elapsedSec.getValue()) { # CAP SOFT mode
 					NAVGain.setValue(NAVGainCapSoft);
-					NAVStep2Time.setValue(elapsedSec.getValue());
-					if (NAVOver50Counting.getBoolValue() != 0) {
-						NAVOver50Counting.setBoolValue(0);
+					NAVStep2Time = elapsedSec.getValue();
+					if (NAVOver50Counting != 0) {
+						NAVOver50Counting = 0;
 					}
 				}
 			}
@@ -316,8 +319,8 @@ var ITAF = {
 			if (NAVGain.getValue() != NAVGainStd) {
 				NAVGain.setValue(NAVGainStd);
 			}
-			if (NAVOver50Counting.getBoolValue() != 0) {
-				NAVOver50Counting.setBoolValue(0);
+			if (NAVOver50Counting != 0) {
+				NAVOver50Counting = 0;
 			}
 		}
 		
@@ -598,9 +601,9 @@ var NAVchk = func {
 			}
 			if (abs(OBSNAVNeedle.getValue()) <= 1 and abs(HDGIndicator.getValue() - OBSCourse.getValue()) < 5) { # Immediately go to SOFT mode if within 10% of deflection and within 5 degrees of course.
 				NAVGain.setValue(NAVGainSoft);
-				NAVStep1Time.setValue(elapsedSec.getValue() - 90);
-				NAVStep2Time.setValue(elapsedSec.getValue() - 75);
-				NAVStep3Time.setValue(elapsedSec.getValue());
+				NAVStep1Time = elapsedSec.getValue() - 90;
+				NAVStep2Time = elapsedSec.getValue() - 75;
+				NAVStep3Time = elapsedSec.getValue();
 			}
 		} else {
 			NAVl.start();
@@ -615,9 +618,9 @@ var NAVchk = func {
 			}
 			if (abs(OBSNAVNeedle.getValue()) <= 1 and abs(HDGIndicator.getValue() - OBSCourse.getValue()) < 5) { # Immediately go to SOFT mode if within 10% of deflection and within 5 degrees of course.
 				NAVGain.setValue(NAVGainSoft);
-				NAVStep1Time.setValue(elapsedSec.getValue() - 90);
-				NAVStep2Time.setValue(elapsedSec.getValue() - 75);
-				NAVStep3Time.setValue(elapsedSec.getValue());
+				NAVStep1Time = elapsedSec.getValue() - 90;
+				NAVStep2Time = elapsedSec.getValue() - 75;
+				NAVStep3Time = elapsedSec.getValue();
 			}
 		} else {
 			NAVl.start();

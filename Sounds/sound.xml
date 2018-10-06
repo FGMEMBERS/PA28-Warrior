@@ -123,7 +123,7 @@
 		<wind>
 			<name>wind</name>
 			<mode>looped</mode>
-			<path>Aircraft/PA28-Warrior/Sounds/wind.wav</path>
+			<path>Sounds/wind.wav</path>
 			<volume>
 				<property>velocities/airspeed-kt</property>
 				<factor>0.0005</factor>
