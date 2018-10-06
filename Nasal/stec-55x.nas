@@ -263,7 +263,7 @@ var ITAF = {
 			VS_annun.setBoolValue(0);
 		}
 		
-		if (VS_annun.getBoolValue() == 1 or showSoftwareRevision == 1) {
+		if ((pitch.getValue() == 1 or pitch.getValue() == -2 or powerUPTestAnnun == 1 or showSoftwareRevision == 1) and systemAlive.getBoolValue() == 1) {
 			VSD_annun.setBoolValue(1);
 		} else {
 			VSD_annun.setBoolValue(0);
@@ -408,16 +408,30 @@ var ITAF = {
 		}
 		
 		# Flash VS if the aircraft is not holding the VS
-		VSError = abs(math.round(pressureRate.getValue() * -58000, 100) - VSSlowTarget.getValue()) >= 250;
-		if (pitch.getValue == 1) {
+		VSError = abs(math.round(pressureRate.getValue() * -58000, 100) - VSSlowTarget.getValue()) >= 250; # Find VS Error from converted pressure rate, and VS Slow Target
+		if (pitch.getValue() == 1) {
 			if (VSFlashCounting != 1 and VSError) {
 				VSFlashCounting = 1;
 				VSFlashTime = elapsedSec.getValue();
 			} else if (VSFlashCounting != 0 and !VSError) {
+				VSl.stop();
+				VSFlash_annun.setBoolValue(0);
 				VSFlashCounting = 0;
 			}
 		} else {
+			VSl.stop();
+			VSFlash_annun.setBoolValue(0);
 			VSFlashCounting = 0;
+		}
+		
+		if (VSFlashCounting == 1 and VSFlashTime + 15 <= elapsedSec.getValue()) {
+			if (VSError) { # Check if we are still out of range
+				VSl.start();
+			} else {
+				VSl.stop();
+				VSFlash_annun.setBoolValue(0);
+				VSFlashCounting = 0;
+			}
 		}
 	},
 	loopFast: func() {
@@ -443,7 +457,6 @@ var ITAF = {
 		if (masterSW.getValue() == 2 and pitch.getValue() > -1) {
 			if (servoPitchPower.getBoolValue() != 1) {
 				servoPitchPower.setBoolValue(1);
-
 			}
 		} else {
 			if (servoPitchPower.getBoolValue() != 0) {
@@ -727,6 +740,17 @@ var GSl = maketimer(0.5, func { # Flashes the GS light when GS is manually disar
 	} else {
 		GSl.stop();
 		GSFlash_annun.setBoolValue(0);
+	}
+});
+
+var VSl = maketimer(0.5, func { # Flashes the VSlight when VS is not able to be followed
+	if (VSError and pitch.getValue() == 1 and VSFlash_annun.getBoolValue() != 1) {
+		VSFlash_annun.setBoolValue(1);
+	} else if (VSError and pitch.getValue() == 1 and VSFlash_annun.getBoolValue() != 0) {
+		VSFlash_annun.setBoolValue(0);
+	} else {
+		VSl.stop();
+		VSFlash_annun.setBoolValue(0);
 	}
 });
 
