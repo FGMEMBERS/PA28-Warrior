@@ -12,14 +12,23 @@
 		<debug>false</debug>
 		<input>/instrumentation/nav[0]/heading-needle-deflection</input>
 		<output>/it-stec55x/internal/predicted-nav-needle</output>
-		<seconds>1.0</seconds>
-		<filter-gain>0.1</filter-gain>
+		<seconds>2.0</seconds>
+		<filter-gain>1.0</filter-gain>
 	</predict-simple>
 	
 	<filter>
 		<name>TARGET INTERCAPT ANGLE</name>
 		<type>gain</type>
-		<gain>5.5</gain>
+		<gain>
+			<condition>
+				<equals>
+					<property>/instrumentation/nav[0]/nav-loc</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<value>5.5</value>
+		</gain>
+		<gain>10.5</gain>
 		<input>
 			<condition>
 				<equals>
