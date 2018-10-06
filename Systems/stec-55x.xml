@@ -576,11 +576,9 @@
 	<filter>
 		<name>VERT SPEED FILTER</name>
 		<debug>false</debug>
-		<feedback-if-disabled>true</feedback-if-disabled>
-		<initialize-to>output</initialize-to>
+		<type>noise-spike</type>
 		<input>/it-stec55x/internal/vs</input>
 		<output>/it-stec55x/internal/vs-slow</output>
-		<type>noise-spike</type>
 		<max-rate-of-change>
 			<condition>
 				<greater-than>

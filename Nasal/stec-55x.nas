@@ -6,6 +6,7 @@ var aoffset = 0;
 var vspeed = 0;
 var NAV = 0;
 var CNAV = 0;
+var VSError = 0;
 var NAVFlag = 0;
 var GSFlag = 0;
 var ALTOffsetDeltaMax = 0;
@@ -25,6 +26,7 @@ var powerUPTestAnnun = 0;
 var powerUPTestVSAnnun = 0;
 var showSoftwareRevision = 0;
 var VSFlashTime = 0;
+var VSFlashCounting = 0;
 
 # Initialize all used property nodes
 var elapsedSec = props.globals.getNode("/sim/time/elapsed-sec");
@@ -76,6 +78,8 @@ var GSArmed = props.globals.initNode("/it-stec55x/internal/gs-armed", 0, "BOOL")
 var masterSW = props.globals.initNode("/it-stec55x/internal/master-sw", 0, "INT"); # 0 = OFF, 1 = FD, 2 = AP/FD
 var servoRollPower = props.globals.initNode("/it-stec55x/internal/servo-roll-power", 0, "BOOL");
 var servoPitchPower = props.globals.initNode("/it-stec55x/internal/servo-pitch-power", 0, "BOOL");
+var pressureRate = props.globals.getNode("/it-stec55x/internal/pressure-rate");
+var VSSlowTarget = props.globals.getNode("/it-stec55x/internal/vs-slow");
 var discSound = props.globals.initNode("/it-stec55x/sound/disc", 0, "BOOL");
 var HDGIndicator = props.globals.getNode("/instrumentation/heading-indicator/indicated-heading-deg");
 var OBSNAVNeedle = props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection");
@@ -402,6 +406,19 @@ var ITAF = {
 				GSt.start();
 			}
 		}
+		
+		# Flash VS if the aircraft is not holding the VS
+		VSError = abs(math.round(pressureRate.getValue() * -58000, 100) - VSSlowTarget.getValue()) >= 250;
+		if (pitch.getValue == 1) {
+			if (VSFlashCounting != 1 and VSError) {
+				VSFlashCounting = 1;
+				VSFlashTime = elapsedSec.getValue();
+			} else if (VSFlashCounting != 0 and !VSError) {
+				VSFlashCounting = 0;
+			}
+		} else {
+			VSFlashCounting = 0;
+		}
 	},
 	loopFast: func() {
 		# Roll Servo
@@ -461,9 +478,9 @@ var button = {
 		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and serviceable.getBoolValue() == 1) {
 			if (d == 1) { # Button pushed
 				hdgButton.setBoolValue(1);
-				hdgButtonTime.setValue(elapsedSec.getValue());
+				hdgButtonTime = elapsedSec.getValue();
 			} else if (d == 0) { # Button released
-				if (hdgButtonTime.getValue() + 0.48 >= elapsedSec.getValue()) { # Button pops out and HDG gets engaged only if depressed for less than 0.48 seconds
+				if (hdgButtonTime + 0.48 >= elapsedSec.getValue()) { # Button pops out and HDG gets engaged only if depressed for less than 0.48 seconds
 					me.HDG();
 					hdgButton.setBoolValue(0);
 				}
