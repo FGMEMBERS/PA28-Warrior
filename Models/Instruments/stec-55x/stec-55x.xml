@@ -222,7 +222,7 @@
 		<condition>
 			<and>
 				<equals>
-					<property>it-stec55x/annun/vs</property>
+					<property>it-stec55x/annun/vs-digit</property>
 					<value>1</value>
 				</equals>
 				<greater-than-equals>
@@ -238,7 +238,7 @@
 		<object-name>DIGITS.ind</object-name>
 		<condition>
 			<equals>
-				<property>it-stec55x/annun/vs</property>
+				<property>it-stec55x/annun/vs-digit</property>
 				<value>1</value>
 			</equals>
 		</condition>

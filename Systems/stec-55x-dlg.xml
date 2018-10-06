@@ -263,7 +263,7 @@
             <label>99</label>
 			<visible>
 				<equals>
-					<property>/it-stec55x/annun/vs</property>
+					<property>/it-stec55x/annun/vs-digit</property>
 					<value>1</value>
 				</equals>
 			</visible>
