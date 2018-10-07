@@ -449,6 +449,7 @@
 			<libraries>
 				<av-fan-rpm-feedback type="double">0</av-fan-rpm-feedback>
 			</libraries>
+			<tune type="double">1</tune>
 		</jsbsim>
 	</fdm>
 	

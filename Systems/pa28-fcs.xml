@@ -105,8 +105,8 @@
 		<aerosurface_scale name="fcs/aileron-deg">
 			<input>fcs/roll-input</input>
 			<range>
-				<min>-20</min>
-				<max>20</max>
+				<min>-15</min>
+				<max>15</max>
 			</range>
 		</aerosurface_scale>
 	

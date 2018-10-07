@@ -695,8 +695,8 @@
 		<reference>/it-stec55x/internal/g-damped</reference>
 		<output>/it-stec55x/internal/elevator-pi</output>
 		<config>
-			<Kp>0.25</Kp>
-			<Ki>0.56</Ki>
+			<Kp>0.24</Kp>
+			<Ki>0.53</Ki>
 			<min>-0.25</min>
 			<max>0.25</max>
 		</config>
