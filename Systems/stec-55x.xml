@@ -493,8 +493,8 @@
 			</expression>
 		</reference>
 		<output>/it-stec55x/internal/alt-vs</output>
-		<min>-250</min>
-		<max>250</max>
+		<min>-400</min>
+		<max>400</max>
 	</filter>
 	
 	<filter>
@@ -519,8 +519,8 @@
 			</expression>
 		</input>
 		<output>/it-stec55x/internal/gs-vs</output>
-		<min>-1600</min>
-		<max>0</max>
+		<min>-1200</min>
+		<max>50</max>
 	</filter>
 	
 	<predict-simple>
@@ -550,8 +550,8 @@
 			<Kp>-400</Kp>
 			<Ti>20.0</Ti>
 			<Td>0.001</Td>
-			<u_min>-1600</u_min>
-			<u_max>0</u_max>
+			<u_min>-1200</u_min>
+			<u_max>50</u_max>
 		</config>
 	</pid-controller>
 	
