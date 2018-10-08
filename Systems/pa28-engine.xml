@@ -101,13 +101,12 @@
 					<tableData>
 							 30     60     120    180
 						0.0  0.000  0.000  0.000  0.000
-						0.2  0.420  0.407  0.369  0.336
-						0.6  0.740  0.717  0.651  0.592
-						1.0  1.000  0.970  0.880  0.800
+						0.2  0.420  0.386  0.357  0.336
+						0.6  0.740  0.680  0.629  0.592
+						1.0  1.000  0.920  0.850  0.800
 					</tableData>
 				</table>
 			</function>
-			<output>fcs/throttle-cmd-norm[0]</output>
 			<output>fcs/throttle-pos-norm[0]</output>
 			<clipto>
 				<min>0.0</min>
@@ -132,7 +131,6 @@
 					</tableData>
 				</table>
 			</function>
-			<output>fcs/mixture-cmd-norm[0]</output>
 			<output>fcs/mixture-pos-norm[0]</output>
 		</fcs_function>
 		
