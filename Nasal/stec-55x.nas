@@ -555,6 +555,9 @@ var button = {
 					roll.setValue(3);
 					NAVchk();
 					NAVt.start();
+					if (OBSIsLOC.getBoolValue()) {
+						APRModeActive.setBoolValue(1);
+					}
 				}
 			}
 		}
@@ -590,6 +593,7 @@ var button = {
 	},
 	REV: func() {
 		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and serviceable.getBoolValue() == 1) {
+			APRModeActive.setBoolValue(0);
 			noGSAutoArm.setBoolValue(0);
 			if (hdgButton.getBoolValue() == 1) { # If the HDG button is being pushed, arm REV for custom intercept angle
 				me.CREV();
@@ -597,7 +601,9 @@ var button = {
 				roll.setValue(7);
 				REVchk();
 				REVt.start();
-				APRModeActive.setBoolValue(1);
+				if (OBSIsLOC.getBoolValue()) {
+					APRModeActive.setBoolValue(1);
+				}
 			}
 		}
 	},
@@ -605,6 +611,9 @@ var button = {
 		me.HDGNInt();
 		NAVchk();
 		NAVt.start();
+		if (OBSIsLOC.getBoolValue()) {
+			APRModeActive.setBoolValue(1);
+		}
 		hdgButton.setBoolValue(0);
 		GSArmed.setBoolValue(0);
 		noGSAutoArm.setBoolValue(0);
@@ -613,7 +622,9 @@ var button = {
 		me.HDGRInt();
 		REVchk();
 		REVt.start();
-		APRModeActive.setBoolValue(1);
+		if (OBSIsLOC.getBoolValue()) {
+			APRModeActive.setBoolValue(1);
+		}
 		hdgButton.setBoolValue(0);
 		GSArmed.setBoolValue(0);
 		noGSAutoArm.setBoolValue(0);
@@ -647,13 +658,13 @@ var button = {
 		if (pitch.getValue() == 0 and powerUpTest.getValue() != 1 and serviceable.getBoolValue() == 1) {
 			if (d < 0) {
 				aoffset = altOffset.getValue() + ALTOffsetDelta.getValue();
-				ALTOffsetDeltaMax = ALTOffsetDelta.getValue() * 18; # Get the static pressure value and multiply by 18 to limit it at +360
+				ALTOffsetDeltaMax = ALTOffsetDelta.getValue() * 18; # Get the static pressure delta value and multiply by 18 to limit it at +360ft
 				if (aoffset > ALTOffsetDeltaMax) {
 					aoffset = ALTOffsetDeltaMax;
 				}
 			} else {
 				aoffset = altOffset.getValue() - ALTOffsetDelta.getValue();
-				ALTOffsetDeltaMax = ALTOffsetDelta.getValue() * -18; # Get the static pressure value and multiply by -18 to limit it at -360
+				ALTOffsetDeltaMax = ALTOffsetDelta.getValue() * -18; # Get the static pressure delta value and multiply by -18 to limit it at -360ft
 				if (aoffset < ALTOffsetDeltaMax) {
 					aoffset = ALTOffsetDeltaMax;
 				}
@@ -764,7 +775,9 @@ var REVchk = func {
 			if (NAVGain.getValue() != NAVGainStd) {
 				NAVGain.setValue(NAVGainStd);
 			}
-			APRModeActive.setBoolValue(1);
+			if (OBSIsLOC.getBoolValue()) {
+				APRModeActive.setBoolValue(1);
+			}
 		} else {
 			REVl.start();
 		}
@@ -776,7 +789,9 @@ var REVchk = func {
 			if (NAVGain.getValue() != NAVGainStd) {
 				NAVGain.setValue(NAVGainStd);
 			}
-			APRModeActive.setBoolValue(1);
+			if (OBSIsLOC.getBoolValue()) {
+				APRModeActive.setBoolValue(1);
+			}
 		} else {
 			REVl.start();
 		}
@@ -835,7 +850,7 @@ var REVl = maketimer(0.5, func { # Flashes the REV lights when REV mode is armed
 	}
 });
 
-var VSl = maketimer(0.5, func { # Flashes the VSlight when VS is not able to be followed
+var VSl = maketimer(0.5, func { # Flashes the VS light when VS is not able to be followed
 	if (VSError and pitch.getValue() == 1 and VSFlash_annun.getBoolValue() != 1) {
 		VSFlash_annun.setBoolValue(1);
 	} else if (VSError and pitch.getValue() == 1 and VSFlash_annun.getBoolValue() != 0) {
