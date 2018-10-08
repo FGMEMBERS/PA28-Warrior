@@ -31,10 +31,16 @@
 		<gain>7.5</gain>
 		<input>
 			<condition>
-				<equals>
-					<property>/it-stec55x/output/roll</property>
-					<value>1</value>
-				</equals>
+				<or>
+					<equals>
+						<property>/it-stec55x/output/roll</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-stec55x/output/roll</property>
+						<value>6</value>
+					</equals>
+				</or>
 			</condition>
 			<expression>
 				<product>
@@ -74,6 +80,59 @@
 			<min>-180</min>
 			<max>180</max>
 		</period>
+	</filter>
+	
+	<filter>
+		<name>HEADING RECIPROCAL DEG STAGE 1</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<expression>
+				<sum>
+					<property>/instrumentation/nav[0]/radials/selected-deg</property>
+					<value>180</value>
+				</sum>
+			</expression>
+		</input>
+		<output>/instrumentation/nav[0]/radials/reciprocal-deg-cmd</output>
+	</filter>
+	
+	<filter>
+		<name>HEADING RECIPROCAL DEG STATE 2</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<greater-than>
+					<property>/instrumentation/nav[0]/radials/reciprocal-deg-cmd</property>
+					<value>360</value>
+				</greater-than>
+			</condition>
+			<expression>
+				<dif>
+					<property>/instrumentation/nav[0]/radials/reciprocal-deg-cmd</property>
+					<value>360</value>
+				</dif>
+			</expression>
+		</input>
+		<input>
+			<condition>
+				<less-than>
+					<property>/instrumentation/nav[0]/radials/reciprocal-deg-cmd</property>
+					<value>1</value>
+				</less-than>
+			</condition>
+			<expression>
+				<sum>
+					<property>/instrumentation/nav[0]/radials/reciprocal-deg-cmd</property>
+					<value>360</value>
+				</sum>
+			</expression>
+		</input>
+		<input>/instrumentation/nav[0]/radials/reciprocal-deg-cmd</input>
+		<output>/instrumentation/nav[0]/radials/reciprocal-deg</output>
 	</filter>
 	
 	<filter>
@@ -135,6 +194,60 @@
 				<sum>
 					<property>/instrumentation/nav[0]/radials/selected-deg</property>
 					<property>/it-stec55x/internal/intercept-angle</property>
+				</sum>
+			</expression>
+			<offset>
+				<property>/instrumentation/heading-indicator/indicated-heading-deg</property>
+				<scale>-1.0</scale>
+			</offset>
+		</input>
+		<input>
+			<condition>
+				<and>
+					<equals>
+						<property>/it-stec55x/output/roll</property>
+						<value>6</value>
+					</equals>
+					<equals>
+						<property>/it-stec55x/settings/hsi-equipped</property>
+						<value>0</value>
+					</equals>
+				</and>
+			</condition>
+			<expression>
+				<sum>
+					<property>/it-stec55x/input/hdg</property>
+					<product>
+						<property>/it-stec55x/internal/intercept-angle</property>
+						<value>-1.0</value>
+					</product>
+				</sum>
+			</expression>
+			<offset>
+				<property>/instrumentation/heading-indicator/indicated-heading-deg</property>
+				<scale>-1.0</scale>
+			</offset>
+		</input>
+		<input>
+			<condition>
+				<and>
+					<equals>
+						<property>/it-stec55x/output/roll</property>
+						<value>6</value>
+					</equals>
+					<equals>
+						<property>/it-stec55x/settings/hsi-equipped</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</condition>
+			<expression>
+				<sum>
+					<property>/instrumentation/nav[0]/radials/reciprocal-deg</property>
+					<product>
+						<property>/it-stec55x/internal/intercept-angle</property>
+						<value>-1.0</value>
+					</product>
 				</sum>
 			</expression>
 			<offset>

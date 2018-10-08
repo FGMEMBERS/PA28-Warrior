@@ -5,7 +5,9 @@ var cdiDefl = 0;
 var aoffset = 0;
 var vspeed = 0;
 var NAV = 0;
+var REV = 0;
 var CNAV = 0;
+var CREV = 0;
 var VSError = 0;
 var NAVFlag = 0;
 var GSFlag = 0;
@@ -63,9 +65,11 @@ var TRIM_annun = props.globals.initNode("/it-stec55x/annun/trim", 0, "BOOL");
 var UP_annun = props.globals.initNode("/it-stec55x/annun/up", 0, "BOOL");
 var DN_annun = props.globals.initNode("/it-stec55x/annun/dn", 0, "BOOL");
 var NAVFlash_annun = props.globals.initNode("/it-stec55x/annun/nav-flash", 0, "BOOL");
+var REVFlash_annun = props.globals.initNode("/it-stec55x/annun/nav-flash", 0, "BOOL");
 var GSFlash_annun = props.globals.initNode("/it-stec55x/annun/gs-flash", 0, "BOOL");
 var VSFlash_annun = props.globals.initNode("/it-stec55x/annun/vs-flash", 0, "BOOL");
 var NAVManIntercept = props.globals.initNode("/it-stec55x/internal/nav-man-intercept", 1, "BOOL");
+var REVManIntercept = props.globals.initNode("/it-stec55x/internal/rev-man-intercept", 1, "BOOL");
 var minTurnRate = props.globals.initNode("/it-stec55x/internal/min-turn-rate", -0.9, "DOUBLE");
 var maxTurnRate = props.globals.initNode("/it-stec55x/internal/max-turn-rate", 0.9, "DOUBLE");
 var manTurnRate = props.globals.initNode("/it-stec55x/internal/man-turn-rate", 0, "DOUBLE");
@@ -116,6 +120,7 @@ var ITAF = {
 		masterAPFDSW.setValue(0);
 		elecTrimSW.setBoolValue(0);
 		NAVManIntercept.setBoolValue(0);
+		REVManIntercept.setBoolValue(0);
 		GSArmed.setBoolValue(0);
 		noGSAutoArm.setBoolValue(0);
 		roll.setValue(-1);
@@ -136,6 +141,7 @@ var ITAF = {
 		UP_annun.setBoolValue(0);
 		DN_annun.setBoolValue(0);
 		NAVFlash_annun.setBoolValue(0);
+		REVFlash_annun.setBoolValue(0);
 		GSFlash_annun.setBoolValue(0);
 		VSFlash_annun.setBoolValue(0);
 		discSound.setBoolValue(0);
@@ -200,7 +206,9 @@ var ITAF = {
 		}
 		
 		NAV = roll.getValue() == 3 or roll.getValue() == 4; # Is NAV armed?
+		REV = roll.getValue() == 7; # Is REV armed?
 		CNAV = roll.getValue() == 0 and NAVManIntercept.getBoolValue(); # Is NAV with custom intercept heading armed?
+		CREV = roll.getValue() == 0 and REVManIntercept.getBoolValue(); # Is REV with custom intercept heading armed?
 		
 		if (systemAlive.getBoolValue() == 0) { # AP Failed when false
 			RDY_annun.setBoolValue(0);
@@ -222,7 +230,7 @@ var ITAF = {
 				if (roll.getValue() != -1 or pitch.getValue() != -1) {
 					ITAF.killAP(); # Called with ITAF.killAP not me.killAP because this function is called from the timer outside this class
 				}
-			} else if (powerUPTestAnnun == 1 or ((roll.getValue() == 1 or roll.getValue() == 3 or CNAV) and OBSActive.getBoolValue() != 1)) {
+			} else if (powerUPTestAnnun == 1 or ((roll.getValue() == 1 or roll.getValue() == 3 or roll.getValue() == 7 or CNAV or CREV) and OBSActive.getBoolValue() != 1)) {
 				FAIL_annun.setBoolValue(1);
 			} else if (powerUPTestAnnun == 1 or ((roll.getValue() == 2 or roll.getValue() == 4) and GPSActive.getBoolValue() != 1)) {
 				FAIL_annun.setBoolValue(1);
@@ -245,10 +253,17 @@ var ITAF = {
 			NAV_annun.setBoolValue(0);
 		}
 		
-		if ((((roll.getValue() == 1 or ((CNAV or roll.getValue() == 3) and NAVFlash_annun.getBoolValue())) and APRModeActive.getBoolValue() == 1) or powerUPTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if ((((roll.getValue() == 1 or roll.getValue() == 6 or ((CNAV or roll.getValue() == 3) and NAVFlash_annun.getBoolValue()) or ((CREV or roll.getValue() == 7) and REVFlash_annun.getBoolValue())) and APRModeActive.getBoolValue() == 1) or powerUPTestAnnun == 1) and 
+		systemAlive.getBoolValue() == 1) {
 			APR_annun.setBoolValue(1);
 		} else {
 			APR_annun.setBoolValue(0);
+		}
+		
+		if ((roll.getValue() == 6 or ((REV or CREV) and REVFlash_annun.getBoolValue()) or powerUPTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+			REV_annun.setBoolValue(1);
+		} else {
+			REV_annun.setBoolValue(0);
 		}
 		
 		if ((pitch.getValue() == 0 or powerUPTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
@@ -287,14 +302,6 @@ var ITAF = {
 			GS_annun.setBoolValue(0);
 		}
 		
-		# Temporary stuff because these lights aren't implemented yet
-		if (powerUPTestAnnun == 1 and systemAlive.getBoolValue() == 1) {
-			REV_annun.setBoolValue(1);
-
-		} else {
-			REV_annun.setBoolValue(0);
-		}
-		
 		# Electric Pitch Trim
 		if (systemAlive.getBoolValue() == 1) {
 			if (powerUPTestAnnun == 1 or (pitch.getValue() > -1 and getprop("/it-stec55x/internal/elevator") < -0.025 and masterSW.getValue() == 2)) {
@@ -324,8 +331,8 @@ var ITAF = {
 		
 		cdiDefl = OBSNAVNeedle.getValue();
 		
-		# NAV mode gain, reduces as the system captures the course
-		if (roll.getValue() == 1) {
+		# NAV/REV mode gain, reduces as the system captures the course
+		if (roll.getValue() == 1 or roll.getValue() == 6) {
 			if (abs(cdiDefl) <= 1.5 and NAVGain.getValue() == NAVGainStd) { # CAP mode
 				NAVGain.setValue(NAVGainCap);
 				NAVStep1Time = elapsedSec.getValue();
@@ -362,7 +369,7 @@ var ITAF = {
 		
 		# Limit the turn rate depending on the mode
 		if (isTurboprop.getBoolValue() == 1) { # Turboprop aircraft have lower turn rates
-			if (roll.getValue() == 1) { # Turn rate in NAV mode
+			if (roll.getValue() == 1 or roll.getValue() == 6) { # Turn rate in NAV mode
 				if (NAVGain.getValue() == NAVGainCapSoft) {
 					minTurnRate.setValue(-0.375);
 					maxTurnRate.setValue(0.375);
@@ -378,7 +385,7 @@ var ITAF = {
 				maxTurnRate.setValue(0.75);
 			}
 		} else {
-			if (roll.getValue() == 1) { # Turn rate in NAV mode
+			if (roll.getValue() == 1 or roll.getValue() == 6) { # Turn rate in NAV mode
 				if (NAVGain.getValue() == NAVGainCapSoft) {
 					minTurnRate.setValue(-0.45);
 					maxTurnRate.setValue(0.45);
@@ -509,14 +516,25 @@ var button = {
 	HDG: func() {
 		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and serviceable.getBoolValue() == 1) {
 			NAVManIntercept.setBoolValue(0);
+			REVManIntercept.setBoolValue(0);
 			roll.setValue(0);
 			APRModeActive.setBoolValue(0);
 			noGSAutoArm.setBoolValue(0);
 		}
 	},
-	HDGInt: func() { # Heading Custom Intercept Mode
+	HDGNInt: func() { # Heading Custom Intercept Mode NAV
 		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and serviceable.getBoolValue() == 1) {
 			NAVManIntercept.setBoolValue(1);
+			REVManIntercept.setBoolValue(0);
+			roll.setValue(0);
+			APRModeActive.setBoolValue(0);
+			noGSAutoArm.setBoolValue(0);
+		}
+	},
+	HDGRInt: func() { # Heading Custom Intercept Mode REV
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and serviceable.getBoolValue() == 1) {
+			NAVManIntercept.setBoolValue(0);
+			REVManIntercept.setBoolValue(1);
 			roll.setValue(0);
 			APRModeActive.setBoolValue(0);
 			noGSAutoArm.setBoolValue(0);
@@ -544,6 +562,7 @@ var button = {
 	APR: func() {
 		hdgButton.setBoolValue(0);
 		CNAV = roll.getValue() == 0 and NAVManIntercept.getBoolValue(); # Is NAV with custom intercept heading armed?
+		CREV = roll.getValue() == 0 and REVManIntercept.getBoolValue(); # Is REV with custom intercept heading armed?
 		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and (CNAV or roll.getValue() == 1 or roll.getValue() == 3) and serviceable.getBoolValue() == 1) {
 			if (GSArmed.getBoolValue() == 1 and !noGSAutoArm.getBoolValue() and APRModeActive.getBoolValue()) {
 				noGSAutoArm.setBoolValue(1);
@@ -565,12 +584,36 @@ var button = {
 				NAVGain.setValue(NAVGainCapSoft);
 				NAVStep2Time.setValue(elapsedSec.getValue());
 			}
+		} else if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and (CREV or roll.getValue() == 6 or roll.getValue() == 7) and serviceable.getBoolValue() == 1) {
+			APRModeActive.setBoolValue(1);
+		}
+	},
+	REV: func() {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and serviceable.getBoolValue() == 1) {
+			noGSAutoArm.setBoolValue(0);
+			if (hdgButton.getBoolValue() == 1) { # If the HDG button is being pushed, arm REV for custom intercept angle
+				me.CREV();
+			} else {
+				roll.setValue(7);
+				REVchk();
+				REVt.start();
+				APRModeActive.setBoolValue(1);
+			}
 		}
 	},
 	CNAV: func() {
-		me.HDGInt();
+		me.HDGNInt();
 		NAVchk();
 		NAVt.start();
+		hdgButton.setBoolValue(0);
+		GSArmed.setBoolValue(0);
+		noGSAutoArm.setBoolValue(0);
+	},
+	CREV: func() {
+		me.HDGRInt();
+		REVchk();
+		REVt.start();
+		APRModeActive.setBoolValue(1);
 		hdgButton.setBoolValue(0);
 		GSArmed.setBoolValue(0);
 		noGSAutoArm.setBoolValue(0);
@@ -658,10 +701,13 @@ var NAVchk = func {
 			NAVt.stop();
 			NAVFlash_annun.setBoolValue(0);
 			roll.setValue(1);
+			if (NAVGain.getValue() != NAVGainStd) {
+				NAVGain.setValue(NAVGainStd);
+			}
 			if (OBSIsLOC.getBoolValue()) {
 				APRModeActive.setBoolValue(1);
 			}
-			if (abs(OBSNAVNeedle.getValue()) <= 1 and abs(HDGIndicator.getValue() - OBSCourse.getValue()) < 5) { # Immediately go to SOFT mode if within 10% of deflection and within 5 degrees of course.
+			if (abs(OBSNAVNeedle.getValue()) <= 1 and abs(HDGIndicator.getValue() - OBSCourse.getValue()) < 5 and !APRModeActive.getBoolValue()) { # Immediately go to SOFT mode if within 10% of deflection and within 5 degrees of course.
 				NAVGain.setValue(NAVGainSoft);
 				NAVStep1Time = elapsedSec.getValue() - 90;
 				NAVStep2Time = elapsedSec.getValue() - 75;
@@ -671,14 +717,17 @@ var NAVchk = func {
 			NAVl.start();
 		}
 	} else if (roll.getValue() == 0 and NAVManIntercept.getBoolValue() == 1) {
-		if (abs(OBSNAVNeedle.getValue()) < 8) { # Only engage NAV if OBS is within capture
+		if (abs(OBSNAVNeedle.getValue()) > 0.001 and abs(OBSNAVNeedle.getValue()) < 8) { # Only engage NAV if OBS is within capture
 			NAVt.stop();
 			NAVFlash_annun.setBoolValue(0);
 			roll.setValue(1);
+			if (NAVGain.getValue() != NAVGainStd) {
+				NAVGain.setValue(NAVGainStd);
+			}
 			if (OBSIsLOC.getBoolValue()) {
 				APRModeActive.setBoolValue(1);
 			}
-			if (abs(OBSNAVNeedle.getValue()) <= 1 and abs(HDGIndicator.getValue() - OBSCourse.getValue()) < 5) { # Immediately go to SOFT mode if within 10% of deflection and within 5 degrees of course.
+			if (abs(OBSNAVNeedle.getValue()) <= 1 and abs(HDGIndicator.getValue() - OBSCourse.getValue()) < 5 and !APRModeActive.getBoolValue()) { # Immediately go to SOFT mode if within 10% of deflection and within 5 degrees of course.
 				NAVGain.setValue(NAVGainSoft);
 				NAVStep1Time = elapsedSec.getValue() - 90;
 				NAVStep2Time = elapsedSec.getValue() - 75;
@@ -706,9 +755,39 @@ var GPSchk = func {
 	}
 }
 
+var REVchk = func {
+	if (roll.getValue() == 7) {
+		if (OBSActive.getBoolValue() == 1) { # Only engage NAV if OBS reports in range
+			REVt.stop();
+			REVFlash_annun.setBoolValue(0);
+			roll.setValue(6);
+			if (NAVGain.getValue() != NAVGainStd) {
+				NAVGain.setValue(NAVGainStd);
+			}
+			APRModeActive.setBoolValue(1);
+		} else {
+			REVl.start();
+		}
+	} else if (roll.getValue() == 0 and REVManIntercept.getBoolValue() == 1) {
+		if (abs(OBSNAVNeedle.getValue()) > 0.001 and abs(OBSNAVNeedle.getValue()) < 8) { # Only engage REV if OBS is within capture
+			REVt.stop();
+			REVFlash_annun.setBoolValue(0);
+			roll.setValue(6);
+			if (NAVGain.getValue() != NAVGainStd) {
+				NAVGain.setValue(NAVGainStd);
+			}
+			APRModeActive.setBoolValue(1);
+		} else {
+			REVl.start();
+		}
+	} else {
+		REVt.stop();
+	}
+}
+
 var GSchk = func {
 	if (GSArmed.getBoolValue()) {
-		if (OBSGSNeedle.getValue() >= 0.001 and OBSGSNeedle.getValue() <= 0.175) { # Within 5% below GS
+		if (OBSGSNeedle.getValue() >= 0.0035 and OBSGSNeedle.getValue() <= 0.175) { # Within 5% below GS
 			GSt.stop();
 			GSFlash_annun.setBoolValue(0);
 			pitch.setValue(2);
@@ -743,6 +822,19 @@ var GSl = maketimer(0.5, func { # Flashes the GS light when GS is manually disar
 	}
 });
 
+var REVl = maketimer(0.5, func { # Flashes the REV lights when REV mode is armed
+	REV = roll.getValue() == 7; # Is REV armed?
+	CREV = roll.getValue() == 0 and REVManIntercept.getBoolValue(); # Is REV with custom intercept heading armed?
+	if ((REV or CREV) and REVFlash_annun.getBoolValue() != 1) {
+		REVFlash_annun.setBoolValue(1);
+	} else if ((REV or CREV) and REVFlash_annun.getBoolValue() != 0) {
+		REVFlash_annun.setBoolValue(0);
+	} else {
+		REVl.stop();
+		REVFlash_annun.setBoolValue(0);
+	}
+});
+
 var VSl = maketimer(0.5, func { # Flashes the VSlight when VS is not able to be followed
 	if (VSError and pitch.getValue() == 1 and VSFlash_annun.getBoolValue() != 1) {
 		VSFlash_annun.setBoolValue(1);
@@ -756,6 +848,7 @@ var VSl = maketimer(0.5, func { # Flashes the VSlight when VS is not able to be 
 
 var NAVt = maketimer(0.5, NAVchk);
 var GPSt = maketimer(0.5, GPSchk);
+var REVt = maketimer(0.5, REVchk);
 var GSt = maketimer(0.5, GSchk);
 var update = maketimer(0.1, ITAF.loop);
 var updateFast = maketimer(0.05, ITAF.loopFast);

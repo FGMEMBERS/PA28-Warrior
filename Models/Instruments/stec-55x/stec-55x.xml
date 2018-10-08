@@ -379,6 +379,10 @@
 					<property>it-stec55x/input/rev-button</property>
 					<value>0</value>
 				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>stec55x.button.REV();</script>
+				</binding>
 			</mod-up>
 		</action>
 	</animation>

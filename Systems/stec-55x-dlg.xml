@@ -317,7 +317,8 @@
 			<legend>REV</legend>
 			<pref-width>40</pref-width>
 			<binding>
-
+				<command>nasal</command>
+				<script>stec55x.button.REV();</script>
 			</binding>
 		</button>
 		
