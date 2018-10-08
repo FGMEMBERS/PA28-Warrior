@@ -405,7 +405,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/rudder-deg</property></toradians>
-				<value>0.117</value>
+				<value>0.118</value>
 			</product>
 		</function>
 	
@@ -422,8 +422,8 @@
 				<table>
 					<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
 					<tableData>
-						 0  0.0223
-						40  0.0262
+						 0  0.0202
+						40  0.0266
 					</tableData>
 				</table>
 			</product>
@@ -447,7 +447,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/cbarw-ft</property>
 				<toradians><property>fcs/elevator-deg</property></toradians>
-				<value>-1.633</value>
+				<value>-1.733</value>
 				<table>
 					<independentVar lookup="row">aero/alpha-rad</independentVar>
 					<independentVar lookup="column">fcs/elevator-deg</independentVar>
@@ -473,7 +473,7 @@
 				<property>metrics/cbarw-ft</property>
 				<property>aero/ci2vel</property>
 				<property>velocities/q-aero-rad_sec</property>
-				<value>-19.6</value>
+				<value>-22.6</value>
 			</product>
 		</function>
 		
@@ -529,7 +529,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/rudder-deg</property></toradians>
-				<value>0.0616</value>
+				<value>0.0606</value>
 			</product>
 		</function>
 		
