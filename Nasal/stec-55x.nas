@@ -40,7 +40,8 @@ var TRIMFlash_annun = 0;
 
 # Initialize all used property nodes
 var elapsedSec = props.globals.getNode("/sim/time/elapsed-sec");
-var powerSrc = props.globals.initNode("/systems/electrical/outputs/autopilot", 0, "DOUBLE"); # Autopilot power source
+var powerSrc = props.globals.getNode("/systems/electrical/outputs/autopilot", 1); # Autopilot power source
+var powerSrcTrim = props.globals.getNode("/systems/electrical/outputs/electrim", 1); # Electric trim power source
 var serviceable = props.globals.initNode("/it-stec55x/serviceable", 1, "BOOL");
 var systemAlive = props.globals.initNode("/it-stec55x/internal/system-alive", 0, "BOOL");
 var hdg = props.globals.initNode("/it-stec55x/input/hdg", 360, "DOUBLE");
@@ -54,9 +55,12 @@ var manTrimSW = props.globals.initNode("/it-stec55x/input/man-trim", 0, "INT");
 var masterAPSW = props.globals.initNode("/it-stec55x/input/ap-master-sw", 0, "BOOL");
 var masterAPFDSW = props.globals.initNode("/it-stec55x/input/apfd-master-sw", 0, "INT");
 var elecTrimSW = props.globals.initNode("/it-stec55x/input/electric-trim-sw", 0, "BOOL");
+var yawDamperSW = props.globals.initNode("/it-stec55x/input/yaw-damper-sw", 0, "INT"); # 0 = AUTO, 1 = ON
+var yawDamperTrim = props.globals.initNode("/it-stec55x/input/yaw-damper-trim", 0, "DOUBLE");
 var hasPower = props.globals.initNode("/it-stec55x/internal/hasPower", 0, "BOOL");
 var roll = props.globals.initNode("/it-stec55x/output/roll", -1, "INT");
 var pitch = props.globals.initNode("/it-stec55x/output/pitch", -1, "INT");
+var yaw = props.globals.initNode("/it-stec55x/output/yaw", -1, "INT");
 var HDG_annun = props.globals.initNode("/it-stec55x/annun/hdg", 0, "BOOL");
 var NAV_annun = props.globals.initNode("/it-stec55x/annun/nav", 0, "BOOL");
 var APR_annun = props.globals.initNode("/it-stec55x/annun/apr", 0, "BOOL");
@@ -107,6 +111,7 @@ var staticPress = props.globals.getNode("/systems/static[0]/pressure-inhg");
 var HSIequipped = props.globals.getNode("/it-stec55x/settings/hsi-equipped"); # Does the aircraft have an HSI or DG?
 var isTurboprop = props.globals.getNode("/it-stec55x/settings/is-turboprop"); # Does the aircraft have turboprop engines?
 var FDequipped = props.globals.getNode("/it-stec55x/settings/fd-equipped"); # Does the aircraft have a flight director installed?
+var YDequipped = props.globals.getNode("/it-stec55x/settings/yd-equipped"); # Does the aircraft have the optional yaw damper installed?
 var useControlsFlight = props.globals.getNode("/it-stec55x/settings/use-controls-flight"); # Use generic /controls/flight for control loop output instead of custom properties
 
 setlistener("/sim/signals/fdm-initialized", func {
@@ -124,12 +129,15 @@ var ITAF = {
 		masterAPSW.setBoolValue(0);
 		masterAPFDSW.setValue(0);
 		elecTrimSW.setBoolValue(0);
+		yawDamperSW.setBoolValue(0);
+		yawDamperTrim.setValue(0);
 		NAVManIntercept.setBoolValue(0);
 		REVManIntercept.setBoolValue(0);
 		GSArmed.setBoolValue(0);
 		noGSAutoArm.setBoolValue(0);
 		roll.setValue(-1);
 		pitch.setValue(-1);
+		yaw.setValue(-1);
 		HDG_annun.setBoolValue(0);
 		NAV_annun.setBoolValue(0);
 		APR_annun.setBoolValue(0);
@@ -455,7 +463,7 @@ var ITAF = {
 		}
 		
 		# Flash TRIM if the autopilot is trimming for over 4 seconds
-		isTrimming = (UP_annun.getBoolValue() or DN_annun.getBoolValue()) and powerUPTestAnnun == 0;
+		isTrimming = (UP_annun.getBoolValue() or DN_annun.getBoolValue()) and powerUPTestAnnun == 0 and elecTrimSW.getBoolValue() and powerSrcTrim.getValue() >= 8;
 		if (masterSW.getValue() == 2) {
 			if (TRIMFlashCounting != 1 and isTrimming) {
 				TRIMFlashCounting = 1;
@@ -517,6 +525,29 @@ var ITAF = {
 		# Man Trim AP DISC
 		if (manTrimSW.getValue() != 0 and pitch.getValue() > -1 and masterSW.getValue() == 2) {
 			ITAF.killAPPitch(); # Called with ITAF.killAPPitch not me.killAPPitch because this function is called from the timer outside this class
+		}
+		
+		# Yaw Damper Logic
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and serviceable.getBoolValue() == 1) {
+			if (YDequipped.getBoolValue() == 1 and yawDamperSW.getBoolValue() == 0 and roll.getValue() > -1) {
+				yaw.setValue(0);
+			} else if (YDequipped.getBoolValue() == 1 and yawDamperSW.getBoolValue() == 1) {
+				yaw.setValue(0);
+			} else {
+				if (yaw.getValue() != -1) {
+					yaw.setValue(-1);
+					if (useControlsFlight.getBoolValue()) {
+						setprop("/controls/flight/rudder", 0);
+					}
+				}
+			}
+		} else {
+			if (yaw.getValue() != -1) {
+				yaw.setValue(-1);
+				if (useControlsFlight.getBoolValue()) {
+					setprop("/controls/flight/rudder", 0);
+				}
+			}
 		}
 	},
 	killAP: func() { # Kill all AP modes

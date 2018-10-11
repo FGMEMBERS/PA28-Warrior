@@ -402,7 +402,6 @@
 		<flight>
 			<aileron-drives-tiller type="bool">0</aileron-drives-tiller>
 			<elevator-trim type="double">0.11</elevator-trim>
-			<rudder-trim type="double">0.012</rudder-trim>
 		</flight>
 		<gear>
 			<brake-parking type="double">0</brake-parking>
@@ -817,9 +816,11 @@
 			<fd-equipped type="bool">0</fd-equipped> <!-- Does the aircraft have a flight director installed? -->
 			<gain-pitch type="double">1.0</gain-pitch> <!-- Modify the pitch axis gain -->
 			<gain-roll type="double">1.0</gain-roll> <!-- Modify the roll axis gain -->
+			<gain-yaw type="double">1.0</gain-yaw> <!-- Modify the yaw axis gain -->
 			<hsi-equipped type="bool">1</hsi-equipped> <!-- Does the aircraft have an HSI or DG? -->
 			<is-turboprop type="bool">0</is-turboprop> <!-- Does the aircraft have turboprop engines? -->
 			<use-controls-flight type="bool">0</use-controls-flight> <!-- Use generic /controls/flight for flight controls instead of custom properties -->
+			<yd-equipped type="bool">0</yd-equipped> <!-- Does the aircraft have the optional yaw damper installed? -->
 		</settings>
 	</it-stec55x>
 	

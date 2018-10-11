@@ -808,8 +808,8 @@
 		<reference>/it-stec55x/internal/g-damped</reference>
 		<output>/it-stec55x/internal/elevator-pi</output>
 		<config>
-			<Kp>0.24</Kp>
-			<Ki>0.53</Ki>
+			<Kp>0.20</Kp>
+			<Ki>0.45</Ki>
 			<min>-0.25</min>
 			<max>0.25</max>
 		</config>
@@ -1003,6 +1003,110 @@
 		</input>
 		<output>/controls/flight/elevator-trim</output>
 		<max-rate-of-change>0.06</max-rate-of-change>
+	</filter>
+	
+	<!-- Yaw Axis (Optional Yaw Damper) -->
+	
+	<filter>
+		<name>INTERNAL YAW RATE SENSOR LOW-PASS</name>
+		<debug>false</debug>
+		<type>exponential</type>
+		<input>/orientation/r-body</input>
+		<output>/it-stec55x/internal/yaw-rate-low</output>
+		<filter-time>0.08</filter-time>
+	</filter>
+	
+	<filter>
+		<name>INTERNAL YAW RATE SENSOR HIGH-PASS</name>
+		<debug>false</debug>
+		<type>high-pass</type>
+		<input>/it-stec55x/internal/yaw-rate-low</input>
+		<output>/it-stec55x/internal/yaw-rate-high</output>
+		<filter-time>0.03</filter-time>
+	</filter>
+	
+	<filter>
+		<name>IT-CONTROLLER: YAW DAMPER</name>
+		<type>gain</type>
+		<gain>7.161975</gain> <!-- RAD2DEG * 0.125 -->
+		<input>/it-stec55x/internal/yaw-rate-high</input>
+		<output>/it-stec55x/internal/rudder-p</output>
+		<min>-0.1</min>
+		<max>0.1</max>
+	</filter>
+	
+	<filter>
+		<name>IT-CONTROLLER: YAW OUTPUT INTERNAL</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<input>
+			<condition>
+				<greater-than>
+					<property>/it-stec55x/output/yaw</property>
+					<value>-1</value>
+				</greater-than>
+			</condition>
+			<expression>
+				<sum>
+					<product>
+						<property>/it-stec55x/internal/rudder-p</property>
+						<property>/it-stec55x/settings/gain-yaw</property>
+					</product>
+					<product>
+						<property>/it-stec55x/input/yaw-damper-trim</property>
+						<value>0.25</value>
+					</product>
+				</sum>
+			</expression>
+		</input>
+		<input>0</input>
+		<output>/it-stec55x/internal/rudder</output>
+		<max-rate-of-change>
+			<condition>
+				<greater-than>
+					<property>/it-stec55x/output/yaw</property>
+					<value>-1</value>
+				</greater-than>
+			</condition>
+			<value>0.5</value>
+		</max-rate-of-change>
+		<max-rate-of-change>10</max-rate-of-change>
+	</filter>
+	
+	<filter>
+		<name>IT-CONTROLLER: YAW OUTPUT GENERIC</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<enable>
+			<condition>
+				<and>
+					<greater-than>
+						<property>/it-stec55x/output/yaw</property>
+						<value>-1</value>
+					</greater-than>
+					<!--equals>
+						<property>/it-stec55x/settings/use-controls-flight</property>
+						<value>1</value>
+					</equals-->
+				</and>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<sum>
+					<product>
+						<property>/it-stec55x/internal/rudder-p</property>
+						<property>/it-stec55x/settings/gain-yaw</property>
+					</product>
+					<product>
+						<property>/it-stec55x/input/yaw-damper-trim</property>
+						<value>0.25</value>
+					</product>
+				</sum>
+			</expression>
+		</input>
+		<output>/controls/flight/rudder</output>
+		<max-rate-of-change>0.5</max-rate-of-change>
 	</filter>
 	
 	<!-- Flight Director -->
