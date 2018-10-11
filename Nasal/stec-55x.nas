@@ -91,8 +91,8 @@ var GSArmed = props.globals.initNode("/it-stec55x/internal/gs-armed", 0, "BOOL")
 var masterSW = props.globals.initNode("/it-stec55x/internal/master-sw", 0, "INT"); # 0 = OFF, 1 = FD, 2 = AP/FD
 var servoRollPower = props.globals.initNode("/it-stec55x/internal/servo-roll-power", 0, "BOOL");
 var servoPitchPower = props.globals.initNode("/it-stec55x/internal/servo-pitch-power", 0, "BOOL");
-var pressureRate = props.globals.getNode("/it-stec55x/internal/pressure-rate");
-var VSSlowTarget = props.globals.getNode("/it-stec55x/internal/vs-slow");
+var pressureRate = props.globals.getNode("/it-stec55x/internal/pressure-rate", 1);
+var VSSlowTarget = props.globals.getNode("/it-stec55x/internal/vs-slow", 1);
 var discSound = props.globals.initNode("/it-stec55x/sound/disc", 0, "BOOL");
 var HDGIndicator = props.globals.getNode("/instrumentation/heading-indicator/indicated-heading-deg");
 var OBSNAVNeedle = props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection");
