@@ -9,6 +9,7 @@ var REV = 0;
 var CNAV = 0;
 var CREV = 0;
 var VSError = 0;
+var isTrimming = 0;
 var NAVFlag = 0;
 var GSFlag = 0;
 var ALTOffsetDeltaMax = 0;
@@ -29,6 +30,13 @@ var powerUPTestVSAnnun = 0;
 var showSoftwareRevision = 0;
 var VSFlashTime = 0;
 var VSFlashCounting = 0;
+var TRIMFlashTime = 0;
+var TRIMFlashCounting = 0;
+var NAVFlash_annun = 0;
+var REVFlash_annun = 0;
+var GSFlash_annun = 0;
+var VSFlash_annun = 0;
+var TRIMFlash_annun = 0;
 
 # Initialize all used property nodes
 var elapsedSec = props.globals.getNode("/sim/time/elapsed-sec");
@@ -56,6 +64,7 @@ var REV_annun = props.globals.initNode("/it-stec55x/annun/rev", 0, "BOOL");
 var ALT_annun = props.globals.initNode("/it-stec55x/annun/alt", 0, "BOOL");
 var GS_annun = props.globals.initNode("/it-stec55x/annun/gs", 0, "BOOL");
 var VS_annun = props.globals.initNode("/it-stec55x/annun/vs", 0, "BOOL");
+var VSS_annun = props.globals.initNode("/it-stec55x/annun/vs-sign", 0, "BOOL");
 var VSD_annun = props.globals.initNode("/it-stec55x/annun/vs-digit", 0, "BOOL");
 var RDY_annun = props.globals.initNode("/it-stec55x/annun/rdy", 0, "BOOL");
 var CWS_annun = props.globals.initNode("/it-stec55x/annun/cws", 0, "BOOL");
@@ -64,10 +73,6 @@ var GPSS_annun = props.globals.initNode("/it-stec55x/annun/gpss", 0, "BOOL");
 var TRIM_annun = props.globals.initNode("/it-stec55x/annun/trim", 0, "BOOL");
 var UP_annun = props.globals.initNode("/it-stec55x/annun/up", 0, "BOOL");
 var DN_annun = props.globals.initNode("/it-stec55x/annun/dn", 0, "BOOL");
-var NAVFlash_annun = props.globals.initNode("/it-stec55x/annun/nav-flash", 0, "BOOL");
-var REVFlash_annun = props.globals.initNode("/it-stec55x/annun/nav-flash", 0, "BOOL");
-var GSFlash_annun = props.globals.initNode("/it-stec55x/annun/gs-flash", 0, "BOOL");
-var VSFlash_annun = props.globals.initNode("/it-stec55x/annun/vs-flash", 0, "BOOL");
 var NAVManIntercept = props.globals.initNode("/it-stec55x/internal/nav-man-intercept", 1, "BOOL");
 var REVManIntercept = props.globals.initNode("/it-stec55x/internal/rev-man-intercept", 1, "BOOL");
 var minTurnRate = props.globals.initNode("/it-stec55x/internal/min-turn-rate", -0.9, "DOUBLE");
@@ -132,6 +137,7 @@ var ITAF = {
 		ALT_annun.setBoolValue(0);
 		GS_annun.setBoolValue(0);
 		VS_annun.setBoolValue(0);
+		VSS_annun.setBoolValue(0);
 		VSD_annun.setBoolValue(0);
 		RDY_annun.setBoolValue(0);
 		CWS_annun.setBoolValue(0);
@@ -140,10 +146,11 @@ var ITAF = {
 		TRIM_annun.setBoolValue(0);
 		UP_annun.setBoolValue(0);
 		DN_annun.setBoolValue(0);
-		NAVFlash_annun.setBoolValue(0);
-		REVFlash_annun.setBoolValue(0);
-		GSFlash_annun.setBoolValue(0);
-		VSFlash_annun.setBoolValue(0);
+		NAVFlash_annun = 0;
+		REVFlash_annun = 0;
+		GSFlash_annun = 0;
+		VSFlash_annun = 0;
+		TRIMFlash_annun = 0;
 		discSound.setBoolValue(0);
 		update.start();
 		updateFast.start();
@@ -247,20 +254,20 @@ var ITAF = {
 			HDG_annun.setBoolValue(0);
 		}
 		
-		if ((roll.getValue() == 1 or roll.getValue() == 2 or ((NAV or CNAV) and NAVFlash_annun.getBoolValue()) or powerUPTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if ((roll.getValue() == 1 or roll.getValue() == 2 or ((NAV or CNAV) and NAVFlash_annun) or powerUPTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
 			NAV_annun.setBoolValue(1);
 		} else {
 			NAV_annun.setBoolValue(0);
 		}
 		
-		if ((((roll.getValue() == 1 or roll.getValue() == 6 or ((CNAV or roll.getValue() == 3) and NAVFlash_annun.getBoolValue()) or ((CREV or roll.getValue() == 7) and REVFlash_annun.getBoolValue())) and APRModeActive.getBoolValue() == 1) or powerUPTestAnnun == 1) and 
+		if ((((roll.getValue() == 1 or roll.getValue() == 6 or ((CNAV or roll.getValue() == 3) and NAVFlash_annun) or ((CREV or roll.getValue() == 7) and REVFlash_annun)) and APRModeActive.getBoolValue() == 1) or powerUPTestAnnun == 1) and 
 		systemAlive.getBoolValue() == 1) {
 			APR_annun.setBoolValue(1);
 		} else {
 			APR_annun.setBoolValue(0);
 		}
 		
-		if ((roll.getValue() == 6 or ((REV or CREV) and REVFlash_annun.getBoolValue()) or powerUPTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if ((roll.getValue() == 6 or ((REV or CREV) and REVFlash_annun) or powerUPTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
 			REV_annun.setBoolValue(1);
 		} else {
 			REV_annun.setBoolValue(0);
@@ -272,10 +279,16 @@ var ITAF = {
 			ALT_annun.setBoolValue(0);
 		}
 		
-		if (((pitch.getValue() == 1 and VSFlash_annun.getBoolValue() != 1) or pitch.getValue() == -2 or powerUPTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if (((pitch.getValue() == 1 and VSFlash_annun != 1) or pitch.getValue() == -2 or powerUPTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
 			VS_annun.setBoolValue(1);
 		} else {
 			VS_annun.setBoolValue(0);
+		}
+		
+		if ((pitch.getValue() == 1 or pitch.getValue() == -2 or powerUPTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+			VSS_annun.setBoolValue(1);
+		} else {
+			VSS_annun.setBoolValue(0);
 		}
 		
 		if ((pitch.getValue() == 1 or pitch.getValue() == -2 or powerUPTestAnnun == 1 or showSoftwareRevision == 1) and systemAlive.getBoolValue() == 1) {
@@ -290,13 +303,13 @@ var ITAF = {
 			CWS_annun.setBoolValue(0);
 		}
 		
-		if ((roll.getValue() == 2 or (roll.getValue() == 4 and NAVFlash_annun.getBoolValue()) or powerUPTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if ((roll.getValue() == 2 or (roll.getValue() == 4 and NAVFlash_annun) or powerUPTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
 			GPSS_annun.setBoolValue(1);
 		} else {
 			GPSS_annun.setBoolValue(0);
 		}
 		
-		if ((pitch.getValue() == 2 or GSArmed.getBoolValue() or (!GSArmed.getBoolValue() and GSFlash_annun.getBoolValue()) or powerUPTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if ((pitch.getValue() == 2 or GSArmed.getBoolValue() or (!GSArmed.getBoolValue() and GSFlash_annun) or powerUPTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
 			GS_annun.setBoolValue(1);
 		} else {
 			GS_annun.setBoolValue(0);
@@ -323,7 +336,7 @@ var ITAF = {
 			DN_annun.setBoolValue(0);
 		}
 		
-		if ((UP_annun.getBoolValue() == 1 or DN_annun.getBoolValue() == 1 or manTrimSW.getValue() != 0 or powerUPTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if ((UP_annun.getBoolValue() == 1 or DN_annun.getBoolValue() == 1 or manTrimSW.getValue() != 0 or powerUPTestAnnun == 1) and TRIMFlash_annun != 1 and systemAlive.getBoolValue() == 1) {
 			TRIM_annun.setBoolValue(1);
 		} else {
 			TRIM_annun.setBoolValue(0);
@@ -414,20 +427,20 @@ var ITAF = {
 			}
 		}
 		
-		# Flash VS if the aircraft is not holding the VS
-		VSError = abs(math.round(pressureRate.getValue() * -58000, 100) - VSSlowTarget.getValue()) >= 250; # Find VS Error from converted pressure rate, and VS Slow Target
-		if (pitch.getValue() == 1) {
+		# Flash VS if the autopilot is not able to hold the VS
+		VSError = abs(math.round(pressureRate.getValue() * -58000, 100) - VSSlowTarget.getValue()) > 200; # Find VS Error from converted pressure rate, and VS Slow Target
+		if (pitch.getValue() == 1 and masterSW.getValue() == 2) {
 			if (VSFlashCounting != 1 and VSError) {
 				VSFlashCounting = 1;
 				VSFlashTime = elapsedSec.getValue();
 			} else if (VSFlashCounting != 0 and !VSError) {
 				VSl.stop();
-				VSFlash_annun.setBoolValue(0);
+				VSFlash_annun = 0;
 				VSFlashCounting = 0;
 			}
 		} else {
 			VSl.stop();
-			VSFlash_annun.setBoolValue(0);
+			VSFlash_annun = 0;
 			VSFlashCounting = 0;
 		}
 		
@@ -436,8 +449,35 @@ var ITAF = {
 				VSl.start();
 			} else {
 				VSl.stop();
-				VSFlash_annun.setBoolValue(0);
+				VSFlash_annun = 0;
 				VSFlashCounting = 0;
+			}
+		}
+		
+		# Flash TRIM if the autopilot is trimming for over 4 seconds
+		isTrimming = (UP_annun.getBoolValue() or DN_annun.getBoolValue()) and powerUPTestAnnun == 0;
+		if (masterSW.getValue() == 2) {
+			if (TRIMFlashCounting != 1 and isTrimming) {
+				TRIMFlashCounting = 1;
+				TRIMFlashTime = elapsedSec.getValue();
+			} else if (VSFlashCounting != 0 and !isTrimming) {
+				TRIMl.stop();
+				TRIMFlash_annun = 0;
+				TRIMFlashCounting = 0;
+			}
+		} else {
+			TRIMl.stop();
+			TRIMFlash_annun = 0;
+			TRIMFlashCounting = 0;
+		}
+		
+		if (TRIMFlashCounting == 1 and TRIMFlashTime + 4 <= elapsedSec.getValue()) {
+			if (isTrimming) { # Check if we are still out of range
+				TRIMl.start();
+			} else {
+				TRIMl.stop();
+				TRIMFlash_annun = 0;
+				TRIMFlashCounting = 0;
 			}
 		}
 	},
@@ -573,7 +613,7 @@ var button = {
 				GSl.start();
 			} else if (noGSAutoArm.getBoolValue() and APRModeActive.getBoolValue()) {
 				GSl.stop();
-				GSFlash_annun.setBoolValue(0);
+				GSFlash_annun = 0;
 				settimer(func {
 					GSArmed.setBoolValue(1);
 					noGSAutoArm.setBoolValue(0);
@@ -635,7 +675,7 @@ var button = {
 			GSNeedleInCapt = abs(OBSGSNeedle.getValue()) >= 0.001 and abs(OBSGSNeedle.getValue()) <= 0.175; # Are we in capture range?
 			if (roll.getValue() == 1 and pitch.getValue() == 0 and APRModeActive.getBoolValue() and GSNeedleInCapt == 1) { # Immediately go to GS mode
 				GSt.stop();
-				GSFlash_annun.setBoolValue(0);
+				GSFlash_annun = 0;
 				pitch.setValue(2);
 				GSArmed.setBoolValue(0);
 			} else {
@@ -710,7 +750,7 @@ var NAVchk = func {
 	if (roll.getValue() == 3) {
 		if (OBSActive.getBoolValue() == 1) { # Only engage NAV if OBS reports in range
 			NAVt.stop();
-			NAVFlash_annun.setBoolValue(0);
+			NAVFlash_annun = 0;
 			roll.setValue(1);
 			if (NAVGain.getValue() != NAVGainStd) {
 				NAVGain.setValue(NAVGainStd);
@@ -730,7 +770,7 @@ var NAVchk = func {
 	} else if (roll.getValue() == 0 and NAVManIntercept.getBoolValue() == 1) {
 		if (abs(OBSNAVNeedle.getValue()) > 0.001 and abs(OBSNAVNeedle.getValue()) < 8) { # Only engage NAV if OBS is within capture
 			NAVt.stop();
-			NAVFlash_annun.setBoolValue(0);
+			NAVFlash_annun = 0;
 			roll.setValue(1);
 			if (NAVGain.getValue() != NAVGainStd) {
 				NAVGain.setValue(NAVGainStd);
@@ -756,7 +796,7 @@ var GPSchk = func {
 	if (roll.getValue() == 4) {
 		if (GPSActive.getBoolValue() == 1) { # Only engage GPSS NAV if GPS is activated
 			GPSt.stop();
-			NAVFlash_annun.setBoolValue(0);
+			NAVFlash_annun = 0;
 			roll.setValue(2);
 		} else {
 			NAVl.start();
@@ -770,7 +810,7 @@ var REVchk = func {
 	if (roll.getValue() == 7) {
 		if (OBSActive.getBoolValue() == 1) { # Only engage NAV if OBS reports in range
 			REVt.stop();
-			REVFlash_annun.setBoolValue(0);
+			REVFlash_annun = 0;
 			roll.setValue(6);
 			if (NAVGain.getValue() != NAVGainStd) {
 				NAVGain.setValue(NAVGainStd);
@@ -784,7 +824,7 @@ var REVchk = func {
 	} else if (roll.getValue() == 0 and REVManIntercept.getBoolValue() == 1) {
 		if (abs(OBSNAVNeedle.getValue()) > 0.001 and abs(OBSNAVNeedle.getValue()) < 8) { # Only engage REV if OBS is within capture
 			REVt.stop();
-			REVFlash_annun.setBoolValue(0);
+			REVFlash_annun = 0;
 			roll.setValue(6);
 			if (NAVGain.getValue() != NAVGainStd) {
 				NAVGain.setValue(NAVGainStd);
@@ -804,7 +844,7 @@ var GSchk = func {
 	if (GSArmed.getBoolValue()) {
 		if (OBSGSNeedle.getValue() >= 0.0035 and OBSGSNeedle.getValue() <= 0.175) { # Within 5% below GS
 			GSt.stop();
-			GSFlash_annun.setBoolValue(0);
+			GSFlash_annun = 0;
 			pitch.setValue(2);
 			GSArmed.setBoolValue(0);
 		}
@@ -816,48 +856,59 @@ var GSchk = func {
 var NAVl = maketimer(0.5, func { # Flashes the NAV (and sometimes GPSS) lights when NAV modes are armed
 	NAV = roll.getValue() == 3 or roll.getValue() == 4; # Is NAV armed?
 	CNAV = roll.getValue() == 0 and NAVManIntercept.getBoolValue(); # Is NAV with custom intercept heading armed?
-	if ((NAV or CNAV) and NAVFlash_annun.getBoolValue() != 1) {
-		NAVFlash_annun.setBoolValue(1);
-	} else if ((NAV or CNAV) and NAVFlash_annun.getBoolValue() != 0) {
-		NAVFlash_annun.setBoolValue(0);
+	if ((NAV or CNAV) and NAVFlash_annun != 1) {
+		NAVFlash_annun = 1;
+	} else if ((NAV or CNAV) and NAVFlash_annun != 0) {
+		NAVFlash_annun = 0;
 	} else {
 		NAVl.stop();
-		NAVFlash_annun.setBoolValue(0);
+		NAVFlash_annun = 0;
 	}
 });
 
 var GSl = maketimer(0.5, func { # Flashes the GS light when GS is manually disarmed
-	if (noGSAutoArm.getBoolValue() and pitch.getValue() == 0 and GSFlash_annun.getBoolValue() != 1) {
-		GSFlash_annun.setBoolValue(1);
-	} else if (noGSAutoArm.getBoolValue() and pitch.getValue() == 0 and GSFlash_annun.getBoolValue() != 0) {
-		GSFlash_annun.setBoolValue(0);
+	if (noGSAutoArm.getBoolValue() and pitch.getValue() == 0 and GSFlash_annun != 1) {
+		GSFlash_annun = 1;
+	} else if (noGSAutoArm.getBoolValue() and pitch.getValue() == 0 and GSFlash_annun != 0) {
+		GSFlash_annun = 0;
 	} else {
 		GSl.stop();
-		GSFlash_annun.setBoolValue(0);
+		GSFlash_annun = 0;
 	}
 });
 
 var REVl = maketimer(0.5, func { # Flashes the REV lights when REV mode is armed
 	REV = roll.getValue() == 7; # Is REV armed?
 	CREV = roll.getValue() == 0 and REVManIntercept.getBoolValue(); # Is REV with custom intercept heading armed?
-	if ((REV or CREV) and REVFlash_annun.getBoolValue() != 1) {
-		REVFlash_annun.setBoolValue(1);
-	} else if ((REV or CREV) and REVFlash_annun.getBoolValue() != 0) {
-		REVFlash_annun.setBoolValue(0);
+	if ((REV or CREV) and REVFlash_annun != 1) {
+		REVFlash_annun = 1;
+	} else if ((REV or CREV) and REVFlash_annun != 0) {
+		REVFlash_annun = 0;
 	} else {
 		REVl.stop();
-		REVFlash_annun.setBoolValue(0);
+		REVFlash_annun = 0;
 	}
 });
 
-var VSl = maketimer(0.5, func { # Flashes the VS light when VS is not able to be followed
-	if (VSError and pitch.getValue() == 1 and VSFlash_annun.getBoolValue() != 1) {
-		VSFlash_annun.setBoolValue(1);
-	} else if (VSError and pitch.getValue() == 1 and VSFlash_annun.getBoolValue() != 0) {
-		VSFlash_annun.setBoolValue(0);
+var VSl = maketimer(0.5, func { # Flashes the VS light if the autopilot is not able to hold the VS
+	if (VSError and pitch.getValue() == 1 and VSFlash_annun != 1) {
+		VSFlash_annun = 1;
+	} else if (VSError and pitch.getValue() == 1 and VSFlash_annun != 0) {
+		VSFlash_annun = 0;
 	} else {
 		VSl.stop();
-		VSFlash_annun.setBoolValue(0);
+		VSFlash_annun = 0;
+	}
+});
+
+var TRIMl = maketimer(0.5, func { # Flashes the TRIM light if the autopilot is trimming for over 4 seconds
+	if (isTrimming and masterSW.getValue() == 2 and TRIMFlash_annun != 1) {
+		TRIMFlash_annun = 1;
+	} else if (isTrimming and masterSW.getValue() == 2 and TRIMFlash_annun != 0) {
+		TRIMFlash_annun = 0;
+	} else {
+		TRIMl.stop();
+		TRIMFlash_annun = 0;
 	}
 });
 

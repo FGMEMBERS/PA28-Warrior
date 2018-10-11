@@ -228,7 +228,7 @@
 			<visible>
 				<and>
 					<equals>
-						<property>it-stec55x/annun/vs</property>
+						<property>it-stec55x/annun/vs-sign</property>
 						<value>1</value>
 					</equals>
 					<greater-than-equals>
@@ -246,7 +246,7 @@
 			<visible>
 				<and>
 					<equals>
-						<property>it-stec55x/annun/vs</property>
+						<property>it-stec55x/annun/vs-sign</property>
 						<value>1</value>
 					</equals>
 					<less-than>
