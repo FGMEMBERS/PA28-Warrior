@@ -5,6 +5,87 @@
 
 <PropertyList>
 	
+	<!-- NAV Switching -->
+	
+	<filter>
+		<name>NAV COURSE</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-stec55x/settings/hsi-equipped</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<property>/instrumentation/nav[0]/radials/selected-deg</property>
+		</input>
+		<input>/it-stec55x/input/hdg</input>
+		<output>/it-stec55x/internal/nav-course</output>
+	</filter>
+	
+	<filter>
+		<name>NAV COURSE ERROR</name>
+		<type>gain</type>
+		<gain>-1.0</gain>
+		<input>/it-stec55x/internal/nav-course</input>
+		<reference>/instrumentation/heading-indicator/indicated-heading-deg</reference>
+		<output>/it-stec55x/internal/nav-course-error</output>
+	</filter>
+	
+	<filter>
+		<name>NAV COURSE RECIPROCAL STAGE 1</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<expression>
+				<sum>
+					<property>/instrumentation/nav[0]/radials/selected-deg</property>
+					<value>180</value>
+				</sum>
+			</expression>
+		</input>
+		<output>/it-stec55x/internal/nav-course-reciprocal-cmd</output>
+	</filter>
+	
+	<filter>
+		<name>NAV COURSE RECIPROCAL STATE 2</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<greater-than>
+					<property>/it-stec55x/internal/nav-course-reciprocal-cmd</property>
+					<value>360</value>
+				</greater-than>
+			</condition>
+			<expression>
+				<dif>
+					<property>/it-stec55x/internal/nav-course-reciprocal-cmd</property>
+					<value>360</value>
+				</dif>
+			</expression>
+		</input>
+		<input>
+			<condition>
+				<less-than>
+					<property>/it-stec55x/internal/nav-course-reciprocal-cmd</property>
+					<value>1</value>
+				</less-than>
+			</condition>
+			<expression>
+				<sum>
+					<property>/it-stec55x/internal/nav-course-reciprocal-cmd</property>
+					<value>360</value>
+				</sum>
+			</expression>
+		</input>
+		<input>/it-stec55x/internal/nav-course-reciprocal-cmd</input>
+		<output>/it-stec55x/internal/nav-course-reciprocal</output>
+	</filter>
+	
 	<!-- Roll Axis -->
 	
 	<filter>
@@ -22,6 +103,55 @@
 		<output>/it-stec55x/internal/intercept-angle-p</output>
 		<min>-45</min>
 		<max>45</max>
+	</filter>
+	
+	<filter>
+		<name>TARGET INTERCEPT ANGLE I</name> <!-- Integrate to cancel steady state error only if stabilized and captured -->
+		<type>integrator</type>
+		<gain>0.05</gain>
+		<input>
+			<condition>
+				<and>
+					<equals>
+						<property>/it-stec55x/output/roll</property>
+						<value>1</value>
+					</equals>
+					<less-than-equals>
+						<property>/it-stec55x/internal/nav-course-error</property>
+						<value>10</value>
+					</less-than-equals>
+					<greater-than-equals>
+						<property>/it-stec55x/internal/nav-course-error</property>
+						<value>-10</value>
+					</greater-than-equals>
+					<less-than-equals>
+						<property>/instrumentation/nav[0]/heading-needle-deflection</property>
+						<value>1</value>
+					</less-than-equals>
+					<greater-than-equals>
+						<property>/instrumentation/nav[0]/heading-needle-deflection</property>
+						<value>-1</value>
+					</greater-than-equals>
+				</and>
+			</condition>
+			<expression>
+				<product>
+					<property>/instrumentation/nav[0]/heading-needle-deflection</property>
+					<property>/it-stec55x/internal/nav-gain</property>
+				</product>
+			</expression>
+		</input>
+		<input>
+			<expression>
+				<product>
+					<value>-75.0</value>
+					<property>/it-stec55x/internal/intercept-angle-i</property>
+				</product>
+			</expression>
+		</input>
+		<output>/it-stec55x/internal/intercept-angle-i</output>
+		<u_min>-5</u_min>
+		<u_max>5</u_max>
 	</filter>
 	
 	<filter>
@@ -43,7 +173,7 @@
 	</filter>
 	
 	<filter>
-		<name>TARGET INTERCEPT ANGLE</name>
+		<name>TARGET INTERCEPT ANGLE</name> <!-- Sum the above 3 controllers to make a manual PID controller -->
 		<debug>false</debug>
 		<type>gain</type>
 		<gain>1.0</gain>
@@ -51,6 +181,7 @@
 			<expression>
 				<sum>
 					<property>/it-stec55x/internal/intercept-angle-p</property>
+					<property>/it-stec55x/internal/intercept-angle-i</property>
 					<property>/it-stec55x/internal/intercept-angle-d</property>
 				</sum>
 			</expression>
@@ -85,59 +216,6 @@
 			<min>-180</min>
 			<max>180</max>
 		</period>
-	</filter>
-	
-	<filter>
-		<name>HEADING RECIPROCAL DEG STAGE 1</name>
-		<debug>false</debug>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>
-			<expression>
-				<sum>
-					<property>/instrumentation/nav[0]/radials/selected-deg</property>
-					<value>180</value>
-				</sum>
-			</expression>
-		</input>
-		<output>/instrumentation/nav[0]/radials/reciprocal-deg-cmd</output>
-	</filter>
-	
-	<filter>
-		<name>HEADING RECIPROCAL DEG STATE 2</name>
-		<debug>false</debug>
-		<type>gain</type>
-		<gain>1.0</gain>
-		<input>
-			<condition>
-				<greater-than>
-					<property>/instrumentation/nav[0]/radials/reciprocal-deg-cmd</property>
-					<value>360</value>
-				</greater-than>
-			</condition>
-			<expression>
-				<dif>
-					<property>/instrumentation/nav[0]/radials/reciprocal-deg-cmd</property>
-					<value>360</value>
-				</dif>
-			</expression>
-		</input>
-		<input>
-			<condition>
-				<less-than>
-					<property>/instrumentation/nav[0]/radials/reciprocal-deg-cmd</property>
-					<value>1</value>
-				</less-than>
-			</condition>
-			<expression>
-				<sum>
-					<property>/instrumentation/nav[0]/radials/reciprocal-deg-cmd</property>
-					<value>360</value>
-				</sum>
-			</expression>
-		</input>
-		<input>/instrumentation/nav[0]/radials/reciprocal-deg-cmd</input>
-		<output>/instrumentation/nav[0]/radials/reciprocal-deg</output>
 	</filter>
 	
 	<filter>
@@ -248,7 +326,7 @@
 			</condition>
 			<expression>
 				<sum>
-					<property>/instrumentation/nav[0]/radials/reciprocal-deg</property>
+					<property>/it-stec55x/internal/nav-course-reciprocal</property>
 					<product>
 						<property>/it-stec55x/internal/intercept-angle</property>
 						<value>-1.0</value>

@@ -94,11 +94,11 @@ var servoPitchPower = props.globals.initNode("/it-stec55x/internal/servo-pitch-p
 var pressureRate = props.globals.getNode("/it-stec55x/internal/pressure-rate", 1);
 var VSSlowTarget = props.globals.getNode("/it-stec55x/internal/vs-slow", 1);
 var NAVIntercept = props.globals.getNode("/it-stec55x/internal/intercept-angle", 1);
+var NAVCourse = props.globals.getNode("/it-stec55x/internal/nav-course", 1);
 var discSound = props.globals.initNode("/it-stec55x/sound/disc", 0, "BOOL");
 var HDGIndicator = props.globals.getNode("/instrumentation/heading-indicator/indicated-heading-deg");
 var OBSNAVNeedle = props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection");
 var OBSGSNeedle = props.globals.getNode("/instrumentation/nav[0]/gs-needle-deflection");
-var OBSCourse = props.globals.getNode("/instrumentation/nav[0]/radials/selected-deg");
 var OBSActive = props.globals.getNode("/instrumentation/nav[0]/in-range");
 var OBSIsLOC = props.globals.getNode("/instrumentation/nav[0]/nav-loc");
 var OBSHasGS = props.globals.getNode("/instrumentation/nav[0]/has-gs");
@@ -795,7 +795,7 @@ var NAVchk = func {
 			if (OBSIsLOC.getBoolValue()) {
 				APRModeActive.setBoolValue(1);
 			}
-			if (abs(OBSNAVNeedle.getValue()) <= 1 and abs(HDGIndicator.getValue() - OBSCourse.getValue()) < 5 and !APRModeActive.getBoolValue()) { # Immediately go to SOFT mode if within 10% of deflection and within 5 degrees of course.
+			if (abs(OBSNAVNeedle.getValue()) <= 1 and abs(HDGIndicator.getValue() - NAVCourse.getValue()) < 5 and !APRModeActive.getBoolValue()) { # Immediately go to SOFT mode if within 10% of deflection and within 5 degrees of course.
 				NAVGain.setValue(NAVGainSoft);
 				NAVStep1Time = elapsedSec.getValue() - 90;
 				NAVStep2Time = elapsedSec.getValue() - 75;
@@ -815,7 +815,7 @@ var NAVchk = func {
 			if (OBSIsLOC.getBoolValue()) {
 				APRModeActive.setBoolValue(1);
 			}
-			if (abs(OBSNAVNeedle.getValue()) <= 1 and abs(HDGIndicator.getValue() - OBSCourse.getValue()) < 5 and !APRModeActive.getBoolValue()) { # Immediately go to SOFT mode if within 10% of deflection and within 5 degrees of course.
+			if (abs(OBSNAVNeedle.getValue()) <= 1 and abs(HDGIndicator.getValue() - NAVCourse.getValue()) < 5 and !APRModeActive.getBoolValue()) { # Immediately go to SOFT mode if within 10% of deflection and within 5 degrees of course.
 				NAVGain.setValue(NAVGainSoft);
 				NAVStep1Time = elapsedSec.getValue() - 90;
 				NAVStep2Time = elapsedSec.getValue() - 75;
