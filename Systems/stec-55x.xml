@@ -7,15 +7,6 @@
 	
 	<!-- Roll Axis -->
 	
-	<predict-simple>
-		<name>NAV NEEDLE PREDICTOR</name>
-		<debug>false</debug>
-		<input>/instrumentation/nav[0]/heading-needle-deflection</input>
-		<output>/it-stec55x/internal/predicted-nav-needle</output>
-		<seconds>1.0</seconds>
-		<filter-gain>1.0</filter-gain>
-	</predict-simple>
-	
 	<filter>
 		<name>TARGET INTERCEPT ANGLE P</name>
 		<type>gain</type>
@@ -23,7 +14,7 @@
 		<input>
 			<expression>
 				<product>
-					<property>/it-stec55x/internal/predicted-nav-needle</property>
+					<property>/instrumentation/nav[0]/heading-needle-deflection</property>
 					<property>/it-stec55x/internal/nav-gain</property>
 				</product>
 			</expression>
@@ -39,14 +30,14 @@
 		<input>
 			<expression>
 				<product>
-					<property>/it-stec55x/internal/predicted-nav-needle</property>
+					<property>/instrumentation/nav[0]/heading-needle-deflection</property>
 					<property>/it-stec55x/internal/nav-gain</property>
 				</product>
 			</expression>
 		</input>
 		<reference>0</reference>
 		<output>/it-stec55x/internal/intercept-angle-d</output>
-		<filter-time>50</filter-time>
+		<filter-time>45</filter-time>
 		<min>-45</min>
 		<max>45</max>
 	</filter>

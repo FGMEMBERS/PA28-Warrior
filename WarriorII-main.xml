@@ -797,6 +797,30 @@
 			<test type="int" archive="y">0</test>
 		</kma20>
 		
+		<nav n="0">
+			<frequencies>
+				<selected-mhz type="double">111.15</selected-mhz>
+				<standby-mhz type="double">110.95</standby-mhz>
+			</frequencies>
+			<radials>
+				<selected-deg type="double">360</selected-deg>
+			</radials>
+			<serviceable type="bool">true</serviceable>
+			<volume type="double">0</volume>
+		</nav>
+		
+		<nav n="1">
+			<frequencies>
+				<selected-mhz type="double">109.55</selected-mhz>
+				<standby-mhz type="double">110.55</standby-mhz>
+			</frequencies>
+			<radials>
+				<selected-deg type="double">360</selected-deg>
+			</radials>
+			<serviceable type="bool">true</serviceable>
+			<volume type="double">0</volume>
+		</nav>
+		
 		<oat>
 			<mode type="int">0</mode>
 		</oat>

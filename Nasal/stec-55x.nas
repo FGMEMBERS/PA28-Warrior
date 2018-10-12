@@ -93,6 +93,7 @@ var servoRollPower = props.globals.initNode("/it-stec55x/internal/servo-roll-pow
 var servoPitchPower = props.globals.initNode("/it-stec55x/internal/servo-pitch-power", 0, "BOOL");
 var pressureRate = props.globals.getNode("/it-stec55x/internal/pressure-rate", 1);
 var VSSlowTarget = props.globals.getNode("/it-stec55x/internal/vs-slow", 1);
+var NAVIntercept = props.globals.getNode("/it-stec55x/internal/intercept-angle", 1);
 var discSound = props.globals.initNode("/it-stec55x/sound/disc", 0, "BOOL");
 var HDGIndicator = props.globals.getNode("/instrumentation/heading-indicator/indicated-heading-deg");
 var OBSNAVNeedle = props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection");
@@ -590,6 +591,7 @@ var button = {
 			REVManIntercept.setBoolValue(0);
 			roll.setValue(0);
 			APRModeActive.setBoolValue(0);
+			GSArmed.setBoolValue(0);
 			noGSAutoArm.setBoolValue(0);
 		}
 	},
@@ -599,6 +601,7 @@ var button = {
 			REVManIntercept.setBoolValue(0);
 			roll.setValue(0);
 			APRModeActive.setBoolValue(0);
+			GSArmed.setBoolValue(0);
 			noGSAutoArm.setBoolValue(0);
 		}
 	},
@@ -608,12 +611,14 @@ var button = {
 			REVManIntercept.setBoolValue(1);
 			roll.setValue(0);
 			APRModeActive.setBoolValue(0);
+			GSArmed.setBoolValue(0);
 			noGSAutoArm.setBoolValue(0);
 		}
 	},
 	NAV: func() {
 		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and serviceable.getBoolValue() == 1) {
 			APRModeActive.setBoolValue(0);
+			GSArmed.setBoolValue(0);
 			noGSAutoArm.setBoolValue(0);
 			if (hdgButton.getBoolValue() == 1) { # If the HDG button is being pushed, arm NAV for custom intercept angle
 				me.CNAV();
@@ -665,6 +670,7 @@ var button = {
 	REV: func() {
 		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and serviceable.getBoolValue() == 1) {
 			APRModeActive.setBoolValue(0);
+			GSArmed.setBoolValue(0);
 			noGSAutoArm.setBoolValue(0);
 			if (hdgButton.getBoolValue() == 1) { # If the HDG button is being pushed, arm REV for custom intercept angle
 				me.CREV();
@@ -799,7 +805,7 @@ var NAVchk = func {
 			NAVl.start();
 		}
 	} else if (roll.getValue() == 0 and NAVManIntercept.getBoolValue() == 1) {
-		if (abs(OBSNAVNeedle.getValue()) > 0.001 and abs(OBSNAVNeedle.getValue()) < 8) { # Only engage NAV if OBS is within capture
+		if (abs(NAVIntercept.getValue()) > 0.1 and abs(NAVIntercept.getValue()) < 40) { # Only engage NAV if within capture
 			NAVt.stop();
 			NAVFlash_annun = 0;
 			roll.setValue(1);
@@ -853,7 +859,7 @@ var REVchk = func {
 			REVl.start();
 		}
 	} else if (roll.getValue() == 0 and REVManIntercept.getBoolValue() == 1) {
-		if (abs(OBSNAVNeedle.getValue()) > 0.001 and abs(OBSNAVNeedle.getValue()) < 8) { # Only engage REV if OBS is within capture
+		if (abs(NAVIntercept.getValue()) > 0.1 and abs(NAVIntercept.getValue()) < 40) { # Only engage REV if within capture
 			REVt.stop();
 			REVFlash_annun = 0;
 			roll.setValue(6);
