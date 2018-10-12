@@ -18,7 +18,26 @@ MATERIAL "ac3dmat1" rgb 1 1 1  amb 0.984314 1 0.996078  emis 0 0 0  spec 0 0 0  
 MATERIAL "Mat.028" rgb 1 1 1  amb 0.9 0.9 0.9  emis 0 0 0  spec 1 1 1  shi 0  trans 0
 MATERIAL "ac3dmat1" rgb 0.784314 0 0  amb 0.784314 0 0  emis 0 0 0  spec 0 0 0  shi 0  trans 0
 OBJECT world
-kids 44
+kids 45
+OBJECT poly
+name "AC_Num"
+loc 0.192992 0.357645 0.23246
+texture "AC_Num.jpg"
+crease 45.000000
+numvert 4
+1.73693 -0.0363664 -0.0116722
+1.73693 -0.0363664 0.0150678
+1.73693 -0.0229964 0.0150678
+1.73693 -0.0229964 -0.0116722
+numsurf 1
+SURF 0x10
+mat 4
+refs 4
+3 1 1
+2 0 1
+1 0 0
+0 1 0
+kids 0
 OBJECT poly
 name "Mesh.035"
 loc 3.23879 0.698018 0.095532
@@ -77551,9 +77570,9 @@ refs 4
 1094 0.119327 0.23457
 kids 0
 OBJECT poly
-name "prop disc front"
+name "propfront"
 loc 0.44799 0.0258008 -0.0113605
-texture "prop-disc-front.png"
+texture "propblur.png"
 crease 45.000000
 numvert 32
 0 0.189401 -0.965854
@@ -77771,9 +77790,9 @@ refs 3
 24 1.00008 0.451848
 kids 0
 OBJECT poly
-name "prop disc rear"
+name "proprear"
 loc 0.448029 -0.00249767 -0.0113575
-texture "prop-disc-front.png"
+texture "propblur.png"
 crease 45.000000
 numvert 32
 0 0.189401 -0.965853

@@ -12,65 +12,47 @@
 		<object-name>Fuselage</object-name>
 		<object-name>VTail</object-name>
 		<object-name>Rudder</object-name>
-		<object-name>RightWing</object-name>
-		<object-name>LeftWing</object-name>
 		<object-name>Door</object-name>
-		<object-name>Stabilator</object-name>
-		<object-name>AntiServoTab</object-name>
-		<object-name>LeftAileron</object-name>
-		<object-name>RightAileron</object-name>
-		<object-name>LeftFlap</object-name>
-		<object-name>RightFlap</object-name>
 		<object-name>GearSub</object-name>
 		<object-name>Spinner</object-name>
-		<object-name>Propeller</object-name>
-		<object-name>VHFAntenna.1</object-name>
-		<object-name>VHFAntenna.2</object-name>
-		<!-- Fuselage -->
 		<property-base>sim/model/livery</property-base>
 		<texture-prop>texture</texture-prop>
 		<texture>PA28-WarriorII.png</texture>
 	</animation>
-
+	
 	<animation>
 		<type>material</type>
-		<object-name>prop disc rear</object-name>
-		<property-base>sim/model/livery</property-base>
-		<texture-prop>reardisc</texture-prop>
-		<texture>Liveries/propblur.png</texture>
+		<!-- AC NUM -->
+		<object-name>AC_Num</object-name>
+		<property-base>sim/model/acnum</property-base>
+		<texture-prop>texture</texture-prop>
+		<texture>AC_Num.jpg</texture>
 	</animation>
-
-	<animation>
-		<type>material</type>
-		<object-name>prop disc front</object-name>
-		<property-base>sim/model/livery</property-base>
-		<texture-prop>frontdisc</texture-prop>
-		<texture>Liveries/propblur.png</texture>
-	</animation>
-
+	
 	<!-- Nasal code -->
 	<nasal>
 		<load>
-		var livery_update = aircraft.livery_update.new("Aircraft/PA28-Warrior/Models/Liveries");
+			var livery_update = aircraft.livery_update.new("Aircraft/PA28-Warrior/Models/Liveries");
 		</load>
 		<unload>
-		livery_update.stop();
+			livery_update.stop();
 		</unload>
 	</nasal>
-
+	
 	<effect>
 		<condition>
 			<property>/sim/rendering/rembrandt/enabled</property>
 		</condition>
 		<inherits-from>Effects/model-transparent</inherits-from>
-		<object-name>prop disc front</object-name>
-		<object-name>prop disc rear</object-name>
+		<object-name>propfront</object-name>
+		<object-name>proprear</object-name>
 	</effect>
-
+	
 	<animation>
 		<type>material</type>
 		<object-name>Panel</object-name>
 		<object-name>PlacardsGroup</object-name>
+		<object-name>AC_Num</object-name>
 		<emission>
 			<red>0.1</red>
 			<green>0.1</green>
@@ -78,7 +60,7 @@
 			<factor-prop>controls/switches/panel-lights</factor-prop>
 		</emission>
 	</animation>
-
+	
 	<animation>
 		<type>material</type>
 		<object-name>Cabin</object-name>
@@ -89,7 +71,7 @@
 			<factor-prop>controls/switches/panel-lights</factor-prop>
 		</emission>
 	</animation>
-
+	
 	<model>
 		<name>SWITCHES</name>
 		<path>Aircraft/PA28-Warrior/Models/SwitchPanel/switch_panel.xml</path>
@@ -99,7 +81,7 @@
 			<z-m>0.102</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>PEDALS.L</name>
 		<path>Aircraft/PA28-Warrior/Models/Pedals/Pedals-L.xml</path>
@@ -109,7 +91,7 @@
 			<z-m>-0.36</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>PEDALS.R</name>
 		<path>Aircraft/PA28-Warrior/Models/Pedals/Pedals-R.xml</path>
@@ -119,7 +101,7 @@
 			<z-m>-0.36</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>FLAP-TRIM</name>
 		<path>Aircraft/PA28-Warrior/Models/FlapTrim/FlapTrim.xml</path>
@@ -129,9 +111,9 @@
 			<z-m>-0.36</z-m>
 		</offsets>
 	</model>
-
+	
 	<!-- Lights -->
-
+	
 	<model>
 		<name>Red nav light</name>
 		<path>Aircraft/PA28-Warrior/Models/light/RedLight.xml</path>
@@ -141,7 +123,7 @@
 			<z-m>0.11596</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>Green nav light</name>
 		<path>Aircraft/PA28-Warrior/Models/light/GreenLight.xml</path>
@@ -741,8 +723,8 @@
 		<type>spin</type>
 		<object-name>Propeller</object-name>
 		<object-name>Spinner</object-name>
-		<object-name>prop disc front</object-name>
-		<object-name>prop disc rear</object-name>
+		<object-name>propfront</object-name>
+		<object-name>proprear</object-name>
 		<property>engines/engine/rpm[0]</property>
 		<factor>-1</factor>
 		<axis>
@@ -757,8 +739,8 @@
 
 	<animation>
 		<type>select</type>
-		<object-name>prop disc front</object-name>
-		<object-name>prop disc rear</object-name>
+		<object-name>propfront</object-name>
+		<object-name>proprear</object-name>
 		<condition>
 			<greater-than>
 				<property>engines/engine/rpm</property>
@@ -769,8 +751,8 @@
 
 	<animation>
 		<type>blend</type>
-		<object-name>prop disc front</object-name>
-		<object-name>prop disc rear</object-name>
+		<object-name>propfront</object-name>
+		<object-name>proprear</object-name>
 		<property>engines/engine/rpm[0]</property>
 		<factor>0.00015</factor>
 		<max>1.0</max>

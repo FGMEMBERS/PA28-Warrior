@@ -6,9 +6,10 @@
 			<livery>
 				<name>D-EZEN</name>
 				<texture>Liveries/D-EZEN.png</texture>
-				<reardisc>Liveries/propgray.png</reardisc>
-				<frontdisc>Liveries/propgray.png</frontdisc>
 			</livery>
+			<acnum>
+				<texture>Liveries/D-EZEN-acnum.jpg</texture>
+			</acnum>
 		</model>
 	</sim>
 </PropertyList>

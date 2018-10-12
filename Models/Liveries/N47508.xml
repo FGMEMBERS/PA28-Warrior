@@ -6,9 +6,10 @@
 			<livery>
 				<name>N47508</name>
 				<texture>Liveries/N47508.png</texture>
-				<reardisc>Liveries/propwhite.png</reardisc>
-				<frontdisc>Liveries/propwhite.png</frontdisc>
 			</livery>
+			<acnum>
+				<texture>Liveries/N47508-acnum.jpg</texture>
+			</acnum>
 		</model>
 	</sim>
 </PropertyList>
