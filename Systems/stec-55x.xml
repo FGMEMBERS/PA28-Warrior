@@ -26,9 +26,9 @@
 					<value>1</value>
 				</equals>
 			</condition>
-			<value>5.2</value>
+			<value>7.5</value>
 		</gain>
-		<gain>7.5</gain>
+		<gain>10.5</gain>
 		<input>
 			<condition>
 				<or>
@@ -1084,10 +1084,10 @@
 						<property>/it-stec55x/output/yaw</property>
 						<value>-1</value>
 					</greater-than>
-					<!--equals>
+					<equals>
 						<property>/it-stec55x/settings/use-controls-flight</property>
 						<value>1</value>
-					</equals-->
+					</equals>
 				</and>
 			</condition>
 		</enable>
