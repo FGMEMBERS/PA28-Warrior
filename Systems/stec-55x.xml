@@ -7,30 +7,274 @@
 	
 	<!-- NAV Switching -->
 	
+	<logic>
+		<name>HSI EQUIPPED</name> <!-- Goes to true for custom sources -->
+		<input>
+			<or>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/nav-selector</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/it-stec55x/settings/hsi-equipped-1</property>
+						<value>1</value>
+					</equals>
+				</and>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/nav-selector</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-stec55x/settings/hsi-equipped-2</property>
+						<value>1</value>
+					</equals>
+				</and>
+				<equals>
+					<property>/it-stec55x/input/nav-selector</property>
+					<value>2</value>
+				</equals>
+				<equals>
+					<property>/it-stec55x/input/nav-selector</property>
+					<value>3</value>
+				</equals>
+			</or>
+		</input>
+		<output>/it-stec55x/settings/hsi-equipped</output>
+	</logic>
+	
+	<filter>
+		<name>NAV NEEDLE DEFLECTION</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-stec55x/input/nav-selector</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<property>/instrumentation/nav[0]/heading-needle-deflection</property>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-stec55x/input/nav-selector</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<property>/instrumentation/nav[1]/heading-needle-deflection</property>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-stec55x/input/nav-selector</property>
+					<value>2</value>
+				</equals>
+			</condition>
+			<property>/it-stec55x/custom-nav/nav-needle-1</property>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-stec55x/input/nav-selector</property>
+					<value>3</value>
+				</equals>
+			</condition>
+			<property>/it-stec55x/custom-nav/nav-needle-2</property>
+		</input>
+		<input>0</input>
+		<output>/it-stec55x/nav/nav-needle</output>
+	</filter>
+	
+	<filter>
+		<name>GS NEEDLE DEFLECTION</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-stec55x/input/nav-selector</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<property>/instrumentation/nav[0]/gs-needle-deflection</property>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-stec55x/input/nav-selector</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<property>/instrumentation/nav[1]/gs-needle-deflection</property>
+		</input>
+		<input>0</input>
+		<output>/it-stec55x/nav/gs-needle</output>
+	</filter>
+	
+	<logic>
+		<name>NAV IN RANGE</name>
+		<input>
+			<or>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/nav-selector</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/instrumentation/nav[0]/in-range</property>
+						<value>1</value>
+					</equals>
+				</and>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/nav-selector</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/instrumentation/nav[1]/in-range</property>
+						<value>1</value>
+					</equals>
+				</and>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/nav-selector</property>
+						<value>2</value>
+					</equals>
+					<equals>
+						<property>/it-stec55x/custom-nav/in-range-1</property>
+						<value>1</value>
+					</equals>
+				</and>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/nav-selector</property>
+						<value>3</value>
+					</equals>
+					<equals>
+						<property>/it-stec55x/custom-nav/in-range-2</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</or>
+		</input>
+		<output>/it-stec55x/nav/in-range</output>
+	</logic>
+	
+	<logic>
+		<name>NAV IS LOC</name>
+		<input>
+			<or>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/nav-selector</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/instrumentation/nav[0]/nav-loc</property>
+						<value>1</value>
+					</equals>
+				</and>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/nav-selector</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/instrumentation/nav[1]/nav-loc</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</or>
+		</input>
+		<output>/it-stec55x/nav/is-loc</output>
+	</logic>
+	
+	<logic>
+		<name>NAV HAS GS</name>
+		<input>
+			<or>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/nav-selector</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/instrumentation/nav[0]/has-gs</property>
+						<value>1</value>
+					</equals>
+				</and>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/nav-selector</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/instrumentation/nav[1]/has-gs</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</or>
+		</input>
+		<output>/it-stec55x/nav/has-gs</output>
+	</logic>
+	
 	<filter>
 		<name>NAV COURSE</name>
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
 			<condition>
-				<equals>
-					<property>/it-stec55x/settings/hsi-equipped</property>
-					<value>1</value>
-				</equals>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/nav-selector</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/it-stec55x/settings/hsi-equipped-1</property>
+						<value>1</value>
+					</equals>
+				</and>
 			</condition>
 			<property>/instrumentation/nav[0]/radials/selected-deg</property>
 		</input>
+		<input>
+			<condition>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/nav-selector</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-stec55x/settings/hsi-equipped-2</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</condition>
+			<property>/instrumentation/nav[1]/radials/selected-deg</property>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-stec55x/input/nav-selector</property>
+					<value>2</value>
+				</equals>
+			</condition>
+			<property>/it-stec55x/custom-nav/nav-course-1</property>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-stec55x/input/nav-selector</property>
+					<value>3</value>
+				</equals>
+			</condition>
+			<property>/it-stec55x/custom-nav/nav-course-2</property>
+		</input>
 		<input>/it-stec55x/input/hdg</input>
-		<output>/it-stec55x/internal/nav-course</output>
-	</filter>
-	
-	<filter>
-		<name>NAV COURSE ERROR</name>
-		<type>gain</type>
-		<gain>-1.0</gain>
-		<input>/it-stec55x/internal/nav-course</input>
-		<reference>/instrumentation/heading-indicator/indicated-heading-deg</reference>
-		<output>/it-stec55x/internal/nav-course-error</output>
+		<output>/it-stec55x/nav/nav-course</output>
 	</filter>
 	
 	<filter>
@@ -41,12 +285,12 @@
 		<input>
 			<expression>
 				<sum>
-					<property>/instrumentation/nav[0]/radials/selected-deg</property>
+					<property>/it-stec55x/nav/nav-course</property>
 					<value>180</value>
 				</sum>
 			</expression>
 		</input>
-		<output>/it-stec55x/internal/nav-course-reciprocal-cmd</output>
+		<output>/it-stec55x/nav/nav-course-reciprocal-cmd</output>
 	</filter>
 	
 	<filter>
@@ -57,13 +301,13 @@
 		<input>
 			<condition>
 				<greater-than>
-					<property>/it-stec55x/internal/nav-course-reciprocal-cmd</property>
+					<property>/it-stec55x/nav/nav-course-reciprocal-cmd</property>
 					<value>360</value>
 				</greater-than>
 			</condition>
 			<expression>
 				<dif>
-					<property>/it-stec55x/internal/nav-course-reciprocal-cmd</property>
+					<property>/it-stec55x/nav/nav-course-reciprocal-cmd</property>
 					<value>360</value>
 				</dif>
 			</expression>
@@ -71,19 +315,75 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/it-stec55x/internal/nav-course-reciprocal-cmd</property>
+					<property>/it-stec55x/nav/nav-course-reciprocal-cmd</property>
 					<value>1</value>
 				</less-than>
 			</condition>
 			<expression>
 				<sum>
-					<property>/it-stec55x/internal/nav-course-reciprocal-cmd</property>
+					<property>/it-stec55x/nav/nav-course-reciprocal-cmd</property>
 					<value>360</value>
 				</sum>
 			</expression>
 		</input>
-		<input>/it-stec55x/internal/nav-course-reciprocal-cmd</input>
-		<output>/it-stec55x/internal/nav-course-reciprocal</output>
+		<input>/it-stec55x/nav/nav-course-reciprocal-cmd</input>
+		<output>/it-stec55x/nav/nav-course-reciprocal</output>
+	</filter>
+	
+	<filter>
+		<name>NAV COURSE ERROR</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<and>
+					<equals>
+						<property>/it-stec55x/output/roll</property>
+						<value>6</value>
+					</equals>
+					<equals>
+						<property>/it-stec55x/settings/hsi-equipped</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</condition>
+			<property>/it-stec55x/nav/nav-course-reciprocal</property>
+			<offset>
+				<property>/instrumentation/heading-indicator/indicated-heading-deg</property>
+				<scale>-1.0</scale>
+			</offset>
+		</input>
+		<input>
+			<condition>
+				<or>
+					<equals>
+						<property>/it-stec55x/output/roll</property>
+						<value>1</value>
+					</equals>
+					<and>
+						<equals>
+							<property>/it-stec55x/output/roll</property>
+							<value>6</value>
+						</equals>
+						<equals>
+							<property>/it-stec55x/settings/hsi-equipped</property>
+							<value>0</value>
+						</equals>
+					</and>
+				</or>
+			</condition>
+			<property>/it-stec55x/nav/nav-course</property>
+			<offset>
+				<property>/instrumentation/heading-indicator/indicated-heading-deg</property>
+				<scale>-1.0</scale>
+			</offset>
+		</input>
+		<input>0</input>
+		<output>/it-stec55x/nav/nav-course-error</output>
+		<period>
+			<min>-180</min>
+			<max>180</max>
+		</period>
 	</filter>
 	
 	<!-- Roll Axis -->
@@ -95,7 +395,7 @@
 		<input>
 			<expression>
 				<product>
-					<property>/instrumentation/nav[0]/heading-needle-deflection</property>
+					<property>/it-stec55x/nav/nav-needle</property>
 					<property>/it-stec55x/internal/nav-gain</property>
 				</product>
 			</expression>
@@ -112,31 +412,37 @@
 		<input>
 			<condition>
 				<and>
-					<equals>
-						<property>/it-stec55x/output/roll</property>
-						<value>1</value>
-					</equals>
+					<or>
+						<equals>
+							<property>/it-stec55x/output/roll</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/it-stec55x/output/roll</property>
+							<value>6</value>
+						</equals>
+					</or>
 					<less-than-equals>
-						<property>/it-stec55x/internal/nav-course-error</property>
+						<property>/it-stec55x/nav/nav-course-error</property>
 						<value>10</value>
 					</less-than-equals>
 					<greater-than-equals>
-						<property>/it-stec55x/internal/nav-course-error</property>
+						<property>/it-stec55x/nav/nav-course-error</property>
 						<value>-10</value>
 					</greater-than-equals>
 					<less-than-equals>
-						<property>/instrumentation/nav[0]/heading-needle-deflection</property>
+						<property>/it-stec55x/nav/nav-needle</property>
 						<value>1</value>
 					</less-than-equals>
 					<greater-than-equals>
-						<property>/instrumentation/nav[0]/heading-needle-deflection</property>
+						<property>/it-stec55x/nav/nav-needle</property>
 						<value>-1</value>
 					</greater-than-equals>
 				</and>
 			</condition>
 			<expression>
 				<product>
-					<property>/instrumentation/nav[0]/heading-needle-deflection</property>
+					<property>/it-stec55x/nav/nav-needle</property>
 					<property>/it-stec55x/internal/nav-gain</property>
 				</product>
 			</expression>
@@ -160,7 +466,7 @@
 		<input>
 			<expression>
 				<product>
-					<property>/instrumentation/nav[0]/heading-needle-deflection</property>
+					<property>/it-stec55x/nav/nav-needle</property>
 					<property>/it-stec55x/internal/nav-gain</property>
 				</product>
 			</expression>
@@ -238,44 +544,14 @@
 		</input>
 		<input>
 			<condition>
-				<and>
-					<equals>
-						<property>/it-stec55x/output/roll</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-stec55x/settings/hsi-equipped</property>
-						<value>0</value>
-					</equals>
-				</and>
+				<equals>
+					<property>/it-stec55x/output/roll</property>
+					<value>1</value>
+				</equals>
 			</condition>
 			<expression>
 				<sum>
-					<property>/it-stec55x/input/hdg</property>
-					<property>/it-stec55x/internal/intercept-angle</property>
-				</sum>
-			</expression>
-			<offset>
-				<property>/instrumentation/heading-indicator/indicated-heading-deg</property>
-				<scale>-1.0</scale>
-			</offset>
-		</input>
-		<input>
-			<condition>
-				<and>
-					<equals>
-						<property>/it-stec55x/output/roll</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-stec55x/settings/hsi-equipped</property>
-						<value>1</value>
-					</equals>
-				</and>
-			</condition>
-			<expression>
-				<sum>
-					<property>/instrumentation/nav[0]/radials/selected-deg</property>
+					<property>/it-stec55x/nav/nav-course</property>
 					<property>/it-stec55x/internal/intercept-angle</property>
 				</sum>
 			</expression>
@@ -326,7 +602,7 @@
 			</condition>
 			<expression>
 				<sum>
-					<property>/it-stec55x/internal/nav-course-reciprocal</property>
+					<property>/it-stec55x/nav/nav-course-reciprocal</property>
 					<product>
 						<property>/it-stec55x/internal/intercept-angle</property>
 						<value>-1.0</value>
@@ -722,7 +998,7 @@
 	<predict-simple>
 		<name>GS NEEDLE PREDICTOR</name>
 		<debug>false</debug>
-		<input>/instrumentation/nav[0]/gs-needle-deflection</input>
+		<input>/it-stec55x/nav/gs-needle</input>
 		<output>/it-stec55x/internal/predicted-gs-needle</output>
 		<seconds>1.0</seconds>
 		<filter-gain>0.1</filter-gain>

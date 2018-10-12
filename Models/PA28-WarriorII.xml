@@ -488,6 +488,17 @@
 			<roll-deg>90</roll-deg>
 		</offsets>
 	</model>
+	
+	<model>
+		<name>NAVSW</name>
+		<path>Aircraft/PA28-Warrior/Models/Instruments/nav-src-sw/nav-src-sw.xml</path>
+		<offsets>
+			<x-m>1.927</x-m>
+			<y-m>-0.42</y-m>
+			<z-m>0.110</z-m>
+			<roll-deg>90</roll-deg>
+		</offsets>
+	</model>
 
 	<model>
 		<name>TC</name>

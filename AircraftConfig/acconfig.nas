@@ -128,9 +128,9 @@ var writeSettings = func {
 
 var autopilotSettings = func {
 	if (getprop("/options/panel") == "HSI Panel") {
-		setprop("/it-stec55x/settings/hsi-equipped", 1);
+		setprop("/it-stec55x/settings/hsi-equipped-1", 1);
 	} else {
-		setprop("/it-stec55x/settings/hsi-equipped", 0);
+		setprop("/it-stec55x/settings/hsi-equipped-1", 0);
 	}
 }
 

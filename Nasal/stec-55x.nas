@@ -1,6 +1,7 @@
 # S-TEC Fifty Five X Autopilot System
 # Copyright (c) 2018 Joshua Davidson (it0uchpods)
 
+# Initialize variables
 var cdiDefl = 0;
 var aoffset = 0;
 var vspeed = 0;
@@ -38,6 +39,14 @@ var GSFlash_annun = 0;
 var VSFlash_annun = 0;
 var TRIMFlash_annun = 0;
 
+# Initialize custom nav inputs
+props.globals.initNode("/it-stec55x/custom-nav/in-range-1", 0, "BOOL");
+props.globals.initNode("/it-stec55x/custom-nav/in-range-2", 0, "BOOL");
+props.globals.initNode("/it-stec55x/custom-nav/nav-needle-1", 0, "DOUBLE");
+props.globals.initNode("/it-stec55x/custom-nav/nav-needle-2", 0, "DOUBLE");
+props.globals.initNode("/it-stec55x/custom-nav/nav-course-1", 0, "INT");
+props.globals.initNode("/it-stec55x/custom-nav/nav-course-2", 0, "INT");
+
 # Initialize all used property nodes
 var elapsedSec = props.globals.getNode("/sim/time/elapsed-sec");
 var powerSrc = props.globals.getNode("/systems/electrical/outputs/autopilot", 1); # Autopilot power source
@@ -57,6 +66,7 @@ var masterAPFDSW = props.globals.initNode("/it-stec55x/input/apfd-master-sw", 0,
 var elecTrimSW = props.globals.initNode("/it-stec55x/input/electric-trim-sw", 0, "BOOL");
 var yawDamperSW = props.globals.initNode("/it-stec55x/input/yaw-damper-sw", 0, "INT"); # 0 = AUTO, 1 = ON
 var yawDamperTrim = props.globals.initNode("/it-stec55x/input/yaw-damper-trim", 0, "DOUBLE");
+var NAVSelector = props.globals.initNode("/it-stec55x/input/nav-selector", 0, "INT"); # 0 = NAV1, 1 = NAV2, 2 = CUSTOM1, 3 = CUSTOM2
 var hasPower = props.globals.initNode("/it-stec55x/internal/hasPower", 0, "BOOL");
 var roll = props.globals.initNode("/it-stec55x/output/roll", -1, "INT");
 var pitch = props.globals.initNode("/it-stec55x/output/pitch", -1, "INT");
@@ -94,14 +104,14 @@ var servoPitchPower = props.globals.initNode("/it-stec55x/internal/servo-pitch-p
 var pressureRate = props.globals.getNode("/it-stec55x/internal/pressure-rate", 1);
 var VSSlowTarget = props.globals.getNode("/it-stec55x/internal/vs-slow", 1);
 var NAVIntercept = props.globals.getNode("/it-stec55x/internal/intercept-angle", 1);
-var NAVCourse = props.globals.getNode("/it-stec55x/internal/nav-course", 1);
 var discSound = props.globals.initNode("/it-stec55x/sound/disc", 0, "BOOL");
 var HDGIndicator = props.globals.getNode("/instrumentation/heading-indicator/indicated-heading-deg");
-var OBSNAVNeedle = props.globals.getNode("/instrumentation/nav[0]/heading-needle-deflection");
-var OBSGSNeedle = props.globals.getNode("/instrumentation/nav[0]/gs-needle-deflection");
-var OBSActive = props.globals.getNode("/instrumentation/nav[0]/in-range");
-var OBSIsLOC = props.globals.getNode("/instrumentation/nav[0]/nav-loc");
-var OBSHasGS = props.globals.getNode("/instrumentation/nav[0]/has-gs");
+var NAVCourse = props.globals.getNode("/it-stec55x/nav/nav-course", 1);
+var OBSNAVNeedle = props.globals.getNode("/it-stec55x/nav/nav-needle", 1);
+var OBSGSNeedle = props.globals.getNode("/it-stec55x/nav/gs-needle", 1);
+var OBSActive = props.globals.initNode("/it-stec55x/nav/in-range", 0, "BOOL");
+var OBSIsLOC = props.globals.initNode("/it-stec55x/nav/is-loc", 0, "BOOL");
+var OBSHasGS = props.globals.getNode("/it-stec55x/nav/has-gs", 0, "BOOL");
 var NAV0Power = props.globals.getNode("/systems/electrical/outputs/nav[0]");
 var GPSActive = props.globals.getNode("/autopilot/route-manager/active");
 var turnRate = props.globals.getNode("/instrumentation/turn-indicator/indicated-turn-rate");
@@ -109,7 +119,6 @@ var turnRateSpin = props.globals.getNode("/instrumentation/turn-indicator/spin")
 var staticPress = props.globals.getNode("/systems/static[0]/pressure-inhg");
 
 # Initialize setting property nodes
-var HSIequipped = props.globals.getNode("/it-stec55x/settings/hsi-equipped"); # Does the aircraft have an HSI or DG?
 var isTurboprop = props.globals.getNode("/it-stec55x/settings/is-turboprop"); # Does the aircraft have turboprop engines?
 var FDequipped = props.globals.getNode("/it-stec55x/settings/fd-equipped"); # Does the aircraft have a flight director installed?
 var YDequipped = props.globals.getNode("/it-stec55x/settings/yd-equipped"); # Does the aircraft have the optional yaw damper installed?

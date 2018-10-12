@@ -2,7 +2,7 @@
 
 <PropertyList>
 	
-	<path>avionics-sw.ac</path>
+	<path>nav-src-sw.ac</path>
 	
 	<animation>
 		<type>material</type>
@@ -22,8 +22,10 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<command>property-toggle</command>
-				<property>controls/switches/avionics-master</property>
+				<command>property-cycle</command>
+				<property>it-stec55x/input/nav-selector</property>
+				<value>0</value>
+				<value>1</value>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -35,8 +37,8 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>Lever</object-name>
-		<property>controls/switches/avionics-master</property>
-		<factor>32</factor>
+		<property>it-stec55x/input/nav-selector</property>
+		<factor>-32</factor>
 		<axis>
 			<x>0</x>
 			<y>0</y>
