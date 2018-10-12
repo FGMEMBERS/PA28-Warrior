@@ -17,31 +17,10 @@
 	</predict-simple>
 	
 	<filter>
-		<name>TARGET INTERCAPT ANGLE</name>
+		<name>TARGET INTERCEPT ANGLE P</name>
 		<type>gain</type>
-		<gain>
-			<condition>
-				<equals>
-					<property>/instrumentation/nav[0]/nav-loc</property>
-					<value>1</value>
-				</equals>
-			</condition>
-			<value>7.5</value>
-		</gain>
-		<gain>10.5</gain>
+		<gain>12.5</gain>
 		<input>
-			<condition>
-				<or>
-					<equals>
-						<property>/it-stec55x/output/roll</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-stec55x/output/roll</property>
-						<value>6</value>
-					</equals>
-				</or>
-			</condition>
 			<expression>
 				<product>
 					<property>/it-stec55x/internal/predicted-nav-needle</property>
@@ -49,7 +28,42 @@
 				</product>
 			</expression>
 		</input>
-		<input>0</input>
+		<output>/it-stec55x/internal/intercept-angle-p</output>
+		<min>-45</min>
+		<max>45</max>
+	</filter>
+	
+	<filter>
+		<name>TARGET INTERCEPT ANGLE D</name>
+		<type>derivative</type>
+		<input>
+			<expression>
+				<product>
+					<property>/it-stec55x/internal/predicted-nav-needle</property>
+					<property>/it-stec55x/internal/nav-gain</property>
+				</product>
+			</expression>
+		</input>
+		<reference>0</reference>
+		<output>/it-stec55x/internal/intercept-angle-d</output>
+		<filter-time>50</filter-time>
+		<min>-45</min>
+		<max>45</max>
+	</filter>
+	
+	<filter>
+		<name>TARGET INTERCEPT ANGLE</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<expression>
+				<sum>
+					<property>/it-stec55x/internal/intercept-angle-p</property>
+					<property>/it-stec55x/internal/intercept-angle-d</property>
+				</sum>
+			</expression>
+		</input>
 		<output>/it-stec55x/internal/intercept-angle</output>
 		<min>-45</min>
 		<max>45</max>
