@@ -175,6 +175,7 @@
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
+				<property>aero/function/kCDge</property>
 				<value>0.0239312</value>
 			</product>
 		</function>
@@ -423,7 +424,7 @@
 					<independentVar lookup="row">fcs/flap-pos-deg</independentVar>
 					<tableData>
 						 0  0.0202
-						40  0.0266
+						40  0.0226
 					</tableData>
 				</table>
 			</product>
@@ -436,7 +437,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/cbarw-ft</property>
 				<property>aero/alpha-rad</property>
-				<value>-0.5735</value>
+				<value>-0.6614</value>
 			</product>
 		</function>
 		
@@ -447,7 +448,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/cbarw-ft</property>
 				<toradians><property>fcs/elevator-deg</property></toradians>
-				<value>-1.733</value>
+				<value>-1.7329</value>
 				<table>
 					<independentVar lookup="row">aero/alpha-rad</independentVar>
 					<independentVar lookup="column">fcs/elevator-deg</independentVar>

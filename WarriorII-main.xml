@@ -279,63 +279,16 @@
 				<float n="2" alias="/gear/gear[2]/compression-norm"/>
 				<float n="3" alias="/fdm/jsbsim/fcs/steer-deg"/>
 				<float n="4" alias="/fdm/jsbsim/extra/door-main-norm"/>
-				<float n="5" alias="/fdm/jsbsim/fcs/aileron-deg"/>
-				<float n="6" alias="/fdm/jsbsim/fcs/elevator-deg"/>
-				<float n="7" alias="/fdm/jsbsim/fcs/elevator-tab-deg"/>
-				<float n="8" alias="/fdm/jsbsim/fcs/rudder-deg"/>
+				<float n="5" alias="/surface-positions/left-aileron-deg"/>
+				<float n="6" alias="/surface-positions/right-aileron-deg"/>
+				<float n="7" alias="/surface-positions/elevator-deg"/>
+				<float n="8" alias="/surface-positions/elevator-tab-deg"/>
+				<float n="9" alias="/surface-positions/rudder-deg"/>
 				<string alias="/sim/multiplay/callsign"/>
 			</generic>
 		</multiplay>
 		
-		<flight-recorder>
-			<replay-config type="int">0</replay-config>
-			<config n="0" include="/Aircraft/Generic/flightrecorder/generic-piston-propeller-1.xml">
-				<name type="string">Piper 28 Warrior Flight Recorder</name>
-				<signal>
-					<type>float</type>
-					<property type="string">/gear/gear[0]/compression-m</property>
-					<interpolation>linear</interpolation>
-				</signal>
-				<signal>
-					<type>float</type>
-					<property type="string">/gear/gear[1]/compression-m</property>
-					<interpolation>linear</interpolation>
-				</signal>
-				<signal>
-					<type>float</type>
-					<property type="string">/gear/gear[2]/compression-m</property>
-					<interpolation>linear</interpolation>
-				</signal>
-			</config>
-		</flight-recorder>
-		
-		<aircraft-data>     
-			<path>instrumentation/radar-altimeter/decision-height</path>
-			<path>instrumentation/comm[0]/volume</path>
-			<path>instrumentation/comm[0]/frequencies/selected-mhz</path>
-			<path>instrumentation/comm[0]/frequencies/standby-mhz</path>
-			<path>instrumentation/comm[0]/test-btn</path>
-			<path>instrumentation/nav[0]/audio-btn</path>
-			<path>instrumentation/nav[0]/power-btn</path>
-			<path>instrumentation/nav[0]/frequencies/selected-mhz</path>
-			<path>instrumentation/nav[0]/frequencies/standby-mhz</path>
-			<path>instrumentation/nav/radials/selected-deg</path>
-			<path>instrumentation/comm[1]/volume</path>
-			<path>instrumentation/comm[1]/frequencies/selected-mhz</path>
-			<path>instrumentation/comm[1]/frequencies/standby-mhz</path>
-			<path>instrumentation/comm[1]/test-btn</path>
-			<path>instrumentation/nav[1]/audio-btn</path>
-			<path>instrumentation/nav[1]/power-btn</path>
-			<path>instrumentation/nav[1]/frequencies/selected-mhz</path>
-			<path>instrumentation/nav[1]/frequencies/standby-mhz</path>
-			<path>instrumentation/nav[1]/radials/selected-deg</path>
-			<path>instrumentation/dme/frequencies/selected-mhz</path>
-			<path>instrumentation/dme/switch-min-kts</path>
-			<path>instrumentation/hobbs-meter/seconds</path>
-			<path>instrumentation/adf/model</path>
-			<path>instrumentation/adf/rotation-deg</path>
-			<path>instrumentation/adf/frequencies</path>
-		</aircraft-data>
+		<flight-recorder include="Systems/flight-recorder.xml"/>
 		
 		<gui n="0" include="Systems/it-gui.xml"/>
 		

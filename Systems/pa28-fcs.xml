@@ -108,6 +108,8 @@
 				<min>-15</min>
 				<max>15</max>
 			</range>
+			<output>/surface-positions/left-aileron-deg</output>
+			<output>/surface-positions/right-aileron-deg</output>
 		</aerosurface_scale>
 	
 	</channel>
@@ -148,6 +150,7 @@
 				<min>-12</min>
 				<max>12</max>
 			</range>
+			<output>/surface-positions/elevator-deg</output>
 		</aerosurface_scale>
 		
 		<fcs_function name="fcs/elevator-tab-deg">
@@ -161,6 +164,7 @@
 					<value>-3</value>
 				</sum>
 			</function>
+			<output>/surface-positions/elevator-tab-deg</output>
 			<clipto>
 				<min>-15</min>
 				<max>9</max>
@@ -186,6 +190,7 @@
 				<min>-16</min>
 				<max>16</max>
 			</range>
+			<output>/surface-positions/rudder-deg</output>
 		</aerosurface_scale>
 	
 	</channel>
@@ -244,7 +249,7 @@
 		<actuator name="fcs/steer-deg">
 			<input>fcs/steer-switch-deg</input>
 			<rate_limit>200</rate_limit>
-			<output>fcs/steer-pos-deg[0]</output>
+			<output>fcs/steer-pos-deg</output>
 		</actuator>
 	
 	</channel>
