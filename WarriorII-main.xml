@@ -74,9 +74,6 @@
 			<autopilot n="1">
 				<path>Aircraft/PA28-Warrior/Systems/libraries.xml</path>
 			</autopilot>
-			<autopilot n="2">
-				<path>Aircraft/PA28-Warrior/Systems/zoom-views.xml</path>
-			</autopilot>
 		</systems>
 		
 		<menubar>
@@ -343,11 +340,7 @@
 		<gui n="0" include="Systems/it-gui.xml"/>
 		
 		<current-view>
-			<z-offset-dec-step type="double">0.0</z-offset-dec-step>
-			<z-offset-inc-step type="double">0.0</z-offset-inc-step>
-			<can-change-z-offset type="bool">false</can-change-z-offset>
-			
-			<z-offset-default type="float">30.0</z-offset-default>
+			<z-offset-default type="float">15.0</z-offset-default>
 			<z-offset-min-m type="float">10.0</z-offset-min-m>
 			<z-offset-max-m type="float">200.0</z-offset-max-m>
 		</current-view>
@@ -492,18 +485,7 @@
 							</condition>
 							<command>nasal</command>
 							<script>
-							if (getprop("/sim/current-view/can-change-z-offset")) {
-								var distance = getprop("/sim/current-view/z-offset-m");
-								var multiple = getprop("/sim/current-view/z-offset-inc-step");
-								var min_dist = getprop("/sim/current-view/z-offset-min-m");
-
-								distance = math.round(std.min(-min_dist, distance + multiple) / multiple) * multiple;
-								setprop("/sim/current-view/z-offset-m", distance);
-
-								gui.popupTip(sprintf("%d meters", abs(distance)));
-							} else {
-								view.decrease();
-							}
+								libraries.fovZoom(-1);
 							</script>
 						</binding>
 					</button>
@@ -520,18 +502,7 @@
 							</condition>
 							<command>nasal</command>
 							<script>
-								if (getprop("/sim/current-view/can-change-z-offset")) {
-									var distance = getprop("/sim/current-view/z-offset-m");
-									var multiple = getprop("/sim/current-view/z-offset-dec-step");
-									var max_dist = getprop("/sim/current-view/z-offset-max-m");
-
-									distance = math.round(std.max(-max_dist, distance + multiple) / multiple) * multiple;
-									setprop("/sim/current-view/z-offset-m", distance);
-
-									gui.popupTip(sprintf("%d meters", abs(distance)));
-								} else {
-									view.increase();
-								}
+								libraries.fovZoom(1);
 							</script>
 						</binding>
 					</button>
@@ -555,13 +526,7 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-						if (getprop("/sim/current-view/can-change-z-offset")) {
-							setprop("/sim/current-view/z-offset-m", getprop("/sim/current-view/z-offset-default") * -1);
-
-							gui.popupTip(sprintf("%d meters", getprop("/sim/current-view/z-offset-default")));
-						} else {
-							setprop("/sim/current-view/field-of-view", getprop("/sim/view/config/default-field-of-view-deg"));
-						}
+						libraries.fovZoom(0);
 					</script>
 				</binding>
 			</key>
@@ -638,21 +603,10 @@
 				<desc>Increase field of view</desc>
 				<repeatable type="bool">true</repeatable>
 				<binding>
-				<command>nasal</command>
-				<script>
-					if (getprop("/sim/current-view/can-change-z-offset")) {
-						var distance = getprop("/sim/current-view/z-offset-m");
-						var multiple = getprop("/sim/current-view/z-offset-dec-step");
-						var max_dist = getprop("/sim/current-view/z-offset-max-m");
-
-						distance = math.round(std.max(-max_dist, distance + multiple) / multiple) * multiple;
-						setprop("/sim/current-view/z-offset-m", distance);
-
-						gui.popupTip(sprintf("%d meters", abs(distance)));
-					} else {
-						view.increase();
-					}
-				</script>
+					<command>nasal</command>
+					<script>
+						libraries.fovZoom(1);
+					</script>
 				</binding>
 			</key>
 			<key n="99">
@@ -696,18 +650,7 @@
 				<binding>
 					<command>nasal</command>
 					<script>
-						if (getprop("/sim/current-view/can-change-z-offset")) {
-							var distance = getprop("/sim/current-view/z-offset-m");
-							var multiple = getprop("/sim/current-view/z-offset-inc-step");
-							var min_dist = getprop("/sim/current-view/z-offset-min-m");
-
-							distance = math.round(std.min(-min_dist, distance + multiple) / multiple) * multiple;
-							setprop("/sim/current-view/z-offset-m", distance);
-
-							gui.popupTip(sprintf("%d meters", abs(distance)));
-						} else {
-							view.decrease();
-						}
+						libraries.fovZoom(-1);
 					</script>
 				</binding>
 			</key>
@@ -899,9 +842,10 @@
 			<file>Aircraft/PA28-Warrior/Nasal/ki266.nas</file>
 			<file>Aircraft/PA28-Warrior/Nasal/kcs55.nas</file>
 			<file>Aircraft/PA28-Warrior/Nasal/kma20.nas</file>
+			<file>Aircraft/PA28-Warrior/Nasal/zoom-views.nas</file>
 			<script>
-			<![CDATA[ki266.new(0);
-			KCS55.new();]]>
+				<![CDATA[ki266.new(0);
+				KCS55.new();]]>
 			</script>
 		</libraries>
 		<stec55x>
@@ -920,7 +864,7 @@
 		<HobbsMeter>
 			<file>Aircraft/PA28-Warrior/Models/Instruments/Hobbs/hobbs.nas</file>
 			<script>
-			<![CDATA[HobbsMeter.new(index: 0, switchPath: 'gear/gear/wow', inverted: 1);]]>
+				<![CDATA[HobbsMeter.new(index: 0, switchPath: 'gear/gear/wow', inverted: 1);]]>
 			</script>
 		</HobbsMeter>
 		<logger>
