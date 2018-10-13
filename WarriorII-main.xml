@@ -525,9 +525,7 @@
 				<desc>Reset zoom to default</desc>
 				<binding>
 					<command>nasal</command>
-					<script>
-						libraries.fovZoom(0);
-					</script>
+					<script>libraries.fovZoom(0);</script>
 				</binding>
 			</key>
 			<key n="49">
