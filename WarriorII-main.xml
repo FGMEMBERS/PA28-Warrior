@@ -602,9 +602,7 @@
 				<repeatable type="bool">true</repeatable>
 				<binding>
 					<command>nasal</command>
-					<script>
-						libraries.fovZoom(1);
-					</script>
+					<script>libraries.fovZoom(1);</script>
 				</binding>
 			</key>
 			<key n="99">
@@ -636,9 +634,7 @@
 				<desc>Kill starter-key</desc>
 				<binding>
 					<command>nasal</command>
-					<script>
-						setprop("/sim/unused/nothing", 0);
-					</script>
+					<script>setprop("/sim/unused/nothing", 0);</script>
 				</binding>
 			</key>
 			<key n="120">
@@ -647,9 +643,7 @@
 				<repeatable type="bool">true</repeatable>
 				<binding>
 					<command>nasal</command>
-					<script>
-						libraries.fovZoom(-1);
-					</script>
+					<script>libraries.fovZoom(-1);</script>
 				</binding>
 			</key>
 		</keyboard>
