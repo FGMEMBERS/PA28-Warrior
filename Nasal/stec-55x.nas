@@ -784,7 +784,7 @@ var button = {
 		} else if (d == 0) { # Button released
 			cwsSW.setBoolValue(0);
 			if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and roll.getValue() != -1 and serviceable.getBoolValue() == 1) {
-				manTurnRate.setValue(math.clamp(turnRate.getValue(), -0.9, 0.9));
+				manTurnRate.setValue(math.round(math.clamp(turnRate.getValue(), -0.9, 0.9), 0.1));
 				roll.setValue(5);
 				me.VS();
 			}
