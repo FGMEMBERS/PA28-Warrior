@@ -287,15 +287,6 @@
 		</button>
 		
 		<button>
-			<legend>+</legend>
-			<pref-width>15</pref-width>
-			<binding>
-				<command>nasal</command>
-				<script>stec55x.button.CNAV();</script>
-			</binding>
-		</button>
-		
-		<button>
 			<legend>NAV</legend>
 			<pref-width>40</pref-width>
 			<binding>
