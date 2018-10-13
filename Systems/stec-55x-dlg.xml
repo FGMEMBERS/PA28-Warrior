@@ -8,7 +8,7 @@
 	<name>autopilot</name>
 	<layout>vbox</layout>
 	
-    <group>
+	<group>
 		<row>0</row>
 		<col>0</col>
 		<layout>hbox</layout>
@@ -48,183 +48,183 @@
 		</group>
 	</group>
 	
-    <hrule/>
+	<hrule/>
 	
 	<group>
 		<layout>table</layout>
 		
-        <text>
-            <row>0</row>
+		<text>
+			<row>0</row>
 			<col>0</col>
-            <label>HDG</label>
+			<label>HDG</label>
 			<visible>
 				<equals>
 					<property>/it-stec55x/annun/hdg</property>
 					<value>1</value>
 				</equals>
 			</visible>
-        </text>
+		</text>
 		
-        <text>
-            <row>0</row>
+		<text>
+			<row>0</row>
 			<col>1</col>
-            <label>NAV</label>
+			<label>NAV</label>
 			<visible>
 				<equals>
 					<property>/it-stec55x/annun/nav</property>
 					<value>1</value>
 				</equals>
 			</visible>
-        </text>
+		</text>
 		
-        <text>
-            <row>0</row>
+		<text>
+			<row>0</row>
 			<col>2</col>
-            <label>APR</label>
+			<label>APR</label>
 			<visible>
 				<equals>
 					<property>/it-stec55x/annun/apr</property>
 					<value>1</value>
 				</equals>
 			</visible>
-        </text>
+		</text>
 		
-        <text>
-            <row>0</row>
+		<text>
+			<row>0</row>
 			<col>3</col>
-            <label>REV</label>
+			<label>REV</label>
 			<visible>
 				<equals>
 					<property>/it-stec55x/annun/rev</property>
 					<value>1</value>
 				</equals>
 			</visible>
-        </text>
+		</text>
 		
-        <text>
-            <row>0</row>
+		<text>
+			<row>0</row>
 			<col>4</col>
-            <label>TRIM</label>
+			<label>TRIM</label>
 			<visible>
 				<equals>
 					<property>/it-stec55x/annun/trim</property>
 					<value>1</value>
 				</equals>
 			</visible>
-        </text>
+		</text>
 		
-        <text>
-            <row>0</row>
+		<text>
+			<row>0</row>
 			<col>5</col>
-            <label>ALT</label>
+			<label>ALT</label>
 			<visible>
 				<equals>
 					<property>/it-stec55x/annun/alt</property>
 					<value>1</value>
 				</equals>
 			</visible>
-        </text>
+		</text>
 		
-        <text>
-            <row>0</row>
+		<text>
+			<row>0</row>
 			<col>6</col>
-            <label>GS</label>
+			<label>GS</label>
 			<visible>
 				<equals>
 					<property>/it-stec55x/annun/gs</property>
 					<value>1</value>
 				</equals>
 			</visible>
-        </text>
+		</text>
 		
-        <text>
-            <row>0</row>
+		<text>
+			<row>0</row>
 			<col>7</col>
-            <label>VS</label>
+			<label>VS</label>
 			<visible>
 				<equals>
 					<property>/it-stec55x/annun/vs</property>
 					<value>1</value>
 				</equals>
 			</visible>
-        </text>
+		</text>
 		
-        <text>
-            <row>1</row>
+		<text>
+			<row>1</row>
 			<col>0</col>
-            <label>RDY</label>
+			<label>RDY</label>
 			<visible>
 				<equals>
 					<property>/it-stec55x/annun/rdy</property>
 					<value>1</value>
 				</equals>
 			</visible>
-        </text>
+		</text>
 		
-        <text>
-            <row>1</row>
+		<text>
+			<row>1</row>
 			<col>1</col>
-            <label>CWS</label>
+			<label>CWS</label>
 			<visible>
 				<equals>
 					<property>/it-stec55x/annun/cws</property>
 					<value>1</value>
 				</equals>
 			</visible>
-        </text>
+		</text>
 		
-        <text>
-            <row>1</row>
+		<text>
+			<row>1</row>
 			<col>2</col>
-            <label>FAIL</label>
+			<label>FAIL</label>
 			<visible>
 				<equals>
 					<property>/it-stec55x/annun/fail</property>
 					<value>1</value>
 				</equals>
 			</visible>
-        </text>
+		</text>
 		
-        <text>
-            <row>1</row>
+		<text>
+			<row>1</row>
 			<col>3</col>
-            <label>GPSS</label>
+			<label>GPSS</label>
 			<visible>
 				<equals>
 					<property>/it-stec55x/annun/gpss</property>
 					<value>1</value>
 				</equals>
 			</visible>
-        </text>
+		</text>
 		
-        <text>
-            <row>1</row>
+		<text>
+			<row>1</row>
 			<col>4</col>
-            <label>UP</label>
+			<label>UP</label>
 			<visible>
 				<equals>
 					<property>/it-stec55x/annun/up</property>
 					<value>1</value>
 				</equals>
 			</visible>
-        </text>
+		</text>
 		
-        <text>
-            <row>1</row>
+		<text>
+			<row>1</row>
 			<col>4</col>
-            <label>DN</label>
+			<label>DN</label>
 			<visible>
 				<equals>
 					<property>/it-stec55x/annun/dn</property>
 					<value>1</value>
 				</equals>
 			</visible>
-        </text>
+		</text>
 		
-        <text>
-            <row>1</row>
+		<text>
+			<row>1</row>
 			<col>6</col>
-            <label>+</label>
+			<label>+</label>
 			<visible>
 				<and>
 					<equals>
@@ -237,12 +237,12 @@
 					</greater-than-equals>
 				</and>
 			</visible>
-        </text>
+		</text>
 		
-        <text>
-            <row>1</row>
+		<text>
+			<row>1</row>
 			<col>6</col>
-            <label>-</label>
+			<label>-</label>
 			<visible>
 				<and>
 					<equals>
@@ -255,12 +255,12 @@
 					</less-than>
 				</and>
 			</visible>
-        </text>
+		</text>
 		
-        <text>
-            <row>1</row>
+		<text>
+			<row>1</row>
 			<col>7</col>
-            <label>99</label>
+			<label>99</label>
 			<visible>
 				<equals>
 					<property>/it-stec55x/annun/vs-digit</property>
@@ -269,7 +269,7 @@
 			</visible>
 			<property>/it-stec55x/input/vs-abs</property>
 			<live>1</live>
-        </text>
+		</text>
 	</group>
 	
 	<hrule/>
@@ -342,9 +342,9 @@
 			</binding>
 		</button>
 		
-        <text>
-            <label>VS x 100</label>
-        </text>
+		<text>
+			<label>VS x 100</label>
+		</text>
 		
 		<button>
 			<legend>INCR</legend>

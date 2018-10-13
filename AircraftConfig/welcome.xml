@@ -9,12 +9,12 @@
 	<name>aircraft-config-welcome</name>
 	<layout>vbox</layout>
 
-    <group>
-        <layout>hbox</layout>
-        <text>
-            <halign>left</halign>
-            <label>Welcome!</label>
-        </text>
+	<group>
+		<layout>hbox</layout>
+		<text>
+			<halign>left</halign>
+			<label>Welcome!</label>
+		</text>
 		<empty><stretch>1</stretch></empty>
 		<button>
 			<row>0</row>
@@ -30,19 +30,19 @@
 				</script>
 			</binding>
 		</button>
-        <button>
-            <halign>right</halign>
-            <pref-width>20</pref-width>
-            <pref-height>20</pref-height>
-            <legend>X</legend>
-            <key>Esc</key>
-            <binding>
-                <command>dialog-close</command>
-            </binding>
-        </button>
-    </group>
+		<button>
+			<halign>right</halign>
+			<pref-width>20</pref-width>
+			<pref-height>20</pref-height>
+			<legend>X</legend>
+			<key>Esc</key>
+			<binding>
+				<command>dialog-close</command>
+			</binding>
+		</button>
+	</group>
 	
-    <hrule/>
+	<hrule/>
 	
 	<group>
 		<layout>vbox</layout>

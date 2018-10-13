@@ -9,25 +9,25 @@
 	<name>aircraft-config-fail</name>
 	<layout>vbox</layout>
 
-    <group>
-        <layout>hbox</layout>
-        <text>
-            <halign>left</halign>
-            <label>System Failures</label>
-        </text>
-        <button>
-            <halign>right</halign>
-            <pref-width>20</pref-width>
-            <pref-height>20</pref-height>
-            <legend>X</legend>
-            <key>Esc</key>
-            <binding>
-                <command>dialog-close</command>
-            </binding>
-        </button>
-    </group>
+	<group>
+		<layout>hbox</layout>
+		<text>
+			<halign>left</halign>
+			<label>System Failures</label>
+		</text>
+		<button>
+			<halign>right</halign>
+			<pref-width>20</pref-width>
+			<pref-height>20</pref-height>
+			<legend>X</legend>
+			<key>Esc</key>
+			<binding>
+				<command>dialog-close</command>
+			</binding>
+		</button>
+	</group>
 	
-    <hrule/>
+	<hrule/>
 	
 	<text>
 		<halign>left</halign>
