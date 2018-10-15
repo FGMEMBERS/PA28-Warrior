@@ -26,8 +26,8 @@ var NAVOver50Time = 0;
 var NAVOver50Counting = 0;
 var hdgButtonTime = 0;
 var powerUpTime = 0;
-var powerUPTestAnnun = 0;
-var powerUPTestVSAnnun = 0;
+var powerUpTestAnnun = 0;
+var powerUpTestVSAnnun = 0;
 var showSoftwareRevision = 0;
 var VSFlashTime = 0;
 var VSFlashCounting = 0;
@@ -215,18 +215,18 @@ var ITAF = {
 		# Powerup Test Annunciators
 		if (powerUpTest.getValue() == 1) {
 			if (powerUpTime + 3 >= elapsedSec.getValue()) {
-				powerUPTestAnnun = 1;
+				powerUpTestAnnun = 1;
 				showSoftwareRevision = 0;
 			} else if (powerUpTime + 8 >= elapsedSec.getValue()) {
-				powerUPTestAnnun = 0;
+				powerUpTestAnnun = 0;
 				showSoftwareRevision = 1;
 				vs.setValue(600); # For startup test only, software revision
 			} else {
-				powerUPTestAnnun = 0;
+				powerUpTestAnnun = 0;
 				showSoftwareRevision = 0;
 			}
 		} else {
-			powerUPTestAnnun = 0;
+			powerUpTestAnnun = 0;
 			showSoftwareRevision = 0;
 		}
 		
@@ -242,7 +242,7 @@ var ITAF = {
 			if (powerUpTest.getValue() == 1 and powerUpTime + 10 < elapsedSec.getValue()) {
 				powerUpTest.setValue(0);
 			}
-			if (powerUPTestAnnun == 1) {
+			if (powerUpTestAnnun == 1) {
 				RDY_annun.setBoolValue(1);
 			} else if (roll.getValue() == -1 and serviceable.getBoolValue() == 1 and powerUpTest.getValue() == 0) {
 				RDY_annun.setBoolValue(1);
@@ -255,9 +255,9 @@ var ITAF = {
 				if (roll.getValue() != -1 or pitch.getValue() != -1) {
 					ITAF.killAP(); # Called with ITAF.killAP not me.killAP because this function is called from the timer outside this class
 				}
-			} else if (powerUPTestAnnun == 1 or ((roll.getValue() == 1 or roll.getValue() == 3 or roll.getValue() == 7 or CNAV or CREV) and OBSActive.getBoolValue() != 1)) {
+			} else if (powerUpTestAnnun == 1 or ((roll.getValue() == 1 or roll.getValue() == 3 or roll.getValue() == 7 or CNAV or CREV) and OBSActive.getBoolValue() != 1)) {
 				FAIL_annun.setBoolValue(1);
-			} else if (powerUPTestAnnun == 1 or ((roll.getValue() == 2 or roll.getValue() == 4) and GPSActive.getBoolValue() != 1)) {
+			} else if (powerUpTestAnnun == 1 or ((roll.getValue() == 2 or roll.getValue() == 4) and GPSActive.getBoolValue() != 1)) {
 				FAIL_annun.setBoolValue(1);
 			} else {
 				FAIL_annun.setBoolValue(0);
@@ -266,68 +266,68 @@ var ITAF = {
 		
 		# Mode Annunciators
 		# AP does not power up or show any signs of life unless if has power (obviously), and the turn coordinator is working
-		if ((roll.getValue() == 0 or powerUPTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if ((roll.getValue() == 0 or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
 			HDG_annun.setBoolValue(1);
 		} else {
 			HDG_annun.setBoolValue(0);
 		}
 		
-		if ((roll.getValue() == 1 or roll.getValue() == 2 or ((NAV or CNAV) and NAVFlash_annun) or powerUPTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if ((roll.getValue() == 1 or roll.getValue() == 2 or ((NAV or CNAV) and NAVFlash_annun) or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
 			NAV_annun.setBoolValue(1);
 		} else {
 			NAV_annun.setBoolValue(0);
 		}
 		
-		if ((((roll.getValue() == 1 or roll.getValue() == 6 or ((CNAV or roll.getValue() == 3) and NAVFlash_annun) or ((CREV or roll.getValue() == 7) and REVFlash_annun)) and APRModeActive.getBoolValue() == 1) or powerUPTestAnnun == 1) and 
+		if ((((roll.getValue() == 1 or roll.getValue() == 6 or ((CNAV or roll.getValue() == 3) and NAVFlash_annun) or ((CREV or roll.getValue() == 7) and REVFlash_annun)) and APRModeActive.getBoolValue() == 1) or powerUpTestAnnun == 1) and 
 		systemAlive.getBoolValue() == 1) {
 			APR_annun.setBoolValue(1);
 		} else {
 			APR_annun.setBoolValue(0);
 		}
 		
-		if ((roll.getValue() == 6 or ((REV or CREV) and REVFlash_annun) or powerUPTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if ((roll.getValue() == 6 or ((REV or CREV) and REVFlash_annun) or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
 			REV_annun.setBoolValue(1);
 		} else {
 			REV_annun.setBoolValue(0);
 		}
 		
-		if ((pitch.getValue() == 0 or powerUPTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if ((pitch.getValue() == 0 or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
 			ALT_annun.setBoolValue(1);
 		} else {
 			ALT_annun.setBoolValue(0);
 		}
 		
-		if (((pitch.getValue() == 1 and VSFlash_annun != 1) or pitch.getValue() == -2 or powerUPTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if (((pitch.getValue() == 1 and VSFlash_annun != 1) or pitch.getValue() == -2 or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
 			VS_annun.setBoolValue(1);
 		} else {
 			VS_annun.setBoolValue(0);
 		}
 		
-		if ((pitch.getValue() == 1 or pitch.getValue() == -2 or powerUPTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if ((pitch.getValue() == 1 or pitch.getValue() == -2 or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
 			VSS_annun.setBoolValue(1);
 		} else {
 			VSS_annun.setBoolValue(0);
 		}
 		
-		if ((pitch.getValue() == 1 or pitch.getValue() == -2 or powerUPTestAnnun == 1 or showSoftwareRevision == 1) and systemAlive.getBoolValue() == 1) {
+		if ((pitch.getValue() == 1 or pitch.getValue() == -2 or powerUpTestAnnun == 1 or showSoftwareRevision == 1) and systemAlive.getBoolValue() == 1) {
 			VSD_annun.setBoolValue(1);
 		} else {
 			VSD_annun.setBoolValue(0);
 		}
 		
-		if ((roll.getValue() == 5 or roll.getValue() == -2 or powerUPTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if ((roll.getValue() == 5 or roll.getValue() == -2 or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
 			CWS_annun.setBoolValue(1);
 		} else {
 			CWS_annun.setBoolValue(0);
 		}
 		
-		if ((roll.getValue() == 2 or (roll.getValue() == 4 and NAVFlash_annun) or powerUPTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if ((roll.getValue() == 2 or (roll.getValue() == 4 and NAVFlash_annun) or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
 			GPSS_annun.setBoolValue(1);
 		} else {
 			GPSS_annun.setBoolValue(0);
 		}
 		
-		if ((pitch.getValue() == 2 or GSArmed.getBoolValue() or (!GSArmed.getBoolValue() and GSFlash_annun) or powerUPTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if ((pitch.getValue() == 2 or GSArmed.getBoolValue() or (!GSArmed.getBoolValue() and GSFlash_annun) or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
 			GS_annun.setBoolValue(1);
 		} else {
 			GS_annun.setBoolValue(0);
@@ -335,14 +335,14 @@ var ITAF = {
 		
 		# Electric Pitch Trim
 		if (systemAlive.getBoolValue() == 1) {
-			if (powerUPTestAnnun == 1 or (pitch.getValue() > -1 and getprop("/it-stec55x/internal/elevator") < -0.025 and masterSW.getValue() == 2)) {
+			if (powerUpTestAnnun == 1 or (pitch.getValue() > -1 and getprop("/it-stec55x/internal/elevator") < -0.025 and masterSW.getValue() == 2)) {
 				UP_annun.setBoolValue(1);
 			} else if (pitch.getValue() > -1 and UP_annun.getBoolValue() == 1 and getprop("/it-stec55x/internal/elevator") < -0.01 and masterSW.getValue() == 2) {
 				UP_annun.setBoolValue(1);
 			} else {
 				UP_annun.setBoolValue(0);
 			}
-			if (powerUPTestAnnun == 1 or (pitch.getValue() > -1 and getprop("/it-stec55x/internal/elevator") > 0.025 and masterSW.getValue() == 2)) {
+			if (powerUpTestAnnun == 1 or (pitch.getValue() > -1 and getprop("/it-stec55x/internal/elevator") > 0.025 and masterSW.getValue() == 2)) {
 				DN_annun.setBoolValue(1);
 			} else if (pitch.getValue() > -1 and DN_annun.getBoolValue() == 1 and getprop("/it-stec55x/internal/elevator") > 0.01 and masterSW.getValue() == 2) {
 				DN_annun.setBoolValue(1);
@@ -354,7 +354,7 @@ var ITAF = {
 			DN_annun.setBoolValue(0);
 		}
 		
-		if ((UP_annun.getBoolValue() == 1 or DN_annun.getBoolValue() == 1 or manTrimSW.getValue() != 0 or powerUPTestAnnun == 1) and TRIMFlash_annun != 1 and systemAlive.getBoolValue() == 1) {
+		if ((UP_annun.getBoolValue() == 1 or DN_annun.getBoolValue() == 1 or manTrimSW.getValue() != 0 or powerUpTestAnnun == 1) and TRIMFlash_annun != 1 and systemAlive.getBoolValue() == 1) {
 			TRIM_annun.setBoolValue(1);
 		} else {
 			TRIM_annun.setBoolValue(0);
@@ -473,7 +473,7 @@ var ITAF = {
 		}
 		
 		# Flash TRIM if the autopilot is trimming for over 4 seconds
-		isTrimming = (UP_annun.getBoolValue() or DN_annun.getBoolValue()) and powerUPTestAnnun == 0 and elecTrimSW.getBoolValue() and powerSrcTrim.getValue() >= 8;
+		isTrimming = (UP_annun.getBoolValue() or DN_annun.getBoolValue()) and powerUpTestAnnun == 0 and elecTrimSW.getBoolValue() and powerSrcTrim.getValue() >= 8;
 		if (masterSW.getValue() == 2) {
 			if (TRIMFlashCounting != 1 and isTrimming) {
 				TRIMFlashCounting = 1;
