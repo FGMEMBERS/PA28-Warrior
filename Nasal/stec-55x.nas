@@ -38,6 +38,8 @@ var REVFlash_annun = 0;
 var GSFlash_annun = 0;
 var VSFlash_annun = 0;
 var TRIMFlash_annun = 0;
+var rollMode = -1;
+var pitchMode = -1;
 
 # Initialize custom nav inputs
 props.globals.initNode("/it-stec55x/custom-nav/in-range-1", 0, "BOOL");
@@ -174,6 +176,9 @@ var ITAF = {
 		updateFast.start();
 	},
 	loop: func() {
+		rollMode = roll.getValue();
+		pitchMode = pitch.getValue();
+		
 		if (FDequipped.getBoolValue() == 1) {
 			masterSW.setValue(masterAPFDSW.getValue());
 			if (masterAPSW.getBoolValue() != 0) { # Just in case the FD equipped option is changed while system operating
@@ -190,7 +195,7 @@ var ITAF = {
 			systemAlive.setBoolValue(1);
 		} else {
 			systemAlive.setBoolValue(0);
-			if (roll.getValue() != -1 or pitch.getValue() != -1) {
+			if (rollMode != -1 or pitchMode != -1) {
 				ITAF.killAP(); # Called with ITAF.killAP not me.killAP because this function is called from the timer outside this class
 			}
 		}
@@ -207,7 +212,7 @@ var ITAF = {
 			if (powerUpTest.getValue() != -1 or systemAlive.getBoolValue() != 1) {
 				powerUpTest.setValue(-1);
 			}
-			if (roll.getValue() != -1 or pitch.getValue() != -1) {
+			if (rollMode != -1 or pitchMode != -1) {
 				ITAF.killAP(); # Called with ITAF.killAP not me.killAP because this function is called from the timer outside this class
 			}
 		}
@@ -230,10 +235,10 @@ var ITAF = {
 			showSoftwareRevision = 0;
 		}
 		
-		NAV = roll.getValue() == 3 or roll.getValue() == 4; # Is NAV armed?
-		REV = roll.getValue() == 7; # Is REV armed?
-		CNAV = roll.getValue() == 0 and NAVManIntercept.getBoolValue(); # Is NAV with custom intercept heading armed?
-		CREV = roll.getValue() == 0 and REVManIntercept.getBoolValue(); # Is REV with custom intercept heading armed?
+		NAV = rollMode == 3 or rollMode == 4; # Is NAV armed?
+		REV = rollMode == 7; # Is REV armed?
+		CNAV = rollMode == 0 and NAVManIntercept.getBoolValue(); # Is NAV with custom intercept heading armed?
+		CREV = rollMode == 0 and REVManIntercept.getBoolValue(); # Is REV with custom intercept heading armed?
 		
 		if (systemAlive.getBoolValue() == 0) { # AP Failed when false
 			RDY_annun.setBoolValue(0);
@@ -244,7 +249,7 @@ var ITAF = {
 			}
 			if (powerUpTestAnnun == 1) {
 				RDY_annun.setBoolValue(1);
-			} else if (roll.getValue() == -1 and serviceable.getBoolValue() == 1 and powerUpTest.getValue() == 0) {
+			} else if (rollMode == -1 and serviceable.getBoolValue() == 1 and powerUpTest.getValue() == 0) {
 				RDY_annun.setBoolValue(1);
 			} else {
 				RDY_annun.setBoolValue(0);
@@ -252,12 +257,12 @@ var ITAF = {
 			if (serviceable.getBoolValue() != 1) {
 				FAIL_annun.setBoolValue(1);
 				powerUpTest.setValue(0);
-				if (roll.getValue() != -1 or pitch.getValue() != -1) {
+				if (rollMode != -1 or pitchMode != -1) {
 					ITAF.killAP(); # Called with ITAF.killAP not me.killAP because this function is called from the timer outside this class
 				}
-			} else if (powerUpTestAnnun == 1 or ((roll.getValue() == 1 or roll.getValue() == 3 or roll.getValue() == 7 or CNAV or CREV) and OBSActive.getBoolValue() != 1)) {
+			} else if (powerUpTestAnnun == 1 or ((rollMode == 1 or rollMode == 3 or rollMode == 7 or CNAV or CREV) and OBSActive.getBoolValue() != 1)) {
 				FAIL_annun.setBoolValue(1);
-			} else if (powerUpTestAnnun == 1 or ((roll.getValue() == 2 or roll.getValue() == 4) and GPSActive.getBoolValue() != 1)) {
+			} else if (powerUpTestAnnun == 1 or ((rollMode == 2 or rollMode == 4) and GPSActive.getBoolValue() != 1)) {
 				FAIL_annun.setBoolValue(1);
 			} else {
 				FAIL_annun.setBoolValue(0);
@@ -266,68 +271,68 @@ var ITAF = {
 		
 		# Mode Annunciators
 		# AP does not power up or show any signs of life unless if has power (obviously), and the turn coordinator is working
-		if ((roll.getValue() == 0 or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if ((rollMode == 0 or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
 			HDG_annun.setBoolValue(1);
 		} else {
 			HDG_annun.setBoolValue(0);
 		}
 		
-		if ((roll.getValue() == 1 or roll.getValue() == 2 or ((NAV or CNAV) and NAVFlash_annun) or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if ((rollMode == 1 or rollMode == 2 or ((NAV or CNAV) and NAVFlash_annun) or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
 			NAV_annun.setBoolValue(1);
 		} else {
 			NAV_annun.setBoolValue(0);
 		}
 		
-		if ((((roll.getValue() == 1 or roll.getValue() == 6 or ((CNAV or roll.getValue() == 3) and NAVFlash_annun) or ((CREV or roll.getValue() == 7) and REVFlash_annun)) and APRModeActive.getBoolValue() == 1) or powerUpTestAnnun == 1) and 
+		if ((((rollMode == 1 or rollMode == 6 or ((CNAV or rollMode == 3) and NAVFlash_annun) or ((CREV or rollMode == 7) and REVFlash_annun)) and APRModeActive.getBoolValue() == 1) or powerUpTestAnnun == 1) and 
 		systemAlive.getBoolValue() == 1) {
 			APR_annun.setBoolValue(1);
 		} else {
 			APR_annun.setBoolValue(0);
 		}
 		
-		if ((roll.getValue() == 6 or ((REV or CREV) and REVFlash_annun) or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if ((rollMode == 6 or ((REV or CREV) and REVFlash_annun) or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
 			REV_annun.setBoolValue(1);
 		} else {
 			REV_annun.setBoolValue(0);
 		}
 		
-		if ((pitch.getValue() == 0 or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if ((pitchMode == 0 or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
 			ALT_annun.setBoolValue(1);
 		} else {
 			ALT_annun.setBoolValue(0);
 		}
 		
-		if (((pitch.getValue() == 1 and VSFlash_annun != 1) or pitch.getValue() == -2 or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if (((pitchMode == 1 and VSFlash_annun != 1) or pitchMode == -2 or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
 			VS_annun.setBoolValue(1);
 		} else {
 			VS_annun.setBoolValue(0);
 		}
 		
-		if ((pitch.getValue() == 1 or pitch.getValue() == -2 or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if ((pitchMode == 1 or pitchMode == -2 or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
 			VSS_annun.setBoolValue(1);
 		} else {
 			VSS_annun.setBoolValue(0);
 		}
 		
-		if ((pitch.getValue() == 1 or pitch.getValue() == -2 or powerUpTestAnnun == 1 or showSoftwareRevision == 1) and systemAlive.getBoolValue() == 1) {
+		if ((pitchMode == 1 or pitchMode == -2 or powerUpTestAnnun == 1 or showSoftwareRevision == 1) and systemAlive.getBoolValue() == 1) {
 			VSD_annun.setBoolValue(1);
 		} else {
 			VSD_annun.setBoolValue(0);
 		}
 		
-		if ((roll.getValue() == 5 or roll.getValue() == -2 or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if ((rollMode == 5 or rollMode == -2 or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
 			CWS_annun.setBoolValue(1);
 		} else {
 			CWS_annun.setBoolValue(0);
 		}
 		
-		if ((roll.getValue() == 2 or (roll.getValue() == 4 and NAVFlash_annun) or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if ((rollMode == 2 or (rollMode == 4 and NAVFlash_annun) or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
 			GPSS_annun.setBoolValue(1);
 		} else {
 			GPSS_annun.setBoolValue(0);
 		}
 		
-		if ((pitch.getValue() == 2 or GSArmed.getBoolValue() or (!GSArmed.getBoolValue() and GSFlash_annun) or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
+		if ((pitchMode == 2 or GSArmed.getBoolValue() or (!GSArmed.getBoolValue() and GSFlash_annun) or powerUpTestAnnun == 1) and systemAlive.getBoolValue() == 1) {
 			GS_annun.setBoolValue(1);
 		} else {
 			GS_annun.setBoolValue(0);
@@ -335,16 +340,16 @@ var ITAF = {
 		
 		# Electric Pitch Trim
 		if (systemAlive.getBoolValue() == 1) {
-			if (powerUpTestAnnun == 1 or (pitch.getValue() > -1 and getprop("/it-stec55x/internal/elevator") < -0.025 and masterSW.getValue() == 2)) {
+			if (powerUpTestAnnun == 1 or (pitchMode > -1 and getprop("/it-stec55x/internal/elevator") < -0.025 and masterSW.getValue() == 2)) {
 				UP_annun.setBoolValue(1);
-			} else if (pitch.getValue() > -1 and UP_annun.getBoolValue() == 1 and getprop("/it-stec55x/internal/elevator") < -0.01 and masterSW.getValue() == 2) {
+			} else if (pitchMode > -1 and UP_annun.getBoolValue() == 1 and getprop("/it-stec55x/internal/elevator") < -0.01 and masterSW.getValue() == 2) {
 				UP_annun.setBoolValue(1);
 			} else {
 				UP_annun.setBoolValue(0);
 			}
-			if (powerUpTestAnnun == 1 or (pitch.getValue() > -1 and getprop("/it-stec55x/internal/elevator") > 0.025 and masterSW.getValue() == 2)) {
+			if (powerUpTestAnnun == 1 or (pitchMode > -1 and getprop("/it-stec55x/internal/elevator") > 0.025 and masterSW.getValue() == 2)) {
 				DN_annun.setBoolValue(1);
-			} else if (pitch.getValue() > -1 and DN_annun.getBoolValue() == 1 and getprop("/it-stec55x/internal/elevator") > 0.01 and masterSW.getValue() == 2) {
+			} else if (pitchMode > -1 and DN_annun.getBoolValue() == 1 and getprop("/it-stec55x/internal/elevator") > 0.01 and masterSW.getValue() == 2) {
 				DN_annun.setBoolValue(1);
 			} else {
 				DN_annun.setBoolValue(0);
@@ -363,7 +368,7 @@ var ITAF = {
 		cdiDefl = OBSNAVNeedle.getValue();
 		
 		# NAV/REV mode gain, reduces as the system captures the course
-		if (roll.getValue() == 1 or roll.getValue() == 6) {
+		if (rollMode == 1 or rollMode == 6) {
 			if (abs(cdiDefl) <= 1.5 and NAVGain.getValue() == NAVGainStd) { # CAP mode
 				NAVGain.setValue(NAVGainCap);
 				NAVStep1Time = elapsedSec.getValue();
@@ -400,7 +405,7 @@ var ITAF = {
 		
 		# Limit the turn rate depending on the mode
 		if (isTurboprop.getBoolValue() == 1) { # Turboprop aircraft have lower turn rates
-			if (roll.getValue() == 1 or roll.getValue() == 6) { # Turn rate in NAV mode
+			if (rollMode == 1 or rollMode == 6) { # Turn rate in NAV/REV mode
 				if (NAVGain.getValue() == NAVGainCapSoft) {
 					minTurnRate.setValue(-0.375);
 					maxTurnRate.setValue(0.375);
@@ -416,7 +421,7 @@ var ITAF = {
 				maxTurnRate.setValue(0.75);
 			}
 		} else {
-			if (roll.getValue() == 1 or roll.getValue() == 6) { # Turn rate in NAV mode
+			if (rollMode == 1 or rollMode == 6) { # Turn rate in NAV/REV mode
 				if (NAVGain.getValue() == NAVGainCapSoft) {
 					minTurnRate.setValue(-0.45);
 					maxTurnRate.setValue(0.45);
@@ -437,7 +442,7 @@ var ITAF = {
 		GSFlag = !OBSActive.getBoolValue() or NAV0Power.getValue() < 8 or !OBSHasGS.getBoolValue(); # GS Flag
 		
 		# Automatically arm GS
-		if (roll.getValue() == 1 and APRModeActive.getBoolValue() and pitch.getValue() == 0 and !NAVFlag and !GSFlag and OBSIsLOC.getBoolValue() and abs(cdiDefl) <= 5 and OBSGSNeedle.getValue() >= 0.35 and !GSArmed.getBoolValue()) {
+		if (rollMode == 1 and APRModeActive.getBoolValue() and pitchMode == 0 and !NAVFlag and !GSFlag and OBSIsLOC.getBoolValue() and abs(cdiDefl) <= 5 and OBSGSNeedle.getValue() >= 0.35 and !GSArmed.getBoolValue()) {
 			if (!noGSAutoArm.getBoolValue()) {
 				GSArmed.setBoolValue(1);
 				GSchk();
@@ -447,7 +452,7 @@ var ITAF = {
 		
 		# Flash VS if the autopilot is not able to hold the VS
 		VSError = abs(math.round(pressureRate.getValue() * -58000, 100) - VSSlowTarget.getValue()) > 200; # Find VS Error from converted pressure rate, and VS Slow Target
-		if (pitch.getValue() == 1 and masterSW.getValue() == 2) {
+		if (pitchMode == 1 and masterSW.getValue() == 2) {
 			if (VSFlashCounting != 1 and VSError) {
 				VSFlashCounting = 1;
 				VSFlashTime = elapsedSec.getValue();
