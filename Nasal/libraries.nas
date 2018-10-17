@@ -96,6 +96,27 @@ var slewProp = func(prop, delta) {
 	return getprop(prop);
 }
 
-controls.elevatorTrim = func(speed) {
-	slewProp("/controls/flight/elevator-trim", speed * 0.04);
+setprop("/controls/flight/elevator-trim-time", 0);
+
+controls.elevatorTrim = func(d) {
+	if (getprop("/systems/electrical/outputs/electrim") >= 8 and getprop("/it-stec55x/input/electric-trim-sw")) {
+		setprop("/it-stec55x/input/man-trim", d);
+		setprop("/controls/flight/elevator-trim-time", getprop("/sim/time/elapsed-sec"));
+		elevatorTrimTimer.start();
+	} else {
+		setprop("/it-stec55x/input/man-trim", 0);
+		slewProp("/controls/flight/elevator-trim", d * 0.04);
+	}
 }
+
+var elevatorTrimTimer = maketimer(0.05, func {
+	if (getprop("/systems/electrical/outputs/electrim") >= 8 and getprop("/it-stec55x/input/electric-trim-sw")) {
+		if (getprop("/controls/flight/elevator-trim-time") + 0.1 <= getprop("/sim/time/elapsed-sec")) {
+			elevatorTrimTimer.stop();
+			setprop("/it-stec55x/input/man-trim", 0);
+		}
+	} else {
+		elevatorTrimTimer.stop();
+		setprop("/it-stec55x/input/man-trim", 0);
+	}
+});
