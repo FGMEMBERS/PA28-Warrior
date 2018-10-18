@@ -6,11 +6,16 @@
 	
 	<channel name="Control Inputs">
 		
+		<actuator name="fcs/aileron-overpower">
+			<input>/controls/flight/aileron</input>
+			<rate_limit>0.1</rate_limit>
+		</actuator>
+		
 		<fcs_function name="fcs/aileron-ap">
 			<function>
 				<sum>
 					<product>
-						<property>/controls/flight/aileron</property>
+						<property>fcs/aileron-overpower</property>
 						<value>0.5</value>
 					</product>
 					<property>/it-stec55x/internal/aileron</property>
@@ -35,11 +40,16 @@
 			<c1>20</c1>
 		</lag_filter>
 		
+		<actuator name="fcs/elevator-overpower">
+			<input>/controls/flight/elevator</input>
+			<rate_limit>0.1</rate_limit>
+		</actuator>
+		
 		<fcs_function name="fcs/elevator-ap">
 			<function>
 				<sum>
 					<product>
-						<property>/controls/flight/elevator</property>
+						<property>fcs/elevator-overpower</property>
 						<value>0.5</value>
 					</product>
 					<property>/it-stec55x/internal/elevator</property>
