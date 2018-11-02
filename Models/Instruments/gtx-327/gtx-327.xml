@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<!-- Garmin GTX 327 Transponder -->
+<!-- Copyright (c) 2018 Joshua Davidson (it0uchpods) -->
+<!-- 3D and Texture by Jonathan Redpath (legoboyvdlp) -->
+
+<PropertyList>
+	
+    <path>gtx-327.ac</path>
+	
+	<params>
+		<button-translate>-0.001</button-translate> <!-- Button translate factor -->
+	</params>
+	
+	<animation>
+		<type>material</type>
+		<object-name>GroupLighting</object-name>
+		<emission>
+			<red>0.1</red>
+			<green>0.1</green>
+			<blue>0.1</blue>
+		  <factor-prop>controls/switches/panel-lights</factor-prop>
+		</emission>
+	</animation>
+	
+	<animation>
+		<type>material</type>
+		<object-name>Display</object-name>
+		<emission>
+			<red>0.4</red>
+			<green>0.4</green>
+			<blue>0.4</blue>
+		  <factor-prop>controls/switches/panel-lights</factor-prop>
+		</emission>
+	</animation>
+	
+	
+
+</PropertyList>

@@ -182,7 +182,7 @@
 			<path>Aircraft/PA28-Warrior/Sounds/sound.xml</path>
 		</sound>
 		
-		<chase-distance-m type="double" archive="y">-15.0</chase-distance-m>
+		<chase-distance-m type="double" archive="y">-20.0</chase-distance-m>
 		<view n="0">
 			<name>Pilot View</name>
 			<internal archive="y">true</internal>
@@ -293,7 +293,7 @@
 		<gui n="0" include="Systems/it-gui.xml"/>
 		
 		<current-view>
-			<z-offset-default type="float">15.0</z-offset-default>
+			<z-offset-default type="float">20.0</z-offset-default>
 			<z-offset-min-m type="float">10.0</z-offset-min-m>
 			<z-offset-max-m type="float">200.0</z-offset-max-m>
 		</current-view>
@@ -739,6 +739,7 @@
 		<panel type="string">HSI Panel</panel>
 		<show-l-yoke type="bool">1</show-l-yoke>
 		<show-r-yoke type="bool">1</show-r-yoke>
+		<wip type="bool">0</wip> <!-- Enable the WIP instruments -->
 	</options>
 	
 	<payload>

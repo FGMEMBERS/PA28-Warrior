@@ -660,7 +660,7 @@
 		<offsets>
 			<x-m>1.915</x-m>
 			<y-m>0.285</y-m>
-			<z-m>0.225</z-m>
+			<z-m>0.226</z-m>
 		</offsets>
 	</model>
 
@@ -677,10 +677,26 @@
 	<model>
 		<name>kt70</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/kt70/kt70.xml</path>
+		<condition>
+			<not><property>options/wip</property></not>
+		</condition>
 		<offsets>
 			<x-m>1.922</x-m>
 			<y-m>0.285</y-m>
 			<z-m>0.27</z-m>
+		</offsets>
+	</model>
+
+	<model>
+		<name>gtx-327</name>
+		<path>Aircraft/PA28-Warrior/Models/Instruments/gtx-327/gtx-327.xml</path>
+		<condition>
+			<property>options/wip</property>
+		</condition>
+		<offsets>
+			<x-m>1.922</x-m>
+			<y-m>0.285</y-m>
+			<z-m>0.271</z-m>
 		</offsets>
 	</model>
 
