@@ -21,6 +21,7 @@ var calc = 0;
 setprop("/systems/electrical/bus/elec1", 0);
 setprop("/systems/electrical/bus/elec2", 0);
 setprop("/systems/electrical/outputs/autopilot", 0);
+setprop("/systems/electrical/outputs/electrim", 0);
 setprop("/systems/electrical/outputs/fuel-pump", 0);
 setprop("/systems/electrical/outputs/stby", 0);
 
