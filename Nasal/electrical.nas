@@ -20,10 +20,19 @@ var panel_factor = 0;
 var calc = 0;
 setprop("/systems/electrical/bus/elec1", 0);
 setprop("/systems/electrical/bus/elec2", 0);
+setprop("/systems/electrical/outputs/adf", 0);
 setprop("/systems/electrical/outputs/autopilot", 0);
+setprop("/systems/electrical/outputs/comm[0]", 0);
+setprop("/systems/electrical/outputs/comm[1]", 0);
+setprop("/systems/electrical/outputs/dme", 0);
 setprop("/systems/electrical/outputs/electrim", 0);
 setprop("/systems/electrical/outputs/fuel-pump", 0);
+setprop("/systems/electrical/outputs/hsi", 0);
+setprop("/systems/electrical/outputs/nav[0]", 0);
+setprop("/systems/electrical/outputs/nav[1]", 0);
+setprop("/systems/electrical/outputs/oat", 0);
 setprop("/systems/electrical/outputs/stby", 0);
+setprop("/systems/electrical/outputs/transponder", 0);
 
 var ELEC = {
 	init: func() {

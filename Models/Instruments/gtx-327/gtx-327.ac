@@ -1458,7 +1458,7 @@ refs 4
 kids 0
 OBJECT poly
 name "BTNALT"
-loc 1.11759e-008 0 0
+loc 0.000893592 0 0
 data 12
 Cylinder.002
 texture "gtx-327-buttons.png"
@@ -5730,7 +5730,7 @@ refs 4
 kids 0
 OBJECT poly
 name "BTNOFF"
-loc 1.11759e-008 0 0
+loc 0.000893592 0 0
 data 8
 Cube.019
 texture "gtx-327-buttons.png"
@@ -8238,7 +8238,7 @@ refs 4
 kids 0
 OBJECT poly
 name "BTNON"
-loc 1.11759e-008 0 0
+loc 0.000893592 0 0
 data 8
 Cube.020
 texture "gtx-327-buttons.png"
@@ -10907,7 +10907,7 @@ refs 4
 kids 0
 OBJECT poly
 name "BTNSTBY"
-loc 1.11759e-008 0 0
+loc 0.000893592 0 0
 data 8
 Cube.018
 texture "gtx-327-buttons.png"

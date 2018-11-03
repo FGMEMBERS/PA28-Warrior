@@ -793,6 +793,9 @@
 		<stec55x>
 			<file>Aircraft/PA28-Warrior/Nasal/stec-55x.nas</file>
 		</stec55x>
+		<gtx327>
+			<file>Aircraft/PA28-Warrior/Nasal/gtx-327.nas</file>
+		</gtx327>
 		<acconfig>
 			<file>Aircraft/PA28-Warrior/AircraftConfig/acconfig.nas</file>
 		</acconfig>
