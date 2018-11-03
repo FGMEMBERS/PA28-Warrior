@@ -176,7 +176,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>aero/function/kCDge</property>
-				<value>0.0239312</value>
+				<value>0.03214987</value>
 			</product>
 		</function>
 		
@@ -186,7 +186,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>aero/function/kCDge</property>
-				<value>0.8275896</value> <!-- Tuning factor -->
+				<value>0.6034565</value> <!-- Tuning factor -->
 				<table>
 					<independentVar lookup="row">aero/alpha-rad</independentVar>
 					<independentVar lookup="column">fcs/flap-pos-deg</independentVar>
@@ -231,7 +231,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>aero/cl-squared</property>
-				<value>0.0451</value>
+				<value>0.020124</value>
 			</product>
 		</function>
 		
