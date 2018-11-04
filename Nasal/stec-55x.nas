@@ -544,7 +544,7 @@ var ITAF = {
 		}
 		
 		# Yaw Damper Logic
-		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and serviceable.getBoolValue() == 1) {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() == 0 and serviceable.getBoolValue() == 1) {
 			if (YDequipped.getBoolValue() == 1 and yawDamperSW.getBoolValue() == 0 and roll.getValue() > -1) {
 				yaw.setValue(0);
 			} else if (YDequipped.getBoolValue() == 1 and yawDamperSW.getBoolValue() == 1) {
@@ -582,7 +582,7 @@ var button = {
 		ITAF.killAP();
 	},
 	HDGB: func(d) {
-		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and serviceable.getBoolValue() == 1) {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() == 0 and serviceable.getBoolValue() == 1) {
 			if (d == 1) { # Button pushed
 				hdgButton.setBoolValue(1);
 				hdgButtonTime = elapsedSec.getValue();
@@ -601,7 +601,7 @@ var button = {
 		}
 	},
 	HDG: func() {
-		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and serviceable.getBoolValue() == 1) {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() == 0 and serviceable.getBoolValue() == 1) {
 			NAVManIntercept.setBoolValue(0);
 			REVManIntercept.setBoolValue(0);
 			roll.setValue(0);
@@ -611,7 +611,7 @@ var button = {
 		}
 	},
 	HDGNInt: func() { # Heading Custom Intercept Mode NAV
-		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and serviceable.getBoolValue() == 1) {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() == 0 and serviceable.getBoolValue() == 1) {
 			NAVManIntercept.setBoolValue(1);
 			REVManIntercept.setBoolValue(0);
 			roll.setValue(0);
@@ -621,7 +621,7 @@ var button = {
 		}
 	},
 	HDGRInt: func() { # Heading Custom Intercept Mode REV
-		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and serviceable.getBoolValue() == 1) {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() == 0 and serviceable.getBoolValue() == 1) {
 			NAVManIntercept.setBoolValue(0);
 			REVManIntercept.setBoolValue(1);
 			roll.setValue(0);
@@ -631,7 +631,7 @@ var button = {
 		}
 	},
 	NAV: func() {
-		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and serviceable.getBoolValue() == 1) {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() == 0 and serviceable.getBoolValue() == 1) {
 			APRModeActive.setBoolValue(0);
 			GSArmed.setBoolValue(0);
 			noGSAutoArm.setBoolValue(0);
@@ -657,7 +657,7 @@ var button = {
 		hdgButton.setBoolValue(0);
 		CNAV = roll.getValue() == 0 and NAVManIntercept.getBoolValue(); # Is NAV with custom intercept heading armed?
 		CREV = roll.getValue() == 0 and REVManIntercept.getBoolValue(); # Is REV with custom intercept heading armed?
-		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and (CNAV or roll.getValue() == 1 or roll.getValue() == 3) and serviceable.getBoolValue() == 1) {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() == 0 and (CNAV or roll.getValue() == 1 or roll.getValue() == 3) and serviceable.getBoolValue() == 1) {
 			if (GSArmed.getBoolValue() == 1 and !noGSAutoArm.getBoolValue() and APRModeActive.getBoolValue()) {
 				noGSAutoArm.setBoolValue(1);
 				GSArmed.setBoolValue(0);
@@ -678,12 +678,12 @@ var button = {
 				NAVGain.setValue(NAVGainCapSoft);
 				NAVStep2Time.setValue(elapsedSec.getValue());
 			}
-		} else if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and (CREV or roll.getValue() == 6 or roll.getValue() == 7) and serviceable.getBoolValue() == 1) {
+		} else if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() == 0 and (CREV or roll.getValue() == 6 or roll.getValue() == 7) and serviceable.getBoolValue() == 1) {
 			APRModeActive.setBoolValue(1);
 		}
 	},
 	REV: func() {
-		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and serviceable.getBoolValue() == 1) {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() == 0 and serviceable.getBoolValue() == 1) {
 			APRModeActive.setBoolValue(0);
 			GSArmed.setBoolValue(0);
 			noGSAutoArm.setBoolValue(0);
@@ -723,7 +723,7 @@ var button = {
 	},
 	ALT: func() {
 		hdgButton.setBoolValue(0);
-		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and roll.getValue() != -1 and serviceable.getBoolValue() == 1) {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() == 0 and roll.getValue() != -1 and serviceable.getBoolValue() == 1) {
 			GSNeedleInCapt = abs(OBSGSNeedle.getValue()) >= 0.001 and abs(OBSGSNeedle.getValue()) <= 0.175; # Are we in capture range?
 			if (roll.getValue() == 1 and pitch.getValue() == 0 and APRModeActive.getBoolValue() and GSNeedleInCapt == 1) { # Immediately go to GS mode
 				GSt.stop();
@@ -740,14 +740,14 @@ var button = {
 	},
 	VS: func() {
 		hdgButton.setBoolValue(0);
-		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and roll.getValue() != -1 and serviceable.getBoolValue() == 1) {
+		if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() == 0 and roll.getValue() != -1 and serviceable.getBoolValue() == 1) {
 			pitch.setValue(1);
 			GSArmed.setBoolValue(0);
 			noGSAutoArm.setBoolValue(0);
 		}
 	},
 	Knob: func(d) {
-		if (pitch.getValue() == 0 and powerUpTest.getValue() != 1 and serviceable.getBoolValue() == 1) {
+		if (pitch.getValue() == 0 and powerUpTest.getValue() == 0 and serviceable.getBoolValue() == 1) {
 			if (d < 0) {
 				aoffset = altOffset.getValue() + ALTOffsetDelta.getValue();
 				ALTOffsetDeltaMax = ALTOffsetDelta.getValue() * 18; # Get the static pressure delta value and multiply by 18 to limit it at +360ft
@@ -762,7 +762,7 @@ var button = {
 				}
 			}
 			altOffset.setValue(aoffset);
-		} else if (pitch.getValue() == 1 and powerUpTest.getValue() != 1) {
+		} else if (pitch.getValue() == 1 and powerUpTest.getValue() == 0) {
 			if (d < 0) {
 				vspeed = vs.getValue() - 100;
 				if (vspeed < -1600) {
@@ -780,7 +780,7 @@ var button = {
 	CWS: func(d) {
 		if (d == 1) { # Button pushed
 			cwsSW.setBoolValue(1);
-			if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and roll.getValue() != -1 and serviceable.getBoolValue() == 1) {
+			if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() == 0 and roll.getValue() != -1 and serviceable.getBoolValue() == 1) {
 				roll.setValue(-2);
 				pitch.setValue(-2);
 				APRModeActive.setBoolValue(0);
@@ -789,7 +789,7 @@ var button = {
 			}
 		} else if (d == 0) { # Button released
 			cwsSW.setBoolValue(0);
-			if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() != 1 and roll.getValue() != -1 and serviceable.getBoolValue() == 1) {
+			if (systemAlive.getBoolValue() == 1 and powerUpTest.getValue() == 0 and roll.getValue() != -1 and serviceable.getBoolValue() == 1) {
 				manTurnRate.setValue(math.round(math.clamp(turnRate.getValue(), -0.9, 0.9), 0.1));
 				roll.setValue(5);
 				me.VS();
