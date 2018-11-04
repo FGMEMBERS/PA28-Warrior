@@ -140,6 +140,7 @@ var ITAF = {
 		discSW.setBoolValue(0);
 		masterAPSW.setBoolValue(0);
 		masterAPFDSW.setValue(0);
+		powerUpTest.setValue(-1);
 		elecTrimSW.setBoolValue(0);
 		yawDamperSW.setBoolValue(0);
 		yawDamperTrim.setValue(0);
