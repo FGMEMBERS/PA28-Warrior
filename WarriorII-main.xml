@@ -359,7 +359,6 @@
 			<landing-light type="bool">0</landing-light>
 			<nav-lights type="double">0</nav-lights>
 			<nav-lights-factor type="double">0</nav-lights-factor>
-			<panel-lights type="double">0</panel-lights>
 			<panel-lights-factor type="double">0</panel-lights-factor>
 			<pitot-heat type="bool">0</pitot-heat>
 			<strobe-lights type="bool">0</strobe-lights>

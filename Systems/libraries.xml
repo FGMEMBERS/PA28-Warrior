@@ -403,7 +403,7 @@
 		<debug>false</debug>
 		<type>exponential</type>
 		<input>/controls/switches/panel-lights-cmd</input>
-		<output>/controls/switches/panel-lights</output>
+		<output>/controls/lighting/panel-norm</output>
 		<filter-time>0.64</filter-time>
 	</filter>
 
