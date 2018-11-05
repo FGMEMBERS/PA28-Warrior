@@ -13,7 +13,7 @@ name "BTN0"
 loc 1.11759e-008 0 0
 data 8
 Cube.001
-texture "gtx-327-buttons.png"
+texture "gtx-327-b.png"
 crease 40.000000
 numvert 32
 0.0162053 -0.00959972 0.0737305
@@ -174,7 +174,7 @@ name "BTN1"
 loc 1.11759e-008 0 0
 data 8
 Cube.002
-texture "gtx-327-buttons.png"
+texture "gtx-327-b.png"
 crease 40.000000
 numvert 32
 0.0162053 -0.00960264 0.050769
@@ -335,7 +335,7 @@ name "BTN2"
 loc 1.11759e-008 0 0
 data 8
 Cube.004
-texture "gtx-327-buttons.png"
+texture "gtx-327-b.png"
 crease 40.000000
 numvert 32
 0.0162053 -0.00960345 0.0456884
@@ -496,7 +496,7 @@ name "BTN3"
 loc 1.11759e-008 0 0
 data 8
 Cube.005
-texture "gtx-327-buttons.png"
+texture "gtx-327-b.png"
 crease 40.000000
 numvert 32
 0.0162053 -0.00960459 0.0317825
@@ -657,7 +657,7 @@ name "BTN4"
 loc 1.11759e-008 0 0
 data 8
 Cube.006
-texture "gtx-327-buttons.png"
+texture "gtx-327-b.png"
 crease 40.000000
 numvert 32
 0.0162053 -0.00960459 0.017836
@@ -818,7 +818,7 @@ name "BTN5"
 loc 1.11759e-008 0 0
 data 8
 Cube.007
-texture "gtx-327-buttons.png"
+texture "gtx-327-b.png"
 crease 40.000000
 numvert 32
 0.0162053 -0.00960459 2.48162e-005
@@ -979,7 +979,7 @@ name "BTN6"
 loc 1.11759e-008 0 0
 data 8
 Cube.008
-texture "gtx-327-buttons.png"
+texture "gtx-327-b.png"
 crease 40.000000
 numvert 32
 0.0162053 -0.00960459 -0.0226341
@@ -1140,7 +1140,7 @@ name "BTN7"
 loc 1.11759e-008 0 0
 data 8
 Cube.012
-texture "gtx-327-buttons.png"
+texture "gtx-327-b.png"
 crease 40.000000
 numvert 32
 0.0162053 -0.00960459 -0.0364157
@@ -1301,7 +1301,7 @@ name "BTN8"
 loc 1.11759e-008 0 0
 data 8
 Cube.009
-texture "gtx-327-buttons.png"
+texture "gtx-327-b.png"
 crease 40.000000
 numvert 32
 0.0162053 -0.00966104 -0.0604215
@@ -1462,7 +1462,7 @@ name "BTN9"
 loc 1.11759e-008 0 0
 data 8
 Cube.010
-texture "gtx-327-buttons.png"
+texture "gtx-327-b.png"
 crease 40.000000
 numvert 32
 0.0162053 -0.00965861 -0.0735968
@@ -1623,7 +1623,7 @@ name "BTNALT"
 loc 0.000893592 0 0
 data 12
 Cylinder.002
-texture "gtx-327-buttons.png"
+texture "gtx-327-b.png"
 crease 40.000000
 numvert 482
 0.0181685 0.0051015 0.0497566
@@ -5251,7 +5251,7 @@ name "BTNCLR"
 loc 1.11759e-008 0 0
 data 8
 Cube.016
-texture "gtx-327-buttons.png"
+texture "gtx-327-b.png"
 crease 40.000000
 numvert 32
 0.0146773 -0.00290673 -0.0748412
@@ -5412,7 +5412,7 @@ name "BTNCRSR"
 loc 1.11759e-008 0 0
 data 8
 Cube.015
-texture "gtx-327-buttons.png"
+texture "gtx-327-b.png"
 crease 40.000000
 numvert 32
 0.0146773 0.0067715 -0.0748412
@@ -5573,7 +5573,7 @@ name "BTNFUNC"
 loc 1.11759e-008 0 0
 data 8
 Cube.011
-texture "gtx-327-buttons.png"
+texture "gtx-327-b.png"
 crease 40.000000
 numvert 32
 0.0146773 0.00673241 -0.0617212
@@ -5734,7 +5734,7 @@ name "BTNIDENT"
 loc 1.11759e-008 0 0
 data 8
 Cube.013
-texture "gtx-327-buttons.png"
+texture "gtx-327-b.png"
 crease 40.000000
 numvert 32
 0.014596 0.00713665 0.065445
@@ -5895,7 +5895,7 @@ name "BTNOFF"
 loc 0.000893592 0 0
 data 8
 Cube.019
-texture "gtx-327-buttons.png"
+texture "gtx-327-b.png"
 crease 40.000000
 numvert 314
 0.0141087 -0.000696227 0.0486976
@@ -8403,7 +8403,7 @@ name "BTNON"
 loc 0.000893592 0 0
 data 8
 Cube.020
-texture "gtx-327-buttons.png"
+texture "gtx-327-b.png"
 crease 40.000000
 numvert 314
 0.0141093 0.0118662 0.0488588
@@ -10911,7 +10911,7 @@ name "BTNSTARTSTOP"
 loc 1.11759e-008 0 0
 data 8
 Cube.017
-texture "gtx-327-buttons.png"
+texture "gtx-327-b.png"
 crease 40.000000
 numvert 32
 0.0146773 -0.00298427 -0.0617212
@@ -11072,7 +11072,7 @@ name "BTNSTBY"
 loc 0.000893592 0 0
 data 8
 Cube.018
-texture "gtx-327-buttons.png"
+texture "gtx-327-b.png"
 crease 40.000000
 numvert 314
 0.014108 0.00550671 0.0594299
@@ -13580,7 +13580,7 @@ name "BTNVFR"
 loc 1.11759e-008 0 0
 data 8
 Cube.014
-texture "gtx-327-buttons.png"
+texture "gtx-327-b.png"
 crease 40.000000
 numvert 32
 0.014596 -0.00314275 0.065445
@@ -13735,27 +13735,6 @@ refs 4
 29 0.159794 0.849806
 22 0.159794 0.849806
 21 0.159794 0.735959
-kids 0
-OBJECT poly
-name "Display"
-loc -0.0100411 0 0
-data 8
-Cube.003
-texture "gtx-327.png"
-crease 40.000000
-numvert 4
-0.015344 0.0158348 0.0379918
-0.015344 0.0158348 -0.0481727
-0.015344 -0.00531692 -0.0481727
-0.015344 -0.00531692 0.0379918
-numsurf 1
-SURF 0x10
-mat 1
-refs 4
-3 5e-005 5e-005
-2 0.99995 5e-005
-1 0.99995 0.24548
-0 5e-005 0.24548
 kids 0
 OBJECT poly
 name "GTX327"
@@ -31625,8 +31604,33 @@ refs 3
 1201 0.029936 0.301153
 kids 0
 OBJECT group
+name "Screen.Day"
+loc -0.00618609 0.00131474 -0.00127261
+kids 2
+OBJECT poly
+name "Display"
+loc -0.00385501 -0.00131474 0.00127261
+data 8
+Cube.003
+texture "gtx-327.png"
+crease 40.000000
+numvert 4
+0.015344 0.0158348 0.0379918
+0.015344 0.0158348 -0.0481727
+0.015344 -0.00531692 -0.0481727
+0.015344 -0.00531692 0.0379918
+numsurf 1
+SURF 0x10
+mat 1
+refs 4
+3 5e-005 5e-005
+2 0.99995 5e-005
+1 0.99995 0.24548
+0 5e-005 0.24548
+kids 0
+OBJECT group
 name "Indicators"
-loc -0.00233108 0.00262947 -0.00254522
+loc 0.00385501 0.00131474 -0.00127261
 kids 2
 OBJECT poly
 name "SelfTest.ind"
@@ -31665,4 +31669,25 @@ refs 4
 1 0 1
 2 0 0
 3 1 0
+kids 0
+OBJECT poly
+name "Background"
+loc -0.0100411 0 0
+data 8
+Cube.003
+texture "gtx-327-b.png"
+crease 40.000000
+numvert 4
+0.015344 -0.00531692 0.0379918
+0.015344 -0.00531692 -0.0481727
+0.015344 0.0158348 -0.0481727
+0.015344 0.0158348 0.0379918
+numsurf 1
+SURF 0x10
+mat 1
+refs 4
+0 5e-005 5e-005
+1 0.99995 5e-005
+2 0.99995 0.24548
+3 5e-005 0.24548
 kids 0

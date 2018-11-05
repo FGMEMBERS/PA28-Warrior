@@ -3,7 +3,7 @@
 
 # Initialize variables
 var code = 1200;
-var mode = 0; # 0 = OFF, 1 = STANDBY, 4 = ON, 5 = ALTITUDE
+var mode = 1; # 0 = OFF, 1 = STANDBY, 4 = ON, 5 = ALTITUDE
 var modes = ["OFF", "STANDBY", "TEST", "GROUND", "ON", "ALTITUDE"];
 var powerUpTime = 0;
 var powerUpTestAnnun = 0;
@@ -18,8 +18,9 @@ var IDCode = props.globals.getNode("/instrumentation/transponder/id-code", 1);
 var modeKnob = props.globals.getNode("/instrumentation/transponder/inputs/knob-mode", 1);
 var modeID = props.globals.getNode("/sim/gui/dialogs/radios/transponder-mode", 1);
 var displayMode = props.globals.initNode("/instrumentation/it-gtx327/internal/display-mode", "PA", "STRING");
+var displayOn = props.globals.initNode("/instrumentation/it-gtx327/internal/display-on", 0, "BOOL");
 var FAIL_annun = props.globals.initNode("/instrumentation/it-gtx327/annun/fail", 0, "BOOL");
-var MODE_annun = props.globals.initNode("/instrumentation/it-gtx327/annun/mode", "off", "STRING");
+var MODE_annun = props.globals.initNode("/instrumentation/it-gtx327/annun/mode", "stby", "STRING");
 var R_annun = props.globals.initNode("/instrumentation/it-gtx327/annun/reply", 0, "BOOL");
 var TEST_annun = props.globals.initNode("/instrumentation/it-gtx327/annun/test", 0, "BOOL");
 
@@ -31,11 +32,13 @@ var system = {
 	init: func() {
 		code = IDCode.getValue(); # If a code was saved via aircraft-data or other means, import it
 		powerUpTest.setValue(-1);
+		displayMode.setValue("PA");
+		displayOn.setBoolValue(0);
 		FAIL_annun.setBoolValue(0);
 		MODE_annun.setBoolValue(0);
 		R_annun.setBoolValue(0);
 		TEST_annun.setBoolValue(0);
-		me.setMode(0);
+		system.setMode(mode);
 		if (getprop("/options/wip") == 1) {
 			update.start();
 		}
@@ -51,7 +54,6 @@ var system = {
 			}
 		} else {
 			systemAlive.setBoolValue(0);
-			mode = 0;
 			displayMode.setValue("PA");
 			if (powerUpTest.getValue() != -1) {
 				powerUpTest.setValue(-1);
@@ -68,6 +70,12 @@ var system = {
 			}
 		}
 		
+		if (systemAlive.getBoolValue() and powerUpTest.getValue() != -1) {
+			displayOn.setBoolValue(1);
+		} else {
+			displayOn.setBoolValue(0);
+		}
+		
 		# Annunciators
 		if (powerUpTest.getValue() == 1 and systemAlive.getBoolValue() == 1) {
 			TEST_annun.setBoolValue(1);
@@ -82,8 +90,10 @@ var system = {
 		}
 		
 		# Update transponder modes
-		if (modeKnob.getValue() != mode and powerUpTest.getValue() == 0 and serviceable.getBoolValue() == 1) {
-			system.setMode(mode);
+		if (powerUpTest.getValue() == 0 and serviceable.getBoolValue() == 1) {
+			if (modeKnob.getValue() != mode) {
+				system.setMode(mode);
+			}
 		} else {
 			system.setMode(0);
 		}
@@ -125,4 +135,4 @@ var button = {
 };
 
 var update = maketimer(0.1, system.loop);
-#setprop("/options/wip", 1); # This should be commented out, or it0uchpods is an idiot! :)
+setprop("/options/wip", 1); # This should be commented out, or it0uchpods is an idiot! :)

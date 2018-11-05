@@ -26,12 +26,46 @@
 	<animation>
 		<type>material</type>
 		<object-name>Display</object-name>
+		<object-name>Indicators</object-name>
 		<emission>
-			<red>0.4</red>
-			<green>0.4</green>
-			<blue>0.4</blue>
-		  <factor-prop>controls/switches/panel-lights</factor-prop>
+			<red>0.1</red>
+			<green>0.1</green>
+			<blue>0.1</blue>
 		</emission>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Background</object-name>
+		<condition>
+			<not-equals>
+				<property>instrumentation/it-gtx327/internal/display-on</property>
+				<value>1</value>
+			</not-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Screen.Day</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>rendering/scene/diffuse/red</property>
+				<value>0.7</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Display</object-name>
+		<object-name>Indicators</object-name>
+		<condition>
+			<equals>
+				<property>instrumentation/it-gtx327/internal/display-on</property>
+				<value>1</value>
+			</equals>
+		</condition>
 	</animation>
 	
 	<animation>
