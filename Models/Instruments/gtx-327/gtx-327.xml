@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- Garmin GTX 327 Transponder -->
+<!-- Garmin GTX-327 Transponder -->
 <!-- Copyright (c) 2018 Joshua Davidson (it0uchpods) -->
 <!-- 3D and Texture by Jonathan Redpath (legoboyvdlp) -->
 
@@ -35,6 +35,28 @@
 	</animation>
 	
 	<animation>
+		<type>select</type>
+		<object-name>SelfTest.ind</object-name>
+		<condition>
+			<equals>
+				<property>instrumentation/it-gtx327/annun/test</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>TestFail.ind</object-name>
+		<condition>
+			<equals>
+				<property>instrumentation/it-gtx327/annun/fail</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
 		<type>pick</type>
 		<object-name>BTNOFF</object-name>
 		<action>
@@ -42,13 +64,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>it-gtx327/input/off-button</property>
+				<property>instrumentation/it-gtx327/input/off-button</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>it-gtx327/input/off-button</property>
+					<property>instrumentation/it-gtx327/input/off-button</property>
 					<value>0</value>
 				</binding>
 				<binding>
@@ -62,7 +84,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>BTNOFF</object-name>
-		<property>it-gtx327/input/off-button</property>
+		<property>instrumentation/it-gtx327/input/off-button</property>
 		<factor alias="../../params/button-translate"/>
 		<axis>
 			<x>1</x>
@@ -79,13 +101,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>it-gtx327/input/stby-button</property>
+				<property>instrumentation/it-gtx327/input/stby-button</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>it-gtx327/input/stby-button</property>
+					<property>instrumentation/it-gtx327/input/stby-button</property>
 					<value>0</value>
 				</binding>
 				<binding>
@@ -99,7 +121,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>BTNSTBY</object-name>
-		<property>it-gtx327/input/stby-button</property>
+		<property>instrumentation/it-gtx327/input/stby-button</property>
 		<factor alias="../../params/button-translate"/>
 		<axis>
 			<x>1</x>
@@ -116,13 +138,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>it-gtx327/input/on-button</property>
+				<property>instrumentation/it-gtx327/input/on-button</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>it-gtx327/input/on-button</property>
+					<property>instrumentation/it-gtx327/input/on-button</property>
 					<value>0</value>
 				</binding>
 				<binding>
@@ -136,7 +158,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>BTNON</object-name>
-		<property>it-gtx327/input/on-button</property>
+		<property>instrumentation/it-gtx327/input/on-button</property>
 		<factor alias="../../params/button-translate"/>
 		<axis>
 			<x>1</x>
@@ -153,13 +175,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>it-gtx327/input/alt-button</property>
+				<property>instrumentation/it-gtx327/input/alt-button</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>it-gtx327/input/alt-button</property>
+					<property>instrumentation/it-gtx327/input/alt-button</property>
 					<value>0</value>
 				</binding>
 				<binding>
@@ -173,7 +195,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>BTNALT</object-name>
-		<property>it-gtx327/input/alt-button</property>
+		<property>instrumentation/it-gtx327/input/alt-button</property>
 		<factor alias="../../params/button-translate"/>
 		<axis>
 			<x>1</x>
@@ -190,13 +212,13 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-assign</command>
-				<property>it-gtx327/input/vfr-button</property>
+				<property>instrumentation/it-gtx327/input/vfr-button</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>it-gtx327/input/vfr-button</property>
+					<property>instrumentation/it-gtx327/input/vfr-button</property>
 					<value>0</value>
 				</binding>
 				<binding>
@@ -210,7 +232,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>BTNVFR</object-name>
-		<property>it-gtx327/input/vfr-button</property>
+		<property>instrumentation/it-gtx327/input/vfr-button</property>
 		<factor alias="../../params/button-translate"/>
 		<axis>
 			<x>1</x>
