@@ -36,6 +36,7 @@ var system = {
 	init: func() {
 		mode = 1;
 		code = IDCode.getValue(); # If a code was saved via aircraft-data or other means, import it
+		identBtn.setBoolValue(0);
 		powerUpTest.setValue(-1);
 		displayMode.setValue("PA");
 		displayOn.setBoolValue(0);
