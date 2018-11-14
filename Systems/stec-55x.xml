@@ -1063,7 +1063,7 @@
 		<max-rate-of-change>
 			<condition>
 				<greater-than>
-					<property>/it-stec55x/output/roll</property>
+					<property>/it-stec55x/output/pitch</property>
 					<value>-1</value>
 				</greater-than>
 			</condition>
