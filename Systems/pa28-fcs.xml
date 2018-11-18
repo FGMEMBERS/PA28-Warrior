@@ -103,22 +103,21 @@
 	
 	<channel name="Roll">
 		
-		<pure_gain name="fcs/roll-input">
+		<aerosurface_scale name="fcs/aileron-left-deg">
 			<input>fcs/aileron-yoke</input>
-			<gain>1.0</gain>
-			<clipto>
-				<min>-1</min>
-				<max>1</max>
-			</clipto>
-		</pure_gain>
-		
-		<aerosurface_scale name="fcs/aileron-deg">
-			<input>fcs/roll-input</input>
 			<range>
-				<min>-15</min>
+				<min>-20</min>
 				<max>15</max>
 			</range>
 			<output>/surface-positions/left-aileron-deg</output>
+		</aerosurface_scale>
+		
+		<aerosurface_scale name="fcs/aileron-right-deg">
+			<input>-fcs/aileron-yoke</input>
+			<range>
+				<min>-20</min>
+				<max>15</max>
+			</range>
 			<output>/surface-positions/right-aileron-deg</output>
 		</aerosurface_scale>
 	
@@ -140,7 +139,7 @@
 				<independentVar lookup="row">velocities/vc-kts</independentVar>
 				<tableData>
 					15 0.0
-					25 0.9
+					25 1.0
 				</tableData>
 			</table>
 		</scheduled_gain> 

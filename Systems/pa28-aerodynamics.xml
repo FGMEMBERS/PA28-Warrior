@@ -378,14 +378,35 @@
 			</product>
 		</function>
 		
-		<function name="aero/moment/Roll_aileron">
-			<description>Roll moment due to aileron</description>
+		<function name="aero/moment/Roll_left_aileron">
+			<description>Roll moment due to left aileron</description>
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
-				<toradians><property>fcs/aileron-deg</property></toradians>
-				<value>0.52</value>
+				<toradians><property>fcs/aileron-left-deg</property></toradians>
+				<value>0.223</value>
+				<table>
+					<independentVar lookup="row">aero/alpha-rad</independentVar>
+					<independentVar lookup="column">aero/stall-hyst-norm</independentVar>
+					<tableData>
+						       0.0   1.0
+						0.279  1.00  0.30
+						0.297  0.30  0.30
+						0.349 -0.15 -0.15
+					</tableData>
+				</table>
+			</product>
+		</function>
+		
+		<function name="aero/moment/Roll_right_aileron">
+			<description>Roll moment due to right aileron</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<property>metrics/bw-ft</property>
+				<toradians><property>fcs/aileron-right-deg</property></toradians>
+				<value>-0.223</value>
 				<table>
 					<independentVar lookup="row">aero/alpha-rad</independentVar>
 					<independentVar lookup="column">aero/stall-hyst-norm</independentVar>
@@ -420,7 +441,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/cbarw-ft</property>
-				<value>0.0226</value>
+				<value>0.0253</value>
 			</product>
 		</function>
 		
@@ -528,13 +549,34 @@
 			</product>
 		</function>
 		
-		<function name="aero/moment/Yaw_aileron">
-			<description>Yaw moment due to aileron (adverse)</description>
+		<function name="aero/moment/Yaw_left_aileron">
+			<description>Yaw moment due to left aileron (adverse)</description>
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
-				<toradians><property>fcs/aileron-deg</property></toradians>
+				<toradians><property>fcs/aileron-left-deg</property></toradians>
+				<value>0.4285</value>
+				<table>
+					<independentVar lookup="row">aero/alpha-rad</independentVar>
+					<independentVar lookup="column">aero/beta-rad</independentVar>
+					<tableData>
+						      -0.35    0.00    0.35
+						0.000 -0.0010 -0.0015 -0.0010
+						0.144 -0.0020 -0.0025 -0.0020
+					</tableData>
+				</table>
+			</product>
+		</function>
+		
+		<function name="aero/moment/Yaw_right_aileron">
+			<description>Yaw moment due to right aileron (adverse)</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<property>metrics/bw-ft</property>
+				<toradians><property>fcs/aileron-right-deg</property></toradians>
+				<value>-0.4285</value>
 				<table>
 					<independentVar lookup="row">aero/alpha-rad</independentVar>
 					<independentVar lookup="column">aero/beta-rad</independentVar>

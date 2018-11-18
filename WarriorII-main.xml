@@ -51,14 +51,9 @@
 		
 		<previews>
 			<preview>
-				<type>cockpit</type>
-				<splash type="bool">true</splash>
-				<path>Splash/Splash1.png</path>
-			</preview>
-			<preview>
 				<type>exterior</type>
 				<splash type="bool">true</splash>
-				<path>Splash/Splash2.png</path>
+				<path>Splash/Splash1.png</path>
 			</preview>	
 		</previews>
 		

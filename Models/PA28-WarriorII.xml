@@ -1007,7 +1007,7 @@
 		<type>rotate</type>
 		<object-name>RightAileron</object-name>
 		<property>sim/multiplay/generic/float[6]</property>
-		<factor>-1</factor>
+		<factor>1</factor>
 		<center>
 			<x-m>3.1338</x-m>
 			<y-m>5.0553</y-m>
