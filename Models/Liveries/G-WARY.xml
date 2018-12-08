@@ -6,9 +6,10 @@
 			<livery>
 				<name>G-WARY</name>
 				<texture>Liveries/G-WARY.png</texture>
-				<reardisc>Liveries/propwhite.png</reardisc>
-				<frontdisc>Liveries/propwhite.png</frontdisc>
 			</livery>
+			<acnum>
+				<texture>Liveries/G-WARY-acnum.jpg</texture>
+			</acnum>
 		</model>
 	</sim>
 </PropertyList>

@@ -9,45 +9,32 @@
 	<name>aircraft-config-panelstateloaded</name>
 	<layout>vbox</layout>
 
-    <group>
-        <layout>hbox</layout>
-        <text>
-            <halign>left</halign>
-            <label>Panel State</label>
-        </text>
-    </group>
+	<group>
+		<layout>hbox</layout>
+		<text>
+			<halign>left</halign>
+			<label>Panel State</label>
+		</text>
+	</group>
 	
-    <hrule/>
+	<hrule/>
 	
-		<group>
-			<layout>vbox</layout>
-			
-			<text>
-				<halign>center</halign>
-				<label>The Panel State was loaded sucessfully.</label>
-			</text>
-			<button>
-				<halign>center</halign>
-				<legend>Close</legend>
-				<pref-width>160</pref-width>
-				<key>Esc</key>
-				
-<binding>
-   <command>property-assign</command>
-   <property>sim/hud/current-path</property>
-		<value>1</value>
-				</binding>
-<binding>
-   <command>property-assign</command>
-   <property>sim/hud/visibility[0]</property>
-		<value>1</value>
-				</binding>
-<binding>
-		<command>dialog-close</command>		
-</binding>
-
-			</button>
-			
-		</group>
+	<group>
+		<layout>vbox</layout>
+		
+		<text>
+			<halign>center</halign>
+			<label>The Panel State was loaded sucessfully.</label>
+		</text>
+		<button>
+			<halign>center</halign>
+			<legend>Close</legend>
+			<pref-width>160</pref-width>
+			<key>Esc</key>
+			<binding>
+				<command>dialog-close</command>		
+			</binding>
+		</button>
+	</group>
 	
 </PropertyList>

@@ -43,14 +43,14 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 					<yaw>0.00</yaw>
 				</orient>
 				<sense>1</sense>
-				<p_factor>6</p_factor>
+				<p_factor>5</p_factor>
 			</thruster>
 		</engine>
 
 		<tank type="FUEL">    <!-- Left Wing Tank -->
 			<location unit="M">
 				<x> 2.400 </x>
-				<y> -1.9642 </y>
+				<y> -0.96284 </y>
 				<z> 0.0392 </z>
 			</location>
 			<radius unit="M">13.3</radius>
@@ -62,7 +62,7 @@ xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 		<tank type="FUEL">    <!-- Right Wing Tank -->
 			<location unit="M">
 				<x> 2.400 </x>
-				<y> 1.9642 </y>
+				<y> 0.96284 </y>
 				<z> 0.0392 </z>
 			</location>
 			<radius unit="M">13.3</radius>

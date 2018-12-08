@@ -9,112 +9,87 @@
 	<name>aircraft-config-help</name>
 	<layout>vbox</layout>
 
-    <group>
-        <layout>hbox</layout>
-        <text>
-            <halign>left</halign>
-            <label>Help</label>
-        </text>
-        <button>
-            <halign>right</halign>
-            <pref-width>20</pref-width>
-            <pref-height>20</pref-height>
-            <legend>X</legend>
-            <key>Esc</key>
-            <binding>
-                <command>dialog-close</command>
-            </binding>
-        </button>
-    </group>
+	<group>
+		<layout>hbox</layout>
+		<text>
+			<halign>left</halign>
+			<label>Help</label>
+		</text>
+		<button>
+			<halign>right</halign>
+			<pref-width>20</pref-width>
+			<pref-height>20</pref-height>
+			<legend>X</legend>
+			<key>Esc</key>
+			<binding>
+				<command>dialog-close</command>
+			</binding>
+		</button>
+	</group>
 	
-    <hrule/>
+	<hrule/>
 	
-		<group>
-			<layout>vbox</layout>
-			
-			<text>
-				<halign>left</halign>
-				<label>Information:</label>
-			</text>
-			
-			<text>
-				<halign>left</halign>
-				<label>The goal of the PA28-161 Warrior II by gkick and it0uchpods is to provide FlightGear with authentic, realistic, Piper Warrior II Aircraft.</label>
-			</text>
-			
-			<hrule/>
-			
-			<text>
-				<halign>left</halign>
-				<label>Fuel Capacity (per tank): 168.0 Pounds</label>
-			</text>
-			
-			<text>
-				<halign>left</halign>
-				<label>Fuel to Tabs (per tank): 119.0 Pounds</label>
-			</text>
-			
-			<hrule/>
-			
-			<text>
-				<halign>left</halign>
-				<label>Key Commands:</label>
-			</text>
-			<text>
-				<halign>left</halign>
-				<label>F10 - Toggle Menu</label>
-			</text>
-			<text>
-				<halign>left</halign>
-				<label>F11 - Open ITAF</label>
-			</text>
-			<text>
-				<halign>left</halign>
-				<label>F12 - Open Radio Dialog</label>
-			</text>
+	<group>
+		<layout>vbox</layout>
+		
+		<text>
+			<halign>left</halign>
+			<label>Information:</label>
+		</text>
+		
+		<text>
+			<halign>left</halign>
+			<label>PA28-Warrior by it0uchpods Design Group</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>Joshua Davidson (it0uchpods), Jonanthan Redpath (legoboyvdlp)</label>
+		</text>
+		
+		<hrule/>
+		
+		<text>
+			<halign>left</halign>
+			<label>Fuel Capacity (per tank): 168.0 Pounds</label>
+		</text>
+		
+		<text>
+			<halign>left</halign>
+			<label>Fuel to Tabs (per tank): 119.0 Pounds</label>
+		</text>
+		
+		<hrule/>
+		
+		<text>
+			<halign>left</halign>
+			<label>Key Commands:</label>
+		</text>
+		
+		<text>
+			<halign>left</halign>
+			<label>SHIFT + B - Toggle Parking Brake</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>SHIFT + D - Disconnect Autopilot</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>CTRL + L - Panel Light Toggle</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>c - CWS Button (hold)</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>j - Switch Tanks</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>M/m - Mixture -/+</label>
+		</text>
+	
+	</group>
 
-			<text>
-				<halign>left</halign>
-				<label>SHIFT + B - Toggle Parking Brake</label>
-			</text>
-			<text>
-				<halign>left</halign>
-				<label>SHIFT + ESC - Reset</label>
-			</text>
-			<text>
-				<halign>left</halign>
-				<label>CTRL + L - Panel Light Toggle</label>
-			</text>
-			<text>
-				<halign>left</halign>
-				<label>c - CWS Button (hold)</label>
-			</text>
-			<text>
-				<halign>left</halign>
-				<label>h - Toggle HUD</label>
-			</text>
-			<text>
-				<halign>left</halign>
-				<label>j - Switch Tanks</label>
-			</text>
-			<text>
-				<halign>left</halign>
-				<label>k - Show Map</label>
-			</text>
-			<text>
-				<halign>left</halign>
-				<label>M/m - Mixture -/+</label>
-			</text>
-			<text>
-				<halign>left</halign>
-				<label>r - Open Route Manager</label>
-			</text>
-			<text>
-				<halign>left</halign>
-				<label>w - Open AC Config</label>
-			</text>
-			
-		</group>
-	
-	
 </PropertyList>

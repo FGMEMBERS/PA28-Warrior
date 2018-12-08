@@ -4,15 +4,73 @@
 
 <system name="PA28-161: FCS">
 	
-	<channel name="Control Lag">
+	<channel name="Control Inputs">
+		
+		<actuator name="fcs/aileron-overpower">
+			<input>/controls/flight/aileron</input>
+			<rate_limit>0.1</rate_limit>
+		</actuator>
+		
+		<fcs_function name="fcs/aileron-ap">
+			<function>
+				<sum>
+					<product>
+						<property>fcs/aileron-overpower</property>
+						<value>0.5</value>
+					</product>
+					<property>/it-stec55x/internal/aileron</property>
+				</sum>
+			</function>
+			<clipto>
+				<min>-1</min>
+				<max>1</max>
+			</clipto>
+		</fcs_function>
+		
+		<switch name="fcs/aileron-switch">
+			<default value="/controls/flight/aileron"/>
+			<test logic="AND" value="fcs/aileron-ap">
+				/it-stec55x/output/roll gt -1
+				/it-stec55x/internal/servo-roll-power eq 1
+			</test>
+		</switch>
 		
 		<lag_filter name="fcs/aileron-yoke">
-			<input>/controls/flight/aileron</input>
+			<input>fcs/aileron-switch</input>
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="fcs/elevator-yoke">
+		<actuator name="fcs/elevator-overpower">
 			<input>/controls/flight/elevator</input>
+			<rate_limit>0.1</rate_limit>
+		</actuator>
+		
+		<fcs_function name="fcs/elevator-ap">
+			<function>
+				<sum>
+					<product>
+						<property>fcs/elevator-overpower</property>
+						<value>0.5</value>
+					</product>
+					<property>/it-stec55x/internal/elevator</property>
+				</sum>
+			</function>
+			<clipto>
+				<min>-1</min>
+				<max>1</max>
+			</clipto>
+		</fcs_function>
+		
+		<switch name="fcs/elevator-switch">
+			<default value="/controls/flight/elevator"/>
+			<test logic="AND" value="fcs/elevator-ap">
+				/it-stec55x/output/pitch gt -1
+				/it-stec55x/internal/servo-pitch-power eq 1
+			</test>
+		</switch>
+		
+		<lag_filter name="fcs/elevator-yoke">
+			<input>fcs/elevator-switch</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -35,26 +93,32 @@
 			<input>/controls/gear/brake-parking</input>
 			<c1>20</c1>
 		</lag_filter>
+		
+		<lag_filter name="/systems/fuel/selected-tank-knb">
+			<input>/systems/fuel/selected-tank</input>
+			<c1>20</c1>
+		</lag_filter>
 	
 	</channel>
 	
 	<channel name="Roll">
 		
-		<pure_gain name="fcs/roll-input">
+		<aerosurface_scale name="fcs/aileron-left-deg">
 			<input>fcs/aileron-yoke</input>
-			<gain>1.0</gain>
-			<clipto>
-				<min>-1</min>
-				<max>1</max>
-			</clipto>
-		</pure_gain>
-		
-		<aerosurface_scale name="fcs/aileron-deg">
-			<input>fcs/roll-input</input>
 			<range>
 				<min>-20</min>
-				<max>20</max>
+				<max>15</max>
 			</range>
+			<output>/surface-positions/left-aileron-deg</output>
+		</aerosurface_scale>
+		
+		<aerosurface_scale name="fcs/aileron-right-deg">
+			<input>-fcs/aileron-yoke</input>
+			<range>
+				<min>-20</min>
+				<max>15</max>
+			</range>
+			<output>/surface-positions/right-aileron-deg</output>
 		</aerosurface_scale>
 	
 	</channel>
@@ -72,10 +136,10 @@
 		<scheduled_gain name="fcs/elevator-trim-offset">
 			<input>fcs/elevator-trim-input</input>
 			<table>
-				<independentVar lookup="row">/velocities/airspeed-kt</independentVar>
+				<independentVar lookup="row">velocities/vc-kts</independentVar>
 				<tableData>
-					25 0.0
-					35 0.9
+					15 0.0
+					25 1.0
 				</tableData>
 			</table>
 		</scheduled_gain> 
@@ -95,6 +159,7 @@
 				<min>-12</min>
 				<max>12</max>
 			</range>
+			<output>/surface-positions/elevator-deg</output>
 		</aerosurface_scale>
 		
 		<fcs_function name="fcs/elevator-tab-deg">
@@ -108,6 +173,7 @@
 					<value>-3</value>
 				</sum>
 			</function>
+			<output>/surface-positions/elevator-tab-deg</output>
 			<clipto>
 				<min>-15</min>
 				<max>9</max>
@@ -116,53 +182,11 @@
 	
 	</channel>
 	
-	<channel name="Yaw Helper"> <!-- Autocoordinate -->
-		
-		<switch name="helpers/a-c-gs">
-			<default value="1"/>
-			<test logic="AND" value="0">
-				/options/autocoordinate eq 1
-				gear/unit[1]/WOW eq 0
-				gear/unit[2]/WOW eq 0
-				fcs/rudder-pedal lt 0.1
-				fcs/rudder-pedal gt -0.1
-			</test>
-		</switch>
-		
-		<switch name="helpers/a-c-d-gain">
-			<default value="0"/>
-			<test logic="AND" value="3.8">
-				helpers/a-c-gs eq 0
-			</test>
-		</switch>
-		
-		<pid name="helpers/a-c-pid-v">
-			<input>aero/beta-rad</input>
-			<kp>2.9</kp>
-			<ki>0.0</ki>
-			<kd>helpers/a-c-d-gain</kd>
-			<clipto>
-				<min>-0.3</min>
-				<max>0.3</max>
-			</clipto>
-			<output>helpers/a-c-pid</output>
-		</pid>
-		
-		<switch name="helpers/a-c-f">
-			<default value="0"/>
-			<test value="helpers/a-c-pid">
-				helpers/a-c-gs eq 0
-			</test>
-		</switch>
-	
-	</channel>
-	
 	<channel name="Yaw">
 		
 		<summer name="fcs/yaw-input">
 			<input>fcs/rudder-pedal</input>
 			<input>fcs/rudder-trim-knob</input>
-			<input>helpers/a-c-f</input>
 			<clipto>
 				<min>-1</min>
 				<max>1</max>
@@ -175,6 +199,7 @@
 				<min>-16</min>
 				<max>16</max>
 			</range>
+			<output>/surface-positions/rudder-deg</output>
 		</aerosurface_scale>
 	
 	</channel>
@@ -227,23 +252,76 @@
 		
 		<pure_gain name="fcs/steer-switch-deg">
 			<input>fcs/steer-switch</input>
-			<gain>70</gain>
+			<gain>50</gain>
 		</pure_gain>
 		
 		<actuator name="fcs/steer-deg">
 			<input>fcs/steer-switch-deg</input>
 			<rate_limit>200</rate_limit>
-			<output>fcs/steer-pos-deg[0]</output>
+			<output>fcs/steer-pos-deg</output>
 		</actuator>
 	
 	</channel>
 	
 	<channel name="Extra">
 		
+		<fcs_function name="extra/door-main-input">
+			<function>
+				<min>
+					<property>extra/door-main-cmd</property>
+					<table>
+						<independentVar lookup="row">velocities/vc-kts</independentVar>
+						<tableData>
+							15  1.00
+							45  0.05
+						</tableData>
+					</table>
+				</min>
+			</function>
+		</fcs_function>
+		
 		<lag_filter name="extra/door-main-norm">
-			<input>extra/door-main-cmd</input>
-			<c1>16</c1>
+			<input>extra/door-main-input</input>
+			<c1>16.0</c1>
 		</lag_filter>
+	
+	</channel>
+	
+	<channel name="Brakes">
+		
+		<summer name="fcs/left-brake-summer">
+			<input>/controls/gear/brake-left</input>
+			<input>/controls/gear/brake-parking</input>
+			<clipto>
+				<min>0</min>
+				<max>1</max>
+			</clipto>
+		</summer>
+		
+		<switch name="rubbish/left-brake-cmd-norm">
+			<default value="fcs/left-brake-summer"/>
+			<test value="0">
+				/systems/failures/l-brake eq 1
+			</test>
+			<output>fcs/left-brake-cmd-norm</output>
+		</switch>
+		
+		<summer name="fcs/right-brake-summer">
+			<input>/controls/gear/brake-right</input>
+			<input>/controls/gear/brake-parking</input>
+			<clipto>
+				<min>0</min>
+				<max>1</max>
+			</clipto>
+		</summer>
+		
+		<switch name="rubbish/right-brake-cmd-norm">
+			<default value="fcs/right-brake-summer"/>
+			<test value="0">
+				/systems/failures/r-brake eq 1
+			</test>
+			<output>fcs/right-brake-cmd-norm</output>
+		</switch>
 	
 	</channel>
 

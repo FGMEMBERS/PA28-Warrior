@@ -5,7 +5,7 @@
 <!-- PA28-161 Aircraft Config Dialog -->
 
 <PropertyList>
-
+	
 	<name>aircraft-config</name>
 	<layout>vbox</layout>
 	
@@ -15,6 +15,21 @@
 			<halign>left</halign>
 			<label>Aircraft Configuration V1.5.0</label>
 		</text>
+		<empty><stretch>1</stretch></empty>
+		<button>
+			<row>0</row>
+			<col>0</col>
+			<halign>right</halign>
+			<pref-width>20</pref-width>
+			<pref-height>20</pref-height>
+			<legend>?</legend>
+			<binding>
+				<command>nasal</command>
+				<script>
+				acconfig.help_dlg.open();
+				</script>
+			</binding>
+		</button>
 		<button>
 			<halign>right</halign>
 			<pref-width>20</pref-width>
@@ -28,7 +43,7 @@
 	</group>
 	
 	<hrule/>
-		
+	
 	<group>
 		<layout>hbox</layout>
 
@@ -186,15 +201,21 @@
 						gui.popupTip("No Air to Air refueling support", 6.0);               			
 					}
 					</script>
-				</binding>				
+				</binding>
 			</button>
 
 			<hrule/>
 			
 			<checkbox>
-				<label>Auto Coordination</label>
+				<label>Flt Dir Equipped</label>
 				<halign>left</halign>
-				<property>/options/autocoordinate</property>
+				<enable>
+					<equals> <!-- Changing this while the AP is running could cause problems -->
+						<property>/it-stec55x/output/roll</property>
+						<value>-1</value>
+					</equals>
+				</enable>
+				<property>/it-stec55x/settings/fd-equipped</property>
 				<binding>
 					<command>dialog-apply</command>
 				</binding>

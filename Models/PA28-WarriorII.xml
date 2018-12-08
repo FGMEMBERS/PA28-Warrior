@@ -12,60 +12,41 @@
 		<object-name>Fuselage</object-name>
 		<object-name>VTail</object-name>
 		<object-name>Rudder</object-name>
-		<object-name>Wings</object-name>
 		<object-name>Door</object-name>
-		<object-name>Stabilator</object-name>
-		<object-name>AntiServoTab</object-name>
-		<object-name>LeftAileron</object-name>
-		<object-name>RightAileron</object-name>
-		<object-name>LeftFlap</object-name>
-		<object-name>RightFlap</object-name>
 		<object-name>GearSub</object-name>
 		<object-name>Spinner</object-name>
-		<object-name>Propeller</object-name>
-		<object-name>VHFAntenna.1</object-name>
-		<object-name>VHFAntenna.2</object-name>
-		<!-- Fuselage -->
 		<property-base>sim/model/livery</property-base>
 		<texture-prop>texture</texture-prop>
 		<texture>PA28-WarriorII.png</texture>
 	</animation>
-
-	<animation>
+	
+	<!--animation>
 		<type>material</type>
-		<object-name>prop disc rear</object-name>
-		<property-base>sim/model/livery</property-base>
-		<texture-prop>reardisc</texture-prop>
-		<texture>Liveries/propblur.png</texture>
-	</animation>
-
-	<animation>
-		<type>material</type>
-		<object-name>prop disc front</object-name>
-		<property-base>sim/model/livery</property-base>
-		<texture-prop>frontdisc</texture-prop>
-		<texture>Liveries/propblur.png</texture>
-	</animation>
-
+		<object-name>AC_Num</object-name>
+		<property-base>sim/model/acnum</property-base>
+		<texture-prop>texture</texture-prop>
+		<texture>AC_Num.jpg</texture>
+	</animation-->
+	
 	<!-- Nasal code -->
 	<nasal>
 		<load>
-		var livery_update = aircraft.livery_update.new("Aircraft/PA28-Warrior/Models/Liveries");
+			var livery_update = aircraft.livery_update.new("Aircraft/PA28-Warrior/Models/Liveries");
 		</load>
 		<unload>
-		livery_update.stop();
+			livery_update.stop();
 		</unload>
 	</nasal>
-
-	<effect>
+	
+	<!--effect>
 		<condition>
-		<property>/sim/rendering/rembrandt/enabled</property>
+			<property>/sim/rendering/rembrandt/enabled</property>
 		</condition>
 		<inherits-from>Effects/model-transparent</inherits-from>
-		<object-name>prop disc front</object-name>
-		<object-name>prop disc rear</object-name>
-	</effect>
-
+		<object-name>propfront</object-name>
+		<object-name>proprear</object-name>
+	</effect-->
+	
 	<effect>
 		<inherits-from>Effects/fuselage</inherits-from>
 		<object-name>Fuselage</object-name>
@@ -85,19 +66,20 @@
 		<object-name>VHFAntenna.1</object-name>
 		<object-name>VHFAntenna.2</object-name>
 	</effect>
-
-	<animation>
+	
+	<!--animation>
 		<type>material</type>
 		<object-name>Panel</object-name>
 		<object-name>PlacardsGroup</object-name>
+		<object-name>AC_Num</object-name>
 		<emission>
 			<red>0.1</red>
 			<green>0.1</green>
 			<blue>0.1</blue>
-			<factor-prop>/controls/lighting/panel-lights</factor-prop>
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
 		</emission>
 	</animation>
-
+	
 	<animation>
 		<type>material</type>
 		<object-name>Cabin</object-name>
@@ -105,10 +87,10 @@
 			<red>0.05</red>
 			<green>0.05</green>
 			<blue>0.05</blue>
-			<factor-prop>/controls/lighting/panel-lights</factor-prop>
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
 		</emission>
-	</animation>
-
+	</animation-->
+	
 	<model>
 		<name>SWITCHES</name>
 		<path>Aircraft/PA28-Warrior/Models/SwitchPanel/switch_panel.xml</path>
@@ -118,7 +100,7 @@
 			<z-m>0.102</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>PEDALS.L</name>
 		<path>Aircraft/PA28-Warrior/Models/Pedals/Pedals-L.xml</path>
@@ -128,7 +110,7 @@
 			<z-m>-0.36</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>PEDALS.R</name>
 		<path>Aircraft/PA28-Warrior/Models/Pedals/Pedals-R.xml</path>
@@ -138,7 +120,7 @@
 			<z-m>-0.36</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>FLAP-TRIM</name>
 		<path>Aircraft/PA28-Warrior/Models/FlapTrim/FlapTrim.xml</path>
@@ -148,10 +130,11 @@
 			<z-m>-0.36</z-m>
 		</offsets>
 	</model>
-
+	
 	<!-- Lights -->
-
+	
 	<model>
+		<name>Red nav light</name>
 		<path>Aircraft/PA28-Warrior/Models/light/RedLight.xml</path>
 		<offsets>
 			<x-m>2.68980</x-m>
@@ -159,8 +142,9 @@
 			<z-m>0.11596</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
+		<name>Green nav light</name>
 		<path>Aircraft/PA28-Warrior/Models/light/GreenLight.xml</path>
 		<offsets>
 			<x-m>2.68980</x-m>
@@ -168,7 +152,78 @@
 			<z-m>0.11596</z-m>
 		</offsets>
 	</model>
+	
+	<model>
+		<name>Red nav light ALS</name>
+		<path>Aircraft/PA28-Warrior/Models/light/ALS/rednav.xml</path>
+		<offsets>
+			<x-m>2.68980</x-m>
+			<y-m>-5.18</y-m>
+			<z-m>0.11596</z-m>
+		</offsets>
+	</model>
+	
+	<model>
+		<name>Green nav light ALS</name>
+		<path>Aircraft/PA28-Warrior/Models/light/ALS/greennav.xml</path>
+		<offsets>
+			<x-m>2.68980</x-m>
+			<y-m>5.18</y-m>
+			<z-m>0.11596</z-m>
+		</offsets>
+	</model>
+	
+	<model>
+		<name>White nav light ALS</name>
+		<path>Aircraft/PA28-Warrior/Models/light/ALS/tailnav.xml</path>
+		<offsets>
+			<x-m>6.95005</x-m>
+			<y-m>0.002974</y-m>
+			<z-m>1.49269</z-m>
+		</offsets>
+	</model>
 
+	<model>
+		<name>Beacon light ALS</name>
+		<path>Aircraft/PA28-Warrior/Models/light/ALS/beacon.xml</path>
+		<offsets>
+			<x-m>6.49112</x-m>
+			<y-m>0.007723</y-m>
+			<z-m>1.72265</z-m>
+		</offsets>
+	</model>
+
+	<model>
+		<name>Left Strobe light ALS</name>
+		<path>Aircraft/PA28-Warrior/Models/light/ALS/left-strobe.xml</path>
+		<offsets>
+			<x-m>2.72</x-m>
+			<y-m>-5.18</y-m>
+			<z-m>0.11596</z-m>
+		</offsets>
+	</model>
+
+	<model>
+		<name>Right Strobe light ALS</name>
+		<path>Aircraft/PA28-Warrior/Models/light/ALS/right-strobe.xml</path>
+		<offsets>
+			<x-m>2.72</x-m>
+			<y-m>5.18</y-m>
+			<z-m>0.11596</z-m>
+		</offsets>
+	</model>
+
+	<model>
+		<name>LandingLight-ALS</name>
+		<path>Aircraft/PA28-Warrior/Models/light/ALS/landinglight.xml</path>
+		<offsets>
+		<x-m>0.5</x-m>
+		<y-m>0.0</y-m>
+		<z-m>-0.225</z-m>
+		<pitch-deg>-15.00</pitch-deg>
+		</offsets>
+	</model>
+	
 	<model>
 		<name>LandingLight-Left</name>
 		<path>Aircraft/PA28-Warrior/Models/light/Landinglight.xml</path>
@@ -179,6 +234,33 @@
 		<pitch-deg>-15.00</pitch-deg>
 		</offsets>
 	</model>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Green nav light</object-name>
+		<object-name>Red nav light</object-name>
+		<object-name>LandingLight-Left</object-name>
+		<object-name>TailNavLight</object-name> <!-- makes the actual tailnav light look really bad, hide the object. -->
+		<condition>
+			<not>
+				<property>sim/rendering/shaders/skydome</property>
+			</not>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Green nav light ALS</object-name>
+		<object-name>Red nav light ALS</object-name>
+		<object-name>White nav light ALS</object-name>
+		<object-name>Left Strobe light ALS</object-name>
+		<object-name>Right Strobe light ALS</object-name>
+		<object-name>LandingLight-ALS</object-name>
+		<object-name>Beacon light ALS</object-name>
+		<condition>
+			<property>sim/rendering/shaders/skydome</property>
+		</condition>
+	</animation>
 
 	<!-- Effects -->
 
@@ -310,8 +392,9 @@
 			<roll-deg>-3</roll-deg>
 		</offsets>
 	</model>
-
-	<!--Primary flight instruments-->
+	
+	<!-- Primary Flight Instruments -->
+	
 	<model>
 		<name>ASI</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/asi/asi.xml</path>
@@ -331,18 +414,7 @@
 			<z-m>0.246767</z-m>
 		</offsets>
 	</model>
-
-	<!--<model>
-		<name>AIG</name>
-		<path>Aircraft/PA28-Warrior/Models/Instruments/AIN/ai-gauge.xml</path>
-		<offsets>
-			<x-m>1.933</x-m>
-			<y-m>-0.230</y-m>
-			<z-m>0.271</z-m>
-			<pitch-deg>-1</pitch-deg>
-		</offsets>
-	</model>-->
-
+	
 	<model>
 		<name>ALT</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/alt/alt.xml</path>
@@ -350,10 +422,9 @@
 			<x-m>-1.729</x-m>
 			<y-m>-0.138615</y-m>
 			<z-m>0.246767</z-m>
-			<roll-deg>-1.5</roll-deg>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>ADF1</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/adfki228/ki227_228.xml</path>
@@ -363,7 +434,7 @@
 			<z-m>0.185</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>VOR1</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/ki209a/ki209a-1.xml</path>
@@ -379,7 +450,7 @@
 			<z-m>0.246775</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>blank</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/blend/blend.ac</path>
@@ -400,6 +471,9 @@
 		<name>VOR2</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/ki209a/ki209a-2.xml</path>
 		<offsets>
+			<x-m>1.923</x-m>
+			<y-m>-0.029</y-m>
+			<z-m>0.185</z-m>
 			<x-m>-1.734</x-m>
 			<y-m>-0.035613</y-m>
 			<z-m>0.160089</z-m>
@@ -415,7 +489,7 @@
 			<z-m>0.160064</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>CLOCK</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/Clock/Clock.xml</path>
@@ -425,7 +499,7 @@
 			<z-m>0.259</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>Avionics</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/avionics-sw/avionics-sw.xml</path>
@@ -442,12 +516,23 @@
 		<path>Aircraft/PA28-Warrior/Models/Instruments/ap-sw/ap-sw.xml</path>
 		<offsets>
 			<x-m>1.927</x-m>
-			<y-m>-0.455</y-m>
+			<y-m>-0.45</y-m>
 			<z-m>0.110</z-m>
 			<roll-deg>90</roll-deg>
 		</offsets>
 	</model>
-
+	
+	<model>
+		<name>NAVSW</name>
+		<path>Aircraft/PA28-Warrior/Models/Instruments/nav-src-sw/nav-src-sw.xml</path>
+		<offsets>
+			<x-m>1.927</x-m>
+			<y-m>-0.42</y-m>
+			<z-m>0.110</z-m>
+			<roll-deg>90</roll-deg>
+		</offsets>
+	</model>
+	
 	<model>
 		<name>TC</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/tc/tc.xml</path>
@@ -457,23 +542,26 @@
 			<z-m>0.160091</z-m>
 		</offsets>
 	</model>
-
-	<model>
-		<name>HSI</name>
-		<path>Aircraft/PA28-Warrior/Models/Instruments/kcs55/ki525a.xml</path>
-		<condition>
-			<equals>
-				<property>options/panel</property>
-				<value>HSI Panel</value>
+	
+ 	<model>
+ 		<name>HSI</name>
+ 		<path>Aircraft/PA28-Warrior/Models/Instruments/kcs55/ki525a.xml</path>
+ 		<condition>
+ 			<equals>
+ 				<property>options/panel</property>
+ 				<value>HSI Panel</value>
 			</equals>
 		</condition>
 		<offsets>
+			<x-m>1.926</x-m>
+			<y-m>-0.233</y-m>
+			<z-m>0.185</z-m>
 			<x-m>-1.728</x-m>
 			<y-m>-0.241624</y-m>
 			<z-m>0.160061</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>DG</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/dg/dg.xml</path>
@@ -490,12 +578,6 @@
 		</offsets>
 	</model>
 	
-		<!--<offsets>
-			<x-m>-1.732</x-m>
-			<y-m>-0.035637</y-m>
-			<z-m>0.246775</z-m>
-		</offsets>-->
-
 	<model>
 		<name>VSI</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/vsi/vsi.xml</path>
@@ -505,7 +587,7 @@
 			<z-m>0.160091</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>FUEL_OIL</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/pa28-fuel-oil/pa28-fuel-oil.xml</path>
@@ -515,17 +597,17 @@
 			<z-m>0.102</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>EGT</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/egt/egt.xml</path>
 		<offsets>
 			<x-m>1.925</x-m>
 			<y-m>-0.2805</y-m>
-			<z-m>0.0205</z-m>
+			<z-m>0.0235</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>Primer</name>
 		<path>Aircraft/PA28-Warrior/Models/PrimerPump/primer.xml</path>
@@ -535,7 +617,7 @@
 			<z-m>0.01567</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>AMPVOL</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/BatteryGauge/BatteryGauge.xml</path>
@@ -555,7 +637,7 @@
 			<z-m>0.237</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>mags</name>
 		<path>Aircraft/PA28-Warrior/Models/magneto-switch/mags.xml</path>
@@ -565,7 +647,7 @@
 			<z-m>-0.0055</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>HOBBS</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/Hobbs/HobbsMeter.xml</path>
@@ -575,38 +657,19 @@
 			<z-m>0.331</z-m>
 		</offsets>
 	</model>
-
+	
 	<!--   Radio Stack  -->
-
+	
 	<model>
-		<path>Aircraft/PA28-Warrior/Models/Instruments/MarkerBeacon/MkrBcn.xml</path>
-		<offsets>
-			<x-m>1.925</x-m>
-			<y-m>-0.05223</y-m>
-			<z-m>0.32864</z-m>
-		</offsets>
-	</model>
-
-	<model>
-		<name>kx165-1</name>
-		<path>Aircraft/PA28-Warrior/Models/Instruments/radio_stack/kx165-1.xml</path>
+		<name>kx165-2</name>
+		<path>Aircraft/PA28-Warrior/Models/Instruments/radio_stack/kx165-2.xml</path>
 		<offsets>
 			<x-m>-1.735</x-m>
 			<y-m>0.28167</y-m>
 			<z-m>0.24</z-m>
 		</offsets>
 	</model>
-<!--
-	<model>
-		<name>kx165-2</name>
-		<path>Aircraft/PA28-Warrior/Models/Instruments/radio_stack/kx165-2.xml</path>
-		<offsets>
-			<x-m>1.915</x-m>
-			<y-m>0.124</y-m>
-			<z-m>0.265</z-m>
-		</offsets>
-	</model>-->
-
+	
 	<model>
 		<name>kma28</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/kma28/kma28.ac</path>
@@ -616,7 +679,7 @@
 			<z-m>0.291251</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>STEC-55X</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/stec-55x/stec-55x.xml</path>
@@ -626,17 +689,17 @@
 			<z-m>0.213</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>kma20</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/kma20/kma20.xml</path>
 		<offsets>
 			<x-m>1.915</x-m>
 			<y-m>0.285</y-m>
-			<z-m>0.225</z-m>
+			<z-m>0.226</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>dme</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/ki266/ki266.xml</path>
@@ -646,17 +709,33 @@
 			<z-m>0.19</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>kt70</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/kt70/kt70.xml</path>
+		<condition>
+			<not><property>options/wip</property></not>
+		</condition>
 		<offsets>
 			<x-m>1.922</x-m>
 			<y-m>0.285</y-m>
 			<z-m>0.27</z-m>
 		</offsets>
 	</model>
-
+	
+	<model>
+		<name>gtx-327</name>
+		<path>Aircraft/PA28-Warrior/Models/Instruments/gtx-327/gtx-327.xml</path>
+		<condition>
+			<property>options/wip</property>
+		</condition>
+		<offsets>
+			<x-m>1.922</x-m>
+			<y-m>0.285</y-m>
+			<z-m>0.271</z-m>
+		</offsets>
+	</model>
+	
 	<model>
 		<name>kr87</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/kr87-adf/kr87.xml</path>
@@ -666,7 +745,7 @@
 			<z-m>0.173</z-m>
 		</offsets>
 	</model>
-
+	
 	<animation>
 		<name>InstrumentGroup</name>
 		<object-name>ASI</object-name>
@@ -692,7 +771,7 @@
 		<object-name>mags</object-name>
 	</animation>
 
-	<animation>
+	<!--animation>
 		<type>select</type>
 		<object-name>Propeller</object-name>
 		<condition>
@@ -707,8 +786,8 @@
 		<type>spin</type>
 		<object-name>Propeller</object-name>
 		<object-name>Spinner</object-name>
-		<object-name>prop disc front</object-name>
-		<object-name>prop disc rear</object-name>
+		<object-name>propfront</object-name>
+		<object-name>proprear</object-name>
 		<property>engines/engine/rpm[0]</property>
 		<factor>-1</factor>
 		<axis>
@@ -723,8 +802,8 @@
 
 	<animation>
 		<type>select</type>
-		<object-name>prop disc front</object-name>
-		<object-name>prop disc rear</object-name>
+		<object-name>propfront</object-name>
+		<object-name>proprear</object-name>
 		<condition>
 			<greater-than>
 				<property>engines/engine/rpm</property>
@@ -735,13 +814,13 @@
 
 	<animation>
 		<type>blend</type>
-		<object-name>prop disc front</object-name>
-		<object-name>prop disc rear</object-name>
+		<object-name>propfront</object-name>
+		<object-name>proprear</object-name>
 		<property>engines/engine/rpm[0]</property>
 		<factor>0.00015</factor>
 		<max>1.0</max>
 		<min>0.8</min>
-	</animation>
+	</animation-->
 
 	<model>
 		<name>fuel selector</name>
@@ -756,7 +835,7 @@
 		</offsets>
 	</model>
 
-	<animation>
+	<!--animation>
 		<type>rotate</type>
 		<object-name>ParkingBrakeControl</object-name>
 		<factor>35</factor>
@@ -784,9 +863,9 @@
 				<property>controls/gear/brake-parking</property>
 			</binding>
 		</action>
-	</animation>
+	</animation-->
 
-	<animation>
+	<!--animation>
 		<type>pick</type>
 		<object-name>DoorLatch</object-name>
 		<visible>true</visible>
@@ -914,7 +993,7 @@
 		<type>rotate</type>
 		<object-name>CarbHeatKnob</object-name>
 		<object-name>CH-Lever</object-name>
-		<property>controls/anti-ice/engine/carb-heat[0]</property>
+		<property>fdm/jsbsim/fcs/carb-heat-lever</property>
 		<factor>100</factor>
 		<offset-deg>-50</offset-deg>
 		<center>
@@ -938,10 +1017,10 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/anti-ice/engine/carb-heat[0]</property>
+				<property>controls/anti-ice/engine[0]/carb-heat-cmd</property>
 			</binding>
 		</action>
-	</animation>
+	</animation-->
 
 	<animation>
 		<type>rotate</type>
@@ -961,8 +1040,8 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RightAileron</object-name>
-		<property>sim/multiplay/generic/float[5]</property>
-		<factor>-1</factor>
+		<property>sim/multiplay/generic/float[6]</property>
+		<factor>1</factor>
 		<axis>
 			<x1-m>-0.25121</x1-m>
 			<y1-m>2.70551</y1-m>
@@ -1041,7 +1120,7 @@
 		<type>rotate</type>
 		<object-name>Stabilator</object-name>
 		<object-name>AntiServoTab</object-name>
-		<property>sim/multiplay/generic/float[6]</property>
+		<property>sim/multiplay/generic/float[7]</property>
 		<factor>1</factor>
 		<center>
 			<x-m>3.00905</x-m>
@@ -1058,7 +1137,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>AntiServoTab</object-name>
-		<property>sim/multiplay/generic/float[7]</property>
+		<property>sim/multiplay/generic/float[8]</property>
 		<factor>1</factor>
 		<center>
 			<x-m>3.39382</x-m>
@@ -1072,7 +1151,7 @@
 		</axis>
 	</animation>
 
-	<animation>
+	<!--animation>
 		<name>NoseTrim</name>
 		<type>rotate</type>
 		<object-name>RudderTrim</object-name>
@@ -1100,13 +1179,13 @@
 			<y>0</y>
 			<z>0</z>
 		</axis>
-	</animation>
+	</animation-->
 
 	<animation>
 		<type>rotate</type>
 		<object-name>Rudder</object-name>
 		<object-name>TailNavLight</object-name>
-		<property>sim/multiplay/generic/float[8]</property>
+		<property>sim/multiplay/generic/float[9]</property>
 		<factor>1</factor>
 		<axis>
 			<x1-m>3.01317</x1-m>
@@ -1118,7 +1197,7 @@
 		</axis>
 	</animation>
 
-	<animation>
+	<!--animation>
 		<type>rotate</type>
 		<object-name>NoseGear</object-name>
 		<property>sim/multiplay/generic/float[3]</property>
@@ -1131,9 +1210,9 @@
 			<y2-m>0.0</y2-m>
 			<z2-m>-0.77222</z2-m>
 		</axis>
-	</animation>
+	</animation-->
 	
-	<animation>
+	<!--animation>
 		<type>pick</type>
 		<object-name>DoorGroup</object-name>
 		<action>
@@ -1179,14 +1258,14 @@
 			<y>1.0</y>
 			<z>0.1</z>
 		</axis>
-	</animation>
-
+	</animation-->
+	
 	<animation>
 		<type>translate</type>
 		<object-name>WheelN</object-name>
 		<object-name>gear.low.F</object-name>
 		<object-name>gear.oleo.F</object-name>
-		<property>gear/gear[0]/compression-norm</property>
+		<property>sim/multiplay/generic/float[0]</property>
 		<interpolation>
 			<entry><ind>0.00</ind><dep>-0.02</dep></entry>
 			<entry><ind>0.07</ind><dep>0</dep></entry>
@@ -1219,6 +1298,16 @@
 		</center>
 	</animation>
 	
+	<!--animation>
+		<type>translate</type>
+		<object-name></object-name>
+		<property>sim/multiplay/generic/float[1]</property>
+		<factor>-0.26</factor>
+		<axis>
+
+		</axis>
+	</animation-->
+	
 	<animation>
 		<type>spin</type>
 		<object-name>WheelL</object-name>
@@ -1235,6 +1324,16 @@
 			<z-m>-0.89011</z-m>
 		</center>
 	</animation>
+	
+	<!--animation>
+		<type>translate</type>
+		<object-name></object-name>
+		<property>sim/multiplay/generic/float[2]</property>
+		<factor>-0.26</factor>
+		<axis>
+
+		</axis>
+	</animation-->
 	
 	<animation>
 		<type>spin</type>

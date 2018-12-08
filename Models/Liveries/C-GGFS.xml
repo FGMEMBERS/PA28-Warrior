@@ -6,9 +6,10 @@
 			<livery>
 				<name>C-GGFS</name>
 				<texture>Liveries/C-GGFS.png</texture>
-				<reardisc>Liveries/propwhite.png</reardisc>
-				<frontdisc>Liveries/propwhite.png</frontdisc>
 			</livery>
+			<acnum>
+				<texture>Liveries/C-GGFS-acnum.jpg</texture>
+			</acnum>
 		</model>
 	</sim>
 </PropertyList>

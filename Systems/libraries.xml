@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- Copyright (c) 2017 Joshua Davidson (it0uchpods) -->
+<!-- Copyright (c) 2018 Joshua Davidson (it0uchpods) -->
 
 <PropertyList>
 
@@ -40,15 +40,17 @@
 		<max>50000</max>
 	</filter>
 	
-	<filter>
-		<name>Fuel Selector Knob</name>
-		<type>noise-spike</type>
-		<update-interval-secs type="double">0.05</update-interval-secs>
-		<input>/systems/fuel/selected-tank</input>
-		<output>/systems/fuel/selected-tank-knb</output>
-		<max-rate-of-change>2.0</max-rate-of-change>
-	</filter>
-
+	<logic> <!-- Because this is a "bound" property, whatever that is, so directly from JSBsim doesn't work... -->
+		<name>Starter Command</name>
+		<input>
+			<equals>
+				<property>/fdm/jsbsim/fcs/start-switch</property>
+				<value>1</value>
+			</equals>
+		</input>
+		<output>/controls/engines/engine[0]/starter</output>
+	</logic>
+	
 	<filter>
 		<name>CDI0 lowpass</name>
 		<debug>false</debug>
@@ -83,24 +85,6 @@
 		<input>/instrumentation/nav[1]/gs-needle-deflection-norm</input>
 		<output>/instrumentation/nav[1]/filtered-gsNAV1-deflection</output>
 		<filter-time>2.0</filter-time>
-	</filter>
-	
-	<filter>
-		<name>Attitude Indicator Roll lowpass</name>
-		<debug>false</debug>
-		<type>exponential</type>
-		<input>/instrumentation/attitude-indicator/indicated-roll-deg</input>
-		<output>/instrumentation/attitude-indicator/actual-indicated-roll-deg</output>
-		<filter-time>0.04</filter-time>
-	</filter>
-	
-	<filter>
-		<name>Attitude Indicator Pitch lowpass</name>
-		<debug>false</debug>
-		<type>exponential</type>
-		<input>/instrumentation/attitude-indicator/indicated-pitch-deg</input>
-		<output>/instrumentation/attitude-indicator/actual-indicated-pitch-deg</output>
-		<filter-time>0.04</filter-time>
 	</filter>
 	
 	<filter>
@@ -182,6 +166,67 @@
 	</filter>
 	
 	<!-- Instrument filters -->
+	
+	<filter>
+		<name>Airspeed Indicator lowpass</name>
+		<debug>false</debug>
+		<type>exponential</type>
+		<input>/instrumentation/airspeed-indicator/indicated-speed-kt</input>
+		<output>/instrumentation/airspeed-indicator/indicated-speed-kt-lowpass</output>
+		<filter-time>0.04</filter-time>
+	</filter>
+	
+	<predict-simple>
+		<name>Airspeed Indicator Delay</name>
+		<debug>false</debug>
+		<input>/instrumentation/airspeed-indicator/indicated-speed-kt-lowpass</input>
+		<output>/instrumentation/airspeed-indicator/indicated-speed-kt-actual</output>
+		<seconds>-1.0</seconds>
+		<filter-gain>0.1</filter-gain>
+	</predict-simple>
+	
+	<filter>
+		<name>Attitude Indicator Roll lowpass</name>
+		<debug>false</debug>
+		<type>exponential</type>
+		<input>/instrumentation/attitude-indicator/indicated-roll-deg</input>
+		<output>/instrumentation/attitude-indicator/indicated-roll-deg-actual</output>
+		<filter-time>0.04</filter-time>
+	</filter>
+	
+	<filter>
+		<name>Attitude Indicator Pitch lowpass</name>
+		<debug>false</debug>
+		<type>exponential</type>
+		<input>/instrumentation/attitude-indicator/indicated-pitch-deg</input>
+		<output>/instrumentation/attitude-indicator/indicated-pitch-deg-actual</output>
+		<filter-time>0.04</filter-time>
+	</filter>
+	
+	<filter>
+		<name>Vertical Speed Indicator lowpass</name>
+		<debug>false</debug>
+		<type>exponential</type>
+		<input>
+			<expression> <!-- Pressure Rate to Vertical Speed FPM -->
+				<product>
+					<property>/it-stec55x/internal/pressure-rate</property>
+					<value>-58000</value>
+				</product>
+			</expression>
+		</input>
+		<output>/instrumentation/vertical-speed-indicator/indicated-speed-fpm-lowpass</output>
+		<filter-time>0.16</filter-time>
+	</filter>
+	
+	<predict-simple>
+		<name>Vertical Speed Indicator Delay</name>
+		<debug>false</debug>
+		<input>/instrumentation/vertical-speed-indicator/indicated-speed-fpm-lowpass</input>
+		<output>/instrumentation/vertical-speed-indicator/indicated-speed-fpm-actual</output>
+		<seconds>-1.0</seconds>
+		<filter-gain>0.1</filter-gain>
+	</predict-simple>
 	
 	<filter>
 		<name>Ampere lowpass</name>
@@ -349,6 +394,17 @@
 		<input>/fdm/jsbsim/libraries/av-fan-rpm-feedback</input>
 		<output>/fdm/jsbsim/libraries/av-fan-rpm</output>
 		<filter-time>0.32</filter-time>
+	</filter>
+	
+	<!-- Lighting -->
+	
+	<filter>
+		<name>Panel Lights lowpass</name>
+		<debug>false</debug>
+		<type>exponential</type>
+		<input>/controls/switches/panel-lights-cmd</input>
+		<output>/controls/lighting/panel-norm</output>
+		<filter-time>0.64</filter-time>
 	</filter>
 
 </PropertyList>

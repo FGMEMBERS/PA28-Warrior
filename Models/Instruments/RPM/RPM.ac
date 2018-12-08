@@ -7,7 +7,7 @@ kids 7
 OBJECT poly
 name "face"
 crease 30.0
-texture "rpm.png"
+texture "RPM.png"
 texrep 1 1
 numvert 504
 -0.0000001 -0.0000000 -0.0401739
@@ -2129,7 +2129,7 @@ OBJECT poly
 name "hour.01"
 loc -0.0089958 -0.0147629 -0.0116875
 crease 35.0
-texture "rpm.png"
+texture "RPM.png"
 texrep 1 1
 numvert 20
 0.0000000 -0.0096400 0.0000000
@@ -2254,7 +2254,7 @@ OBJECT poly
 name "hour.1"
 loc -0.0089958 -0.0147629 -0.0046586
 crease 35.0
-texture "rpm.png"
+texture "RPM.png"
 texrep 1 1
 numvert 20
 0.0000000 -0.0096400 0.0000000
@@ -2379,7 +2379,7 @@ OBJECT poly
 name "hour.10"
 loc -0.0089958 -0.0147629 0.0023703
 crease 35.0
-texture "rpm.png"
+texture "RPM.png"
 texrep 1 1
 numvert 20
 0.0000000 -0.0096400 0.0000000
@@ -2504,7 +2504,7 @@ OBJECT poly
 name "hour.100"
 loc -0.0089958 -0.0147629 0.0093991
 crease 35.0
-texture "rpm.png"
+texture "RPM.png"
 texrep 1 1
 numvert 20
 0.0000000 -0.0096400 0.0000000
@@ -2629,7 +2629,7 @@ OBJECT poly
 name "hour.1000"
 loc -0.0089958 -0.0147629 0.0165211
 crease 35.0
-texture "rpm.png"
+texture "RPM.png"
 texrep 1 1
 numvert 20
 0.0000000 -0.0096400 0.0000000
@@ -2753,7 +2753,7 @@ kids 0
 OBJECT poly
 name "needle"
 crease 35.0
-texture "rpm.png"
+texture "RPM.png"
 texrep 1 1
 numvert 70
 -0.0031339 -0.0052444 0.0048466

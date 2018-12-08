@@ -1,11 +1,10 @@
 <?xml version="1.0"?>
 
 <!-- No clue who made it, no author was listed -->
-<!-- I changed the diameter to match the real warrior though (73.2) -->
 
 <propeller name="fixed-pitch-2-blade">
     <ixx>                1.67 </ixx>
-    <diameter unit="IN"> 73.2 </diameter>
+    <diameter unit="IN"> 74.0 </diameter>
     <numblades>             2 </numblades>
     <minpitch>             22 </minpitch>
     <maxpitch>             22 </maxpitch>

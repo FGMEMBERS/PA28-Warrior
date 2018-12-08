@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 
-<!-- Copyright (c) 2017 Joshua Davidson (it0uchpods) -->
+<!-- Copyright (c) 2018 Joshua Davidson (it0uchpods) -->
 
 <PropertyList>
 	
-	<sim include="Systems/help.xml">
+	<sim>
 		
-		<author>Gerhard Kick, Joshua Davidson (it0uchpods), Gabriel Hernandez (YV3399)</author>
+		<author>it0uchpods Design Group: Joshua Davidson (it0uchpods), Jonathan Redpath (legoboyvdlp)</author>
 		
 		<rating>
 			<FDM type="int">5</FDM>
@@ -51,16 +51,13 @@
 		
 		<previews>
 			<preview>
-				<type>cockpit</type>
-				<splash type="bool">true</splash>
-				<path>Splash/Splash1.png</path>
-			</preview>
-			<preview>
 				<type>exterior</type>
 				<splash type="bool">true</splash>
-				<path>Splash/Splash2.png</path>
+				<path>Splash/Splash1.png</path>
 			</preview>	
 		</previews>
+		
+		<checklists include="PA28-Checklists.xml"/>
 		
 		<systems>
 			<electrical>
@@ -71,9 +68,6 @@
 			</autopilot>
 			<autopilot n="1">
 				<path>Aircraft/PA28-Warrior/Systems/libraries.xml</path>
-			</autopilot>
-			<autopilot n="2">
-				<path>Aircraft/PA28-Warrior/Systems/zoom-views.xml</path>
 			</autopilot>
 		</systems>
 		
@@ -102,34 +96,56 @@
 					</item>
 				</menu>
 				<menu n="101">
+					<label>Utilities</label>
+					<enabled type="bool">true</enabled>
+					<item>
+						<label>Select Livery</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+							aircraft.livery.dialog.toggle();
+							</script>
+						</binding>
+					</item>
+					<item>
+						<label>Mini Panel</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+							acconfig.minipanel_dlg.open();
+							setprop("/options/mini-panel", 1);
+							acconfig.writeSettings();
+							</script>
+						</binding>
+					</item>
+					<item>
+						<label>Control Panel</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+							acconfig.controlpanel_dlg.open();
+							</script>
+						</binding>
+					</item>
+					<item>
+						<label>Failures</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+							acconfig.fail_dlg.open();
+							</script>
+						</binding>
+					</item>
+				</menu>
+				<menu n="102">
 					<label>How To..?</label>
 					<enabled type="bool">true</enabled>
 					<item>
 						<label>Getting Started</label>
+						<enabled type="bool">false</enabled> <!-- Needs to be updated -->
 						<binding>
 							<command>open-browser</command>
-							<path>Aircraft/PA28-Warrior/Docs/FGN_Cockpit.pdf</path>
-						</binding>
-					</item>
-					<item>
-						<label>Fuel Mgmt</label>
-						<binding>
-							<command>open-browser</command>
-							<path>Aircraft/PA28-Warrior/Docs/Fuel.pdf</path>
-						</binding>
-					</item>	
-					<item>
-						<label>Fundamentals</label>
-						<binding>
-							<command>open-browser</command>
-							<path>Aircraft/PA28-Warrior/Docs/Fundamentals.pdf</path>
-						</binding>
-					</item>
-					<item>
-						<label>Go to SkyVector IFR</label>
-						<binding>
-							<command>open-browser</command>
-							<path>https://skyvector.com/</path>
+							<path>Aircraft/PA28-Warrior/Docs/Cockpit.pdf</path>
 						</binding>
 					</item>
 					<item>
@@ -140,17 +156,17 @@
 						</binding>
 					</item>
 					<item>
-						<label>Practise Approaches </label>
+						<label>Fuel Management</label>
 						<binding>
 							<command>open-browser</command>
-							<path>Aircraft/PA28-Warrior/Docs/ApproachP.pdf</path>
+							<path>Aircraft/PA28-Warrior/Docs/Fuel.pdf</path>
 						</binding>
 					</item>
 					<item>
-						<label>About Warrior Nav</label>
+						<label>About Mini Panel</label>
 						<binding>
 							<command>open-browser</command>
-							<path>Aircraft/PA28-Warrior/Docs/AboutFGN.pdf</path>
+							<path>Aircraft/PA28-Warrior/Docs/About_Mini_Panel.pdf</path>
 						</binding>
 					</item>
 				</menu>
@@ -161,7 +177,7 @@
 			<path>Aircraft/PA28-Warrior/Sounds/sound.xml</path>
 		</sound>
 		
-		<chase-distance-m type="double" archive="y">-15.0</chase-distance-m>
+		<chase-distance-m type="double" archive="y">-20.0</chase-distance-m>
 		<view n="0">
 			<name>Pilot View</name>
 			<internal archive="y">true</internal>
@@ -250,84 +266,29 @@
 			<max-lb>200</max-lb>
 		</weight>
 		
-		<sound>
-			<volume>0.8</volume>
-		</sound>
-		
 		<multiplay>
 			<generic>
 				<bool n="0" alias="/options/wheel-fairing"/>
-				<float n="0" alias="/gear/gear[0]/compression-m"/>
-				<float n="1" alias="/gear/gear[1]/compression-m"/>
-				<float n="2" alias="/gear/gear[2]/compression-m"/>
+				<float n="0" alias="/gear/gear[0]/compression-norm"/>
+				<float n="1" alias="/gear/gear[1]/compression-norm"/>
+				<float n="2" alias="/gear/gear[2]/compression-norm"/>
 				<float n="3" alias="/fdm/jsbsim/fcs/steer-deg"/>
 				<float n="4" alias="/fdm/jsbsim/extra/door-main-norm"/>
-				<float n="5" alias="/fdm/jsbsim/fcs/aileron-deg"/>
-				<float n="6" alias="/fdm/jsbsim/fcs/elevator-deg"/>
-				<float n="7" alias="/fdm/jsbsim/fcs/elevator-tab-deg"/>
-				<float n="8" alias="/fdm/jsbsim/fcs/rudder-deg"/>
+				<float n="5" alias="/surface-positions/left-aileron-deg"/>
+				<float n="6" alias="/surface-positions/right-aileron-deg"/>
+				<float n="7" alias="/surface-positions/elevator-deg"/>
+				<float n="8" alias="/surface-positions/elevator-tab-deg"/>
+				<float n="9" alias="/surface-positions/rudder-deg"/>
 				<string alias="/sim/multiplay/callsign"/>
 			</generic>
 		</multiplay>
 		
-		<flight-recorder>
-			<replay-config type="int">0</replay-config>
-			<config n="0" include="/Aircraft/Generic/flightrecorder/generic-piston-propeller-1.xml">
-				<name type="string">Piper 28 Warrior Flight Recorder</name>
-				<signal>
-					<type>float</type>
-					<property type="string">/gear/gear[0]/compression-m</property>
-					<interpolation>linear</interpolation>
-				</signal>
-				<signal>
-					<type>float</type>
-					<property type="string">/gear/gear[1]/compression-m</property>
-					<interpolation>linear</interpolation>
-				</signal>
-				<signal>
-					<type>float</type>
-					<property type="string">/gear/gear[2]/compression-m</property>
-					<interpolation>linear</interpolation>
-				</signal>
-			</config>
-		</flight-recorder>
-		
-		<aircraft-data>     
-			<path>instrumentation/radar-altimeter/decision-height</path>
-			<path>instrumentation/comm[0]/volume</path>
-			<path>instrumentation/comm[0]/frequencies/selected-mhz</path>
-			<path>instrumentation/comm[0]/frequencies/standby-mhz</path>
-			<path>instrumentation/comm[0]/test-btn</path>
-			<path>instrumentation/nav[0]/audio-btn</path>
-			<path>instrumentation/nav[0]/power-btn</path>
-			<path>instrumentation/nav[0]/frequencies/selected-mhz</path>
-			<path>instrumentation/nav[0]/frequencies/standby-mhz</path>
-			<path>instrumentation/nav/radials/selected-deg</path>
-			<path>instrumentation/comm[1]/volume</path>
-			<path>instrumentation/comm[1]/frequencies/selected-mhz</path>
-			<path>instrumentation/comm[1]/frequencies/standby-mhz</path>
-			<path>instrumentation/comm[1]/test-btn</path>
-			<path>instrumentation/nav[1]/audio-btn</path>
-			<path>instrumentation/nav[1]/power-btn</path>
-			<path>instrumentation/nav[1]/frequencies/selected-mhz</path>
-			<path>instrumentation/nav[1]/frequencies/standby-mhz</path>
-			<path>instrumentation/nav[1]/radials/selected-deg</path>
-			<path>instrumentation/dme/frequencies/selected-mhz</path>
-			<path>instrumentation/dme/switch-min-kts</path>
-			<path>instrumentation/hobbs-meter/seconds</path>
-			<path>instrumentation/adf/model</path>
-			<path>instrumentation/adf/rotation-deg</path>
-			<path>instrumentation/adf/frequencies</path>
-		</aircraft-data>
+		<flight-recorder include="Systems/flight-recorder.xml"/>
 		
 		<gui n="0" include="Systems/it-gui.xml"/>
 		
 		<current-view>
-			<z-offset-dec-step type="double">0.0</z-offset-dec-step>
-			<z-offset-inc-step type="double">0.0</z-offset-inc-step>
-			<can-change-z-offset type="bool">false</can-change-z-offset>
-			
-			<z-offset-default type="float">30.0</z-offset-default>
+			<z-offset-default type="float">20.0</z-offset-default>
 			<z-offset-min-m type="float">10.0</z-offset-min-m>
 			<z-offset-max-m type="float">200.0</z-offset-max-m>
 		</current-view>
@@ -363,6 +324,11 @@
 	</consumables>
 	
 	<controls n="0">
+		<anti-ice>
+			<engine n="0">
+				<carb-heat-cmd type="bool">0</carb-heat-cmd>
+			</engine>
+		</anti-ice>
 		<electrical>
 			<battery type="bool">0</battery>
 			<alternator type="bool">0</alternator>
@@ -376,8 +342,7 @@
 		</engines>
 		<flight>
 			<aileron-drives-tiller type="bool">0</aileron-drives-tiller>
-			<elevator-trim type="double">0.1</elevator-trim>
-			<rudder-trim type="double">0.01</rudder-trim>
+			<elevator-trim type="double">0.11</elevator-trim>
 		</flight>
 		<gear>
 			<brake-parking type="double">0</brake-parking>
@@ -389,7 +354,6 @@
 			<landing-light type="bool">0</landing-light>
 			<nav-lights type="double">0</nav-lights>
 			<nav-lights-factor type="double">0</nav-lights-factor>
-			<panel-lights type="double">0</panel-lights>
 			<panel-lights-factor type="double">0</panel-lights-factor>
 			<pitot-heat type="bool">0</pitot-heat>
 			<strobe-lights type="bool">0</strobe-lights>
@@ -422,12 +386,10 @@
 				<pump-psi-feedback type="double">0</pump-psi-feedback>
 				<suck-psi-feedback type="double">0</suck-psi-feedback>
 			</fuel>
-			<helpers n="0">
-				<a-c-pid>0</a-c-pid>
-			</helpers>
 			<libraries>
 				<av-fan-rpm-feedback type="double">0</av-fan-rpm-feedback>
 			</libraries>
+			<tune type="double">1</tune>
 		</jsbsim>
 	</fdm>
 	
@@ -469,20 +431,7 @@
 								</and>
 							</condition>
 							<command>nasal</command>
-							<script>
-							if (getprop("/sim/current-view/can-change-z-offset")) {
-								var distance = getprop("/sim/current-view/z-offset-m");
-								var multiple = getprop("/sim/current-view/z-offset-inc-step");
-								var min_dist = getprop("/sim/current-view/z-offset-min-m");
-
-								distance = math.round(std.min(-min_dist, distance + multiple) / multiple) * multiple;
-								setprop("/sim/current-view/z-offset-m", distance);
-
-								gui.popupTip(sprintf("%d meters", abs(distance)));
-							} else {
-								view.decrease();
-							}
-							</script>
+							<script>libraries.fovZoom(-1);</script>
 						</binding>
 					</button>
 					<button n="4">
@@ -497,20 +446,7 @@
 								</and>
 							</condition>
 							<command>nasal</command>
-							<script>
-								if (getprop("/sim/current-view/can-change-z-offset")) {
-									var distance = getprop("/sim/current-view/z-offset-m");
-									var multiple = getprop("/sim/current-view/z-offset-dec-step");
-									var max_dist = getprop("/sim/current-view/z-offset-max-m");
-
-									distance = math.round(std.max(-max_dist, distance + multiple) / multiple) * multiple;
-									setprop("/sim/current-view/z-offset-m", distance);
-
-									gui.popupTip(sprintf("%d meters", abs(distance)));
-								} else {
-									view.increase();
-								}
-							</script>
+							<script>libraries.fovZoom(1);</script>
 						</binding>
 					</button>
 				</mode>
@@ -532,59 +468,45 @@
 				<desc>Reset zoom to default</desc>
 				<binding>
 					<command>nasal</command>
-					<script>
-						if (getprop("/sim/current-view/can-change-z-offset")) {
-							setprop("/sim/current-view/z-offset-m", getprop("/sim/current-view/z-offset-default") * -1);
-
-							gui.popupTip(sprintf("%d meters", getprop("/sim/current-view/z-offset-default")));
-						} else {
-							setprop("/sim/current-view/field-of-view", getprop("/sim/view/config/default-field-of-view-deg"));
-						}
-					</script>
+					<script>libraries.fovZoom(0);</script>
 				</binding>
 			</key>
-			<key n="33">
-				<name>!</name>
-				<desc>toggle battery</desc>
+			<key n="49">
+				<name>1</name>
+				<desc>Elevator trim down</desc>
+				<repeatable>true</repeatable>
 				<binding>
-					<command>property-cycle</command>
-					<property>/controls/electrical/battery</property>
-					<value>1</value>
-					<value>0</value>
+					<command>nasal</command>
+					<script>controls.elevatorTrim(1);</script>
 				</binding>
+				<mod-shift>
+					<desc>Look back left</desc>
+					<binding>
+						<command>property-assign</command>
+						<property>/sim/current-view/goal-heading-offset-deg</property>
+						<property>/sim/view/config/back-left-direction-deg</property>
+					</binding>
+				</mod-shift>
 			</key>
-			<key n="35">
-				<name>#</name>
-				<desc>toggle fuelpump</desc>
+			<key n="55">
+				<name>7</name>
+				<desc>Elevator trim up</desc>
+				<repeatable>true</repeatable>
 				<binding>
-					<command>property-cycle</command>
-					<property>/controls/switches/fuel-pump</property>
-					<value>1</value>
-					<value>0</value>
+					<command>nasal</command>
+					<script>controls.elevatorTrim(-1);</script>
 				</binding>
-			</key>
-			<key n="42">
-				<name>*</name>
-				<desc>toggle pitot heat</desc>
-				<binding>
-					<command>property-cycle</command>
-					<property>/controls/switches/pitot-heat</property>
-					<value>1</value>
-					<value>0</value>
-				</binding>
-			</key>
-			<key n="64">
-				<name>@</name>
-				<desc>toggle alternator</desc>
-				<binding>
-					<command>property-cycle</command>
-					<property>/controls/electrical/alternator</property>
-					<value>1</value>
-					<value>0</value>
-				</binding>
+				<mod-shift>
+					<desc>Look front left</desc>
+					<binding>
+						<command>property-assign</command>
+						<property>/sim/current-view/goal-heading-offset-deg</property>
+						<property>/sim/view/config/front-left-direction-deg</property>
+					</binding>
+				</mod-shift>
 			</key>
 			<key n="66">
-				<name>Shift-B</name>
+				<name>B</name>
 				<desc>Toggle parking brake on or off</desc>
 				<binding>
 					<command>nasal</command>
@@ -597,26 +519,33 @@
 					</binding>
 				</mod-up>	
 			</key>
+			<key n="68">
+				<name>D</name>
+				<desc>Autopilot Disconnect</desc>
+				<binding>
+					<command>property-assign</command>
+					<property>/it-stec55x/input/disc</property>
+					<value>1</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>stec55x.button.DISC();</script>
+				</binding>
+				<mod-up>
+					<binding>
+						<command>property-assign</command>
+						<property>/it-stec55x/input/disc</property>
+						<value>0</value>
+					</binding>
+				</mod-up>
+			</key>
 			<key n="88">
 				<name>X</name>
 				<desc>Increase field of view</desc>
 				<repeatable type="bool">true</repeatable>
 				<binding>
-				<command>nasal</command>
-				<script>
-					if (getprop("/sim/current-view/can-change-z-offset")) {
-						var distance = getprop("/sim/current-view/z-offset-m");
-						var multiple = getprop("/sim/current-view/z-offset-dec-step");
-						var max_dist = getprop("/sim/current-view/z-offset-max-m");
-
-						distance = math.round(std.max(-max_dist, distance + multiple) / multiple) * multiple;
-						setprop("/sim/current-view/z-offset-m", distance);
-
-						gui.popupTip(sprintf("%d meters", abs(distance)));
-					} else {
-						view.increase();
-					}
-				</script>
+					<command>nasal</command>
+					<script>libraries.fovZoom(1);</script>
 				</binding>
 			</key>
 			<key n="99">
@@ -633,48 +562,6 @@
 					</binding>
 				</mod-up>
 			</key>
-			<key n="100">
-				<name>d</name>
-				<desc>toggle door</desc>
-				<binding>
-					<command>property-cycle</command>
-					<property>/sim/model/door-positions/rightDoor/position-norm</property>
-					<value>0</value>
-					<value>1</value>
-				</binding>
-				<binding>
-					<condition>
-						<property>/sim/model/door-positions/rightDoor/position-norm</property>
-					</condition>
-					<command>show-message</command>
-					<id>openclose</id>
-					<label>Door is Open </label>
-					<property>/sim/model/door-positions/rightDoor/position-norm</property>
-					<value>1</value>
-					<delay>1.75</delay>
-				</binding>
-				<binding>
-					<condition>
-						<not><property>/sim/model/door-positions/rightDoor/position-norm</property></not>
-					</condition>
-					<command>show-message</command>
-					<id>openclose</id>
-					<label>Door is Closed </label>
-					<property>/sim/model/door-positions/rightDoor/position-norm</property>
-					<value>0</value>
-					<delay>1.75</delay>
-				</binding>
-			</key>
-			<key n="102">
-				<name>f</name>
-				<desc>full throttle</desc>
-				<binding>
-					<command>property-cycle</command>
-					<property>/controls/engines/engine/throttle</property>
-					<value>1</value>
-					<value>0</value>
-				</binding>
-			</key>
 			<key n="106">
 				<name>j</name>
 				<desc>toggle tanks</desc>
@@ -690,29 +577,7 @@
 				<desc>Kill starter-key</desc>
 				<binding>
 					<command>nasal</command>
-					<script>
-					setprop("/sim/unused/nothing", 0);
-					</script>
-				</binding>
-			</key>
-			<key n="117">
-				<name>u</name>
-				<desc>toggle carb heat</desc>
-				<binding>
-					<command>property-cycle</command>
-					<property>/controls/anti-ice/engine/carb-heat</property>
-					<value>false</value>
-					<value>true</value>
-				</binding>
-			</key>
-			<key n="119">
-				<name>w</name>
-				<desc>Show AC Config</desc>
-				<binding>
-					<command>nasal</command>
-					<script>
-					acconfig.main_dlg.open();
-					</script>
+					<script>setprop("/sim/unused/nothing", 0);</script>
 				</binding>
 			</key>
 			<key n="120">
@@ -721,48 +586,60 @@
 				<repeatable type="bool">true</repeatable>
 				<binding>
 					<command>nasal</command>
-					<script>
-						if (getprop("/sim/current-view/can-change-z-offset")) {
-							var distance = getprop("/sim/current-view/z-offset-m");
-							var multiple = getprop("/sim/current-view/z-offset-inc-step");
-							var min_dist = getprop("/sim/current-view/z-offset-min-m");
-
-							distance = math.round(std.min(-min_dist, distance + multiple) / multiple) * multiple;
-							setprop("/sim/current-view/z-offset-m", distance);
-
-							gui.popupTip(sprintf("%d meters", abs(distance)));
-						} else {
-							view.decrease();
-						}
-					</script>
+					<script>libraries.fovZoom(-1);</script>
 				</binding>
 			</key>
 		</keyboard>
 	</input>
 	
 	<instrumentation n="0">
+		
 		<adf>
 			<model>ki228</model>
 			<volume-norm type="double">1</volume-norm>
 		</adf>
+		
 		<attitude-indicator>
 			<config>
 				<tumble-flag>true</tumble-flag>
 			</config>
 		</attitude-indicator>
+		
+		<comm n="0">
+			<frequencies>
+				<selected-mhz type="double">118.7</selected-mhz>
+				<standby-mhz type="double">121.4</standby-mhz>
+			</frequencies>
+			<serviceable type="bool">true</serviceable>
+			<volume type="double">0.6</volume>
+		</comm>
+		
+		<comm n="1">
+			<frequencies>
+				<selected-mhz type="double">119.4</selected-mhz>
+				<standby-mhz type="double">122.6</standby-mhz>
+			</frequencies>
+			<serviceable type="bool">true</serviceable>
+			<volume type="double">0.6</volume>
+		</comm>
+		
 		<dme>
+		
 			<switch-position type="int">1</switch-position>
 			<volume type="double">0</volume>
 		</dme>
+		
 		<elt>
 			<armed type="bool">false</armed>
 			<on type="bool">true</on>
 			<on-pos type="double">1</on-pos>
 			<test type="bool">false</test>
 		</elt>
+		
 		<encoder>
 			<serviceable type="bool">true</serviceable>
 		</encoder>
+		
 		<kcs55>
 			<ka51>
 				<slaved>true</slaved>
@@ -783,6 +660,7 @@
 				<input-power-max type="double">15.8</input-power-max>
 			</kg102>
 		</kcs55>
+		
 		<kma20>
 			<knob type="int" archive="y">-1</knob>
 			<auto type="int" archive="y">1</auto>
@@ -796,25 +674,76 @@
 			<sens type="int" archive="y">0</sens>
 			<test type="int" archive="y">0</test>
 		</kma20>
+		
+		<nav n="0">
+			<frequencies>
+				<selected-mhz type="double">111.15</selected-mhz>
+				<standby-mhz type="double">110.95</standby-mhz>
+			</frequencies>
+			<radials>
+				<selected-deg type="double">360</selected-deg>
+			</radials>
+			<serviceable type="bool">true</serviceable>
+			<volume type="double">0</volume>
+		</nav>
+		
+		<nav n="1">
+			<frequencies>
+				<selected-mhz type="double">109.55</selected-mhz>
+				<standby-mhz type="double">110.55</standby-mhz>
+			</frequencies>
+			<radials>
+				<selected-deg type="double">360</selected-deg>
+			</radials>
+			<serviceable type="bool">true</serviceable>
+			<volume type="double">0</volume>
+		</nav>
+		
 		<oat>
 			<mode type="int">0</mode>
 		</oat>
+	
 	</instrumentation>
 	
 	<it-stec55x n="0"> <!-- S-TEC 55X Settings -->
+		<internal n="0">
+			<servo-roll-power type="bool">0</servo-roll-power>
+			<servo-pitch-power type="bool">0</servo-pitch-power>
+		</internal>
+		<output n="0">
+			<roll type="int">-1</roll>
+			<pitch type="int">-1</pitch>
+		</output>
 		<settings n="0">
-			<hsi-equipped type="bool">1</hsi-equipped> <!-- Does the aircraft have an HSI or DG? -->
+			<fd-equipped type="bool">0</fd-equipped> <!-- Does the aircraft have a flight director installed? -->
+			<gain-pitch type="double">1.0</gain-pitch> <!-- Modify the pitch axis gain -->
+			<gain-roll type="double">1.0</gain-roll> <!-- Modify the roll axis gain -->
+			<gain-yaw type="double">1.0</gain-yaw> <!-- Modify the yaw axis gain -->
+			<hsi-equipped-1 type="bool">1</hsi-equipped-1> <!-- Does the aircraft have an HSI or OBS for NAV1? -->
+			<hsi-equipped-2 type="bool">0</hsi-equipped-2> <!-- Does the aircraft have an HSI or OBS for NAV2? -->
 			<is-turboprop type="bool">0</is-turboprop> <!-- Does the aircraft have turboprop engines? -->
+			<use-controls-flight type="bool">0</use-controls-flight> <!-- Use generic /controls/flight for flight controls instead of custom properties -->
+			<yd-equipped type="bool">0</yd-equipped> <!-- Does the aircraft have the optional yaw damper installed? -->
 		</settings>
 	</it-stec55x>
 	
 	<options n="0">
-		<autocoordinate type="bool">0</autocoordinate>
+		<mini-panel type="bool">0</mini-panel>
 		<nav-source type="int">1</nav-source>
 		<panel type="string">HSI Panel</panel>
 		<show-l-yoke type="bool">1</show-l-yoke>
 		<show-r-yoke type="bool">1</show-r-yoke>
+		<wip type="bool">0</wip> <!-- Enable the WIP instruments -->
 	</options>
+	
+	<payload>
+		<weight n="4">
+			<name>Baggage Compartment</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[4]"/>
+			<min-lb type="double">0</min-lb>
+			<max-lb type="double">100</max-lb>
+		</weight>
+	</payload>
 	
 	<systems n="0">
 		<electrical n="0">
@@ -826,6 +755,15 @@
 				<fuel-pump type="double">0</fuel-pump>
 			</outputs>
 		</electrical>
+		<failures n="0">
+			<eng-suck type="bool">0</eng-suck>
+			<fuel-pump type="bool">0</fuel-pump>
+			<l-brake type="bool">0</l-brake>
+			<l-magneto type="bool">0</l-magneto>
+			<r-brake type="bool">0</r-brake>
+			<r-magneto type="bool">0</r-magneto>
+			<starter type="bool">0</starter>
+		</failures>
 		<fuel n="0">
 			<selected-tank type="int">1</selected-tank>
 			<suck-fuel type="bool">0</suck-fuel>
@@ -840,26 +778,32 @@
 			<file>Aircraft/PA28-Warrior/Nasal/ki266.nas</file>
 			<file>Aircraft/PA28-Warrior/Nasal/kcs55.nas</file>
 			<file>Aircraft/PA28-Warrior/Nasal/kma20.nas</file>
+			<file>Aircraft/PA28-Warrior/Nasal/zoom-views.nas</file>
 			<script>
-			<![CDATA[ki266.new(0);
-			KCS55.new();]]>
+				<![CDATA[ki266.new(0);
+				KCS55.new();]]>
 			</script>
 		</libraries>
+		<stec55x>
+			<file>Aircraft/PA28-Warrior/Nasal/stec-55x.nas</file>
+		</stec55x>
+		<gtx327>
+			<file>Aircraft/PA28-Warrior/Nasal/gtx-327.nas</file>
+		</gtx327>
 		<acconfig>
 			<file>Aircraft/PA28-Warrior/AircraftConfig/acconfig.nas</file>
 		</acconfig>
 		<systems>
 			<file>Aircraft/PA28-Warrior/Nasal/electrical.nas</file>
-			<file>Aircraft/PA28-Warrior/Nasal/engines.nas</file>
-			<file>Aircraft/PA28-Warrior/Nasal/fuel.nas</file>
+			<file>Aircraft/PA28-Warrior/Nasal/init.nas</file>
 		</systems>
-		<stec55x>
-			<file>Aircraft/PA28-Warrior/Nasal/stec-55x.nas</file>
-		</stec55x>
+		<lights>
+			<file>Aircraft/PA28-Warrior/Nasal/light-manager.nas</file>
+		</lights>
 		<HobbsMeter>
 			<file>Aircraft/PA28-Warrior/Models/Instruments/Hobbs/hobbs.nas</file>
 			<script>
-			<![CDATA[HobbsMeter.new(index: 0, switchPath: 'gear/gear/wow', inverted: 1);]]>
+				<![CDATA[HobbsMeter.new(index: 0, switchPath: 'gear/gear/wow', inverted: 1);]]>
 			</script>
 		</HobbsMeter>
 		<logger>

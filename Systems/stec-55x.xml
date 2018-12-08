@@ -4,30 +4,494 @@
 <!-- Copyright (c) 2018 Joshua Davidson (it0uchpods) -->
 
 <PropertyList>
-
-	<!-- Roll Axis -->
+	
+	<!-- NAV Switching -->
+	
+	<logic>
+		<name>HSI EQUIPPED</name> <!-- Goes to true for custom sources -->
+		<input>
+			<or>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/nav-selector</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/it-stec55x/settings/hsi-equipped-1</property>
+						<value>1</value>
+					</equals>
+				</and>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/nav-selector</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-stec55x/settings/hsi-equipped-2</property>
+						<value>1</value>
+					</equals>
+				</and>
+				<equals>
+					<property>/it-stec55x/input/nav-selector</property>
+					<value>2</value>
+				</equals>
+				<equals>
+					<property>/it-stec55x/input/nav-selector</property>
+					<value>3</value>
+				</equals>
+			</or>
+		</input>
+		<output>/it-stec55x/settings/hsi-equipped</output>
+	</logic>
 	
 	<filter>
-		<name>TARGET INTERCAPT ANGLE</name>
+		<name>NAV NEEDLE DEFLECTION</name>
 		<type>gain</type>
-		<gain>/it-stec55x/internal/nav-gain</gain>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<equals>
-					<property>/it-stec55x/output/roll</property>
+					<property>/it-stec55x/input/nav-selector</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<property>/instrumentation/nav[0]/heading-needle-deflection</property>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-stec55x/input/nav-selector</property>
 					<value>1</value>
 				</equals>
 			</condition>
-			<expression>
-				<table>
-					<property>/instrumentation/nav[0]/heading-needle-deflection</property>
-					<entry><ind>-8</ind><dep>-45</dep></entry>
-					<entry><ind> 0</ind><dep>  0</dep></entry>
-					<entry><ind> 8</ind><dep> 45</dep></entry>
-				</table>
-			</expression>
+			<property>/instrumentation/nav[1]/heading-needle-deflection</property>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-stec55x/input/nav-selector</property>
+					<value>2</value>
+				</equals>
+			</condition>
+			<property>/it-stec55x/custom-nav/nav-needle-1</property>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-stec55x/input/nav-selector</property>
+					<value>3</value>
+				</equals>
+			</condition>
+			<property>/it-stec55x/custom-nav/nav-needle-2</property>
 		</input>
 		<input>0</input>
+		<output>/it-stec55x/nav/nav-needle</output>
+	</filter>
+	
+	<filter>
+		<name>GS NEEDLE DEFLECTION</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-stec55x/input/nav-selector</property>
+					<value>0</value>
+				</equals>
+			</condition>
+			<property>/instrumentation/nav[0]/gs-needle-deflection</property>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-stec55x/input/nav-selector</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<property>/instrumentation/nav[1]/gs-needle-deflection</property>
+		</input>
+		<input>0</input>
+		<output>/it-stec55x/nav/gs-needle</output>
+	</filter>
+	
+	<logic>
+		<name>NAV IN RANGE</name>
+		<input>
+			<or>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/nav-selector</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/instrumentation/nav[0]/in-range</property>
+						<value>1</value>
+					</equals>
+				</and>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/nav-selector</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/instrumentation/nav[1]/in-range</property>
+						<value>1</value>
+					</equals>
+				</and>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/nav-selector</property>
+						<value>2</value>
+					</equals>
+					<equals>
+						<property>/it-stec55x/custom-nav/in-range-1</property>
+						<value>1</value>
+					</equals>
+				</and>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/nav-selector</property>
+						<value>3</value>
+					</equals>
+					<equals>
+						<property>/it-stec55x/custom-nav/in-range-2</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</or>
+		</input>
+		<output>/it-stec55x/nav/in-range</output>
+	</logic>
+	
+	<logic>
+		<name>NAV IS LOC</name>
+		<input>
+			<or>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/nav-selector</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/instrumentation/nav[0]/nav-loc</property>
+						<value>1</value>
+					</equals>
+				</and>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/nav-selector</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/instrumentation/nav[1]/nav-loc</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</or>
+		</input>
+		<output>/it-stec55x/nav/is-loc</output>
+	</logic>
+	
+	<logic>
+		<name>NAV HAS GS</name>
+		<input>
+			<or>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/nav-selector</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/instrumentation/nav[0]/has-gs</property>
+						<value>1</value>
+					</equals>
+				</and>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/nav-selector</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/instrumentation/nav[1]/has-gs</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</or>
+		</input>
+		<output>/it-stec55x/nav/has-gs</output>
+	</logic>
+	
+	<filter>
+		<name>NAV COURSE</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/nav-selector</property>
+						<value>0</value>
+					</equals>
+					<equals>
+						<property>/it-stec55x/settings/hsi-equipped-1</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</condition>
+			<property>/instrumentation/nav[0]/radials/selected-deg</property>
+		</input>
+		<input>
+			<condition>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/nav-selector</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-stec55x/settings/hsi-equipped-2</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</condition>
+			<property>/instrumentation/nav[1]/radials/selected-deg</property>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-stec55x/input/nav-selector</property>
+					<value>2</value>
+				</equals>
+			</condition>
+			<property>/it-stec55x/custom-nav/nav-course-1</property>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-stec55x/input/nav-selector</property>
+					<value>3</value>
+				</equals>
+			</condition>
+			<property>/it-stec55x/custom-nav/nav-course-2</property>
+		</input>
+		<input>/it-stec55x/input/hdg</input>
+		<output>/it-stec55x/nav/nav-course</output>
+	</filter>
+	
+	<filter>
+		<name>NAV COURSE RECIPROCAL STAGE 1</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<expression>
+				<sum>
+					<property>/it-stec55x/nav/nav-course</property>
+					<value>180</value>
+				</sum>
+			</expression>
+		</input>
+		<output>/it-stec55x/nav/nav-course-reciprocal-cmd</output>
+	</filter>
+	
+	<filter>
+		<name>NAV COURSE RECIPROCAL STATE 2</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<greater-than>
+					<property>/it-stec55x/nav/nav-course-reciprocal-cmd</property>
+					<value>360</value>
+				</greater-than>
+			</condition>
+			<expression>
+				<dif>
+					<property>/it-stec55x/nav/nav-course-reciprocal-cmd</property>
+					<value>360</value>
+				</dif>
+			</expression>
+		</input>
+		<input>
+			<condition>
+				<less-than>
+					<property>/it-stec55x/nav/nav-course-reciprocal-cmd</property>
+					<value>1</value>
+				</less-than>
+			</condition>
+			<expression>
+				<sum>
+					<property>/it-stec55x/nav/nav-course-reciprocal-cmd</property>
+					<value>360</value>
+				</sum>
+			</expression>
+		</input>
+		<input>/it-stec55x/nav/nav-course-reciprocal-cmd</input>
+		<output>/it-stec55x/nav/nav-course-reciprocal</output>
+	</filter>
+	
+	<filter>
+		<name>NAV COURSE ERROR</name>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<condition>
+				<and>
+					<equals>
+						<property>/it-stec55x/output/roll</property>
+						<value>6</value>
+					</equals>
+					<equals>
+						<property>/it-stec55x/settings/hsi-equipped</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</condition>
+			<property>/it-stec55x/nav/nav-course-reciprocal</property>
+			<offset>
+				<property>/instrumentation/heading-indicator/indicated-heading-deg</property>
+				<scale>-1.0</scale>
+			</offset>
+		</input>
+		<input>
+			<condition>
+				<or>
+					<equals>
+						<property>/it-stec55x/output/roll</property>
+						<value>1</value>
+					</equals>
+					<and>
+						<equals>
+							<property>/it-stec55x/output/roll</property>
+							<value>6</value>
+						</equals>
+						<equals>
+							<property>/it-stec55x/settings/hsi-equipped</property>
+							<value>0</value>
+						</equals>
+					</and>
+				</or>
+			</condition>
+			<property>/it-stec55x/nav/nav-course</property>
+			<offset>
+				<property>/instrumentation/heading-indicator/indicated-heading-deg</property>
+				<scale>-1.0</scale>
+			</offset>
+		</input>
+		<input>0</input>
+		<output>/it-stec55x/nav/nav-course-error</output>
+		<period>
+			<min>-180</min>
+			<max>180</max>
+		</period>
+	</filter>
+	
+	<!-- Roll Axis -->
+	
+	<filter>
+		<name>TARGET INTERCEPT ANGLE P</name>
+		<type>gain</type>
+		<gain>12.5</gain>
+		<input>
+			<expression>
+				<product>
+					<property>/it-stec55x/nav/nav-needle</property>
+					<property>/it-stec55x/internal/nav-gain</property>
+				</product>
+			</expression>
+		</input>
+		<output>/it-stec55x/internal/intercept-angle-p</output>
+		<min>-45</min>
+		<max>45</max>
+	</filter>
+	
+	<filter>
+		<name>TARGET INTERCEPT ANGLE I</name> <!-- Integrate to cancel steady state error only if stabilized and captured -->
+		<type>integrator</type>
+		<gain>0.05</gain>
+		<input>
+			<condition>
+				<and>
+					<or>
+						<equals>
+							<property>/it-stec55x/output/roll</property>
+							<value>1</value>
+						</equals>
+						<equals>
+							<property>/it-stec55x/output/roll</property>
+							<value>6</value>
+						</equals>
+					</or>
+					<less-than-equals>
+						<property>/it-stec55x/nav/nav-course-error</property>
+						<value>10</value>
+					</less-than-equals>
+					<greater-than-equals>
+						<property>/it-stec55x/nav/nav-course-error</property>
+						<value>-10</value>
+					</greater-than-equals>
+					<less-than-equals>
+						<property>/it-stec55x/nav/nav-needle</property>
+						<value>1</value>
+					</less-than-equals>
+					<greater-than-equals>
+						<property>/it-stec55x/nav/nav-needle</property>
+						<value>-1</value>
+					</greater-than-equals>
+				</and>
+			</condition>
+			<expression>
+				<product>
+					<property>/it-stec55x/nav/nav-needle</property>
+					<property>/it-stec55x/internal/nav-gain</property>
+				</product>
+			</expression>
+		</input>
+		<input>
+			<expression>
+				<product>
+					<value>-75.0</value>
+					<property>/it-stec55x/internal/intercept-angle-i</property>
+				</product>
+			</expression>
+		</input>
+		<output>/it-stec55x/internal/intercept-angle-i</output>
+		<u_min>-5</u_min>
+		<u_max>5</u_max>
+	</filter>
+	
+	<filter>
+		<name>TARGET INTERCEPT ANGLE D</name>
+		<type>derivative</type>
+		<input>
+			<expression>
+				<product>
+					<property>/it-stec55x/nav/nav-needle</property>
+					<property>/it-stec55x/internal/nav-gain</property>
+				</product>
+			</expression>
+		</input>
+		<reference>0</reference>
+		<output>/it-stec55x/internal/intercept-angle-d</output>
+		<filter-time>45</filter-time>
+		<min>-45</min>
+		<max>45</max>
+	</filter>
+	
+	<filter>
+		<name>TARGET INTERCEPT ANGLE</name> <!-- Sum the above 3 controllers to make a manual PID controller -->
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<input>
+			<expression>
+				<sum>
+					<property>/it-stec55x/internal/intercept-angle-p</property>
+					<property>/it-stec55x/internal/intercept-angle-i</property>
+					<property>/it-stec55x/internal/intercept-angle-d</property>
+				</sum>
+			</expression>
+		</input>
 		<output>/it-stec55x/internal/intercept-angle</output>
 		<min>-45</min>
 		<max>45</max>
@@ -39,12 +503,6 @@
 		<type>gain</type>
 		<gain>1.0</gain>
 		<input>
-			<condition>
-				<equals>
-					<property>/it-stec55x/output/roll</property>
-					<value>2</value>
-				</equals>
-			</condition>
 			<expression>
 				<sum>
 					<property>/autopilot/route-manager/wp[0]/true-bearing-deg</property>
@@ -59,7 +517,6 @@
 				</sum>
 			</expression>
 		</input>
-		<input>0</input>
 		<output>/it-stec55x/internal/gps-error-deg</output>
 		<period>
 			<min>-180</min>
@@ -87,20 +544,14 @@
 		</input>
 		<input>
 			<condition>
-				<and>
-					<equals>
-						<property>/it-stec55x/output/roll</property>
-						<value>1</value>
-					</equals>
-					<equals>
-						<property>/it-stec55x/settings/hsi-equipped</property>
-						<value>0</value>
-					</equals>
-				</and>
+				<equals>
+					<property>/it-stec55x/output/roll</property>
+					<value>1</value>
+				</equals>
 			</condition>
 			<expression>
 				<sum>
-					<property>/it-stec55x/input/hdg</property>
+					<property>/it-stec55x/nav/nav-course</property>
 					<property>/it-stec55x/internal/intercept-angle</property>
 				</sum>
 			</expression>
@@ -114,7 +565,34 @@
 				<and>
 					<equals>
 						<property>/it-stec55x/output/roll</property>
-						<value>1</value>
+						<value>6</value>
+					</equals>
+					<equals>
+						<property>/it-stec55x/settings/hsi-equipped</property>
+						<value>0</value>
+					</equals>
+				</and>
+			</condition>
+			<expression>
+				<sum>
+					<property>/it-stec55x/input/hdg</property>
+					<product>
+						<property>/it-stec55x/internal/intercept-angle</property>
+						<value>-1.0</value>
+					</product>
+				</sum>
+			</expression>
+			<offset>
+				<property>/instrumentation/heading-indicator/indicated-heading-deg</property>
+				<scale>-1.0</scale>
+			</offset>
+		</input>
+		<input>
+			<condition>
+				<and>
+					<equals>
+						<property>/it-stec55x/output/roll</property>
+						<value>6</value>
 					</equals>
 					<equals>
 						<property>/it-stec55x/settings/hsi-equipped</property>
@@ -124,8 +602,11 @@
 			</condition>
 			<expression>
 				<sum>
-					<property>/instrumentation/nav[0]/radials/selected-deg</property>
-					<property>/it-stec55x/internal/intercept-angle</property>
+					<property>/it-stec55x/nav/nav-course-reciprocal</property>
+					<product>
+						<property>/it-stec55x/internal/intercept-angle</property>
+						<value>-1.0</value>
+					</product>
 				</sum>
 			</expression>
 			<offset>
@@ -198,6 +679,7 @@
 	<filter>
 		<name>IT-CONTROLLER: TARGET TURN RATE FILTER</name>
 		<debug>false</debug>
+		<type>noise-spike</type>
 		<input>
 			<condition>
 				<greater-than>
@@ -209,7 +691,6 @@
 		</input>
 		<input>/it-stec55x/internal/predicted-turn-rate</input>
 		<output>/it-stec55x/internal/turn-rate-cmd</output>
-		<type>noise-spike</type>
 		<max-rate-of-change>
 			<condition>
 				<greater-than>
@@ -227,10 +708,16 @@
 		<debug>false</debug>
 		<enable>
 			<condition>
-				<greater-than>
-					<property>/it-stec55x/output/roll</property>
-					<value>-1</value>
-				</greater-than>
+				<and>
+					<greater-than>
+						<property>/it-stec55x/output/roll</property>
+						<value>-1</value>
+					</greater-than>
+					<equals>
+						<property>/it-stec55x/internal/servo-roll-power</property>
+						<value>1</value>
+					</equals>
+				</and>
 			</condition>
 		</enable>
 		<input>/it-stec55x/internal/turn-rate-cmd</input>
@@ -250,32 +737,92 @@
 		<input>/it-stec55x/internal/predicted-turn-rate</input>
 		<reference>/it-stec55x/internal/turn-rate-cmd</reference>
 		<output>/it-stec55x/internal/aileron-d</output>
-		<filter-time>-0.01</filter-time>
+		<filter-time>-0.014</filter-time>
 		<min>-0.25</min>
 		<max>0.25</max>
 	</filter>
 	
 	<filter>
-		<name>IT-CONTROLLER: ROLL CMD</name>
+		<name>IT-CONTROLLER: ROLL OUTPUT INTERNAL</name>
 		<debug>false</debug>
+		<type>noise-spike</type>
+		<input>
+			<condition>
+				<and>
+					<greater-than>
+						<property>/it-stec55x/output/roll</property>
+						<value>-1</value>
+					</greater-than>
+					<equals>
+						<property>/it-stec55x/internal/servo-roll-power</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</condition>
+			<expression>
+				<product>
+					<sum>
+						<property>/it-stec55x/internal/aileron-pi</property>
+						<property>/it-stec55x/internal/aileron-d</property>
+					</sum>
+					<property>/it-stec55x/settings/gain-roll</property>
+				</product>
+			</expression>
+		</input>
+		<input>0</input>
+		<output>/it-stec55x/internal/aileron</output>
+		<max-rate-of-change>
+			<condition>
+				<and>
+					<greater-than>
+						<property>/it-stec55x/output/roll</property>
+						<value>-1</value>
+					</greater-than>
+					<equals>
+						<property>/it-stec55x/internal/servo-roll-power</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</condition>
+			<value>0.5</value>
+		</max-rate-of-change>
+		<max-rate-of-change>10</max-rate-of-change>
+	</filter>
+	
+	<filter>
+		<name>IT-CONTROLLER: ROLL OUTPUT GENERIC</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
 		<enable>
 			<condition>
-				<greater-than>
-					<property>/it-stec55x/output/roll</property>
-					<value>-1</value>
-				</greater-than>
+				<and>
+					<greater-than>
+						<property>/it-stec55x/output/roll</property>
+						<value>-1</value>
+					</greater-than>
+					<equals>
+						<property>/it-stec55x/internal/servo-roll-power</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-stec55x/settings/use-controls-flight</property>
+						<value>1</value>
+					</equals>
+				</and>
 			</condition>
 		</enable>
 		<input>
 			<expression>
-				<sum>
-					<property>/it-stec55x/internal/aileron-pi</property>
-					<property>/it-stec55x/internal/aileron-d</property>
-				</sum>
+				<product>
+					<sum>
+						<property>/it-stec55x/internal/aileron-pi</property>
+						<property>/it-stec55x/internal/aileron-d</property>
+					</sum>
+					<property>/it-stec55x/settings/gain-roll</property>
+				</product>
 			</expression>
 		</input>
 		<output>/controls/flight/aileron</output>
-		<type>noise-spike</type>
 		<max-rate-of-change>0.5</max-rate-of-change>
 	</filter>
 	
@@ -418,15 +965,73 @@
 			</expression>
 		</reference>
 		<output>/it-stec55x/internal/alt-vs</output>
-		<min>-250</min>
-		<max>250</max>
+		<min>-400</min>
+		<max>400</max>
 	</filter>
 	
 	<filter>
-		<name>VERT SPEED FILTER</name>
+		<name>V/S GS SYNC</name>
 		<debug>false</debug>
-		<feedback-if-disabled>true</feedback-if-disabled>
-		<initialize-to>output</initialize-to>
+		<type>gain</type>
+		<gain>1.0</gain>
+		<enable>
+			<condition>
+				<not-equals>
+					<property>/it-stec55x/output/pitch</property>
+					<value>2</value>
+				</not-equals>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<product>
+					<property>/it-stec55x/internal/pressure-rate</property>
+					<value>-58000</value>
+				</product>
+			</expression>
+		</input>
+		<output>/it-stec55x/internal/gs-vs</output>
+		<min>-1200</min>
+		<max>50</max>
+	</filter>
+	
+	<predict-simple>
+		<name>GS NEEDLE PREDICTOR</name>
+		<debug>false</debug>
+		<input>/it-stec55x/nav/gs-needle</input>
+		<output>/it-stec55x/internal/predicted-gs-needle</output>
+		<seconds>1.0</seconds>
+		<filter-gain>0.1</filter-gain>
+	</predict-simple>
+	
+	<pid-controller>
+		<name>IT-CONTROLLER: GS CONTROL</name>
+		<debug>false</debug>
+		<enable>
+			<condition>
+				<equals>
+					<property>/it-stec55x/output/pitch</property>
+					<value>2</value>
+				</equals>
+			</condition>
+		</enable>
+		<input>/it-stec55x/internal/predicted-gs-needle</input>
+		<reference>0</reference>
+		<output>/it-stec55x/internal/gs-vs</output>
+		<config>
+			<Kp>-400</Kp>
+			<Ti>20.0</Ti>
+			<Td>0.001</Td>
+			<u_min>-1200</u_min>
+			<u_max>50</u_max>
+		</config>
+	</pid-controller>
+	
+	<filter>
+		<name>VERT SPEED SWITCH</name>
+		<debug>false</debug>
+		<type>gain</type>
+		<gain>1.0</gain>
 		<input>
 			<condition>
 				<equals>
@@ -436,13 +1041,29 @@
 			</condition>
 			<property>/it-stec55x/internal/alt-vs</property>
 		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-stec55x/output/pitch</property>
+					<value>2</value>
+				</equals>
+			</condition>
+			<property>/it-stec55x/internal/gs-vs</property>
+		</input>
 		<input>/it-stec55x/input/vs</input>
 		<output>/it-stec55x/internal/vs</output>
+	</filter>
+	
+	<filter>
+		<name>VERT SPEED FILTER</name>
+		<debug>false</debug>
 		<type>noise-spike</type>
+		<input>/it-stec55x/internal/vs</input>
+		<output>/it-stec55x/internal/vs-slow</output>
 		<max-rate-of-change>
 			<condition>
 				<greater-than>
-					<property>/it-stec55x/output/roll</property>
+					<property>/it-stec55x/output/pitch</property>
 					<value>-1</value>
 				</greater-than>
 			</condition>
@@ -456,17 +1077,23 @@
 		<debug>false</debug>
 		<enable>
 			<condition>
-				<greater-than>
-					<property>/it-stec55x/output/pitch</property>
-					<value>-1</value>
-				</greater-than>
+				<and>
+					<greater-than>
+						<property>/it-stec55x/output/pitch</property>
+						<value>-1</value>
+					</greater-than>
+					<equals>
+						<property>/it-stec55x/internal/servo-pitch-power</property>
+						<value>1</value>
+					</equals>
+				</and>
 			</condition>
 		</enable>
-		<input>/it-stec55x/internal/vs</input>
+		<input>/it-stec55x/internal/vs-slow</input>
 		<reference>/it-stec55x/internal/predicted-vertical-speed</reference>
 		<output>/it-stec55x/internal/target-accel</output>
 		<config>
-			<Kp>-0.00014</Kp>
+			<Kp>-0.00015</Kp>
 			<Ki>-0.000011</Ki>
 			<min>-0.3</min>
 			<max>0.3</max>
@@ -497,10 +1124,16 @@
 		<gain>1.0</gain>
 		<input>
 			<condition>
-				<greater-than>
-					<property>/it-stec55x/output/pitch</property>
-					<value>-1</value>
-				</greater-than>
+				<and>
+					<greater-than>
+						<property>/it-stec55x/output/pitch</property>
+						<value>-1</value>
+					</greater-than>
+					<equals>
+						<property>/it-stec55x/internal/servo-pitch-power</property>
+						<value>1</value>
+					</equals>
+				</and>
 			</condition>
 			<expression>
 				<sum>
@@ -518,43 +1151,111 @@
 		<debug>false</debug>
 		<enable>
 			<condition>
-				<greater-than>
-					<property>/it-stec55x/output/pitch</property>
-					<value>-1</value>
-				</greater-than>
+				<and>
+					<greater-than>
+						<property>/it-stec55x/output/pitch</property>
+						<value>-1</value>
+					</greater-than>
+					<equals>
+						<property>/it-stec55x/internal/servo-pitch-power</property>
+						<value>1</value>
+					</equals>
+				</and>
 			</condition>
 		</enable>
 		<input>/it-stec55x/internal/accel-cmd</input>
 		<reference>/it-stec55x/internal/g-damped</reference>
-		<output>/it-stec55x/internal/elevator</output>
+		<output>/it-stec55x/internal/elevator-pi</output>
 		<config>
-			<Kp>0.26</Kp>
-			<Ki>0.56</Ki>
+			<Kp>0.20</Kp>
+			<Ki>0.45</Ki>
 			<min>-0.25</min>
 			<max>0.25</max>
 		</config>
 	</pi-simple-controller>
 	
 	<filter>
-		<name>IT-CONTROLLER: Pitch CMD</name>
+		<name>IT-CONTROLLER: PITCH OUTPUT INTERNAL</name>
 		<debug>false</debug>
+		<type>noise-spike</type>
+		<input>
+			<condition>
+				<and>
+					<greater-than>
+						<property>/it-stec55x/output/pitch</property>
+						<value>-1</value>
+					</greater-than>
+					<equals>
+						<property>/it-stec55x/internal/servo-pitch-power</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</condition>
+			<expression>
+				<product>
+					<property>/it-stec55x/internal/elevator-pi</property>
+					<property>/it-stec55x/settings/gain-pitch</property>
+				</product>
+			</expression>
+		</input>
+		<input>0</input>
+		<output>/it-stec55x/internal/elevator</output>
+		<max-rate-of-change>
+			<condition>
+				<and>
+					<greater-than>
+						<property>/it-stec55x/output/pitch</property>
+						<value>-1</value>
+					</greater-than>
+					<equals>
+						<property>/it-stec55x/internal/servo-pitch-power</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</condition>
+			<value>0.5</value>
+		</max-rate-of-change>
+		<max-rate-of-change>10</max-rate-of-change>
+	</filter>
+	
+	<filter>
+		<name>IT-CONTROLLER: PITCH OUTPUT GENERIC</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
 		<enable>
 			<condition>
-				<greater-than>
-					<property>/it-stec55x/output/pitch</property>
-					<value>-1</value>
-				</greater-than>
+				<and>
+					<greater-than>
+						<property>/it-stec55x/output/pitch</property>
+						<value>-1</value>
+					</greater-than>
+					<equals>
+						<property>/it-stec55x/internal/servo-pitch-power</property>
+						<value>1</value>
+					</equals>
+					<equals>
+						<property>/it-stec55x/settings/use-controls-flight</property>
+						<value>1</value>
+					</equals>
+				</and>
 			</condition>
 		</enable>
-		<input>/it-stec55x/internal/elevator</input>
+		<input>
+			<expression>
+				<product>
+					<property>/it-stec55x/internal/elevator-pi</property>
+					<property>/it-stec55x/settings/gain-pitch</property>
+				</product>
+			</expression>
+		</input>
 		<output>/controls/flight/elevator</output>
-		<type>noise-spike</type>
 		<max-rate-of-change>0.5</max-rate-of-change>
 	</filter>
 	
 	<filter>
 		<name>IT-CONTROLLER: AUTOMATIC PITCH TRIM</name>
 		<debug>false</debug>
+		<type>noise-spike</type>
 		<feedback-if-disabled>true</feedback-if-disabled>
 		<initialize-to>output</initialize-to>
 		<enable>
@@ -565,9 +1266,17 @@
 						<value>-1</value>
 					</greater-than>
 					<equals>
+						<property>/it-stec55x/internal/servo-pitch-power</property>
+						<value>1</value>
+					</equals>
+					<equals>
 						<property>/it-stec55x/input/electric-trim-sw</property>
 						<value>1</value>
 					</equals>
+					<greater-than-equals>
+						<property>/systems/electrical/outputs/electrim</property>
+						<value>8</value>
+					</greater-than-equals>
 					<or>
 						<equals>
 							<property>/it-stec55x/annun/up</property>
@@ -600,8 +1309,219 @@
 			<value>-1</value>
 		</input>
 		<output>/controls/flight/elevator-trim</output>
+		<max-rate-of-change>0.01</max-rate-of-change>
+	</filter>
+	
+	<filter>
+		<name>IT-CONTROLLER: MANUAL PITCH TRIM</name>
+		<debug>false</debug>
 		<type>noise-spike</type>
-		<max-rate-of-change>0.005</max-rate-of-change>
+		<feedback-if-disabled>true</feedback-if-disabled>
+		<initialize-to>output</initialize-to>
+		<enable>
+			<condition>
+				<and>
+					<equals>
+						<property>/it-stec55x/input/electric-trim-sw</property>
+						<value>1</value>
+					</equals>
+					<greater-than-equals>
+						<property>/systems/electrical/outputs/electrim</property>
+						<value>8</value>
+					</greater-than-equals>
+					<or>
+						<equals>
+							<property>/it-stec55x/input/man-trim</property>
+							<value>-1</value>
+						</equals>
+						<equals>
+							<property>/it-stec55x/input/man-trim</property>
+							<value>1</value>
+						</equals>
+					</or>
+				</and>
+			</condition>
+		</enable>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-stec55x/input/man-trim</property>
+					<value>1</value>
+				</equals>
+			</condition>
+			<value>1</value>
+		</input>
+		<input>
+			<condition>
+				<equals>
+					<property>/it-stec55x/input/man-trim</property>
+					<value>-1</value>
+				</equals>
+			</condition>
+			<value>-1</value>
+		</input>
+		<output>/controls/flight/elevator-trim</output>
+		<max-rate-of-change>0.06</max-rate-of-change>
+	</filter>
+	
+	<!-- Yaw Axis (Optional Yaw Damper) -->
+	
+	<filter>
+		<name>INTERNAL YAW RATE SENSOR LOW-PASS</name>
+		<debug>false</debug>
+		<type>exponential</type>
+		<input>/orientation/r-body</input>
+		<output>/it-stec55x/internal/yaw-rate-low</output>
+		<filter-time>0.08</filter-time>
+	</filter>
+	
+	<filter>
+		<name>INTERNAL YAW RATE SENSOR HIGH-PASS</name>
+		<debug>false</debug>
+		<type>high-pass</type>
+		<input>/it-stec55x/internal/yaw-rate-low</input>
+		<output>/it-stec55x/internal/yaw-rate-high</output>
+		<filter-time>0.03</filter-time>
+	</filter>
+	
+	<filter>
+		<name>IT-CONTROLLER: YAW DAMPER</name>
+		<type>gain</type>
+		<gain>7.161975</gain> <!-- RAD2DEG * 0.125 -->
+		<input>/it-stec55x/internal/yaw-rate-high</input>
+		<output>/it-stec55x/internal/rudder-p</output>
+		<min>-0.1</min>
+		<max>0.1</max>
+	</filter>
+	
+	<filter>
+		<name>IT-CONTROLLER: YAW OUTPUT INTERNAL</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<input>
+			<condition>
+				<greater-than>
+					<property>/it-stec55x/output/yaw</property>
+					<value>-1</value>
+				</greater-than>
+			</condition>
+			<expression>
+				<sum>
+					<product>
+						<property>/it-stec55x/internal/rudder-p</property>
+						<property>/it-stec55x/settings/gain-yaw</property>
+					</product>
+					<product>
+						<property>/it-stec55x/input/yaw-damper-trim</property>
+						<value>0.25</value>
+					</product>
+				</sum>
+			</expression>
+		</input>
+		<input>0</input>
+		<output>/it-stec55x/internal/rudder</output>
+		<max-rate-of-change>
+			<condition>
+				<greater-than>
+					<property>/it-stec55x/output/yaw</property>
+					<value>-1</value>
+				</greater-than>
+			</condition>
+			<value>0.5</value>
+		</max-rate-of-change>
+		<max-rate-of-change>10</max-rate-of-change>
+	</filter>
+	
+	<filter>
+		<name>IT-CONTROLLER: YAW OUTPUT GENERIC</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<enable>
+			<condition>
+				<and>
+					<greater-than>
+						<property>/it-stec55x/output/yaw</property>
+						<value>-1</value>
+					</greater-than>
+					<equals>
+						<property>/it-stec55x/settings/use-controls-flight</property>
+						<value>1</value>
+					</equals>
+				</and>
+			</condition>
+		</enable>
+		<input>
+			<expression>
+				<sum>
+					<product>
+						<property>/it-stec55x/internal/rudder-p</property>
+						<property>/it-stec55x/settings/gain-yaw</property>
+					</product>
+					<product>
+						<property>/it-stec55x/input/yaw-damper-trim</property>
+						<value>0.25</value>
+					</product>
+				</sum>
+			</expression>
+		</input>
+		<output>/controls/flight/rudder</output>
+		<max-rate-of-change>0.5</max-rate-of-change>
+	</filter>
+	
+	<!-- Flight Director -->
+	
+	<filter>
+		<name>FD: Roll</name>
+		<type>exponential</type>
+		<input>
+			<condition>
+				<greater-than>
+					<property>/it-stec55x/output/roll</property>
+					<value>-1</value>
+				</greater-than>
+			</condition>
+			<expression>
+				<product>
+					<difference>
+						<property>/it-stec55x/internal/predicted-turn-rate</property>
+						<property>/it-stec55x/internal/target-turn-rate</property>
+					</difference>
+					<value>7.5</value>
+				</product>
+			</expression>
+		</input>
+		<input>0</input>
+		<output>/it-stec55x/output/fd-roll</output>
+		<filter-time>0.08</filter-time>
+		<min>-30</min>
+		<max>30</max>
+	</filter>
+	
+	<filter>
+		<name>FD: Pitch</name>
+		<type>exponential</type>
+		<input>
+			<condition>
+				<greater-than>
+					<property>/it-stec55x/output/pitch</property>
+					<value>-1</value>
+				</greater-than>
+			</condition>
+			<expression>
+				<product>
+					<difference>
+						<property>/it-stec55x/internal/predicted-vertical-speed</property>
+						<property>/it-stec55x/internal/vs</property>
+					</difference>
+					<value>0.006</value>
+				</product>
+			</expression>
+		</input>
+		<input>0</input>
+		<output>/it-stec55x/output/fd-pitch</output>
+		<filter-time>0.08</filter-time>
+		<min>-15</min>
+		<max>15</max>
 	</filter>
 
 </PropertyList>

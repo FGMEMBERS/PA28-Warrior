@@ -3,6 +3,9 @@
 
 rightDoor = aircraft.door.new("/sim/model/door-positions/rightDoor", 2, 0);
 
+var beacon = aircraft.light.new("/sim/model/lights/beacon", [0.1, 1], "/controls/lighting/beacon");
+var strobe = aircraft.light.new("/sim/model/lights/strobe", [0.1, 1], "/controls/lighting/strobe");
+
 setlistener("/sim/sounde/switch1", func {
 	if (!getprop("/sim/sounde/switch1")) {
 		return;
@@ -41,10 +44,9 @@ setlistener("/sim/sounde/knob", func {
 
 var systemsInit = func {
 	systems.ELEC.init();
-	systems.ENG.init();
-	systems.FUEL.init();
+	systems.INIT.ENG();
+	systems.INIT.FUEL();
 	variousReset();
-	var autopilot = gui.Dialog.new("sim/gui/dialogs/autopilot/dialog", "Aircraft/PA28-Warrior/Systems/stec-55x-dlg.xml");
 	setprop("/engines/engine[0]/fuel-flow-gph", 0.0);
 	setprop("/sim/model/material/LandingLight/factor", 0.0);
 	setprop("/sim/model/material/LandingLight/factorAGL", 0.0);
@@ -63,17 +65,18 @@ setlistener("sim/signals/fdm-initialized", func {
 
 var systemsLoop = maketimer(0.1, func {
 	systems.ELEC.loop();
-	systems.FUEL.loop();
 });
 
 var variousReset = func {
-	setprop("/controls/switches/beacon", 0);
+	setprop("/controls/switches/beacon", 1);
 	setprop("/controls/switches/fuel-pump", 0);
 	setprop("/controls/switches/landing-light", 0);
 	setprop("/controls/switches/nav-lights-factor", 0);
 	setprop("/controls/switches/panel-lights-factor", 0);
 	setprop("/controls/switches/pitot-heat", 0);
 	setprop("/controls/switches/strobe-lights", 0);
+	setprop("/systems/fuel/selected-tank", 1);
+	setprop("/controls/anti-ice/engine[0]/carb-heat-cmd", 0);
 	setprop("/controls/engines/engine[0]/magnetos-switch", 0);
 	setprop("/controls/engines/engine[0]/mixture", 0);
 	setprop("/fdm/jsbsim/extra/door-main-cmd", 0);
@@ -85,3 +88,34 @@ if (getprop("/controls/flight/auto-coordination") == 1) {
 } else {
 	setprop("/controls/flight/aileron-drives-tiller", 0);
 }
+
+var slewProp = func(prop, delta) {
+	delta *= getprop("/sim/time/delta-realtime-sec");
+	setprop(prop, getprop(prop) + delta);
+	return getprop(prop);
+}
+
+setprop("/controls/flight/elevator-trim-time", 0);
+
+controls.elevatorTrim = func(d) {
+	if (getprop("/systems/electrical/outputs/electrim") >= 8 and getprop("/it-stec55x/input/electric-trim-sw")) {
+		setprop("/it-stec55x/input/man-trim", d);
+		setprop("/controls/flight/elevator-trim-time", getprop("/sim/time/elapsed-sec"));
+		elevatorTrimTimer.start();
+	} else {
+		setprop("/it-stec55x/input/man-trim", 0);
+		slewProp("/controls/flight/elevator-trim", d * 0.04);
+	}
+}
+
+var elevatorTrimTimer = maketimer(0.05, func {
+	if (getprop("/systems/electrical/outputs/electrim") >= 8 and getprop("/it-stec55x/input/electric-trim-sw")) {
+		if (getprop("/controls/flight/elevator-trim-time") + 0.1 <= getprop("/sim/time/elapsed-sec")) {
+			elevatorTrimTimer.stop();
+			setprop("/it-stec55x/input/man-trim", 0);
+		}
+	} else {
+		elevatorTrimTimer.stop();
+		setprop("/it-stec55x/input/man-trim", 0);
+	}
+});

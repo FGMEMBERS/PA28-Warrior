@@ -19,7 +19,7 @@
 			<red>0.1</red>
 			<green>0.1</green>
 			<blue>0.1</blue>
-		  <factor-prop>sim/model/material/instruments/factor</factor-prop>
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
 		</emission>
 	</animation>
 	
@@ -30,7 +30,7 @@
 			<red>0.4</red>
 			<green>0.4</green>
 			<blue>0.4</blue>
-		  <factor-prop>sim/model/material/instruments/factor</factor-prop>
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
 		</emission>
 	</animation>
 	
@@ -126,16 +126,10 @@
 		<type>select</type>
 		<object-name>TRIM.ind</object-name>
 		<condition>
-			<or>
-				<equals>
-					<property>it-stec55x/annun/up</property>
-					<value>1</value>
-				</equals>
-				<equals>
-					<property>it-stec55x/annun/dn</property>
-					<value>1</value>
-				</equals>
-			</or>
+			<equals>
+				<property>/it-stec55x/annun/trim</property>
+				<value>1</value>
+			</equals>
 		</condition>
 	</animation>
 	
@@ -199,7 +193,7 @@
 		<object-name>MINUS.ind</object-name>
 		<condition>
 			<equals>
-				<property>it-stec55x/annun/vs</property>
+				<property>it-stec55x/annun/vs-sign</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -211,7 +205,7 @@
 		<condition>
 			<and>
 				<equals>
-					<property>it-stec55x/annun/vs</property>
+					<property>it-stec55x/annun/vs-sign</property>
 					<value>1</value>
 				</equals>
 				<greater-than-equals>
@@ -228,7 +222,7 @@
 		<condition>
 			<and>
 				<equals>
-					<property>it-stec55x/annun/vs</property>
+					<property>it-stec55x/annun/vs-digit</property>
 					<value>1</value>
 				</equals>
 				<greater-than-equals>
@@ -244,7 +238,7 @@
 		<object-name>DIGITS.ind</object-name>
 		<condition>
 			<equals>
-				<property>it-stec55x/annun/vs</property>
+				<property>it-stec55x/annun/vs-digit</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -384,6 +378,10 @@
 					<command>property-assign</command>
 					<property>it-stec55x/input/rev-button</property>
 					<value>0</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>stec55x.button.REV();</script>
 				</binding>
 			</mod-up>
 		</action>

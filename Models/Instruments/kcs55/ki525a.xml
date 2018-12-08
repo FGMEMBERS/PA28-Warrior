@@ -79,7 +79,7 @@
 			<red>0.6</red>
 			<green>0.6</green>
 			<blue>0.6</blue>
-			<factor-prop>sim/model/material/instruments/factor</factor-prop>
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
 		</emission>
 	</animation>
 	
@@ -247,6 +247,18 @@
 	</animation>
 	
 	<animation>
+		<type>translate</type>
+		<object-name>HDGSelector</object-name>
+		<property>instrumentation/heading-indicator/offset-knob-translate</property>
+		<factor>-0.002</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
 		<type>pick</type>
 		<object-name>HDGSelector</object-name>
 		<action>
@@ -254,6 +266,9 @@
 			<button>3</button>
 			<repeatable>true</repeatable>
 			<binding>
+				<condition>
+					<not><property>devices/status/keyboard/shift</property></not>
+				</condition>
 				<command>property-adjust</command>
 				<property>it-stec55x/input/hdg</property>
 				<step>1</step>
@@ -261,12 +276,41 @@
 				<max>361</max>
 				<wrap>true</wrap>
 			</binding>
+			<binding>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>property-adjust</command>
+				<property>instrumentation/heading-indicator/offset-deg</property>
+				<step>-1</step>
+				<min>1</min>
+				<max>361</max>
+				<wrap>true</wrap>
+			</binding>
+			<binding>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>property-assign</command>
+				<property>instrumentation/heading-indicator/offset-knob-translate</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/heading-indicator/offset-knob-translate</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
 		<action>
 			<button>1</button>
 			<button>4</button>
 			<repeatable>true</repeatable>
 			<binding>
+				<condition>
+					<not><property>devices/status/keyboard/shift</property></not>
+				</condition>
 				<command>property-adjust</command>
 				<property>it-stec55x/input/hdg</property>
 				<step>-1</step>
@@ -274,12 +318,40 @@
 				<max>361</max>
 				<wrap>true</wrap>
 			</binding>
+			<binding>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>property-adjust</command>
+				<property>instrumentation/heading-indicator/offset-deg</property>
+				<step>1</step>
+				<min>1</min>
+				<max>361</max>
+				<wrap>true</wrap>
+			</binding>
+			<binding>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>property-assign</command>
+				<property>instrumentation/heading-indicator/offset-knob-translate</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/heading-indicator/offset-knob-translate</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
 		</action>
 		<hovered>
 			<binding>
+				<condition>
+					<not><property>devices/status/keyboard/shift</property></not>
+				</condition>
 				<command>set-tooltip</command>
 				<tooltip-id>heading-bug-hsi</tooltip-id>
-				<mapping>headinghsi</mapping>
 				<label>Heading Bug: %3d</label>
 				<property>it-stec55x/input/hdg</property>
 			</binding>
@@ -320,7 +392,6 @@
 				<command>set-tooltip</command>
 				<tooltip-id>nav1-hsi</tooltip-id>
 				<label>Nav 1 Course %3d</label>
-				<mapping>nav1hsi</mapping>
 				<property>instrumentation/kcs55/ki525/selected-course-deg</property>
 			</binding>
 		</hovered>

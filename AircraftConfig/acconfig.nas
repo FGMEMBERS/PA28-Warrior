@@ -20,6 +20,32 @@ var spinning = maketimer(0.05, func {
 	}
 });
 
+var failReset = func {
+	setprop("/systems/failures/battery", 0);
+	setprop("/systems/failures/alternator", 0);
+	setprop("/systems/failures/elec-1", 0);
+	setprop("/systems/failures/elec-2", 0);
+	setprop("/systems/failures/avionics-1", 0);
+	setprop("/systems/failures/avionics-2", 0);
+	setprop("/systems/failures/eng-suck", 0);
+	setprop("/systems/failures/fuel-pump", 0);
+	setprop("/systems/failures/starter", 0);
+	setprop("/systems/failures/l-magneto", 0);
+	setprop("/systems/failures/r-magneto", 0);
+	setprop("/systems/failures/l-brake", 0);
+	setprop("/systems/failures/r-brake", 0);
+	setprop("/systems/failures/stec-55x", 0);
+};
+
+setlistener("/systems/failures/stec-55x", func {
+	if (getprop("/systems/failures/stec-55x") == 1) {
+		setprop("/it-stec55x/serviceable", 0);
+	} else {
+		setprop("/it-stec55x/serviceable", 1);
+	}
+});
+
+failReset();
 setprop("/systems/acconfig/autoconfig-running", 0);
 setprop("/systems/acconfig/spinning", 0);
 setprop("/systems/acconfig/spin", "-");
@@ -28,9 +54,10 @@ setprop("/systems/acconfig/new-revision", "");
 setprop("/systems/acconfig/out-of-date", 0);
 setprop("/systems/acconfig/options/welcome-skip", 0);
 setprop("/systems/acconfig/options/panel", "HSI Panel");
-setprop("/systems/acconfig/options/autocoordinate", 0);
 setprop("/systems/acconfig/options/show-l-yoke", 1);
 setprop("/systems/acconfig/options/show-r-yoke", 1);
+setprop("/systems/acconfig/options/fd-equipped", 0);
+setprop("/systems/acconfig/options/mini-panel", 0);
 var main_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/main/dialog", "Aircraft/PA28-Warrior/AircraftConfig/main.xml");
 var welcome_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/welcome/dialog", "Aircraft/PA28-Warrior/AircraftConfig/welcome.xml");
 var ps_load_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/psload/dialog", "Aircraft/PA28-Warrior/AircraftConfig/psload.xml");
@@ -40,6 +67,9 @@ var help_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/help/dialog", "Aircraft/
 var about_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/about/dialog", "Aircraft/PA28-Warrior/AircraftConfig/about.xml");
 var update_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/update/dialog", "Aircraft/PA28-Warrior/AircraftConfig/update.xml");
 var updated_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/update/dialog", "Aircraft/PA28-Warrior/AircraftConfig/updated.xml");
+var fail_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/fail/dialog", "Aircraft/PA28-Warrior/AircraftConfig/fail.xml");
+var controlpanel_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/controlpanel/dialog", "Aircraft/PA28-Warrior/AircraftConfig/control-panel.xml");
+var minipanel_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/minipanel/dialog", "Aircraft/PA28-Warrior/AircraftConfig/mini-panel.xml");
 spinning.start();
 init_dlg.open();
 
@@ -71,31 +101,36 @@ setlistener("/sim/signals/fdm-initialized", func {
 	setprop("/systems/acconfig/options/revision", current_revision);
 	writeSettings();
 	spinning.stop();
+	if (getprop("/options/mini-panel") == 1) {
+		minipanel_dlg.open();
+	}
 });
 
 var readSettings = func {
 	io.read_properties(getprop("/sim/fg-home") ~ "/Export/PA28-Warrior-config.xml", "/systems/acconfig/options");
-	setprop("/options/autocoordinate", getprop("/systems/acconfig/options/autocoordinate"));
 	setprop("/options/show-l-yoke", getprop("/systems/acconfig/options/show-l-yoke"));
 	setprop("/options/show-r-yoke", getprop("/systems/acconfig/options/show-r-yoke"));
 	setprop("/options/panel", getprop("/systems/acconfig/options/panel"));
+	setprop("/it-stec55x/settings/fd-equipped", getprop("/systems/acconfig/options/fd-equipped"));
+	setprop("/options/mini-panel", getprop("/systems/acconfig/options/mini-panel"));
 	autopilotSettings();
 }
 
 var writeSettings = func {
-	setprop("/systems/acconfig/options/autocoordinate", getprop("/options/autocoordinate"));
 	setprop("/systems/acconfig/options/show-l-yoke", getprop("/options/show-l-yoke"));
 	setprop("/systems/acconfig/options/show-r-yoke", getprop("/options/show-r-yoke"));
 	setprop("/systems/acconfig/options/panel", getprop("/options/panel"));
+	setprop("/systems/acconfig/options/fd-equipped", getprop("/it-stec55x/settings/fd-equipped"));
+	setprop("/systems/acconfig/options/mini-panel", getprop("/options/mini-panel"));
 	autopilotSettings();
 	io.write_properties(getprop("/sim/fg-home") ~ "/Export/PA28-Warrior-config.xml", "/systems/acconfig/options");
 }
 
 var autopilotSettings = func {
 	if (getprop("/options/panel") == "HSI Panel") {
-		setprop("/it-stec55x/settings/hsi-equipped", 1);
+		setprop("/it-stec55x/settings/hsi-equipped-1", 1);
 	} else {
-		setprop("/it-stec55x/settings/hsi-equipped", 0);
+		setprop("/it-stec55x/settings/hsi-equipped-1", 0);
 	}
 }
 
@@ -110,9 +145,10 @@ var colddark = func {
 	setprop("/systems/acconfig/autoconfig-running", 1);
 	# Initial shutdown, and reinitialization.
 	setprop("/controls/flight/flaps", 0.0);
-	setprop("/controls/flight/elevator-trim", 0.1);
+	setprop("/controls/flight/elevator-trim", 0.11);
 	setprop("/controls/gear/brake-parking", 0);
 	libraries.systemsReset();
+	failReset();
 	if (getprop("/engines/engine[0]/rpm") < 421) {
 		colddark_b();
 	} else {
@@ -139,9 +175,10 @@ var beforestart = func {
 	setprop("/systems/acconfig/autoconfig-running", 1);
 	# First, we set everything to cold and dark.
 	setprop("/controls/flight/flaps", 0.0);
-	setprop("/controls/flight/elevator-trim", 0.1);
+	setprop("/controls/flight/elevator-trim", 0.11);
 	setprop("/controls/gear/brake-parking", 0);
 	libraries.systemsReset();
+	failReset();
 	
 	# Now the Startup!
 	setprop("/controls/electrical/battery", 1);
@@ -149,7 +186,7 @@ var beforestart = func {
 	setprop("/controls/switches/beacon", 1);
 	setprop("/controls/switches/strobe-lights", 1);
 	setprop("/controls/switches/avionics-master", 1);
-	setprop("/systems/fuel/selected-tank", 1);
+	setprop("/controls/engines/engine[0]/mixture", 1);
 	setprop("/systems/acconfig/autoconfig-running", 0);
 	ps_load_dlg.close();
 	ps_loaded_dlg.open();
@@ -163,9 +200,10 @@ var taxi = func {
 	setprop("/systems/acconfig/autoconfig-running", 1);
 	# First, we set everything to cold and dark.
 	setprop("/controls/flight/flaps", 0.0);
-	setprop("/controls/flight/elevator-trim", 0.1);
+	setprop("/controls/flight/elevator-trim", 0.11);
 	setprop("/controls/gear/brake-parking", 0);
 	libraries.systemsReset();
+	failReset();
 	
 	# Now the Startup!
 	setprop("/controls/electrical/battery", 1);
@@ -174,7 +212,6 @@ var taxi = func {
 	setprop("/controls/switches/strobe-lights", 1);
 	setprop("/controls/switches/nav-lights-factor", 1);
 	setprop("/controls/switches/avionics-master", 1);
-	setprop("/systems/fuel/selected-tank", 1);
 	setprop("/controls/engines/engine[0]/mixture", 1);
 	setprop("/controls/engines/engine[0]/throttle", 0.25);
 	setprop("/controls/engines/engine[0]/magnetos-switch", 4);
@@ -182,7 +219,7 @@ var taxi = func {
 	var runchk = setlistener("/engines/engine[0]/running", func {
 		if (getprop("/engines/engine[0]/running") == 1) {
 			removelistener(runchk);
-			interpolate("/controls/engines/engine[0]/throttle", 0.19, 1);
+			interpolate("/controls/engines/engine[0]/throttle", 0.16, 1);
 		}
 	});
 	settimer(func {

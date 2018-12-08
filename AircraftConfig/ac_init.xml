@@ -8,17 +8,17 @@
 
 	<name>aircraft-config-init</name>
 	<layout>vbox</layout>
-    <pref-width>260</pref-width>
+	<pref-width>260</pref-width>
 
-    <group>
-        <layout>hbox</layout>
-        <text>
-            <halign>left</halign>
-            <label>Please wait...</label>
-        </text>
-    </group>
+	<group>
+		<layout>hbox</layout>
+		<text>
+			<halign>left</halign>
+			<label>Please wait...</label>
+		</text>
+	</group>
 	
-    <hrule/>
+	<hrule/>
 	
 		<group>
 			<layout>vbox</layout>

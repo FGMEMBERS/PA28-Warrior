@@ -12,11 +12,12 @@ Gary "Buckaroo" Neely
 <animation>
   <type>material</type>
   <object-name>Bezel</object-name>
+  <object-name>Button</object-name>
   <emission>
     <red>0.1</red>
     <green>0.1</green>
     <blue>0.1</blue>
-     <factor-prop>sim/model/material/instruments/factor</factor-prop>
+     <factor-prop>controls/lighting/panel-norm</factor-prop>
   </emission>
 </animation>
 
@@ -162,7 +163,7 @@ Gary "Buckaroo" Neely
 
 <animation>
   <type>pick</type>
-  <object-name>Bezel</object-name>
+  <object-name>Button</object-name>
   <action>
     <button>0</button>
     <repeatable>false</repeatable>

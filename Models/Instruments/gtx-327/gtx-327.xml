@@ -1,0 +1,379 @@
+<?xml version="1.0"?>
+
+<!-- Garmin GTX-327 Transponder -->
+<!-- Copyright (c) 2018 Joshua Davidson (it0uchpods) -->
+<!-- 3D and Texture by Jonathan Redpath (legoboyvdlp) -->
+
+<PropertyList>
+	
+    <path>gtx-327.ac</path>
+	
+	<params>
+		<button-translate>-0.001</button-translate> <!-- Button translate factor -->
+	</params>
+	
+	<animation>
+		<type>material</type>
+		<object-name>GroupLighting</object-name>
+		<emission>
+			<red>0.1</red>
+			<green>0.1</green>
+			<blue>0.1</blue>
+		  <factor-prop>controls/lighting/panel-norm</factor-prop>
+		</emission>
+	</animation>
+	
+	<animation>
+		<type>material</type>
+		<object-name>Screen.Day</object-name>
+		<emission>
+			<red>0.2</red>
+			<green>0.2</green>
+			<blue>0.2</blue>
+		</emission>
+	</animation>
+	
+	<animation>
+		<type>material</type>
+		<object-name>Screen.Night</object-name>
+		<emission>
+			<red>0.4</red>
+			<green>0.4</green>
+			<blue>0.4</blue>
+		</emission>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Background</object-name>
+		<condition>
+			<not-equals>
+				<property>instrumentation/it-gtx327/internal/display-on</property>
+				<value>1</value>
+			</not-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Screen.Day</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>rendering/scene/diffuse/red</property>
+				<value>0.7</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Screen.Night</object-name>
+		<condition>
+			<less-than>
+				<property>rendering/scene/diffuse/red</property>
+				<value>0.7</value>
+			</less-than>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Display</object-name>
+		<object-name>Indicators</object-name>
+		<condition>
+			<equals>
+				<property>instrumentation/it-gtx327/internal/display-on</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>SelfTest.ind</object-name>
+		<condition>
+			<equals>
+				<property>instrumentation/it-gtx327/annun/test</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>TestFail.ind</object-name>
+		<condition>
+			<equals>
+				<property>instrumentation/it-gtx327/annun/fail</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>ALT.ind</object-name>
+		<condition>
+			<equals>
+				<property>instrumentation/it-gtx327/annun/mode</property>
+				<value>alt</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>IDENT.ind</object-name>
+		<condition>
+			<equals>
+				<property>instrumentation/it-gtx327/annun/ident</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>ON.ind</object-name>
+		<condition>
+			<equals>
+				<property>instrumentation/it-gtx327/annun/mode</property>
+				<value>on</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>STBY.ind</object-name>
+		<condition>
+			<equals>
+				<property>instrumentation/it-gtx327/annun/mode</property>
+				<value>stby</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>BTNOFF</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/it-gtx327/input/off-button</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/it-gtx327/input/off-button</property>
+					<value>0</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>gtx327.button.OFF();</script>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>BTNOFF</object-name>
+		<property>instrumentation/it-gtx327/input/off-button</property>
+		<factor alias="../../params/button-translate"/>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>BTNSTBY</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/it-gtx327/input/stby-button</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/it-gtx327/input/stby-button</property>
+					<value>0</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>gtx327.button.STBY();</script>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>BTNSTBY</object-name>
+		<property>instrumentation/it-gtx327/input/stby-button</property>
+		<factor alias="../../params/button-translate"/>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>BTNON</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/it-gtx327/input/on-button</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/it-gtx327/input/on-button</property>
+					<value>0</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>gtx327.button.ON();</script>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>BTNON</object-name>
+		<property>instrumentation/it-gtx327/input/on-button</property>
+		<factor alias="../../params/button-translate"/>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>BTNALT</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/it-gtx327/input/alt-button</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/it-gtx327/input/alt-button</property>
+					<value>0</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>gtx327.button.ALT();</script>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>BTNALT</object-name>
+		<property>instrumentation/it-gtx327/input/alt-button</property>
+		<factor alias="../../params/button-translate"/>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>BTNIDENT</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/it-gtx327/input/ident-button</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/it-gtx327/input/ident-button</property>
+					<value>0</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>gtx327.button.IDENT();</script>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>BTNIDENT</object-name>
+		<property>instrumentation/it-gtx327/input/ident-button</property>
+		<factor alias="../../params/button-translate"/>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>BTNVFR</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/it-gtx327/input/vfr-button</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/it-gtx327/input/vfr-button</property>
+					<value>0</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>gtx327.button.VFR();</script>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>BTNVFR</object-name>
+		<property>instrumentation/it-gtx327/input/vfr-button</property>
+		<factor alias="../../params/button-translate"/>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+</PropertyList>

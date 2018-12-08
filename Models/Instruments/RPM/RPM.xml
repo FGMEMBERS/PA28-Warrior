@@ -6,13 +6,18 @@
 	
 	<animation>
 		<type>material</type>
-		<object-name>Face</object-name>
-		<object-name>PointerTip</object-name>
+		<object-name>face</object-name>
+		<object-name>needle</object-name>
+		<object-name>hour.01</object-name>
+		<object-name>hour.1</object-name>
+		<object-name>hour.10</object-name>
+		<object-name>hour.100</object-name>
+		<object-name>hour.1000</object-name>
 		<emission>
 			<red>0.6</red>
 			<green>0.6</green>
 			<blue>0.6</blue>
-			<factor-prop>sim/model/material/instruments/factor</factor-prop>
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
 		</emission>
 	</animation>
 	
@@ -21,9 +26,9 @@
 		<object-name>needle</object-name>
 		<property>engines/engine[0]/rpm</property>
 		<interpolation>
-			<entry><ind>   0</ind><dep> 0</dep></entry>
-			<entry><ind> 300</ind><dep> 2.15</dep></entry>
-			<entry><ind>3500</ind><dep> 272.675</dep></entry>
+			<entry><ind> 274</ind><dep>  0.000</dep></entry>
+			<entry><ind> 300</ind><dep>  2.150</dep></entry>
+			<entry><ind>3500</ind><dep>272.675</dep></entry>
 		</interpolation>
 		<axis>
 			<x>-1</x>
@@ -38,8 +43,3 @@
 	</animation>
 
 </PropertyList>
-
-
-
-
-
