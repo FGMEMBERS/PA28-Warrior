@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+	
+	<path>ai.ac</path><!--
+	
+	<animation>
+		<type>material</type>
+		<object-name>Face</object-name>
+		<object-name>PointerTip</object-name>
+		<emission>
+			<red>0.6</red>
+			<green>0.6</green>
+			<blue>0.6</blue>
+			<factor-prop>sim/model/material/instruments/factor</factor-prop>
+		</emission>
+	</animation>-->
+	
+	<animation>
+		<type>select</type>
+		<object-name>flag</object-name>
+		<condition>
+			<less-than>
+				<property>instrumentation/attitude-indicator/spin</property>
+				<value>0.5</value>
+			</less-than>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>turn</object-name>
+		<object-name>disc</object-name>
+		<property>instrumentation/attitude-indicator/indicated-roll-deg</property>
+		<factor>1</factor>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>disc</object-name>
+		<property>instrumentation/attitude-indicator/indicated-pitch-deg</property>
+		<factor>-0.00042</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>ac</object-name>
+		<property>instrumentation/attitude-indicator/pitch-offset-deg</property>
+		<factor>-0.00042</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>knob</type>
+		<object-name>offset.knob</object-name>
+		<property>instrumentation/attitude-indicator/pitch-offset-deg</property>
+		<factor>1</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<y-m>0.0</y-m>
+			<z-m>-0.032829</z-m>
+		</center>
+		<action>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/attitude-indicator/pitch-offset-deg</property>
+				<min>-10</min>
+				<max>10</max>
+				<factor>0.5</factor>
+			</binding>
+		</action>
+	</animation>
+
+</PropertyList>
+
+
+
+
+

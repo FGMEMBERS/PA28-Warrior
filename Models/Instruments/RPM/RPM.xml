@@ -18,19 +18,12 @@
 	
 	<animation>
 		<type>rotate</type>
-		<object-name>PointerCentre</object-name>
-		<object-name>PointerTip</object-name>
+		<object-name>needle</object-name>
 		<property>engines/engine[0]/rpm</property>
 		<interpolation>
-			<entry><ind>   0</ind><dep> 18</dep></entry>
-			<entry><ind> 300</ind><dep> 20</dep></entry>
-			<entry><ind> 500</ind><dep> 32</dep></entry>
-			<entry><ind>1000</ind><dep> 70</dep></entry>
-			<entry><ind>1500</ind><dep>108</dep></entry>
-			<entry><ind>2000</ind><dep>146</dep></entry>
-			<entry><ind>2500</ind><dep>184</dep></entry>
-			<entry><ind>3000</ind><dep>230</dep></entry>
-			<entry><ind>3500</ind><dep>268</dep></entry>
+			<entry><ind>   0</ind><dep> 0</dep></entry>
+			<entry><ind> 300</ind><dep> 2.15</dep></entry>
+			<entry><ind>3500</ind><dep> 272.675</dep></entry>
 		</interpolation>
 		<axis>
 			<x>-1</x>

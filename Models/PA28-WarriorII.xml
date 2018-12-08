@@ -12,8 +12,7 @@
 		<object-name>Fuselage</object-name>
 		<object-name>VTail</object-name>
 		<object-name>Rudder</object-name>
-		<object-name>RightWing</object-name>
-		<object-name>LeftWing</object-name>
+		<object-name>Wings</object-name>
 		<object-name>Door</object-name>
 		<object-name>Stabilator</object-name>
 		<object-name>AntiServoTab</object-name>
@@ -65,6 +64,26 @@
 		<inherits-from>Effects/model-transparent</inherits-from>
 		<object-name>prop disc front</object-name>
 		<object-name>prop disc rear</object-name>
+	</effect>
+
+	<effect>
+		<inherits-from>Effects/fuselage</inherits-from>
+		<object-name>Fuselage</object-name>
+		<object-name>VTail</object-name>
+		<object-name>Rudder</object-name>
+		<object-name>Wings</object-name>
+		<object-name>Door</object-name>
+		<object-name>Stabilator</object-name>
+		<object-name>AntiServoTab</object-name>
+		<object-name>LeftAileron</object-name>
+		<object-name>RightAileron</object-name>
+		<object-name>LeftFlap</object-name>
+		<object-name>RightFlap</object-name>
+		<object-name>GearSub</object-name>
+		<object-name>Spinner</object-name>
+		<object-name>Propeller</object-name>
+		<object-name>VHFAntenna.1</object-name>
+		<object-name>VHFAntenna.2</object-name>
 	</effect>
 
 	<animation>
@@ -218,9 +237,10 @@
 		<name>rpm</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/RPM/RPM.xml</path>
 		<offsets>
-			<x-m>1.926</x-m>
-			<y-m>-0.158</y-m>
-			<z-m>0.016</z-m>
+			<x-m>-1.73172</x-m>
+			<y-m>-0.084042</y-m>
+			<z-m>-0.007222</z-m>
+			<pitch-deg>-7.4</pitch-deg>
 		</offsets>
 	</model>
 	
@@ -291,17 +311,28 @@
 		</offsets>
 	</model>
 
+	<!--Primary flight instruments-->
 	<model>
 		<name>ASI</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/asi/asi.xml</path>
 		<offsets>
-			<x-m>1.925</x-m>
-			<y-m>-0.334</y-m>
-			<z-m>0.271</z-m>
+			<x-m>-1.737</x-m>
+			<y-m>-0.34459</y-m>
+			<z-m>0.24678</z-m>
+		</offsets>
+	</model>
+	
+	<model>
+		<name>AI</name>
+		<path>Aircraft/PA28-Warrior/Models/Instruments/ai/ai.xml</path>
+		<offsets>
+			<x-m>-1.732</x-m>
+			<y-m>-0.241622</y-m>
+			<z-m>0.246767</z-m>
 		</offsets>
 	</model>
 
-	<model>
+	<!--<model>
 		<name>AIG</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/AIN/ai-gauge.xml</path>
 		<offsets>
@@ -310,15 +341,15 @@
 			<z-m>0.271</z-m>
 			<pitch-deg>-1</pitch-deg>
 		</offsets>
-	</model>
+	</model>-->
 
 	<model>
 		<name>ALT</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/alt/alt.xml</path>
 		<offsets>
-			<x-m>1.925</x-m>
-			<y-m>-0.126</y-m>
-			<z-m>0.271</z-m>
+			<x-m>-1.729</x-m>
+			<y-m>-0.138615</y-m>
+			<z-m>0.246767</z-m>
 			<roll-deg>-1.5</roll-deg>
 		</offsets>
 	</model>
@@ -343,15 +374,15 @@
 			</equals>
 		</condition>
 		<offsets>
-			<x-m>1.923</x-m>
-			<y-m>-0.029</y-m>
-			<z-m>0.271</z-m>
+			<x-m>-1.734</x-m>
+			<y-m>-0.035637</y-m>
+			<z-m>0.246775</z-m>
 		</offsets>
 	</model>
 
 	<model>
 		<name>blank</name>
-		<path>Aircraft/PA28-Warrior/Models/Instruments/blank/blank.xml</path>
+		<path>Aircraft/PA28-Warrior/Models/Instruments/blend/blend.ac</path>
 		<condition>
 			<equals>
 				<property>options/panel</property>
@@ -359,19 +390,29 @@
 			</equals>
 		</condition>
 		<offsets>
-			<x-m>1.923</x-m>
-			<y-m>-0.029</y-m>
-			<z-m>0.271</z-m>
+			<x-m>-1.734</x-m>
+			<y-m>-0.035637</y-m>
+			<z-m>0.246775</z-m>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>VOR2</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/ki209a/ki209a-2.xml</path>
 		<offsets>
-			<x-m>1.923</x-m>
-			<y-m>-0.029</y-m>
-			<z-m>0.185</z-m>
+			<x-m>-1.734</x-m>
+			<y-m>-0.035613</y-m>
+			<z-m>0.160089</z-m>
+		</offsets>
+	</model>
+	
+	<model>
+		<name>blank2</name>
+		<path>Aircraft/PA28-Warrior/Models/Instruments/blend/blend.ac</path>
+		<offsets>
+			<x-m>-1.734</x-m>
+			<y-m>-0.447625</y-m>
+			<z-m>0.160064</z-m>
 		</offsets>
 	</model>
 
@@ -411,9 +452,9 @@
 		<name>TC</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/tc/tc.xml</path>
 		<offsets>
-			<x-m>1.925</x-m>
-			<y-m>-0.336</y-m>
-			<z-m>0.185</z-m>
+			<x-m>-1.73</x-m>
+			<y-m>-0.34461</y-m>
+			<z-m>0.160091</z-m>
 		</offsets>
 	</model>
 
@@ -427,15 +468,15 @@
 			</equals>
 		</condition>
 		<offsets>
-			<x-m>1.926</x-m>
-			<y-m>-0.233</y-m>
-			<z-m>0.185</z-m>
+			<x-m>-1.728</x-m>
+			<y-m>-0.241624</y-m>
+			<z-m>0.160061</z-m>
 		</offsets>
 	</model>
 
 	<model>
-		<name>HI</name>
-		<path>Aircraft/PA28-Warrior/Models/Instruments/hi/hi.xml</path>
+		<name>DG</name>
+		<path>Aircraft/PA28-Warrior/Models/Instruments/dg/dg.xml</path>
 		<condition>
 			<equals>
 				<property>options/panel</property>
@@ -443,19 +484,25 @@
 			</equals>
 		</condition>
 		<offsets>
-			<x-m>1.926</x-m>
-			<y-m>-0.233</y-m>
-			<z-m>0.185</z-m>
+			<x-m>-1.732</x-m>
+			<y-m>-0.241624</y-m>
+			<z-m>0.160061</z-m>
 		</offsets>
 	</model>
+	
+		<!--<offsets>
+			<x-m>-1.732</x-m>
+			<y-m>-0.035637</y-m>
+			<z-m>0.246775</z-m>
+		</offsets>-->
 
 	<model>
 		<name>VSI</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/vsi/vsi.xml</path>
 		<offsets>
-			<x-m>1.925</x-m>
-			<y-m>-0.126</y-m>
-			<z-m>0.185</z-m>
+			<x-m>-1.732</x-m>
+			<y-m>-0.138597</y-m>
+			<z-m>0.160091</z-m>
 		</offsets>
 	</model>
 
@@ -544,12 +591,12 @@
 		<name>kx165-1</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/radio_stack/kx165-1.xml</path>
 		<offsets>
-			<x-m>1.915</x-m>
-			<y-m>0.124</y-m>
-			<z-m>0.32</z-m>
+			<x-m>-1.735</x-m>
+			<y-m>0.28167</y-m>
+			<z-m>0.24</z-m>
 		</offsets>
 	</model>
-
+<!--
 	<model>
 		<name>kx165-2</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/radio_stack/kx165-2.xml</path>
@@ -557,6 +604,16 @@
 			<x-m>1.915</x-m>
 			<y-m>0.124</y-m>
 			<z-m>0.265</z-m>
+		</offsets>
+	</model>-->
+
+	<model>
+		<name>kma28</name>
+		<path>Aircraft/PA28-Warrior/Models/Instruments/kma28/kma28.ac</path>
+		<offsets>
+			<x-m>-1.73</x-m>
+			<y-m>0.10665</y-m>
+			<z-m>0.291251</z-m>
 		</offsets>
 	</model>
 
@@ -584,9 +641,9 @@
 		<name>dme</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/ki266/ki266.xml</path>
 		<offsets>
-			<x-m>1.932</x-m>
-			<y-m>0.285</y-m>
-			<z-m>0.179</z-m>
+			<x-m>-1.715</x-m>
+			<y-m>0.28167</y-m>
+			<z-m>0.19</z-m>
 		</offsets>
 	</model>
 
@@ -890,16 +947,14 @@
 		<type>rotate</type>
 		<object-name>LeftAileron</object-name>
 		<property>sim/multiplay/generic/float[5]</property>
-		<factor>1</factor>
-		<center>
-			<x-m>3.1338</x-m>
-			<y-m>-5.0553</y-m>
-			<z-m>0.0468</z-m>
-		</center>
+		<factor>-1</factor>
 		<axis>
-			<x>0.0814</x>
-			<y>1.0</y>
-			<z>-0.1290</z>
+			<x1-m>-0.25121</x1-m>
+			<y1-m>-2.70551</y1-m>
+			<z1-m>-0.18359</z1-m>
+			<x2-m>-0.34268</x2-m>
+			<y2-m>-4.97839</y2-m>
+			<z2-m>0.08607</z2-m>
 		</axis>
 	</animation>
 
@@ -908,49 +963,77 @@
 		<object-name>RightAileron</object-name>
 		<property>sim/multiplay/generic/float[5]</property>
 		<factor>-1</factor>
-		<center>
-			<x-m>3.1338</x-m>
-			<y-m>5.0553</y-m>
-			<z-m>0.0468</z-m>
-		</center>
 		<axis>
-			<x>-0.0814</x>
-			<y>1.0</y>
-			<z>0.1290</z>
+			<x1-m>-0.25121</x1-m>
+			<y1-m>2.70551</y1-m>
+			<z1-m>-0.18359</z1-m>
+			<x2-m>-0.34268</x2-m>
+			<y2-m>4.97839</y2-m>
+			<z2-m>0.08607</z2-m>
 		</axis>
 	</animation>
 
 	<animation>
 		<type>rotate</type>
 		<object-name>LeftFlap</object-name>
+		<object-name>flap.ac.wing.L</object-name>
 		<property>surface-positions/flap-pos-norm</property>
 		<factor>-40</factor>
+		<axis>
+			<x1-m>-0.21067</x1-m>
+			<y1-m>-0.64884</y1-m>
+			<z1-m>-0.54865</z1-m>
+			<x2-m>-0.21077</x2-m>
+			<y2-m>-2.58766</y2-m>
+			<z2-m>-0.2819</z2-m>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>flap.ac.wing.L</object-name>
+		<property>surface-positions/flap-pos-norm</property>
+		<factor>-20</factor>
 		<center>
-			<x-m>3.30</x-m>
+			<x-m>-0.15595</x-m>
 			<y-m>0.0</y-m>
-			<z-m>-0.42</z-m>
+			<z-m>-0.47543</z-m>
 		</center>
 		<axis>
 			<x>0.0</x>
-			<y>-1.0</y>
-			<z>0.1</z>
+			<y>1.0</y>
+			<z>0.0</z>
 		</axis>
 	</animation>
 
 	<animation>
 		<type>rotate</type>
 		<object-name>RightFlap</object-name>
+		<object-name>flap.ac.wing.R</object-name>
 		<property>surface-positions/flap-pos-norm</property>
 		<factor>40</factor>
+		<axis>
+			<x1-m>-0.21067</x1-m>
+			<y1-m>0.64884</y1-m>
+			<z1-m>-0.54865</z1-m>
+			<x2-m>-0.21077</x2-m>
+			<y2-m>2.58766</y2-m>
+			<z2-m>-0.2819</z2-m>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>flap.ac.wing.R</object-name>
+		<property>surface-positions/flap-pos-norm</property>
+		<factor>-20</factor>
 		<center>
-			<x-m>3.30</x-m>
+			<x-m>-0.15595</x-m>
 			<y-m>0.0</y-m>
-			<z-m>-0.42</z-m>
+			<z-m>-0.47543</z-m>
 		</center>
 		<axis>
 			<x>0.0</x>
 			<y>1.0</y>
-			<z>0.1</z>
+			<z>0.0</z>
 		</axis>
 	</animation>
 
@@ -961,9 +1044,9 @@
 		<property>sim/multiplay/generic/float[6]</property>
 		<factor>1</factor>
 		<center>
-			<x-m>6.5</x-m>
+			<x-m>3.00905</x-m>
 			<y-m>0.0</y-m>
-			<z-m>0.15</z-m>
+			<z-m>0.08658</z-m>
 		</center>
 		<axis>
 			<x>0.0</x>
@@ -978,9 +1061,9 @@
 		<property>sim/multiplay/generic/float[7]</property>
 		<factor>1</factor>
 		<center>
-			<x-m>6.79</x-m>
+			<x-m>3.39382</x-m>
 			<y-m>0.0</y-m>
-			<z-m>0.17</z-m>
+			<z-m>0.08798</z-m>
 		</center>
 		<axis>
 			<x>0.0</x>
@@ -1025,15 +1108,13 @@
 		<object-name>TailNavLight</object-name>
 		<property>sim/multiplay/generic/float[8]</property>
 		<factor>1</factor>
-		<center>
-			<x-m>6.36</x-m>
-			<y-m>0.0</y-m>
-			<z-m>-0.16</z-m>
-		</center>
 		<axis>
-			<x>0.25</x>
-			<y>0.0</y>
-			<z>1.0</z>
+			<x1-m>3.01317</x1-m>
+			<y1-m>0.0</y1-m>
+			<z1-m>0.26147</z1-m>
+			<x2-m>3.2942</x2-m>
+			<y2-m>0.0</y2-m>
+			<z2-m>1.4045</z2-m>
 		</axis>
 	</animation>
 
@@ -1099,6 +1180,27 @@
 			<z>0.1</z>
 		</axis>
 	</animation>
+
+	<animation>
+		<type>translate</type>
+		<object-name>WheelN</object-name>
+		<object-name>gear.low.F</object-name>
+		<object-name>gear.oleo.F</object-name>
+		<property>gear/gear[0]/compression-norm</property>
+		<interpolation>
+			<entry><ind>0.00</ind><dep>-0.02</dep></entry>
+			<entry><ind>0.07</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>0.078</dep></entry>
+		</interpolation>
+		<axis>
+			<x1-m>-2.51397</x1-m>
+			<y1-m>0.0</y1-m>
+			<z1-m>-0.8508</z1-m>
+			<x2-m>-2.44588</x2-m>
+			<y2-m>0.0</y2-m>
+			<z2-m>-0.62556</z2-m>
+		</axis>
+	</animation>
 	
 	<animation>
 		<type>spin</type>
@@ -1111,9 +1213,9 @@
 			<z>0</z>
 		</axis>
 		<center>
-			<x-m>0.95194</x-m>
+			<x-m>-2.5864</x-m>
 			<y-m>0</y-m>
-			<z-m>-1.04043</z-m>
+			<z-m>-1.09565</z-m>
 		</center>
 	</animation>
 	
@@ -1128,9 +1230,9 @@
 			<z>0</z>
 		</axis>
 		<center>
-			<x-m>2.89843</x-m>
+			<x-m>-0.70604</x-m>
 			<y-m>0</y-m>
-			<z-m>-1.0068</z-m>
+			<z-m>-0.89011</z-m>
 		</center>
 	</animation>
 	
@@ -1145,9 +1247,9 @@
 			<z>0</z>
 		</axis>
 		<center>
-			<x-m>2.89843</x-m>
+			<x-m>-0.70604</x-m>
 			<y-m>0</y-m>
-			<z-m>-1.0068</z-m>
+			<z-m>-0.89011</z-m>
 		</center>
 	</animation>
 
