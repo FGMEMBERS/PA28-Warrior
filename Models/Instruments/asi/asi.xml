@@ -5,11 +5,12 @@
 	<path>asi.ac</path>
 	
 	<animation>
-		<type>material</type>
-		<object-name>ASI.vitre</object-name>
+		<type>material</type><!--
+		<object-name>ASI.vitre</object-name>-->
+		<object-name>ASI.face</object-name>
 		<object-name>ASI.ring</object-name>
-		<object-name>ASI.needle</object-name>
-		<object-name>ASI.Knob</object-name>
+		<object-name>ASI.needle</object-name><!--
+		<object-name>ASI.knob</object-name>-->
 		<emission>
 			<red>0.6</red>
 			<green>0.6</green>
@@ -19,9 +20,9 @@
 	</animation>
 	
 	<!-- Should be temperature -->
-	<!--animation>
+	<animation>
 		<type>pick</type>
-		<object-name>ASI.Knob</object-name>
+		<object-name>ASI.knob</object-name>
 		<action>
 			<button>0</button>
 			<button>3</button>
@@ -60,7 +61,7 @@
 			<y>0</y>
 			<z>0</z>
 		</axis>
-	</animation-->
+	</animation>
 	
 	<animation>
 		<type>rotate</type>
