@@ -30,8 +30,8 @@
 		<type>rotate</type>
 		<object-name>turn</object-name>
 		<object-name>disc</object-name>
-		<property>instrumentation/attitude-indicator/indicated-roll-deg</property>
-		<factor>1</factor>
+		<property>instrumentation/attitude-indicator/indicated-roll-deg-actual</property>
+		<factor>-1</factor>
 		<axis>
 			<x>-1</x>
 			<y>0</y>
@@ -47,7 +47,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>disc</object-name>
-		<property>instrumentation/attitude-indicator/indicated-pitch-deg</property>
+		<property>instrumentation/attitude-indicator/indicated-pitch-deg-actual</property>
 		<factor>-0.00042</factor>
 		<axis>
 			<x>0</x>

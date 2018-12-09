@@ -18,35 +18,35 @@
 	<emptywt unit="LBS" > 1201 </emptywt>
 	
 	<location name="CG" unit="M">
-		<x> 2.5003 </x>
+		<x> -1.10417 </x>
 		<y> 0 </y>
-		<z> 0.2512 </z>
+		<z> 0.41522 </z>
 	</location>
 	
 	<pointmass name="Left Front Seat">
 		<weight unit="LBS"> 170.0 </weight>
 		<location name="POINTMASS" unit="M">
-			<x> 2.5003 </x>
+			<x> -1.10417 </x>
 			<y> -0.27743 </y>
-			<z> 0.2512 </z>
+			<z> 0.41522 </z>
 		</location>
 	</pointmass>
 	
 	<pointmass name="Right Front Seat">
 		<weight unit="LBS"> 170.0 </weight>
 		<location name="POINTMASS" unit="M">
-			<x> 2.5003 </x>
+			<x> -1.10417 </x>
 			<y> 0.27743 </y>
-			<z> 0.2512 </z>
+			<z> 0.41522 </z>
 		</location>
 	</pointmass>
 	
 	<pointmass name="Baggage Compartment">
 		<weight unit="LBS"> 0.0 </weight>
 		<location name="POINTMASS" unit="M">
-			<x> 2.5003 </x>
+			<x> 0.13024 </x>
 			<y> 0.16143 </y>
-			<z> 0.2512 </z>
+			<z> -0.12943 </z>
 		</location>
 	</pointmass>
 </mass_balance>
