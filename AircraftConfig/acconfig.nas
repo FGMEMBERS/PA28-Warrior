@@ -66,7 +66,7 @@ var init_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/init/dialog", "Aircraft/
 var help_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/help/dialog", "Aircraft/PA28-Warrior/AircraftConfig/help.xml");
 var about_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/about/dialog", "Aircraft/PA28-Warrior/AircraftConfig/about.xml");
 var update_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/update/dialog", "Aircraft/PA28-Warrior/AircraftConfig/update.xml");
-var updated_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/update/dialog", "Aircraft/PA28-Warrior/AircraftConfig/updated.xml");
+var updated_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/updated/dialog", "Aircraft/PA28-Warrior/AircraftConfig/updated.xml");
 var fail_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/fail/dialog", "Aircraft/PA28-Warrior/AircraftConfig/fail.xml");
 var controlpanel_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/controlpanel/dialog", "Aircraft/PA28-Warrior/AircraftConfig/control-panel.xml");
 var minipanel_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/minipanel/dialog", "Aircraft/PA28-Warrior/AircraftConfig/mini-panel.xml");
@@ -76,6 +76,7 @@ init_dlg.open();
 http.load("https://raw.githubusercontent.com/it0uchpods/PA28-Warrior/master/revision.txt").done(func(r) setprop("/systems/acconfig/new-revision", r.response));
 var revisionFile = (getprop("/sim/aircraft-dir")~"/revision.txt");
 var current_revision = io.readfile(revisionFile);
+print("PA28-Warrior Revision: " ~ current_revision);
 setprop("/systems/acconfig/revision", current_revision);
 
 setlistener("/systems/acconfig/new-revision", func {
@@ -90,7 +91,7 @@ setlistener("/sim/signals/fdm-initialized", func {
 	init_dlg.close();
 	if (getprop("/systems/acconfig/out-of-date") == 1) {
 		update_dlg.open();
-		print("The PA28-Warrior is out of date!");
+		print("System: The PA28-Warrior is out of date!");
 	}
 	readSettings();
 	if (getprop("/systems/acconfig/out-of-date") != 1 and getprop("/systems/acconfig/options/revision") < current_revision) {

@@ -1,6 +1,10 @@
 # PA28-161 Libraries
 # Joshua Davidson (it0uchpods)
 
+print("-----------------------------------------------------------------------------");
+print("Copyright (c) 2017-2018 Joshua Davidson (it0uchpods)");
+print("-----------------------------------------------------------------------------");
+
 rightDoor = aircraft.door.new("/sim/model/door-positions/rightDoor", 2, 0);
 
 var beacon = aircraft.light.new("/sim/model/lights/beacon", [0.1, 1], "/controls/lighting/beacon");
