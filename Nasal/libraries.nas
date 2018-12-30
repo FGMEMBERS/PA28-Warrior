@@ -5,6 +5,11 @@ print("-------------------------------------------------------------------------
 print("Copyright (c) 2017-2018 Joshua Davidson (it0uchpods)");
 print("-----------------------------------------------------------------------------");
 
+setprop("/sim/menubar/default/menu[2]/item[2]/enabled", 0);
+setprop("/sim/menubar/default/menu[5]/item[9]/enabled", 0);
+setprop("/sim/menubar/default/menu[5]/item[10]/enabled", 0);
+setprop("/sim/menubar/default/menu[5]/item[11]/enabled", 0);
+
 rightDoor = aircraft.door.new("/sim/model/door-positions/rightDoor", 2, 0);
 
 var beacon = aircraft.light.new("/sim/model/lights/beacon", [0.1, 1], "/controls/lighting/beacon");
