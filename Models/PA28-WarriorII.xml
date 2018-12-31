@@ -38,14 +38,15 @@
 		</unload>
 	</nasal>
 	
-	<!--effect>
+	<effect>
 		<condition>
 			<property>/sim/rendering/rembrandt/enabled</property>
 		</condition>
 		<inherits-from>Effects/model-transparent</inherits-from>
-		<object-name>propfront</object-name>
-		<object-name>proprear</object-name>
-	</effect-->
+		<object-name>propblur</object-name>
+		<object-name>propdisc</object-name>
+		<object-name>placards_transparent</object-name>
+	</effect>
 	
 	<effect>
 		<inherits-from>Effects/fuselage</inherits-from>
@@ -94,11 +95,6 @@
 	<model>
 		<name>SWITCHES</name>
 		<path>Aircraft/PA28-Warrior/Models/SwitchPanel/switch_panel.xml</path>
-		<offsets>
-			<x-m>1.9312</x-m>
-			<y-m>0.120</y-m>
-			<z-m>0.102</z-m>
-		</offsets>
 	</model>
 	
 	<model>
@@ -514,12 +510,6 @@
 	<model>
 		<name>APSW</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/ap-sw/ap-sw.xml</path>
-		<offsets>
-			<x-m>-1.735</x-m>
-			<y-m>-0.420708</y-m>
-			<z-m>0.086281</z-m>
-			<roll-deg>90</roll-deg>
-		</offsets>
 	</model>
 	
 	<model>
@@ -642,9 +632,10 @@
 		<name>mags</name>
 		<path>Aircraft/PA28-Warrior/Models/magneto-switch/mags.xml</path>
 		<offsets>
-			<x-m>1.925</x-m>
-			<y-m>-0.225</y-m>
-			<z-m>-0.0055</z-m>
+			<x-m>-1.729</x-m>
+			<y-m>-0.23459</y-m>
+			<z-m>-0.022279</z-m>
+			<pitch-deg>-7</pitch-deg>
 		</offsets>
 	</model>
 	
@@ -771,7 +762,7 @@
 		<object-name>mags</object-name>
 	</animation>
 
-	<!--animation>
+	<animation>
 		<type>select</type>
 		<object-name>Propeller</object-name>
 		<condition>
@@ -786,24 +777,23 @@
 		<type>spin</type>
 		<object-name>Propeller</object-name>
 		<object-name>Spinner</object-name>
-		<object-name>propfront</object-name>
-		<object-name>proprear</object-name>
+		<object-name>propblur</object-name>
 		<property>engines/engine/rpm[0]</property>
 		<factor>-1</factor>
 		<axis>
-			<x1-m>0.09617</x1-m>
-			<y1-m>-0.00118</y1-m>
-			<z1-m>0.0004</z1-m>
-			<x2-m>0.45502</x2-m>
-			<y2-m>-0.00118</y2-m>
-			<z2-m>0.0192</z2-m>
+			<x1-m>-3.15106</x1-m>
+			<y1-m>0.0</y1-m>
+			<z1-m>-0.043697</z1-m>
+			<x2-m>-3.63059</x2-m>
+			<y2-m>0.0</y2-m>
+			<z2-m>-0.075996</z2-m>
 		</axis>
 	</animation>
 
 	<animation>
 		<type>select</type>
-		<object-name>propfront</object-name>
-		<object-name>proprear</object-name>
+		<object-name>propblur</object-name>
+		<object-name>propdisc</object-name>
 		<condition>
 			<greater-than>
 				<property>engines/engine/rpm</property>
@@ -811,16 +801,30 @@
 			</greater-than>
 		</condition>
 	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>propblur</object-name>
+		<condition>
+			<greater-than>
+				<property>engines/engine/rpm</property>
+				<value>550</value>
+			</greater-than>
+			<less-than>
+				<property>engines/engine/rpm</property>
+				<value>1000</value>
+			</less-than>
+		</condition>
+	</animation>
 
 	<animation>
 		<type>blend</type>
-		<object-name>propfront</object-name>
-		<object-name>proprear</object-name>
+		<object-name>propblur</object-name>
+		<object-name>propdisc</object-name>
 		<property>engines/engine/rpm[0]</property>
 		<factor>0.00015</factor>
 		<max>1.0</max>
 		<min>0.8</min>
-	</animation-->
+	</animation>
 
 	<model>
 		<name>fuel selector</name>

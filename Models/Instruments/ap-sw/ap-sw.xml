@@ -53,7 +53,7 @@
 			</binding>
 		</action>
 	</animation>
-	
+	<!--
 	<animation>
 		<type>pick</type>
 		<object-name>APFDSW</object-name>
@@ -88,20 +88,24 @@
 				<script>setprop("/sim/sounde/switch1", 1);</script>
 			</binding>
 		</action>
-	</animation>
+	</animation>-->
 	
 	<animation>
 		<type>rotate</type>
 		<object-name>APSW</object-name>
 		<property>it-stec55x/input/ap-master-sw</property>
-		<factor>32</factor>
+		<factor>-47</factor>
 		<axis>
 			<x>0</x>
-			<y>0</y>
-			<z>1</z>
+			<y>1</y>
+			<z>0</z>
 		</axis>
+		<center>
+			<x-m>-1.73276</x-m>
+			<z-m>0.086421</z-m>
+		</center>
 	</animation>
-	
+	<!--
 	<animation>
 		<type>rotate</type>
 		<object-name>APFDSW</object-name>
@@ -112,7 +116,11 @@
 			<y>0</y>
 			<z>1</z>
 		</axis>
-	</animation>
+		<center>
+			<x-m>-1.73276</x-m>
+			<z-m>0.086421</z-m>
+		</center>
+	</animation>-->
 	
 	<animation>
 		<object-name>TrimSW</object-name>
@@ -136,12 +144,16 @@
 		<type>rotate</type>
 		<object-name>TrimSW</object-name>
 		<property>it-stec55x/input/electric-trim-sw</property>
-		<factor>32</factor>
+		<factor>-47</factor>
 		<axis>
 			<x>0</x>
-			<y>0</y>
-			<z>1</z>
+			<y>1</y>
+			<z>0</z>
 		</axis>
+		<center>
+			<x-m>-1.73276</x-m>
+			<z-m>0.086421</z-m>
+		</center>
 	</animation>
 
 </PropertyList>
