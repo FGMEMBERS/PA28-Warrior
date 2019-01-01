@@ -2,7 +2,7 @@
 # Joshua Davidson (it0uchpods)
 
 print("-----------------------------------------------------------------------------");
-print("Copyright (c) 2017-2018 Joshua Davidson (it0uchpods)");
+print("Copyright (c) 2017-2019 Joshua Davidson (it0uchpods)");
 print("-----------------------------------------------------------------------------");
 
 setprop("/sim/menubar/default/menu[2]/item[2]/enabled", 0);
