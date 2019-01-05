@@ -142,6 +142,7 @@ var autopilotSettings = func {
 # Cold and Dark
 var colddark = func {
 	spinning.start();
+	ps_loaded_dlg.close();
 	ps_load_dlg.open();
 	setprop("/systems/acconfig/autoconfig-running", 1);
 	# Initial shutdown, and reinitialization.
@@ -172,6 +173,7 @@ var colddark_b = func {
 # Ready to Start Eng
 var beforestart = func {
 	spinning.start();
+	ps_loaded_dlg.close();
 	ps_load_dlg.open();
 	setprop("/systems/acconfig/autoconfig-running", 1);
 	# First, we set everything to cold and dark.
@@ -197,6 +199,7 @@ var beforestart = func {
 # Ready to Taxi
 var taxi = func {
 	spinning.start();
+	ps_loaded_dlg.close();
 	ps_load_dlg.open();
 	setprop("/systems/acconfig/autoconfig-running", 1);
 	# First, we set everything to cold and dark.

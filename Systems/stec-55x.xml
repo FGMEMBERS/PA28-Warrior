@@ -1102,7 +1102,7 @@
 	
 	<filter>
 		<name>INTERNAL G ACCEL</name>
-		<type>exponential</type>
+		<type>double-exponential</type>
 		<input>
 			<expression>
 				<difference>
@@ -1115,7 +1115,7 @@
 			</expression>
 		</input>
 		<output>/it-stec55x/internal/g-damped</output>
-		<filter-time>0.04</filter-time>
+		<filter-time>0.02</filter-time>
 	</filter>
 	
 	<filter>
@@ -1167,8 +1167,8 @@
 		<reference>/it-stec55x/internal/g-damped</reference>
 		<output>/it-stec55x/internal/elevator-pi</output>
 		<config>
-			<Kp>0.20</Kp>
-			<Ki>0.45</Ki>
+			<Kp>0.16</Kp>
+			<Ki>0.42</Ki>
 			<min>-0.25</min>
 			<max>0.25</max>
 		</config>
