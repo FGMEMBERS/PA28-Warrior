@@ -3,6 +3,13 @@
 <PropertyList>
 
 	<path>mag_switch.ac</path>
+	
+	 <animation>
+		<type>scale</type>
+		<x-offset>0.85</x-offset>
+		<y-offset>0.85</y-offset>
+		<z-offset>0.85</z-offset>
+	</animation>
 
 	<animation>
 		<type>pick</type>
