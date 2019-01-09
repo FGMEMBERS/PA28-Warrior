@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- Copyright (c) 2018 Joshua Davidson (it0uchpods) -->
+<!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
 
 <PropertyList>
 	
@@ -74,7 +74,11 @@
 		<menubar>
 			<default>
 				<menu n="100">
-					<label>Warrior II</label>
+					<label>|</label>
+					<enabled type="bool">false</enabled>
+				</menu>
+				<menu n="101">
+					<label>System</label>
 					<enabled type="bool">true</enabled>
 					<item>
 						<label>Aircraft Config</label>
@@ -84,7 +88,7 @@
 							acconfig.main_dlg.open();
 							</script>
 						</binding>
-					</item>	
+					</item>
 					<item>
 						<label>About This Aircraft</label>
 						<binding>
@@ -95,7 +99,7 @@
 						</binding>
 					</item>
 				</menu>
-				<menu n="101">
+				<menu n="102">
 					<label>Utilities</label>
 					<enabled type="bool">true</enabled>
 					<item>
@@ -137,7 +141,7 @@
 						</binding>
 					</item>
 				</menu>
-				<menu n="102">
+				<menu n="103">
 					<label>How To..?</label>
 					<enabled type="bool">true</enabled>
 					<item>
@@ -261,7 +265,7 @@
 		
 		<flight-recorder include="Systems/flight-recorder.xml"/>
 		
-		<gui n="0" include="Systems/it-gui.xml"/>
+		<gui n="0" include="gui/it-gui.xml"/>
 		
 		<current-view>
 			<z-offset-default type="float">20.0</z-offset-default>

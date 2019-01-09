@@ -1,5 +1,5 @@
 # Garmin GTX-327 Transponder
-# Copyright (c) 2018 Joshua Davidson (it0uchpods)
+# Copyright (c) 2019 Joshua Davidson (it0uchpods)
 
 # Initialize variables
 var annuns = ["off", "stby", "off", "off", "on", "alt"];
