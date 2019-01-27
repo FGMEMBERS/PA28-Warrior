@@ -711,6 +711,8 @@
 	
 	<it-stec55x n="0"> <!-- S-TEC 55X Settings -->
 		<internal n="0">
+			<aileron type="double">0</aileron>
+			<elevator type="double">0</elevator>
 			<servo-roll-power type="bool">0</servo-roll-power>
 			<servo-pitch-power type="bool">0</servo-pitch-power>
 		</internal>
