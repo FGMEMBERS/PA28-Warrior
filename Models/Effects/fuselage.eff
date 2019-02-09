@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PropertyList>
-  <name>Aircraft/PA28-Warrior/Models/Effects/fuselage</name>
+  <name>Aircraft/IDG-PA28X/Models/Effects/fuselage</name>
   <inherits-from>Effects/model-combined-deferred</inherits-from>
   <parameters>
     <!-- Normal Map -->
@@ -9,7 +9,7 @@
     <normalmap-dds type="int">      0   </normalmap-dds>
     <normalmap-tiling type="float"> 1.0 </normalmap-tiling>
     <texture n="2">
-      <image>Aircraft/PA28-Warrior/Models/body-normal.png</image>
+      <image>Aircraft/IDG-PA28X/Models/body-normal.png</image>
     </texture>
     <!-- Reflection -->
     <reflection-enabled type="int">      1   </reflection-enabled>
@@ -17,7 +17,7 @@
     <reflection-correction type="float">-1.0 </reflection-correction>
     <reflection-dynamic type="int">      1   </reflection-dynamic>
     <!-- <texture n="4"> -->
-    <!--   <image>Aircraft/PA28-Warrior/Models/Effects/exterior-chrome.png</image> -->
+    <!--   <image>Aircraft/IDG-PA28X/Models/Effects/exterior-chrome.png</image> -->
     <!-- </texture> -->
     <texture n="5">
       <type>cubemap</type>

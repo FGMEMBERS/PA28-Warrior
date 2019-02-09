@@ -4,7 +4,7 @@
 <!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
 
 <?xml-stylesheet href="JSBSim.xsl" type="application/xml"?>
-<fdm_config name="PA28-Warrior" version="2.0" release="BETA"
+<fdm_config name="IDG-PA28X" version="2.0" release="BETA"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 

@@ -14,7 +14,7 @@
 
 
  <effect>
-   <inherits-from>Aircraft/PA28-Warrior/Models/lights/ALS/tailnav</inherits-from>
+   <inherits-from>Aircraft/IDG-PA28X/Models/lights/ALS/tailnav</inherits-from>
    <object-name>tailnavlightals</object-name>
  </effect>
  

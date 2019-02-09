@@ -1,4 +1,4 @@
-# PA28-Warrior
+# IDG-PA28X
 A very advanced simulation of the Piper PA28 Warrior II for FlightGear by it0uchpods Design Group.
 
 - FDM: Joshua Davidson (it0uchpods)
