@@ -43,7 +43,7 @@
 
  
 <effect>
-   <inherits-from>Aircraft/PA28-Warrior/Models/lights/ALS/beacon</inherits-from>
+   <inherits-from>Aircraft/IDG-PA28X/Models/lights/ALS/beacon</inherits-from>
    <object-name>beaconals</object-name>
  </effect>
 

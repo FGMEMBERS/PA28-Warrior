@@ -1,1 +1,1 @@
-aircraft.livery.init("Aircraft/PA28-Warrior/Models/Liveries");
+aircraft.livery.init("Aircraft/IDG-PA28X/Models/Liveries");

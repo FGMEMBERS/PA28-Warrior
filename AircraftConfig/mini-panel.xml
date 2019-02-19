@@ -33,7 +33,7 @@
 		<legend>?</legend>
 		<binding>
 			<command>open-browser</command>
-			<path>Aircraft/PA28-Warrior/Docs/About_Mini_Panel.pdf</path>
+			<path>Aircraft/IDG-PA28X/Docs/About_Mini_Panel.pdf</path>
 		</binding>
 	</button>
 	
