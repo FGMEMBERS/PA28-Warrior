@@ -128,3 +128,14 @@ var elevatorTrimTimer = maketimer(0.05, func {
 		setprop("/it-stec55x/input/man-trim", 0);
 	}
 });
+
+# Various Other Stuff
+var doIdleThrust = func {
+	setprop("/controls/engines/engine[0]/throttle", 0.0);
+	setprop("/controls/engines/engine[1]/throttle", 0.0);
+}
+
+var doFullThrust = func {
+	setprop("/controls/engines/engine[0]/throttle", 1.0);
+	setprop("/controls/engines/engine[1]/throttle", 1.0);
+}

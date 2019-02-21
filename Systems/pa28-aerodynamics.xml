@@ -385,7 +385,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/aileron-left-deg</property></toradians>
-				<value>0.223</value>
+				<value>0.1561</value>
 				<table>
 					<independentVar lookup="row">aero/alpha-rad</independentVar>
 					<independentVar lookup="column">aero/stall-hyst-norm</independentVar>
@@ -406,7 +406,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/aileron-right-deg</property></toradians>
-				<value>-0.223</value>
+				<value>-0.1561</value>
 				<table>
 					<independentVar lookup="row">aero/alpha-rad</independentVar>
 					<independentVar lookup="column">aero/stall-hyst-norm</independentVar>
@@ -427,7 +427,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/rudder-deg</property></toradians>
-				<value>0.059</value>
+				<value>0.05931</value>
 			</product>
 		</function>
 	

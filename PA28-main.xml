@@ -566,6 +566,26 @@
 					</binding>
 				</mod-up>
 			</key>
+			<key n="101">
+				<name>e</name>
+				<desc>Thrust Lever Idle</desc>
+				<binding>
+					<command>nasal</command>
+					<script>
+					libraries.doIdleThrust();
+					</script>
+				</binding>
+			</key>
+			<key n="102">
+				<name>f</name>
+				<desc>Thrust Lever Full</desc>
+				<binding>
+					<command>nasal</command>
+					<script>
+					libraries.doFullThrust();
+					</script>
+				</binding>
+			</key>
 			<key n="106">
 				<name>j</name>
 				<desc>toggle tanks</desc>
