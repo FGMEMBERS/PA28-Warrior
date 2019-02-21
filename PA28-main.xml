@@ -273,16 +273,11 @@
 		<multiplay>
 			<generic>
 				<bool n="0" alias="/options/wheel-fairing"/>
-				<float n="0" alias="/gear/gear[0]/compression-norm"/>
-				<float n="1" alias="/gear/gear[1]/compression-norm"/>
-				<float n="2" alias="/gear/gear[2]/compression-norm"/>
+				<float n="0" alias="/fdm/jsbsim/fcs/aileron-yoke"/>
+				<float n="1" alias="/fdm/jsbsim/fcs/pitch-input"/>
+				<float n="2" alias="/fdm/jsbsim/fcs/yaw-input"/>
 				<float n="3" alias="/fdm/jsbsim/fcs/steer-deg"/>
 				<float n="4" alias="/fdm/jsbsim/extra/door-main-norm"/>
-				<float n="5" alias="/surface-positions/left-aileron-deg"/>
-				<float n="6" alias="/surface-positions/right-aileron-deg"/>
-				<float n="7" alias="/surface-positions/elevator-deg"/>
-				<float n="8" alias="/surface-positions/elevator-tab-deg"/>
-				<float n="9" alias="/surface-positions/rudder-deg"/>
 				<string alias="/sim/multiplay/callsign"/>
 			</generic>
 		</multiplay>
@@ -368,6 +363,10 @@
 		<engine n="0">
 			<egt-actual type="double">0</egt-actual>
 			<egt-bug type="double">1400</egt-bug>
+		</engine>
+		<engine n="3">
+			<n1 type="double">0</n1> <!-- Hack to bring left brake pedal over MP -->
+			<n2 type="double">0</n2> <!-- Hack to bring right brake pedal over MP -->
 		</engine>
 	</engines>
 	

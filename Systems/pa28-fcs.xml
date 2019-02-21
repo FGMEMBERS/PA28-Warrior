@@ -109,7 +109,19 @@
 				<min>-20</min>
 				<max>15</max>
 			</range>
-			<output>/surface-positions/left-aileron-deg</output>
+		</aerosurface_scale>
+		
+		<aerosurface_scale name="fcs/aileron-left-norm">
+			<input>fcs/aileron-left-deg</input>
+			<domain>
+				<min>-20</min>
+				<max>15</max>
+			</domain>
+			<range>
+				<min>-1.0</min>
+				<max>0.75</max>
+			</range>
+			<output>fcs/left-aileron-pos-norm</output>
 		</aerosurface_scale>
 		
 		<aerosurface_scale name="fcs/aileron-right-deg">
@@ -118,7 +130,19 @@
 				<min>-20</min>
 				<max>15</max>
 			</range>
-			<output>/surface-positions/right-aileron-deg</output>
+		</aerosurface_scale>
+		
+		<aerosurface_scale name="fcs/aileron-right-norm">
+			<input>fcs/aileron-right-deg</input>
+			<domain>
+				<min>-20</min>
+				<max>15</max>
+			</domain>
+			<range>
+				<min>-1.0</min>
+				<max>0.75</max>
+			</range>
+			<output>fcs/right-aileron-pos-norm</output>
 		</aerosurface_scale>
 	
 	</channel>
@@ -138,8 +162,8 @@
 			<table>
 				<independentVar lookup="row">velocities/vc-kts</independentVar>
 				<tableData>
-					15 0.0
-					25 1.0
+					15  0.0
+					25  1.0
 				</tableData>
 			</table>
 		</scheduled_gain> 
@@ -159,7 +183,20 @@
 				<min>-12</min>
 				<max>12</max>
 			</range>
-			<output>/surface-positions/elevator-deg</output>
+			<output>/surface-positions/elevator-pos-norm</output>
+		</aerosurface_scale>
+		
+		<aerosurface_scale name="fcs/elevator-norm">
+			<input>fcs/elevator-deg</input>
+			<domain>
+				<min>-12</min>
+				<max>12</max>
+			</domain>
+			<range>
+				<min>-1</min>
+				<max>1</max>
+			</range>
+			<output>fcs/elevator-pos-norm</output>
 		</aerosurface_scale>
 		
 		<fcs_function name="fcs/elevator-tab-deg">
@@ -173,12 +210,24 @@
 					<value>-3</value>
 				</sum>
 			</function>
-			<output>/surface-positions/elevator-tab-deg</output>
 			<clipto>
 				<min>-15</min>
 				<max>9</max>
 			</clipto>
 		</fcs_function>
+		
+		<aerosurface_scale name="fcs/elevator-tab-norm">
+			<input>fcs/elevator-tab-deg</input>
+			<domain>
+				<min>-15</min>
+				<max>9</max>
+			</domain>
+			<range>
+				<min>-1.0</min>
+				<max>0.6</max>
+			</range>
+			<output>fcs/speedbrake-pos-norm</output> <!-- Just to get it over MP -->
+		</aerosurface_scale>
 	
 	</channel>
 	
@@ -199,7 +248,19 @@
 				<min>-16</min>
 				<max>16</max>
 			</range>
-			<output>/surface-positions/rudder-deg</output>
+		</aerosurface_scale>
+		
+		<aerosurface_scale name="fcs/rudder-norm">
+			<input>fcs/rudder-deg</input>
+			<domain>
+				<min>-16</min>
+				<max>16</max>
+			</domain>
+			<range>
+				<min>1</min>
+				<max>-1</max>
+			</range>
+			<output>fcs/rudder-pos-norm</output>
 		</aerosurface_scale>
 	
 	</channel>
@@ -298,8 +359,14 @@
 	
 	<channel name="Brakes">
 		
-		<summer name="fcs/left-brake-summer">
+		<pure_gain name="fcs/left-brake-pedal">
 			<input>/controls/gear/brake-left</input>
+			<gain>1.0</gain>
+			<output>/engines/engine[3]/n1</output> <!-- Hack to bring left brake pedal over MP -->
+		</pure_gain>
+		
+		<summer name="fcs/left-brake-summer">
+			<input>fcs/left-brake-pedal</input>
 			<input>/controls/gear/brake-parking</input>
 			<clipto>
 				<min>0</min>
@@ -315,8 +382,14 @@
 			<output>fcs/left-brake-cmd-norm</output>
 		</switch>
 		
-		<summer name="fcs/right-brake-summer">
+		<pure_gain name="fcs/right-brake-pedal">
 			<input>/controls/gear/brake-right</input>
+			<gain>1.0</gain>
+			<output>/engines/engine[3]/n2</output> <!-- Hack to bring right brake pedal over MP -->
+		</pure_gain>
+		
+		<summer name="fcs/right-brake-summer">
+			<input>fcs/right-brake-pedal</input>
 			<input>/controls/gear/brake-parking</input>
 			<clipto>
 				<min>0</min>
