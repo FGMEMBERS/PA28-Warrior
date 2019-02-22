@@ -476,11 +476,11 @@
 			</key>
 			<key n="49">
 				<name>1</name>
-				<desc>Elevator trim down</desc>
+				<desc>Elevator trim up</desc>
 				<repeatable>true</repeatable>
 				<binding>
 					<command>nasal</command>
-					<script>controls.elevatorTrim(1);</script>
+					<script>controls.elevatorTrim(-1);</script>
 				</binding>
 				<mod-shift>
 					<desc>Look back left</desc>
@@ -493,11 +493,11 @@
 			</key>
 			<key n="55">
 				<name>7</name>
-				<desc>Elevator trim up</desc>
+				<desc>Elevator trim down</desc>
 				<repeatable>true</repeatable>
 				<binding>
 					<command>nasal</command>
-					<script>controls.elevatorTrim(-1);</script>
+					<script>controls.elevatorTrim(1);</script>
 				</binding>
 				<mod-shift>
 					<desc>Look front left</desc>
