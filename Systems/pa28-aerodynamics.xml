@@ -241,7 +241,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>aero/mag-beta-rad</property>
-				<value>0.0739</value>
+				<value>0.2139</value>
 			</product>
 		</function>
 		
@@ -427,7 +427,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/rudder-deg</property></toradians>
-				<value>0.05931</value>
+				<value>0.05984</value>
 			</product>
 		</function>
 	
@@ -545,7 +545,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/rudder-deg</property></toradians>
-				<value>0.02755</value>
+				<value>0.03755</value>
 			</product>
 		</function>
 		
@@ -595,7 +595,7 @@
 				<property>aero/function/qbar-propwash-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
-				<value>-0.025</value>
+				<value>-0.05</value>
 			</product>
 		</function> 
 		
