@@ -140,6 +140,19 @@
 							</script>
 						</binding>
 					</item>
+					<item>
+						<label>Repair Aircraft</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+							if (getprop("/fdm/jsbsim/position/wow") == 1) {
+								libraries.crashStress.reset();
+							} else {
+								gui.popupTip("How can you repair the aircraft in flight? Please land first! :)");
+							}
+							</script>
+						</binding>
+					</item>
 				</menu>
 				<menu n="103">
 					<label>How To..?</label>
@@ -272,6 +285,11 @@
 		
 		<multiplay>
 			<generic>
+				<int n="0" alias="/fdm/jsbsim/crash-stress/nose-damaged"/>
+				<int n="1" alias="/fdm/jsbsim/crash-stress/lwing-damaged"/>
+				<int n="2" alias="/fdm/jsbsim/crash-stress/rwing-damaged"/>
+				<int n="3" alias="/fdm/jsbsim/crash-stress/htail-damaged"/>
+				<int n="4" alias="/fdm/jsbsim/crash-stress/vtail-damaged"/>
 				<bool n="0" alias="/options/wheel-fairing"/>
 				<float n="0" alias="/fdm/jsbsim/fcs/aileron-yoke"/>
 				<float n="1" alias="/fdm/jsbsim/fcs/pitch-input"/>
@@ -378,6 +396,13 @@
 	
 	<fdm n="0">
 		<jsbsim n="0">
+			<crash-stress n="0">
+				<htail-damaged type="bool">0</htail-damaged>
+				<lwing-damaged type="bool">0</lwing-damaged>
+				<nose-damaged type="bool">0</nose-damaged>
+				<rwing-damaged type="bool">0</rwing-damaged>
+				<vtail-damaged type="bool">0</vtail-damaged>
+			</crash-stress>
 			<extra n="0">
 				<door-main-cmd type="double">0</door-main-cmd>
 			</extra>
@@ -804,17 +829,12 @@
 			<file>Aircraft/IDG-PA28X/Nasal/kcs55.nas</file>
 			<file>Aircraft/IDG-PA28X/Nasal/kma20.nas</file>
 			<file>Aircraft/IDG-PA28X/Nasal/zoom-views.nas</file>
+			<file>Aircraft/IDG-PA28X/Nasal/crash-stress.nas</file>
 			<script>
 				<![CDATA[ki266.new(0);
 				KCS55.new();]]>
 			</script>
 		</libraries>
-		<stec55x>
-			<file>Aircraft/IDG-PA28X/Nasal/stec-55x.nas</file>
-		</stec55x>
-		<gtx327>
-			<file>Aircraft/IDG-PA28X/Nasal/gtx-327.nas</file>
-		</gtx327>
 		<acconfig>
 			<file>Aircraft/IDG-PA28X/AircraftConfig/acconfig.nas</file>
 		</acconfig>
@@ -822,6 +842,12 @@
 			<file>Aircraft/IDG-PA28X/Nasal/electrical.nas</file>
 			<file>Aircraft/IDG-PA28X/Nasal/init.nas</file>
 		</systems>
+		<stec55x>
+			<file>Aircraft/IDG-PA28X/Nasal/stec-55x.nas</file>
+		</stec55x>
+		<gtx327>
+			<file>Aircraft/IDG-PA28X/Nasal/gtx-327.nas</file>
+		</gtx327>
 		<lights>
 			<file>Aircraft/IDG-PA28X/Nasal/light-manager.nas</file>
 		</lights>

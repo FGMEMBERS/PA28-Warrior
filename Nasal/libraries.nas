@@ -1,4 +1,4 @@
-# PA28-161 Libraries
+# PA28 Libraries
 # Joshua Davidson (it0uchpods)
 
 print("-----------------------------------------------------------------------------");
@@ -52,6 +52,7 @@ setlistener("/sim/sounde/knob", func {
 });
 
 var systemsInit = func {
+	crashStress.reset();
 	systems.ELEC.init();
 	systems.INIT.ENG();
 	systems.INIT.FUEL();

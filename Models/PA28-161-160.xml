@@ -39,6 +39,89 @@
 		</unload>
 	</nasal>
 	
+	<!-- Begin Crash and Stress -->
+	<animation>
+		<name>Nose Section</name>
+		<type>select</type>
+		<object-name>PropGroup</object-name>
+		<object-name>NoseGear</object-name>
+		<condition>
+			<not><property>sim/multiplay/generic/int[0]</property></not>
+		</condition>
+	</animation>
+	
+	<animation>
+		<name>Left Wing</name>
+		<type>select</type>
+		<object-name>LeftWingGroup</object-name>
+		<object-name>Left Strobe light ALS</object-name>
+		<object-name>Red nav light</object-name>
+		<object-name>Red nav light ALS</object-name>
+		<condition>
+			<not><property>sim/multiplay/generic/int[1]</property></not>
+		</condition>
+	</animation>
+	
+	<animation>
+		<name>Right Wing</name>
+		<type>select</type>
+		<object-name>RightWingGroup</object-name>
+		<object-name>Right Strobe light ALS</object-name>
+		<object-name>Green nav light</object-name>
+		<object-name>Green nav light ALS</object-name>
+		<condition>
+			<not><property>sim/multiplay/generic/int[2]</property></not>
+		</condition>
+	</animation>
+	
+	<animation>
+		<name>HTail</name>
+		<type>select</type>
+		<object-name>HTailGroup</object-name>
+		<condition>
+			<not><property>sim/multiplay/generic/int[3]</property></not>
+		</condition>
+	</animation>
+	
+	<animation>
+		<name>VTail</name>
+		<type>select</type>
+		<object-name>VTailGroup</object-name>
+		<object-name>White nav light ALS</object-name>
+		<object-name>Beacon light ALS</object-name>
+		<condition>
+			<not><property>sim/multiplay/generic/int[4]</property></not>
+		</condition>
+	</animation>
+	
+	<animation>
+		<name>Nose Gear</name>
+		<type>select</type>
+		<object-name>NoseGear</object-name>
+		<condition>
+			<property>gear/gear[0]/position-norm</property>
+		</condition>
+	</animation>
+	
+	<animation>
+		<name>Left Gear</name>
+		<type>select</type>
+		<object-name>LeftGear</object-name>
+		<condition>
+			<property>gear/gear[1]/position-norm</property>
+		</condition>
+	</animation>
+	
+	<animation>
+		<name>Right Gear</name>
+		<type>select</type>
+		<object-name>RightGear</object-name>
+		<condition>
+			<property>gear/gear[2]/position-norm</property>
+		</condition>
+	</animation>
+	<!-- End Crash and Stress -->
+	
 	<effect>
 		<condition>
 			<property>/sim/rendering/rembrandt/enabled</property>
@@ -1123,6 +1206,7 @@
 		<type>rotate</type>
 		<object-name>Rudder</object-name>
 		<object-name>TailNavLight</object-name>
+		<object-name>White nav light ALS</object-name>
 		<property>surface-positions/rudder-pos-norm</property>
 		<factor>16</factor>
 		<center>

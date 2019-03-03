@@ -6,6 +6,15 @@
 	
 	<channel name="Control Inputs">
 		
+		<switch name="position/wow">
+			<default value="0"/>
+			<test logic="OR" value="1">
+				gear/unit[0]/WOW eq 1
+				gear/unit[1]/WOW eq 1
+				gear/unit[2]/WOW eq 1
+			</test>
+		</switch>
+		
 		<actuator name="fcs/aileron-overpower">
 			<input>/controls/flight/aileron</input>
 			<rate_limit>0.1</rate_limit>
