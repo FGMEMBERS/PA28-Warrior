@@ -109,10 +109,10 @@ var system = {
 		# Update transponder modes
 		if (powerUpTest.getValue() == 0 and serviceable.getBoolValue()) {
 			if (modeKnob.getValue() != mode) {
-				system.setMode(mode);
+				me.setMode(mode);
 			}
 		} else {
-			system.setMode(0);
+			me.setMode(0);
 		}
 	},
 	setMode: func(m) {
@@ -172,5 +172,5 @@ var identChk = maketimer(0.5, func {
 	}
 });
 
-var update = maketimer(0.1, system.loop);
+var update = maketimer(0.1, system, system.loop);
 #setprop("/options/wip", 1); # This should be commented out, or it0uchpods is an idiot! :)
