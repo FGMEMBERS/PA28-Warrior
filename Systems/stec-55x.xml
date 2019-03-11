@@ -300,10 +300,10 @@
 		<gain>1.0</gain>
 		<input>
 			<condition>
-				<greater-than>
-					<property>/it-stec55x/nav/nav-course-reciprocal-cmd</property>
-					<value>360</value>
-				</greater-than>
+				<greater-than-equals>
+					<property>/it-autoflight/internal/heading-predicted-cmd</property>
+					<value>360.5</value>
+				</greater-than-equals>
 			</condition>
 			<expression>
 				<dif>
@@ -315,8 +315,8 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/it-stec55x/nav/nav-course-reciprocal-cmd</property>
-					<value>1</value>
+					<property>/it-autoflight/internal/heading-predicted-cmd</property>
+					<value>0.5</value>
 				</less-than>
 			</condition>
 			<expression>
@@ -870,7 +870,7 @@
 	</filter>
 
 	<filter>
-		<name>PRESSURE RATE DAMPER</name>
+		<name>PRESSURE RATE LAG</name>
 		<debug>false</debug>
 		<type>double-exponential</type>
 		<input>/it-stec55x/internal/pressure-rate-raw</input>
