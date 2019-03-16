@@ -6,7 +6,7 @@
 	
 	<effect>
 		<inherits-from>Effects/model-transparent</inherits-from>
-		<object-name>NSA360.glass</object-name>
+<!--		<object-name>NSA360.glass</object-name>-->
 		<object-name>heading.card</object-name>
 		<object-name>loc.scale</object-name>
 		<object-name>gs.scale</object-name>
@@ -70,8 +70,29 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>heading.card</object-name>
+		<object-name>heading.bug</object-name>
+		<object-name>cdi.needle.1</object-name>
+		<object-name>cdi.needle.2</object-name>
+		<object-name>loc.scale</object-name>
 		<property>instrumentation/heading-indicator/indicated-heading-deg</property>
 		<factor>-1</factor>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>-0.002834</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>heading.bug</object-name>
+		<property>it-stec55x/input/hdg</property>
+		<factor>1</factor>
 		<axis>
 			<x>-1</x>
 			<y>0</y>
@@ -90,7 +111,7 @@
 		<object-name>cdi.needle.2</object-name>
 		<object-name>loc.scale</object-name>
 		<property>instrumentation/nav[0]/radials/selected-deg</property>
-		<factor>-1</factor>
+		<factor>1</factor>
 		<axis>
 			<x>-1</x>
 			<y>0</y>
@@ -136,8 +157,24 @@
 			<button>3</button>
 			<repeatable>true</repeatable>
 			<binding>
+				<condition>
+					<not>
+						<property>devices/status/keyboard/shift</property>
+					</not>
+				</condition>
 				<command>property-adjust</command>
 				<property>instrumentation/heading-indicator/offset-deg</property>
+				<step>1</step>
+				<min>0</min>
+				<max>360</max>
+				<wrap>1</wrap>
+			</binding>
+			<binding>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>property-adjust</command>
+				<property>it-stec55x/input/hdg</property>
 				<step>1</step>
 				<min>0</min>
 				<max>360</max>
@@ -149,8 +186,24 @@
 			<button>4</button>
 			<repeatable>true</repeatable>
 			<binding>
+				<condition>
+					<not>
+						<property>devices/status/keyboard/shift</property>
+					</not>
+				</condition>
 				<command>property-adjust</command>
 				<property>instrumentation/heading-indicator/offset-deg</property>
+				<step>-1</step>
+				<min>0</min>
+				<max>360</max>
+				<wrap>1</wrap>
+			</binding>
+			<binding>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>property-adjust</command>
+				<property>it-stec55x/input/hdg</property>
 				<step>-1</step>
 				<min>0</min>
 				<max>360</max>
@@ -159,11 +212,26 @@
 		</action>
 		<hovered>
 			<binding>
+				<condition>
+					<not>
+						<property>devices/status/keyboard/shift</property>
+					</not>
+				</condition>
 				<command>set-tooltip</command>
-				<tooltip-id>heading-bug</tooltip-id>
+				<tooltip-id>heading-offset</tooltip-id>
 				<mapping>heading</mapping>
 				<label>Offset: %3d</label>
 				<property>instrumentation/heading-indicator/offset-deg</property>
+			</binding>
+			<binding>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>set-tooltip</command>
+				<tooltip-id>heading-bug</tooltip-id>
+				<mapping>heading</mapping>
+				<label>Heading Bug: %3d</label>
+				<property>it-stec55x/input/hdg</property>
 			</binding>
 		</hovered>
 	</animation>
@@ -172,6 +240,30 @@
 		<type>rotate</type>
 		<object-name>card.knob</object-name>
 		<property>instrumentation/heading-indicator/offset-deg</property>
+		<condition>
+			<not>
+				<property>devices/status/keyboard/shift</property>
+			</not>
+		</condition>
+		<factor>6</factor>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.03546</y-m>
+			<z-m>-0.034725</z-m>
+		</center>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>card.knob</object-name>
+		<property>it-stec55x/input/hdg</property>
+		<condition>
+			<property>devices/status/keyboard/shift</property>
+		</condition>
 		<factor>6</factor>
 		<axis>
 			<x>-1</x>
