@@ -323,12 +323,24 @@
 	</model>
 	
 	<model>
+		<name>blank</name>
+		<path>Aircraft/PA28-Warrior/Models/Instruments/blend/blend.ac</path>
+		<offsets>
+			<x-m>-1.73172</x-m>
+			<y-m>-0.168217</y-m>
+			<z-m>-0.007222</z-m>
+			<pitch-deg>-7.4</pitch-deg>
+		</offsets>
+	</model>
+	
+	<model>
 		<name>ELT</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/ELT/ArtexELT.xml</path>
 		<offsets>
-			<x-m>1.926</x-m>
-			<y-m>-0.074</y-m>
-			<z-m>0.016</z-m>
+			<x-m>-1.73172</x-m>
+			<y-m>-0.168217</y-m>
+			<z-m>-0.007222</z-m>
+			<pitch-deg>-7.4</pitch-deg>
 		</offsets>
 	</model>
 
@@ -467,9 +479,9 @@
 		<name>VOR2</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/ki209a/ki209a-2.xml</path>
 		<offsets>
-			<x-m>1.923</x-m>
+			<!--<x-m>1.923</x-m>
 			<y-m>-0.029</y-m>
-			<z-m>0.185</z-m>
+			<z-m>0.185</z-m>-->
 			<x-m>-1.734</x-m>
 			<y-m>-0.035613</y-m>
 			<z-m>0.160089</z-m>
@@ -535,7 +547,7 @@
 	
  	<model>
  		<name>HSI</name>
- 		<path>Aircraft/PA28-Warrior/Models/Instruments/kcs55/ki525a.xml</path>
+ 		<path>Aircraft/PA28-Warrior/Models/Instruments/NSA360/NSA360.xml</path>
  		<condition>
  			<equals>
  				<property>options/panel</property>
@@ -543,10 +555,7 @@
 			</equals>
 		</condition>
 		<offsets>
-			<x-m>1.926</x-m>
-			<y-m>-0.233</y-m>
-			<z-m>0.185</z-m>
-			<x-m>-1.728</x-m>
+			<x-m>-1.732</x-m>
 			<y-m>-0.241624</y-m>
 			<z-m>0.160061</z-m>
 		</offsets>
@@ -568,6 +577,17 @@
 		</offsets>
 	</model>
 	
+	<animation>
+		<type>select</type>
+		<object-name>dg.case</object-name>
+		<condition>
+			<equals>
+				<property>options/panel</property>
+				<value>DG Panel</value>
+			</equals>
+		</condition>
+	</animation>
+	
 	<model>
 		<name>VSI</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/vsi/vsi.xml</path>
@@ -581,11 +601,6 @@
 	<model>
 		<name>FUEL_OIL</name>
 		<path>Aircraft/PA28-Warrior/Models/Instruments/pa28-fuel-oil/pa28-fuel-oil.xml</path>
-		<offsets>
-			<x-m>1.922</x-m>
-			<y-m>-0.100</y-m>
-			<z-m>0.102</z-m>
-		</offsets>
 	</model>
 	
 	<model>

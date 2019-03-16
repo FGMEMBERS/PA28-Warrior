@@ -27,33 +27,33 @@
   <interpolation>
    <entry>
     <ind>0</ind>
-    <dep>-29</dep>
+    <dep>10</dep>
    </entry>
    <entry>
     <ind>5</ind>
-    <dep>-18</dep>
+    <dep>35</dep>
    </entry>
    <entry>
     <ind>10</ind>
-    <dep>-7</dep>
+    <dep>55</dep>
    </entry>
    <entry>
     <ind>15</ind>
-    <dep>5</dep>
+    <dep>62.5</dep>
    </entry>
    <entry>
     <ind>20</ind>
-    <dep>16</dep>
+    <dep>75</dep>
    </entry>
    <entry>
     <ind>24</ind>
-    <dep>27</dep>
+    <dep>80</dep>
    </entry>
   </interpolation>
   <center>
    <x-m>0</x-m>
-   <y-m>-0.081</y-m>
-   <z-m>-0.022</z-m>
+   <y-m>-0.200386</y-m>
+   <z-m>0.065223</z-m>
   </center>
   <axis>
    <x>-1</x>
@@ -69,25 +69,25 @@
   <interpolation>
    <entry>
     <ind>0</ind>
-    <dep>-36</dep>
+    <dep>0</dep>
    </entry>
    <entry>
     <ind>75</ind>
-    <dep>-34</dep>
+    <dep>10.71</dep>
    </entry>
    <entry>
     <ind>180</ind>
-    <dep>4</dep>
+    <dep>46.6</dep>
    </entry>
    <entry>
     <ind>260</ind>
-    <dep>29</dep>
+    <dep>72.23</dep>
    </entry>
   </interpolation>
   <center>
    <x-m>0</x-m>
-   <y-m>-0.039</y-m>
-   <z-m>-0.022</z-m>
+   <y-m>-0.165716</y-m>
+   <z-m>0.065223</z-m>
   </center>
   <axis>
    <x>-1</x>
@@ -103,25 +103,33 @@
   <interpolation>
    <entry>
     <ind>0</ind>
-    <dep>-32</dep>
+    <dep>0</dep>
+   </entry>
+   <entry>
+    <ind>0.5</ind>
+    <dep>6.3</dep>
    </entry>
    <entry>
     <ind>5</ind>
-    <dep>5</dep>
+    <dep>28.12</dep>
    </entry>
    <entry>
     <ind>8</ind>
-    <dep>32</dep>
+    <dep>45.41</dep>
    </entry>
    <entry>
     <ind>10</ind>
-    <dep>44</dep>
+    <dep>52.9</dep>
+   </entry>
+   <entry>
+    <ind>15</ind>
+    <dep>77</dep>
    </entry>
   </interpolation>
   <center>
    <x-m>0</x-m>
-   <y-m>-0.002</y-m>
-   <z-m>-0.014</z-m>
+   <y-m>-0.130707</y-m>
+   <z-m>0.065223</z-m>
   </center>
   <axis>
    <x>-1</x>
@@ -137,29 +145,29 @@
   <interpolation>
    <entry>
     <ind>0</ind>
-    <dep>-29</dep>
+    <dep>11.33</dep>
    </entry>
    <entry>
     <ind>25</ind>
-    <dep>-21</dep>
+    <dep>21.79</dep>
    </entry>
    <entry>
     <ind>60</ind>
-    <dep>3</dep>
+    <dep>42.47</dep>
    </entry>
    <entry>
     <ind>90</ind>
-    <dep>22</dep>
+    <dep>58.27</dep>
    </entry>
    <entry>
     <ind>120</ind>
-    <dep>30</dep>
+    <dep>64.07</dep>
    </entry>
   </interpolation>
   <center>
    <x-m>0</x-m>
-   <y-m>0.041</y-m>
-   <z-m>-0.022</z-m>
+   <y-m>-0.094166</y-m>
+   <z-m>0.065223</z-m>
   </center>
   <axis>
    <x>-1</x>
@@ -175,33 +183,33 @@
   <interpolation>
    <entry>
     <ind>0</ind>
-    <dep>-29</dep>
+    <dep>10</dep>
    </entry>
    <entry>
     <ind>5</ind>
-    <dep>-18</dep>
+    <dep>35</dep>
    </entry>
    <entry>
     <ind>10</ind>
-    <dep>-7</dep>
+    <dep>55</dep>
    </entry>
    <entry>
     <ind>15</ind>
-    <dep>5</dep>
+    <dep>62.5</dep>
    </entry>
    <entry>
     <ind>20</ind>
-    <dep>16</dep>
+    <dep>75</dep>
    </entry>
    <entry>
     <ind>24</ind>
-    <dep>27</dep>
+    <dep>80</dep>
    </entry>
   </interpolation>
   <center>
    <x-m>0</x-m>
-   <y-m>0.082</y-m>
-   <z-m>-0.022</z-m>
+   <y-m>-0.061635</y-m>
+   <z-m>0.065223</z-m>
   </center>
   <axis>
    <x>-1</x>

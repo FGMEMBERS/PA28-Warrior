@@ -27,9 +27,9 @@
 			<z>0.0</z>
 		</axis>
 		<center>
-			<x-m>-0.00578</x-m>
+			<x-m>-1.7556</x-m>
 			<y-m>0.0</y-m>
-			<z-m>0.0</z-m>
+			<z-m>0.06722</z-m>
 		</center>
 	</animation>
 	
@@ -311,9 +311,9 @@
 			<z>0.0</z>
 		</axis>
 		<center>
-			<x-m>-0.00578</x-m>
-			<y-m>0.00</y-m>
-			<z-m>-0.0</z-m>
+			<x-m>-1.7556</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.06722</z-m>
 		</center>
 	</animation>
 	
