@@ -16,7 +16,8 @@
 	
 	<animation>
 		<type>select</type>
-		<object-name>AP</object-name>
+		<object-name>APSW</object-name>
+		<object-name>APBase</object-name>
 		<condition>
 			<not-equals>
 				<property>it-stec55x/settings/fd-equipped</property>
@@ -27,13 +28,25 @@
 	
 	<animation>
 		<type>select</type>
-		<object-name>APFD</object-name>
+		<object-name>APFDSW</object-name>
+		<object-name>APFDBase</object-name>
 		<condition>
 			<equals>
 				<property>it-stec55x/settings/fd-equipped</property>
 				<value>1</value>
 			</equals>
 		</condition>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>TrimSW</object-name>
+		<object-name>TrimBase</object-name>
+		<property>it-stec55x/settings/fd-equipped</property>
+		<factor>-0.0111</factor>
+		<axis>
+			<y>1</y>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -101,8 +114,8 @@
 			<z>0</z>
 		</axis>
 		<center>
-			<x-m>-1.73276</x-m>
-			<z-m>0.086421</z-m>
+			<x-m>-1.73278</x-m>
+			<z-m>0.086352</z-m>
 		</center>
 	</animation>
 	
@@ -110,15 +123,15 @@
 		<type>rotate</type>
 		<object-name>APFDSW</object-name>
 		<property>it-stec55x/input/apfd-master-sw</property>
-		<factor>16</factor>
+		<factor>-23.5</factor>
 		<axis>
 			<x>0</x>
-			<y>0</y>
-			<z>1</z>
+			<y>1</y>
+			<z>0</z>
 		</axis>
 		<center>
-			<x-m>-1.73276</x-m>
-			<z-m>0.086421</z-m>
+			<x-m>-1.73278</x-m>
+			<z-m>0.086352</z-m>
 		</center>
 	</animation>
 	
@@ -151,8 +164,8 @@
 			<z>0</z>
 		</axis>
 		<center>
-			<x-m>-1.73276</x-m>
-			<z-m>0.086421</z-m>
+			<x-m>-1.73278</x-m>
+			<z-m>0.086352</z-m>
 		</center>
 	</animation>
 

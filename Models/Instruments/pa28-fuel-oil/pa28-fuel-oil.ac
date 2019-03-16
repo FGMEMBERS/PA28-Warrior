@@ -5,7 +5,7 @@ OBJECT world
 name "Blender_export__pa28-fuel-oil.ac"
 kids 6
 OBJECT poly
-name "Cube.013"
+name "fueloil.bg"
 loc -1.8331681 0.0759723 -0.3836470
 crease 35.0
 texture "fuel-oil.png"

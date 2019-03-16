@@ -15,6 +15,8 @@
 		<object-name>Door</object-name>
 		<object-name>GearSub</object-name>
 		<object-name>Spinner</object-name>
+		<object-name>doorF</object-name>
+		<object-name>doorB</object-name>
 		<property-base>sim/model/livery</property-base>
 		<texture-prop>texture</texture-prop>
 		<texture>IDG-PA28XII.png</texture>
@@ -46,6 +48,8 @@
 		<object-name>propblur</object-name>
 		<object-name>propdisc</object-name>
 		<object-name>placards_transparent</object-name>
+		<object-name>tailnav.glass</object-name>
+		<object-name>beacon.glass</object-name>
 	</effect>
 	
 	<effect>
@@ -66,6 +70,8 @@
 		<object-name>Propeller</object-name>
 		<object-name>VHFAntenna.1</object-name>
 		<object-name>VHFAntenna.2</object-name>
+		<object-name>doorF</object-name>
+		<object-name>doorB</object-name>
 	</effect>
 	
 	<!--animation>
@@ -101,9 +107,9 @@
 		<name>PEDALS.L</name>
 		<path>Aircraft/IDG-PA28X/Models/Pedals/Pedals-L.xml</path>
 		<offsets>
-			<x-m>1.65</x-m>
+			<x-m>-2.0</x-m>
 			<y-m>-0.315</y-m>
-			<z-m>-0.36</z-m>
+			<z-m>-0.31</z-m>
 		</offsets>
 	</model>
 	
@@ -111,9 +117,9 @@
 		<name>PEDALS.R</name>
 		<path>Aircraft/IDG-PA28X/Models/Pedals/Pedals-R.xml</path>
 		<offsets>
-			<x-m>1.65</x-m>
+			<x-m>-2.0</x-m>
 			<y-m>0.31</y-m>
-			<z-m>-0.36</z-m>
+			<z-m>-0.31</z-m>
 		</offsets>
 	</model>
 	
@@ -121,9 +127,9 @@
 		<name>FLAP-TRIM</name>
 		<path>Aircraft/IDG-PA28X/Models/FlapTrim/FlapTrim.xml</path>
 		<offsets>
-			<x-m>2.27</x-m>
+			<x-m>-1.4176389</x-m>
 			<y-m>0.0</y-m>
-			<z-m>-0.36</z-m>
+			<z-m>-0.41549</z-m>
 		</offsets>
 	</model>
 	
@@ -133,9 +139,9 @@
 		<name>Red nav light</name>
 		<path>Aircraft/IDG-PA28X/Models/light/RedLight.xml</path>
 		<offsets>
-			<x-m>2.68980</x-m>
-			<y-m>-5.18</y-m>
-			<z-m>0.11596</z-m>
+			<x-m>-0.767037</x-m>
+			<y-m>-5.36</y-m>
+			<z-m>0.188891</z-m>
 		</offsets>
 	</model>
 	
@@ -143,9 +149,9 @@
 		<name>Green nav light</name>
 		<path>Aircraft/IDG-PA28X/Models/light/GreenLight.xml</path>
 		<offsets>
-			<x-m>2.68980</x-m>
-			<y-m>5.18</y-m>
-			<z-m>0.11596</z-m>
+			<x-m>-0.767037</x-m>
+			<y-m>5.36</y-m>
+			<z-m>0.188891</z-m>
 		</offsets>
 	</model>
 	
@@ -153,9 +159,9 @@
 		<name>Red nav light ALS</name>
 		<path>Aircraft/IDG-PA28X/Models/light/ALS/rednav.xml</path>
 		<offsets>
-			<x-m>2.68980</x-m>
-			<y-m>-5.18</y-m>
-			<z-m>0.11596</z-m>
+			<x-m>-0.767037</x-m>
+			<y-m>-5.36</y-m>
+			<z-m>0.188891</z-m>
 		</offsets>
 	</model>
 	
@@ -163,9 +169,9 @@
 		<name>Green nav light ALS</name>
 		<path>Aircraft/IDG-PA28X/Models/light/ALS/greennav.xml</path>
 		<offsets>
-			<x-m>2.68980</x-m>
-			<y-m>5.18</y-m>
-			<z-m>0.11596</z-m>
+			<x-m>-0.767037</x-m>
+			<y-m>5.36</y-m>
+			<z-m>0.188891</z-m>
 		</offsets>
 	</model>
 	
@@ -173,9 +179,9 @@
 		<name>White nav light ALS</name>
 		<path>Aircraft/IDG-PA28X/Models/light/ALS/tailnav.xml</path>
 		<offsets>
-			<x-m>6.95005</x-m>
-			<y-m>0.002974</y-m>
-			<z-m>1.49269</z-m>
+			<x-m>3.62153</x-m>
+			<y-m>-0.0358</y-m>
+			<z-m>1.39111</z-m>
 		</offsets>
 	</model>
 
@@ -183,9 +189,9 @@
 		<name>Beacon light ALS</name>
 		<path>Aircraft/IDG-PA28X/Models/light/ALS/beacon.xml</path>
 		<offsets>
-			<x-m>6.49112</x-m>
-			<y-m>0.007723</y-m>
-			<z-m>1.72265</z-m>
+			<x-m>3.19877</x-m>
+			<y-m>-0.036049</y-m>
+			<z-m>1.56529</z-m>
 		</offsets>
 	</model>
 
@@ -193,9 +199,9 @@
 		<name>Left Strobe light ALS</name>
 		<path>Aircraft/IDG-PA28X/Models/light/ALS/left-strobe.xml</path>
 		<offsets>
-			<x-m>2.72</x-m>
-			<y-m>-5.18</y-m>
-			<z-m>0.11596</z-m>
+			<x-m>-0.767037</x-m>
+			<y-m>-5.36</y-m>
+			<z-m>0.188891</z-m>
 		</offsets>
 	</model>
 
@@ -203,9 +209,9 @@
 		<name>Right Strobe light ALS</name>
 		<path>Aircraft/IDG-PA28X/Models/light/ALS/right-strobe.xml</path>
 		<offsets>
-			<x-m>2.72</x-m>
-			<y-m>5.18</y-m>
-			<z-m>0.11596</z-m>
+			<x-m>-0.767037</x-m>
+			<y-m>5.36</y-m>
+			<z-m>0.188891</z-m>
 		</offsets>
 	</model>
 
@@ -213,9 +219,9 @@
 		<name>LandingLight-ALS</name>
 		<path>Aircraft/IDG-PA28X/Models/light/ALS/landinglight.xml</path>
 		<offsets>
-		<x-m>0.5</x-m>
+		<x-m>-3.09914</x-m>
 		<y-m>0.0</y-m>
-		<z-m>-0.225</z-m>
+		<z-m>-0.36843</z-m>
 		<pitch-deg>-15.00</pitch-deg>
 		</offsets>
 	</model>
@@ -224,9 +230,9 @@
 		<name>LandingLight-Left</name>
 		<path>Aircraft/IDG-PA28X/Models/light/Landinglight.xml</path>
 		<offsets>
-		<x-m>0.5</x-m>
+		<x-m>-3.09914</x-m>
 		<y-m>0.0</y-m>
-		<z-m>-0.225</z-m>
+		<z-m>-0.36843</z-m>
 		<pitch-deg>-15.00</pitch-deg>
 		</offsets>
 	</model>
@@ -264,9 +270,9 @@
 		<path>Aircraft/IDG-PA28X/Models/Effects/tyre-smoke-nose.xml</path>
 		<name>tyre-smoke-n</name>
 		<offsets>
-			<x-m>1.062446</x-m>
+			<x-m>-2.58677</x-m>
 			<y-m>0</y-m>
-			<z-m>-1.075437</z-m>
+			<z-m>-1.27172</z-m>
 		</offsets>
 	</model>
 
@@ -274,9 +280,9 @@
 		<path>Aircraft/IDG-PA28X/Models/Effects/tyre-smoke-right.xml</path>
 		<name>tyre-smoke-r</name>
 		<offsets>
-			<x-m>2.851301</x-m>
-			<y-m>-1.443750</y-m>
-			<z-m>-1.075437</z-m>
+			<x-m>-0.706201</x-m>
+			<y-m> 1.51341</y-m>
+			<z-m>-1.09956</z-m>
 		</offsets>
 	</model>
 
@@ -284,9 +290,9 @@
 		<path>Aircraft/IDG-PA28X/Models/Effects/tyre-smoke-left.xml</path>
 		<name>tyre-smoke-l</name>
 		<offsets>
-			<x-m>2.851301</x-m>
-			<y-m>1.443750</y-m>
-			<z-m>-1.075437</z-m>
+			<x-m>-0.706201</x-m>
+			<y-m>-1.51341</y-m>
+			<z-m>-1.09956</z-m>
 		</offsets>
 	</model>
 
@@ -294,9 +300,9 @@
 		<name>YokeLeft</name>
 		<path>Aircraft/IDG-PA28X/Models/yoke/yoke-l.xml</path>
 		<offsets>
-			<x-m>1.930</x-m>
-			<y-m>-0.235</y-m>
-			<z-m>0.102</z-m>
+			<x-m>-1.72869</x-m>
+			<y-m>-0.259453</y-m>
+			<z-m> 0.076453</z-m>
 		</offsets>
 	</model>
 
@@ -304,9 +310,9 @@
 		<name>YokeRight</name>
 		<path>Aircraft/IDG-PA28X/Models/yoke/yoke-r.xml</path>
 		<offsets>
-			<x-m>1.930</x-m>
-			<y-m>0.245</y-m>
-			<z-m>0.102</z-m>
+			<x-m>-1.72869</x-m>
+			<y-m> 0.248367</y-m>
+			<z-m> 0.076453</z-m>
 		</offsets>
 	</model>
 
@@ -348,13 +354,13 @@
 		<name>COMP</name>
 		<path>Aircraft/IDG-PA28X/Models/Instruments/comp/comp.xml</path>
 		<offsets>
-			<x-m>1.930</x-m>
-			<y-m>0.000</y-m>
-			<z-m>0.432</z-m>
+			<x-m>-1.67249</x-m>
+			<y-m>-0.03013</y-m>
+			<z-m>0.427</z-m>
 		</offsets>
 	</model>
 
-	<model>
+	<!--<model>
 		<name>deviation</name>
 		<path>Aircraft/IDG-PA28X/Models/Instruments/deviation/deviation.xml</path>
 		<offsets>
@@ -364,9 +370,9 @@
 			<pitch-deg>-15</pitch-deg>
 			<roll-deg>-3</roll-deg>
 		</offsets>
-	</model>
+	</model>-->
 
-	<model>
+	<!--<model>
 		<name>casque</name>
 		<path>Aircraft/IDG-PA28X/Models/Instruments/Casque/casque.xml</path>
 		<offsets>
@@ -376,27 +382,17 @@
 			<roll-deg>-3</roll-deg>
 			<pitch-deg>1</pitch-deg>
 		</offsets>
-	</model>
-
-	<model>
-		<name>oat</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/oat/oat_m303.xml</path>
-		<offsets>
-			<x-m>1.925</x-m>
-			<y-m>0.423</y-m>
-			<z-m>0.178</z-m>
-		</offsets>
-	</model>
+	</model>-->
 
 	<model>
 		<name>charts</name>
 		<path>Aircraft/IDG-PA28X/Models/charts/charts.xml</path>
 		<offsets>
-			<x-m>1.880</x-m>
-			<y-m>0.310</y-m>
-			<z-m>0.0720</z-m>
-			<pitch-deg>45</pitch-deg>
-			<yaw-deg>130</yaw-deg>
+			<x-m>-1.2</x-m>
+			<y-m>0.280277</y-m>
+			<z-m>-0.29</z-m>
+			<pitch-deg>7</pitch-deg>
+			<heading-deg>-10</heading-deg>
 			<roll-deg>-3</roll-deg>
 		</offsets>
 	</model>
@@ -433,7 +429,7 @@
 		</offsets>
 	</model>
 	
-	<model>
+	<!--<model>
 		<name>ADF1</name>
 		<path>Aircraft/IDG-PA28X/Models/Instruments/adfki228/ki227_228.xml</path>
 		<offsets>
@@ -441,7 +437,7 @@
 			<y-m>-0.433</y-m>
 			<z-m>0.185</z-m>
 		</offsets>
-	</model>
+	</model>-->
 	
 	<model>
 		<name>VOR1</name>
@@ -479,9 +475,6 @@
 		<name>VOR2</name>
 		<path>Aircraft/IDG-PA28X/Models/Instruments/ki209a/ki209a-2.xml</path>
 		<offsets>
-			<!--<x-m>1.923</x-m>
-			<y-m>-0.029</y-m>
-			<z-m>0.185</z-m>-->
 			<x-m>-1.734</x-m>
 			<y-m>-0.035613</y-m>
 			<z-m>0.160089</z-m>
@@ -502,35 +495,125 @@
 		<name>CLOCK</name>
 		<path>Aircraft/IDG-PA28X/Models/Instruments/Clock/Clock.xml</path>
 		<offsets>
-			<x-m>1.925</x-m>
-			<y-m>-0.4235</y-m>
-			<z-m>0.259</z-m>
+			<x-m>-1.72955</x-m>
+			<y-m>-0.419649</y-m>
+			<z-m>0.231915</z-m>
 		</offsets>
 	</model>
 	
-	<model>
-		<name>Avionics</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/avionics-sw/avionics-sw.xml</path>
-		<offsets>
-			<x-m>1.927</x-m>
-			<y-m>0.455</y-m>
-			<z-m>0.110</z-m>
-			<roll-deg>90</roll-deg>
-		</offsets>
-	</model>
+	<!--Avionics Switches-->
+	<animation>
+		<type>pick</type>
+		<object-name>avionics.primary.switch</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+					<property>controls/switches/avionics-master</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/switch1", 1);</script>
+			</binding>
+		</action>
+	</animation>
 	
+	<animation>
+		<type>rotate</type>
+		<object-name>avionics.primary.switch</object-name>
+		<property>controls/switches/avionics-master</property>
+		<factor>-32</factor>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-1.7332</x-m>
+			<z-m>0.075774</z-m>
+		</center>
+	</animation>
+	
+	<!--Left Switch Panel-->
 	<model>
 		<name>APSW</name>
 		<path>Aircraft/IDG-PA28X/Models/Instruments/ap-sw/ap-sw.xml</path>
 	</model>
+	<animation>
+		<type>select</type>
+		<object-name>AP.placard</object-name>
+		<condition>
+			<not-equals>
+				<property>it-stec55x/settings/fd-equipped</property>
+				<value>1</value>
+			</not-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>APFD.placard</object-name>
+		<condition>
+			<equals>
+				<property>it-stec55x/settings/fd-equipped</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>paneldim.knob</object-name>
+		<property>controls/switches/panel-lights-factor</property>
+		<factor>-270</factor>
+		<axis>
+			<x>1</x>
+			<y>0.0</y>
+			<z>0.0</z>
+		</axis>
+		<center>
+			<y-m>-0.389511</y-m>
+			<z-m>0.085999</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>paneldim.knob</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/switches/panel-lights-factor</property>
+				<step>0.2</step>
+				<min>0</min>
+				<max>1</max>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/switches/panel-lights-factor</property>
+				<step>-0.2</step>
+				<min>0</min>
+				<max>1</max>
+			</binding>
+		</action>
+	</animation>
 	
 	<model>
 		<name>NAVSW</name>
 		<path>Aircraft/IDG-PA28X/Models/Instruments/nav-src-sw/nav-src-sw.xml</path>
 		<offsets>
-			<x-m>1.927</x-m>
-			<y-m>-0.42</y-m>
-			<z-m>0.110</z-m>
+			<x-m>-1.72725</x-m>
+			<y-m>0.215625</y-m>
+			<z-m>0.275886</z-m>
 			<roll-deg>90</roll-deg>
 		</offsets>
 	</model>
@@ -600,31 +683,21 @@
 	<model>
 		<name>FUEL_OIL</name>
 		<path>Aircraft/IDG-PA28X/Models/Instruments/pa28-fuel-oil/pa28-fuel-oil.xml</path>
-		<offsets>
-			<x-m>1.922</x-m>
-			<y-m>-0.100</y-m>
-			<z-m>0.102</z-m>
-		</offsets>
->>>>>>> 07da35e5abb8a45494519ac3c1f03cedfffdb8af:Models/PA28-161-160.xml
 	</model>
 	
 	<model>
-		<name>EGT</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/egt/egt.xml</path>
-		<offsets>
-			<x-m>1.925</x-m>
-			<y-m>-0.2805</y-m>
-			<z-m>0.0235</z-m>
-		</offsets>
+		<name>CircuitBreakers</name>
+		<path>Aircraft/IDG-PA28X/Models/CircuitBreakers/circuitbreakers.xml</path>
 	</model>
+	
 	
 	<model>
 		<name>Primer</name>
 		<path>Aircraft/IDG-PA28X/Models/PrimerPump/primer.xml</path>
 		<offsets>
-			<x-m>1.925</x-m>
-			<y-m>-0.0125</y-m>
-			<z-m>0.01567</z-m>
+			<x-m>-1.73327</x-m>
+			<y-m>-0.029056</y-m>
+			<z-m>0.013835</z-m>
 		</offsets>
 	</model>
 	
@@ -632,13 +705,14 @@
 		<name>AMPVOL</name>
 		<path>Aircraft/IDG-PA28X/Models/Instruments/BatteryGauge/BatteryGauge.xml</path>
 		<offsets>
-			<x-m>1.917</x-m>
-			<y-m>0.1775</y-m>
-			<z-m>0.0155</z-m>
+			<x-m>-1.743</x-m>
+			<y-m>0.170712</y-m>
+			<z-m>-0.006115</z-m>
+			<pitch-deg>-7</pitch-deg>
 		</offsets>
 	</model>
 	
-	<model>
+	<!--<model>
 		<name>Vacuum</name>
 		<path>Aircraft/IDG-PA28X/Models/Instruments/vac/vac.xml</path>
 		<offsets>
@@ -646,7 +720,7 @@
 			<y-m>0.436</y-m>
 			<z-m>0.237</z-m>
 		</offsets>
-	</model>
+	</model>-->
 	
 	<model>
 		<name>mags</name>
@@ -659,13 +733,36 @@
 		</offsets>
 	</model>
 	
+
+	<!--<model>
+		<name>oat</name>TODO find/make EGT/OHT instrument
+		<path>Aircraft/IDG-PA28X/Models/Instruments/oat/oat_m303.xml</path>
+		<offsets>
+			<x-m>-1.73191</x-m>
+			<y-m>-0.296079</y-m>
+			<z-m>-0.006115</z-m>
+			<pitch-deg>-7</pitch-deg>
+		</offsets>
+	</model>-->
 	<model>
-		<name>HOBBS</name>
+		<name>EGT</name>
+		<path>Aircraft/IDG-PA28X/Models/Instruments/egt/egt.xml</path>
+		<offsets>
+			<x-m>-1.73191</x-m>
+			<y-m>-0.296079</y-m>
+			<z-m>-0.006115</z-m>
+			<pitch-deg>-7</pitch-deg>
+		</offsets>
+	</model>
+	
+	<model>
+		<name>HOBBS</name> <!--TODO find/make instrument-->
 		<path>Aircraft/IDG-PA28X/Models/Instruments/Hobbs/HobbsMeter.xml</path>
 		<offsets>
-			<x-m>1.930</x-m>
-			<y-m>-0.003</y-m>
-			<z-m>0.331</z-m>
+			<x-m>-1.73191</x-m>
+			<y-m>-0.363777</y-m>
+			<z-m>-0.006115</z-m>
+			<pitch-deg>-7</pitch-deg>
 		</offsets>
 	</model>
 	
@@ -692,16 +789,26 @@
 	</model>
 	
 	<model>
-		<name>STEC-55X</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/stec-55x/stec-55x.xml</path>
+		<name>GNS530</name>
+		<path>Aircraft/IDG-PA28X/Models/Instruments/GNS530/GNS530.xml</path>
 		<offsets>
-			<x-m>1.925</x-m>
-			<y-m>0.124</y-m>
-			<z-m>0.213</z-m>
+			<x-m>-1.73</x-m>
+			<y-m>0.10665</y-m>
+			<z-m>0.215</z-m>
 		</offsets>
 	</model>
 	
 	<model>
+		<name>STEC-55X</name>
+		<path>Aircraft/IDG-PA28X/Models/Instruments/stec-55x/stec-55x.xml</path>
+		<offsets>
+			<x-m>-1.73</x-m>
+			<y-m>0.10665</y-m>
+			<z-m>0.137551</z-m>
+		</offsets>
+	</model>
+	
+	<!--<model>
 		<name>kma20</name>
 		<path>Aircraft/IDG-PA28X/Models/Instruments/kma20/kma20.xml</path>
 		<offsets>
@@ -709,7 +816,7 @@
 			<y-m>0.285</y-m>
 			<z-m>0.226</z-m>
 		</offsets>
-	</model>
+	</model>-->
 	
 	<model>
 		<name>dme</name>
@@ -721,7 +828,7 @@
 		</offsets>
 	</model>
 	
-	<model>
+	<!--<model>
 		<name>kt70</name>
 		<path>Aircraft/IDG-PA28X/Models/Instruments/kt70/kt70.xml</path>
 		<condition>
@@ -732,9 +839,9 @@
 			<y-m>0.285</y-m>
 			<z-m>0.27</z-m>
 		</offsets>
-	</model>
+	</model>-->
 	
-	<model>
+	<!--<model>
 		<name>gtx-327</name>
 		<path>Aircraft/IDG-PA28X/Models/Instruments/gtx-327/gtx-327.xml</path>
 		<condition>
@@ -745,8 +852,8 @@
 			<y-m>0.285</y-m>
 			<z-m>0.271</z-m>
 		</offsets>
-	</model>
-	
+	</model>-->
+	<!--
 	<model>
 		<name>kr87</name>
 		<path>Aircraft/IDG-PA28X/Models/Instruments/kr87-adf/kr87.xml</path>
@@ -755,7 +862,7 @@
 			<y-m>0.124</y-m>
 			<z-m>0.173</z-m>
 		</offsets>
-	</model>
+	</model>-->
 	
 	<animation>
 		<name>InstrumentGroup</name>
@@ -853,21 +960,21 @@
 			<pitch-deg>90</pitch-deg>
 			<roll-deg>180</roll-deg>
 			<heading-deg>90</heading-deg>
-			<x-m>1.94707</x-m>
-			<y-m>-0.55448</y-m>
-			<z-m>-0.21952</z-m>
+			<x-m>-1.72059</x-m>
+			<y-m>-0.54</y-m>
+			<z-m>-0.234251</z-m>
 		</offsets>
 	</model>
 
-	<!--animation>
+	<animation>
 		<type>rotate</type>
 		<object-name>ParkingBrakeControl</object-name>
 		<factor>35</factor>
 		<property>fdm/jsbsim/fcs/parking-brake-lever</property>
 		<center>
-			<x-m>1.891</x-m>
+			<x-m>-1.7506</x-m><!--TODO check coordinates-->
 			<y-m>-0.0</y-m>
-			<z-m>-0.0616</z-m>
+			<z-m>-0.146144</z-m>
 		</center>
 		<axis>
 			<x>0.0</x>
@@ -887,7 +994,7 @@
 				<property>controls/gear/brake-parking</property>
 			</binding>
 		</action>
-	</animation-->
+	</animation>
 
 	<!--animation>
 		<type>pick</type>
@@ -915,17 +1022,17 @@
 				<property>fdm/jsbsim/extra/door-main-cmd</property>
 			</binding>
 		</action>
-	</animation>
+	</animation>-->
 
 	<animation>
 		<type>rotate</type>
-		<object-name>Throttle</object-name>
+		<object-name>throttle.lever</object-name>
 		<property>fdm/jsbsim/fcs/throttle-cmd-lag</property>
-		<factor>47</factor>
+		<factor>59.6</factor>
 		<center>
-			<x-m>1.937</x-m>
+			<x-m>-1.72094</x-m>
 			<y-m>0.0</y-m>
-			<z-m>-0.02758</z-m>
+			<z-m>-0.052203</z-m>
 		</center>
 		<axis>
 			<x>0.0</x>
@@ -936,7 +1043,7 @@
 
 	<animation>
 		<type>pick</type>
-		<object-name>Throttle</object-name>
+		<object-name>throttle.lever</object-name>
 		<action>
 			<button>0</button>
 			<button>3</button>
@@ -967,13 +1074,13 @@
 
 	<animation>
 		<type>rotate</type>
-		<object-name>Mixture</object-name>
+		<object-name>mixture.lever</object-name>
 		<property>fdm/jsbsim/fcs/mixture-cmd-lag</property>
-		<factor>47</factor>
+		<factor>59.6</factor>
 		<center>
-			<x-m>1.937</x-m>
+			<x-m>-1.72094</x-m>
 			<y-m>0.0</y-m>
-			<z-m>-0.02758</z-m>
+			<z-m>-0.052203</z-m>
 		</center>
 		<axis>
 			<x>0.0</x>
@@ -984,7 +1091,7 @@
 
 	<animation>
 		<type>pick</type>
-		<object-name>Mixture</object-name>
+		<object-name>mixture.lever</object-name>
 		<action>
 			<button>0</button>
 			<button>3</button>
@@ -1015,15 +1122,13 @@
 
 	<animation>
 		<type>rotate</type>
-		<object-name>CarbHeatKnob</object-name>
-		<object-name>CH-Lever</object-name>
+		<object-name>carbheat.lever</object-name>
 		<property>fdm/jsbsim/fcs/carb-heat-lever</property>
-		<factor>100</factor>
-		<offset-deg>-50</offset-deg>
+		<factor>80</factor>
 		<center>
-			<x-m>1.92344</x-m>
+			<x-m>-1.7546</x-m>
 			<y-m>0.0</y-m>
-			<z-m>0.01032</z-m>
+			<z-m>-0.005097</z-m>
 		</center>
 		<axis>
 			<x>0.0</x>
@@ -1034,8 +1139,7 @@
 
 	<animation>
 		<type>pick</type>
-		<object-name>CarbHeatKnob</object-name>
-		<object-name>CH-Lever</object-name>
+		<object-name>carbheat.lever</object-name>
 		<action>
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
@@ -1044,7 +1148,65 @@
 				<property>controls/anti-ice/engine[0]/carb-heat-cmd</property>
 			</binding>
 		</action>
-	</animation-->
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>cabinheat.lever</object-name>
+		<property>controls/anti-ice/cabin-heat-cmd</property>
+		<factor>57.8</factor>
+		<center>
+			<x-m>-1.76583</x-m>
+			<y-m>0.44092</y-m>
+		</center>
+		<axis>
+			<x>0.0</x>
+			<y>0.0</y>
+			<z>1.0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>cabinheat.lever</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/anti-ice/cabin-heat-cmd</property>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>defroster.lever</object-name>
+		<property>controls/anti-ice/defroster-cmd</property>
+		<factor>57.8</factor>
+		<center>
+			<x-m>-1.76583</x-m>
+			<y-m>0.44092</y-m>
+		</center>
+		<axis>
+			<x>0.0</x>
+			<y>0.0</y>
+			<z>1.0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>defroster.lever</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/anti-ice/defroster-cmd</property>
+			</binding>
+		</action>
+	</animation>
 
 	<animation>
 		<type>rotate</type>
@@ -1175,16 +1337,15 @@
 		</axis>
 	</animation>
 
-	<!--animation>
+	<animation>
 		<name>NoseTrim</name>
 		<type>rotate</type>
 		<object-name>RudderTrim</object-name>
 		<property>fdm/jsbsim/fcs/rudder-trim-knob</property>
 		<factor>1080</factor>
 		<center>
-			<x-m>1.88419</x-m>
-			<y-m>0.07692</y-m>
-			<z-m>-0.29866</z-m>
+			<y-m>0.054011</y-m>
+			<z-m>-0.327153</z-m>
 		</center>
 		<axis>
 			<x>-1</x>
@@ -1203,12 +1364,13 @@
 			<y>0</y>
 			<z>0</z>
 		</axis>
-	</animation-->
+	</animation>
 
 	<animation>
 		<type>rotate</type>
 		<object-name>Rudder</object-name>
-		<object-name>TailNavLight</object-name>
+		<object-name>White nav light ALS</object-name>
+		<object-name>tailnav.glass</object-name>
 		<property>sim/multiplay/generic/float[9]</property>
 		<factor>1</factor>
 		<axis>
@@ -1285,23 +1447,79 @@
 	</animation-->
 	
 	<animation>
+		<type>rotate</type>
+		<object-name>WheelN</object-name>
+		<object-name>gear.F.low</object-name>
+		<object-name>gear.F.scissor1</object-name>
+		<object-name>gear.F.scissor2</object-name>
+		<object-name>gear.F.oleo</object-name>
+		<property>sim/multiplay/generic/float[9]</property>
+		<factor>-1.25</factor>
+		<axis>
+			<x1-m>-2.5229</x1-m>
+			<y1-m>0.0</y1-m>
+			<z1-m>-0.892169</z1-m>
+			<x2-m>-2.44633</x2-m>
+			<y2-m>0.0</y2-m>
+			<z2-m>-0.635258</z2-m>
+		</axis>
+	</animation>
+	<animation>
 		<type>translate</type>
 		<object-name>WheelN</object-name>
-		<object-name>gear.low.F</object-name>
-		<object-name>gear.oleo.F</object-name>
+		<object-name>gear.F.low</object-name>
+		<object-name>gear.F.scissor1</object-name>
+		<object-name>gear.F.scissor2</object-name>
+		<object-name>gear.F.oleo</object-name>
 		<property>sim/multiplay/generic/float[0]</property>
 		<interpolation>
-			<entry><ind>0.00</ind><dep>-0.02</dep></entry>
-			<entry><ind>0.07</ind><dep>0</dep></entry>
-			<entry><ind>1</ind><dep>0.078</dep></entry>
+			<entry><ind>0.00</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>0.15</dep></entry>
 		</interpolation>
 		<axis>
-			<x1-m>-2.51397</x1-m>
+			<x1-m>-2.5229</x1-m>
 			<y1-m>0.0</y1-m>
-			<z1-m>-0.8508</z1-m>
-			<x2-m>-2.44588</x2-m>
+			<z1-m>-0.892169</z1-m>
+			<x2-m>-2.44633</x2-m>
 			<y2-m>0.0</y2-m>
-			<z2-m>-0.62556</z2-m>
+			<z2-m>-0.635258</z2-m>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>gear.F.scissor1</object-name>
+		<object-name>gear.F.scissor2</object-name>
+		<property>sim/multiplay/generic/float[0]</property>
+		<interpolation>
+			<entry><ind>0.00</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>20.3</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>-2.48501</x-m>
+			<z-m>-0.902409</z-m>
+		</center>
+		<axis>
+			<x>0.0</x>
+			<y>1.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>gear.F.scissor2</object-name>
+		<property>sim/multiplay/generic/float[0]</property>
+		<interpolation>
+			<entry><ind>0.00</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>-62.2</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>-2.34609</x-m>
+			<z-m>-0.83053</z-m>
+		</center>
+		<axis>
+			<x>0.0</x>
+			<y>1.0</y>
+			<z>0.0</z>
 		</axis>
 	</animation>
 	
@@ -1317,21 +1535,68 @@
 		</axis>
 		<center>
 			<x-m>-2.5864</x-m>
-			<y-m>0</y-m>
 			<z-m>-1.09565</z-m>
 		</center>
 	</animation>
 	
-	<!--animation>
-		<type>translate</type>
-		<object-name></object-name>
-		<property>sim/multiplay/generic/float[1]</property>
-		<factor>-0.26</factor>
-		<axis>
-
-		</axis>
-	</animation-->
 	
+	<animation>
+		<type>translate</type>
+		<object-name>WheelL</object-name>
+		<object-name>gear.low.L</object-name>
+		<object-name>gear.oleo.L</object-name>
+		<object-name>gear.high.L</object-name>
+		<object-name>gear.low.scissor.L</object-name>
+		<property>sim/multiplay/generic/float[1]</property>
+		<interpolation>
+			<entry><ind>0.00</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>0.1048</dep></entry>
+		</interpolation>
+		<axis>
+			<x1-m>0.0</x1-m>
+			<y1-m>-1.39714</y1-m>
+			<z1-m>-0.907152</z1-m>
+			<x2-m>0.0</x2-m>
+			<y2-m>-1.3653</y2-m>
+			<z2-m>-0.6258</z2-m>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>gear.low.scissor.L</object-name>
+		<property>sim/multiplay/generic/float[1]</property>
+		<interpolation>
+			<entry><ind>0.00</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>29</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>-0.673348</x-m>
+			<z-m>-0.891219</z-m>
+		</center>
+		<axis>
+			<x>0.0</x>
+			<y>1.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>gear.high.scissor.L</object-name>
+		<property>sim/multiplay/generic/float[1]</property>
+		<interpolation>
+			<entry><ind>0.00</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>-30.66</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>-0.673337</x-m>
+			<z-m>-0.688226</z-m>
+		</center>
+		<axis>
+			<x>0.0</x>
+			<y>1.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
 	<animation>
 		<type>spin</type>
 		<object-name>WheelL</object-name>
@@ -1344,21 +1609,68 @@
 		</axis>
 		<center>
 			<x-m>-0.70604</x-m>
-			<y-m>0</y-m>
 			<z-m>-0.89011</z-m>
 		</center>
 	</animation>
 	
-	<!--animation>
-		<type>translate</type>
-		<object-name></object-name>
-		<property>sim/multiplay/generic/float[2]</property>
-		<factor>-0.26</factor>
-		<axis>
-
-		</axis>
-	</animation-->
 	
+	<animation>
+		<type>translate</type>
+		<object-name>WheelR</object-name>
+		<object-name>gear.low.R</object-name>
+		<object-name>gear.oleo.R</object-name>
+		<object-name>gear.high.R</object-name>
+		<object-name>gear.low.scissor.R</object-name>
+		<property>sim/multiplay/generic/float[2]</property>
+		<interpolation>
+			<entry><ind>0.00</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>0.1048</dep></entry>
+		</interpolation>
+		<axis>
+			<x1-m>0.0</x1-m>
+			<y1-m>1.39714</y1-m>
+			<z1-m>-0.907152</z1-m>
+			<x2-m>0.0</x2-m>
+			<y2-m>1.3653</y2-m>
+			<z2-m>-0.6258</z2-m>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>gear.low.scissor.R</object-name>
+		<property>sim/multiplay/generic/float[2]</property>
+		<interpolation>
+			<entry><ind>0.00</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>29</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>-0.673348</x-m>
+			<z-m>-0.891219</z-m>
+		</center>
+		<axis>
+			<x>0.0</x>
+			<y>1.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>gear.high.scissor.R</object-name>
+		<property>sim/multiplay/generic/float[2]</property>
+		<interpolation>
+			<entry><ind>0.00</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>-30.66</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>-0.673337</x-m>
+			<z-m>-0.688226</z-m>
+		</center>
+		<axis>
+			<x>0.0</x>
+			<y>1.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
 	<animation>
 		<type>spin</type>
 		<object-name>WheelR</object-name>
@@ -1371,7 +1683,6 @@
 		</axis>
 		<center>
 			<x-m>-0.70604</x-m>
-			<y-m>0</y-m>
 			<z-m>-0.89011</z-m>
 		</center>
 	</animation>

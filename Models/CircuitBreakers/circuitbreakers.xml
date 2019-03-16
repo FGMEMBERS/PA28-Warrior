@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+	<path>circuitbreakers.ac</path>
+	<!--put circuit breaker animations here, parameters for translate animation:
+		<factor>0.0045</factor>
+		<axis>
+			<x1-m>-1.73766</x1-m>
+			<y1-m>0.0</y1-m>
+			<z1-m>0.014312</z1-m>
+			<x2-m>-1.73107</x2-m>
+			<y2-m>0.0</y2-m>
+			<z2-m>0.015145</z2-m>
+		</axis>
+		
+		objects are named: 
+		cb.~text~ with ~text~ being placard text without blanks and without symbols in all small (e.g. cb.altntrfield), multiple cbs with the same name: cb.~text~.1; cb.~text~.2 etc.
+	-->
+
+</PropertyList>
+
+

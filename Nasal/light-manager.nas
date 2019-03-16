@@ -88,21 +88,21 @@ var light_manager = {
 		# lights ########
 		# offsets to aircraft center
  
-		me.light1_xpos =  31.0;
+		me.light1_xpos =  34.0;
 		me.light1_ypos =  0.0;
 		me.light1_zpos =  2.0;
 		
-		me.light2_xpos =  -8.0;
+		me.light2_xpos =  -4.0;
 		me.light2_ypos =  0.0;
-		me.light2_zpos =  2.0;
+		me.light2_zpos =  1.0;
 		
-		me.light3_xpos =  -2.0;
+		me.light3_xpos =  1.0;
 		me.light3_ypos =  6.0;
-		me.light3_zpos =  2.0;
+		me.light3_zpos =  0.0;
 		
-		me.light4_xpos =  -2.0;
+		me.light4_xpos =  1.0;
 		me.light4_ypos =  -6.0;
-		me.light4_zpos =  2.0;
+		me.light4_zpos =  0.0;
 		
 		# color values
 		me.light1_r = 0.7;
