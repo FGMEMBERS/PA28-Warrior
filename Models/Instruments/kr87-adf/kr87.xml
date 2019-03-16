@@ -484,7 +484,7 @@
 				</condition>
 				<command>property-assign</command>
 				<property>instrumentation/adf[0]/power-btn</property>
-				<value type="bool">0</value>
+				<value type="bool">1</value>
 			</binding>
 		</action>
 		<action>
@@ -507,7 +507,7 @@
 				</condition>
 				<command>property-assign</command>
 				<property>instrumentation/adf[0]/power-btn</property>
-				<value type="bool">1</value>
+				<value type="bool">0</value>
 			</binding>
 		</action>
 	</animation>

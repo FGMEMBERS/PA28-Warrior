@@ -20,9 +20,9 @@
 		<spring_coeff unit="LBS/FT"> 1900 </spring_coeff>
 		<damping_coeff unit="LBS/FT/SEC"> 1000 </damping_coeff>
 		<damping_coeff_rebound unit="LBS/FT/SEC"> 10 </damping_coeff_rebound>
-		<max_steer unit="DEG"> 10 </max_steer>
+		<max_steer unit="DEG"> 50 </max_steer>
 		<brake_group> NONE </brake_group>
-		<retractable>0</retractable>
+		<retractable> 0 </retractable>
 	</contact>
 	<contact type="BOGEY" name="LEFT_MAIN">
 		<location unit="M">
@@ -38,7 +38,7 @@
 		<damping_coeff_rebound unit="LBS/FT/SEC"> 10 </damping_coeff_rebound>
 		<max_steer unit="DEG"> 0.0 </max_steer>
 		<brake_group> LEFT </brake_group>
-		<retractable>0</retractable>
+		<retractable> 0 </retractable>
 	</contact>
 	<contact type="BOGEY" name="RIGHT_MAIN">
 		<location unit="M">
@@ -54,7 +54,7 @@
 		<damping_coeff_rebound unit="LBS/FT/SEC"> 10 </damping_coeff_rebound>
 		<max_steer unit="DEG"> 0.0 </max_steer>
 		<brake_group> RIGHT </brake_group>
-		<retractable>0</retractable>
+		<retractable> 0 </retractable>
 	</contact>
 	
 	<contact type="STRUCTURE" name="NOSE_1">
@@ -70,7 +70,7 @@
 		<damping_coeff unit="LBS/FT/SEC"> 1000 </damping_coeff>
 		<max_steer unit="DEG"> 0.0 </max_steer>
 		<brake_group> NONE </brake_group>
-		<retractable>0</retractable>
+		<retractable> 0 </retractable>
 	</contact>
 	<contact type="STRUCTURE" name="NOSE_2">
 		<location unit="M">
@@ -85,7 +85,7 @@
 		<damping_coeff unit="LBS/FT/SEC"> 1000 </damping_coeff>
 		<max_steer unit="DEG"> 0.0 </max_steer>
 		<brake_group> NONE </brake_group>
-		<retractable>0</retractable>
+		<retractable> 0 </retractable>
 	</contact>
 	
 	<contact type="STRUCTURE" name="BOTTOM_1">
@@ -101,7 +101,7 @@
 		<damping_coeff unit="LBS/FT/SEC"> 1000 </damping_coeff>
 		<max_steer unit="DEG"> 0.0 </max_steer>
 		<brake_group> NONE </brake_group>
-		<retractable>0</retractable>
+		<retractable> 0 </retractable>
 	</contact>
 	<contact type="STRUCTURE" name="BOTTOM_2">
 		<location unit="M">
@@ -116,7 +116,7 @@
 		<damping_coeff unit="LBS/FT/SEC"> 1000 </damping_coeff>
 		<max_steer unit="DEG"> 0.0 </max_steer>
 		<brake_group> NONE </brake_group>
-		<retractable>0</retractable>
+		<retractable> 0 </retractable>
 	</contact>
 	
 	<contact type="STRUCTURE" name="TOP_1">
@@ -132,7 +132,7 @@
 		<damping_coeff unit="LBS/FT/SEC"> 1000 </damping_coeff>
 		<max_steer unit="DEG"> 0.0 </max_steer>
 		<brake_group> NONE </brake_group>
-		<retractable>0</retractable>
+		<retractable> 0 </retractable>
 	</contact>
 	<contact type="STRUCTURE" name="TOP_2">
 		<location unit="M">
@@ -147,7 +147,7 @@
 		<damping_coeff unit="LBS/FT/SEC"> 1000 </damping_coeff>
 		<max_steer unit="DEG"> 0.0 </max_steer>
 		<brake_group> NONE </brake_group>
-		<retractable>0</retractable>
+		<retractable> 0 </retractable>
 	</contact>
 
 	<contact type="STRUCTURE" name="ENG">
@@ -163,7 +163,7 @@
 		<damping_coeff unit="LBS/FT/SEC"> 1000 </damping_coeff>
 		<max_steer unit="DEG"> 0.0 </max_steer>
 		<brake_group> NONE </brake_group>
-		<retractable>0</retractable>
+		<retractable> 0 </retractable>
 	</contact>
 
 	<contact type="STRUCTURE" name="TAIL_1">
@@ -179,7 +179,7 @@
 		<damping_coeff unit="LBS/FT/SEC"> 1000 </damping_coeff>
 		<max_steer unit="DEG"> 0.0 </max_steer>
 		<brake_group> NONE </brake_group>
-		<retractable>0</retractable>
+		<retractable> 0 </retractable>
 	</contact>
 	<contact type="STRUCTURE" name="TAIL_2">
 		<location unit="M">
@@ -194,7 +194,7 @@
 		<damping_coeff unit="LBS/FT/SEC"> 1000 </damping_coeff>
 		<max_steer unit="DEG"> 0.0 </max_steer>
 		<brake_group> NONE </brake_group>
-		<retractable>0</retractable>
+		<retractable> 0 </retractable>
 	</contact>
 	
 	<contact type="STRUCTURE" name="WING_TIP_1">
@@ -210,7 +210,7 @@
 		<damping_coeff unit="LBS/FT/SEC"> 1000 </damping_coeff>
 		<max_steer unit="DEG"> 0.0 </max_steer>
 		<brake_group> NONE </brake_group>
-		<retractable>0</retractable>
+		<retractable> 0 </retractable>
 	</contact>
 	<contact type="STRUCTURE" name="WING_TIP_2">
 		<location unit="M">
@@ -225,6 +225,6 @@
 		<damping_coeff unit="LBS/FT/SEC"> 1000 </damping_coeff>
 		<max_steer unit="DEG"> 0.0 </max_steer>
 		<brake_group> NONE </brake_group>
-		<retractable>0</retractable>
+		<retractable> 0 </retractable>
 	</contact>
 </ground_reactions>

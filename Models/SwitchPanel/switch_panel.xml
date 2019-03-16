@@ -303,10 +303,10 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>PanelDimmer</object-name>
-		<property>controls/lighting/panel-lights-factor</property>
+		<property>controls/switches/panel-lights-factor</property>
 		<factor>-90</factor>
 		<axis>
-			<x>0.0</x>
+			<x>-0.00578</x>
 			<y>1.0</y>
 			<z>0.0</z>
 		</axis>

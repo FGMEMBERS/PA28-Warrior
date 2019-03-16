@@ -1,5 +1,5 @@
 # PA28-161 Electrical
-# Copyright (c) 2018 Joshua Davidson (it0uchpods)
+# Copyright (c) 2019 Joshua Davidson (it0uchpods)
 
 var batt_sw = 0;
 var altn_sw = 0;
