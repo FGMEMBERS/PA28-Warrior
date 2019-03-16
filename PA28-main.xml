@@ -140,6 +140,19 @@
 							</script>
 						</binding>
 					</item>
+					<item>
+						<label>Repair Aircraft</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+							if (getprop("/fdm/jsbsim/position/wow") == 1) {
+								libraries.crashStress.reset();
+							} else {
+								gui.popupTip("How can you repair the aircraft in flight? Please land first! :)");
+							}
+							</script>
+						</binding>
+					</item>
 				</menu>
 				<menu n="103">
 					<label>How To..?</label>
@@ -248,17 +261,17 @@
 		
 		<multiplay>
 			<generic>
+				<int n="0" alias="/fdm/jsbsim/crash-stress/nose-damaged"/>
+				<int n="1" alias="/fdm/jsbsim/crash-stress/lwing-damaged"/>
+				<int n="2" alias="/fdm/jsbsim/crash-stress/rwing-damaged"/>
+				<int n="3" alias="/fdm/jsbsim/crash-stress/htail-damaged"/>
+				<int n="4" alias="/fdm/jsbsim/crash-stress/vtail-damaged"/>
 				<bool n="0" alias="/options/wheel-fairing"/>
-				<float n="0" alias="/gear/gear[0]/compression-norm"/>
-				<float n="1" alias="/gear/gear[1]/compression-norm"/>
-				<float n="2" alias="/gear/gear[2]/compression-norm"/>
+				<float n="0" alias="/fdm/jsbsim/fcs/aileron-yoke"/>
+				<float n="1" alias="/fdm/jsbsim/fcs/pitch-input"/>
+				<float n="2" alias="/fdm/jsbsim/fcs/yaw-input"/>
 				<float n="3" alias="/fdm/jsbsim/fcs/steer-deg"/>
 				<float n="4" alias="/fdm/jsbsim/extra/door-main-norm"/>
-				<float n="5" alias="/surface-positions/left-aileron-deg"/>
-				<float n="6" alias="/surface-positions/right-aileron-deg"/>
-				<float n="7" alias="/surface-positions/elevator-deg"/>
-				<float n="8" alias="/surface-positions/elevator-tab-deg"/>
-				<float n="9" alias="/surface-positions/rudder-deg"/>
 				<string alias="/sim/multiplay/callsign"/>
 			</generic>
 		</multiplay>
@@ -345,6 +358,10 @@
 			<egt-actual type="double">0</egt-actual>
 			<egt-bug type="double">1400</egt-bug>
 		</engine>
+		<engine n="3">
+			<n1 type="double">0</n1> <!-- Hack to bring left brake pedal over MP -->
+			<n2 type="double">0</n2> <!-- Hack to bring right brake pedal over MP -->
+		</engine>
 	</engines>
 	
 	<environment>
@@ -355,6 +372,13 @@
 	
 	<fdm n="0">
 		<jsbsim n="0">
+			<crash-stress n="0">
+				<htail-damaged type="bool">0</htail-damaged>
+				<lwing-damaged type="bool">0</lwing-damaged>
+				<nose-damaged type="bool">0</nose-damaged>
+				<rwing-damaged type="bool">0</rwing-damaged>
+				<vtail-damaged type="bool">0</vtail-damaged>
+			</crash-stress>
 			<extra n="0">
 				<door-main-cmd type="double">0</door-main-cmd>
 			</extra>
@@ -453,11 +477,11 @@
 			</key>
 			<key n="49">
 				<name>1</name>
-				<desc>Elevator trim down</desc>
+				<desc>Elevator trim up</desc>
 				<repeatable>true</repeatable>
 				<binding>
 					<command>nasal</command>
-					<script>controls.elevatorTrim(1);</script>
+					<script>controls.elevatorTrim(-1);</script>
 				</binding>
 				<mod-shift>
 					<desc>Look back left</desc>
@@ -470,11 +494,11 @@
 			</key>
 			<key n="55">
 				<name>7</name>
-				<desc>Elevator trim up</desc>
+				<desc>Elevator trim down</desc>
 				<repeatable>true</repeatable>
 				<binding>
 					<command>nasal</command>
-					<script>controls.elevatorTrim(-1);</script>
+					<script>controls.elevatorTrim(1);</script>
 				</binding>
 				<mod-shift>
 					<desc>Look front left</desc>
@@ -541,6 +565,26 @@
 						<script>stec55x.button.CWS(0);</script>
 					</binding>
 				</mod-up>
+			</key>
+			<key n="101">
+				<name>e</name>
+				<desc>Thrust Lever Idle</desc>
+				<binding>
+					<command>nasal</command>
+					<script>
+					libraries.doIdleThrust();
+					</script>
+				</binding>
+			</key>
+			<key n="102">
+				<name>f</name>
+				<desc>Thrust Lever Full</desc>
+				<binding>
+					<command>nasal</command>
+					<script>
+					libraries.doFullThrust();
+					</script>
+				</binding>
 			</key>
 			<key n="106">
 				<name>j</name>
@@ -761,17 +805,12 @@
 			<file>Aircraft/IDG-PA28X/Nasal/kcs55.nas</file>
 			<file>Aircraft/IDG-PA28X/Nasal/kma20.nas</file>
 			<file>Aircraft/IDG-PA28X/Nasal/zoom-views.nas</file>
+			<file>Aircraft/IDG-PA28X/Nasal/crash-stress.nas</file>
 			<script>
 				<![CDATA[ki266.new(0);
 				KCS55.new();]]>
 			</script>
 		</libraries>
-		<stec55x>
-			<file>Aircraft/IDG-PA28X/Nasal/stec-55x.nas</file>
-		</stec55x>
-		<gtx327>
-			<file>Aircraft/IDG-PA28X/Nasal/gtx-327.nas</file>
-		</gtx327>
 		<acconfig>
 			<file>Aircraft/IDG-PA28X/AircraftConfig/acconfig.nas</file>
 		</acconfig>
@@ -779,6 +818,12 @@
 			<file>Aircraft/IDG-PA28X/Nasal/electrical.nas</file>
 			<file>Aircraft/IDG-PA28X/Nasal/init.nas</file>
 		</systems>
+		<stec55x>
+			<file>Aircraft/IDG-PA28X/Nasal/stec-55x.nas</file>
+		</stec55x>
+		<gtx327>
+			<file>Aircraft/IDG-PA28X/Nasal/gtx-327.nas</file>
+		</gtx327>
 		<lights>
 			<file>Aircraft/IDG-PA28X/Nasal/light-manager.nas</file>
 		</lights>

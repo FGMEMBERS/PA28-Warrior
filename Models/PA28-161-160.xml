@@ -40,6 +40,89 @@
 		</unload>
 	</nasal>
 	
+	<!-- Begin Crash and Stress -->
+	<animation>
+		<name>Nose Section</name>
+		<type>select</type>
+		<object-name>PropGroup</object-name>
+		<object-name>NoseGear</object-name>
+		<condition>
+			<not><property>sim/multiplay/generic/int[0]</property></not>
+		</condition>
+	</animation>
+	
+	<animation>
+		<name>Left Wing</name>
+		<type>select</type>
+		<object-name>LeftWingGroup</object-name>
+		<object-name>Left Strobe light ALS</object-name>
+		<object-name>Red nav light</object-name>
+		<object-name>Red nav light ALS</object-name>
+		<condition>
+			<not><property>sim/multiplay/generic/int[1]</property></not>
+		</condition>
+	</animation>
+	
+	<animation>
+		<name>Right Wing</name>
+		<type>select</type>
+		<object-name>RightWingGroup</object-name>
+		<object-name>Right Strobe light ALS</object-name>
+		<object-name>Green nav light</object-name>
+		<object-name>Green nav light ALS</object-name>
+		<condition>
+			<not><property>sim/multiplay/generic/int[2]</property></not>
+		</condition>
+	</animation>
+	
+	<animation>
+		<name>HTail</name>
+		<type>select</type>
+		<object-name>HTailGroup</object-name>
+		<condition>
+			<not><property>sim/multiplay/generic/int[3]</property></not>
+		</condition>
+	</animation>
+	
+	<animation>
+		<name>VTail</name>
+		<type>select</type>
+		<object-name>VTailGroup</object-name>
+		<object-name>White nav light ALS</object-name>
+		<object-name>Beacon light ALS</object-name>
+		<condition>
+			<not><property>sim/multiplay/generic/int[4]</property></not>
+		</condition>
+	</animation>
+	
+	<animation>
+		<name>Nose Gear</name>
+		<type>select</type>
+		<object-name>NoseGear</object-name>
+		<condition>
+			<property>gear/gear[0]/position-norm</property>
+		</condition>
+	</animation>
+	
+	<animation>
+		<name>Left Gear</name>
+		<type>select</type>
+		<object-name>LeftGear</object-name>
+		<condition>
+			<property>gear/gear[1]/position-norm</property>
+		</condition>
+	</animation>
+	
+	<animation>
+		<name>Right Gear</name>
+		<type>select</type>
+		<object-name>RightGear</object-name>
+		<condition>
+			<property>gear/gear[2]/position-norm</property>
+		</condition>
+	</animation>
+	<!-- End Crash and Stress -->
+	
 	<effect>
 		<condition>
 			<property>/sim/rendering/rembrandt/enabled</property>
@@ -1211,8 +1294,8 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>LeftAileron</object-name>
-		<property>sim/multiplay/generic/float[5]</property>
-		<factor>-1</factor>
+		<property>surface-positions/left-aileron-pos-norm</property>
+		<factor>-20</factor>
 		<axis>
 			<x1-m>-0.25121</x1-m>
 			<y1-m>-2.70551</y1-m>
@@ -1226,8 +1309,8 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RightAileron</object-name>
-		<property>sim/multiplay/generic/float[6]</property>
-		<factor>1</factor>
+		<property>surface-positions/right-aileron-pos-norm</property>
+		<factor>20</factor>
 		<axis>
 			<x1-m>-0.25121</x1-m>
 			<y1-m>2.70551</y1-m>
@@ -1306,8 +1389,8 @@
 		<type>rotate</type>
 		<object-name>Stabilator</object-name>
 		<object-name>AntiServoTab</object-name>
-		<property>sim/multiplay/generic/float[7]</property>
-		<factor>1</factor>
+		<property>surface-positions/elevator-pos-norm</property>
+		<factor>12</factor>
 		<center>
 			<x-m>3.00905</x-m>
 			<y-m>0.0</y-m>
@@ -1323,8 +1406,8 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>AntiServoTab</object-name>
-		<property>sim/multiplay/generic/float[8]</property>
-		<factor>1</factor>
+		<property>surface-positions/speedbrake-pos-norm</property>
+		<factor>15</factor>
 		<center>
 			<x-m>3.39382</x-m>
 			<y-m>0.0</y-m>
@@ -1371,8 +1454,8 @@
 		<object-name>Rudder</object-name>
 		<object-name>White nav light ALS</object-name>
 		<object-name>tailnav.glass</object-name>
-		<property>sim/multiplay/generic/float[9]</property>
-		<factor>1</factor>
+		<property>surface-positions/rudder-pos-norm</property>
+		<factor>16</factor>
 		<axis>
 			<x1-m>3.01317</x1-m>
 			<y1-m>0.0</y1-m>

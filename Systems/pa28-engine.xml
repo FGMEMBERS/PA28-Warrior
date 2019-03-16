@@ -122,15 +122,22 @@
 		
 		<fcs_function name="fcs/mixture-cmd-modified">
 			<function>
-				<table>
-					<independentVar lookup="row">fcs/mixture-cmd-lag</independentVar>
-					<independentVar lookup="column">atmosphere/pressure-altitude</independentVar>
-					<tableData>
-						   0     15000
-						0  0.55  0.25
-						1  1.00  1.00
-					</tableData>
-				</table>
+				<ifthen>
+					<eq>
+						<property>crash-stress/nose-damaged</property>
+						<value>1</value>
+					</eq>
+					<value>0</value>
+					<table>
+						<independentVar lookup="row">fcs/mixture-cmd-lag</independentVar>
+						<independentVar lookup="column">atmosphere/pressure-altitude</independentVar>
+						<tableData>
+							   0     15000
+							0  0.55  0.25
+							1  1.00  1.00
+						</tableData>
+					</table>
+				</ifthen>
 			</function>
 			<output>fcs/mixture-pos-norm[0]</output>
 		</fcs_function>
