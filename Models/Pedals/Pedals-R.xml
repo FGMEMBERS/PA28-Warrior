@@ -10,7 +10,7 @@
         <type>rotate</type>
         <object-name>Pedal.L</object-name>
         <object-name>Tubes.L</object-name>
-        <property>fdm/jsbsim/fcs/yaw-input</property>
+        <property>sim/multiplay/generic/float[2]</property>
         <factor>-20</factor>
         <axis>
             <x>0.0</x>
@@ -27,7 +27,7 @@
     <animation>
         <type>rotate</type>
         <object-name>Pedal.L</object-name>
-        <property>fdm/jsbsim/fcs/yaw-input</property>
+        <property>sim/multiplay/generic/float[2]</property>
         <factor>20</factor>
         <axis>
             <x>0.0</x>
@@ -44,7 +44,7 @@
     <animation>
         <type>rotate</type>
         <object-name>Pedal.L</object-name>
-        <property>controls/gear/brake-left</property>
+        <property>engines/engine[3]/n1</property>
         <factor>-10</factor>
         <axis>
             <x>0.0</x>
@@ -62,7 +62,7 @@
         <type>rotate</type>
         <object-name>Pedal.R</object-name>
         <object-name>Tubes.R</object-name>
-        <property>fdm/jsbsim/fcs/yaw-input</property>
+        <property>sim/multiplay/generic/float[2]</property>
         <factor>20</factor>
         <axis>
             <x>0.0</x>
@@ -79,7 +79,7 @@
     <animation>
         <type>rotate</type>
         <object-name>Pedal.R</object-name>
-        <property>fdm/jsbsim/fcs/yaw-input</property>
+        <property>sim/multiplay/generic/float[2]</property>
         <factor>-20</factor>
         <axis>
             <x>0.0</x>
@@ -96,7 +96,7 @@
     <animation>
         <type>rotate</type>
         <object-name>Pedal.R</object-name>
-        <property>controls/gear/brake-right</property>
+        <property>engines/engine[3]/n2</property>
         <factor>-10</factor>
         <axis>
             <x>0.0</x>

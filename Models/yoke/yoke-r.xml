@@ -9,7 +9,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>Yoke</object-name>
-		<property>fdm/jsbsim/fcs/pitch-input</property>
+		<property>sim/multiplay/generic/float[1]</property>
 		<factor>-0.12</factor>
 		<axis>
 			<x>1.0</x>
@@ -21,7 +21,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>Yoke</object-name>
-		<property>fdm/jsbsim/fcs/aileron-yoke</property>
+		<property>sim/multiplay/generic/float[0]</property>
 		<factor>-90.0</factor>
 		<axis>
 			<x>1.0</x>

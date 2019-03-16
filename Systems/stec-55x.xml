@@ -300,10 +300,10 @@
 		<gain>1.0</gain>
 		<input>
 			<condition>
-				<greater-than>
-					<property>/it-stec55x/nav/nav-course-reciprocal-cmd</property>
-					<value>360</value>
-				</greater-than>
+				<greater-than-equals>
+					<property>/it-autoflight/internal/heading-predicted-cmd</property>
+					<value>360.5</value>
+				</greater-than-equals>
 			</condition>
 			<expression>
 				<dif>
@@ -315,8 +315,8 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/it-stec55x/nav/nav-course-reciprocal-cmd</property>
-					<value>1</value>
+					<property>/it-autoflight/internal/heading-predicted-cmd</property>
+					<value>0.5</value>
 				</less-than>
 			</condition>
 			<expression>
@@ -724,8 +724,8 @@
 		<reference>/it-stec55x/internal/predicted-turn-rate</reference>
 		<output>/it-stec55x/internal/aileron-pi</output>
 		<config>
-			<Kp>-0.05</Kp>
-			<Ki>-0.015</Ki>
+			<Kp>-0.07</Kp>
+			<Ki>-0.021</Ki>
 			<min>-0.25</min>
 			<max>0.25</max>
 		</config>
@@ -737,7 +737,7 @@
 		<input>/it-stec55x/internal/predicted-turn-rate</input>
 		<reference>/it-stec55x/internal/turn-rate-cmd</reference>
 		<output>/it-stec55x/internal/aileron-d</output>
-		<filter-time>-0.014</filter-time>
+		<filter-time>-0.0196</filter-time>
 		<min>-0.25</min>
 		<max>0.25</max>
 	</filter>
@@ -870,7 +870,7 @@
 	</filter>
 
 	<filter>
-		<name>PRESSURE RATE DAMPER</name>
+		<name>PRESSURE RATE LAG</name>
 		<debug>false</debug>
 		<type>double-exponential</type>
 		<input>/it-stec55x/internal/pressure-rate-raw</input>

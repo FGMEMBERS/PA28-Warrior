@@ -1,4 +1,4 @@
-# PA28-161 Libraries
+# PA28 Libraries
 # Joshua Davidson (it0uchpods)
 
 print("-----------------------------------------------------------------------------");
@@ -52,6 +52,7 @@ setlistener("/sim/sounde/knob", func {
 });
 
 var systemsInit = func {
+	crashStress.reset();
 	systems.ELEC.init();
 	systems.INIT.ENG();
 	systems.INIT.FUEL();
@@ -128,3 +129,14 @@ var elevatorTrimTimer = maketimer(0.05, func {
 		setprop("/it-stec55x/input/man-trim", 0);
 	}
 });
+
+# Various Other Stuff
+var doIdleThrust = func {
+	setprop("/controls/engines/engine[0]/throttle", 0.0);
+	setprop("/controls/engines/engine[1]/throttle", 0.0);
+}
+
+var doFullThrust = func {
+	setprop("/controls/engines/engine[0]/throttle", 1.0);
+	setprop("/controls/engines/engine[1]/throttle", 1.0);
+}

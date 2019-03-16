@@ -74,7 +74,7 @@
 					<independentVar lookup="row">aero/alpha-rad</independentVar>
 					<independentVar lookup="column">fcs/flap-pos-deg</independentVar>
 					<tableData>
-						       0.0    60.0
+						       0      60
 						-0.24  0.000  0.000
 						 0.00  0.064  0.170
 						 0.27  0.291  0.775
@@ -95,7 +95,7 @@
 					<independentVar lookup="row">aero/alpha-rad</independentVar>
 					<independentVar lookup="column">aero/stall-hyst-norm</independentVar>
 					<tableData>
-						       0.0   1.0
+						       0     1
 						-0.09 -0.05 -0.05
 						 0.00  0.37  0.37
 						 0.09  0.91  0.91
@@ -120,6 +120,7 @@
 						 1.57  0.05  0.05
 					</tableData>   
 				</table>
+				<property>crash-stress/wing-factor</property> <!-- Crash and Stress -->
 			</product>
 		</function>
 		
@@ -131,6 +132,7 @@
 				<property>velocities/q-aero-rad_sec</property>
 				<property>aero/ci2vel</property>
 				<value>3.4712</value>
+				<property>crash-stress/wing-factor</property> <!-- Crash and Stress -->
 			</product>
 		</function>
 		
@@ -142,6 +144,7 @@
 				<property>aero/alphadot-rad_sec</property>
 				<property>aero/ci2vel</property>
 				<value>1.2057</value>
+				<property>crash-stress/wing-factor</property> <!-- Crash and Stress -->
 			</product>
 		</function>
 		
@@ -151,7 +154,8 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<toradians><property>fcs/elevator-deg</property></toradians>
-				<value>0.5701</value>
+				<value>0.3401</value>
+				<property>crash-stress/htail-factor</property> <!-- Crash and Stress -->
 			</product>
 		</function>
 		
@@ -162,7 +166,8 @@
 				<property>metrics/Sw-sqft</property>
 				<property>aero/function/kCLge</property>
 				<property>fcs/flap-pos-deg</property>
-				<value>0.00714</value>
+				<value>0.00574</value>
+				<property>crash-stress/wing-factor</property> <!-- Crash and Stress -->
 			</product>
 		</function>
 	
@@ -222,6 +227,7 @@
 						 1.5710  1.6000  2.0800  2.3680  2.5120
 					  </tableData>
 				</table>
+				<property>crash-stress/wing-factor</property> <!-- Crash and Stress -->
 			</product>
 		</function>
 		
@@ -241,7 +247,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>aero/mag-beta-rad</property>
-				<value>0.0739</value>
+				<value>0.2139</value>
 			</product>
 		</function>
 		
@@ -252,6 +258,7 @@
 				<property>metrics/Sw-sqft</property>
 				<abs><toradians><property>fcs/elevator-deg</property></toradians></abs>
 				<value>0.00456</value>
+				<property>crash-stress/htail-factor</property> <!-- Crash and Stress -->
 			</product>
 		</function>
 		
@@ -330,6 +337,7 @@
 				<property>metrics/Sw-sqft</property>
 				<toradians><property>fcs/rudder-deg</property></toradians>
 				<value>0.0260</value>
+				<property>crash-stress/vtail-factor</property> <!-- Crash and Stress -->
 			</product>
 		</function>
 	
@@ -345,6 +353,7 @@
 				<property>metrics/bw-ft</property>
 				<property>aero/beta-rad</property>
 				<value>-0.075</value>
+				<property>crash-stress/wing-factor</property> <!-- Crash and Stress -->
 			</product>
 		</function>
 		
@@ -357,6 +366,7 @@
 				<property>aero/bi2vel</property>
 				<property>velocities/p-aero-rad_sec</property>
 				<value>-0.71</value>
+				<property>crash-stress/wing-factor</property> <!-- Crash and Stress -->
 			</product>
 		</function>
 		
@@ -385,7 +395,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/aileron-left-deg</property></toradians>
-				<value>0.223</value>
+				<value>0.1561</value>
 				<table>
 					<independentVar lookup="row">aero/alpha-rad</independentVar>
 					<independentVar lookup="column">aero/stall-hyst-norm</independentVar>
@@ -396,6 +406,7 @@
 						0.349 -0.15 -0.15
 					</tableData>
 				</table>
+				<property>crash-stress/left-wing-factor</property> <!-- Crash and Stress -->
 			</product>
 		</function>
 		
@@ -406,7 +417,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/aileron-right-deg</property></toradians>
-				<value>-0.223</value>
+				<value>-0.1561</value>
 				<table>
 					<independentVar lookup="row">aero/alpha-rad</independentVar>
 					<independentVar lookup="column">aero/stall-hyst-norm</independentVar>
@@ -417,6 +428,7 @@
 						0.349 -0.15 -0.15
 					</tableData>
 				</table>
+				<property>crash-stress/right-wing-factor</property> <!-- Crash and Stress -->
 			</product>
 		</function>
 		
@@ -427,7 +439,19 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/rudder-deg</property></toradians>
-				<value>0.059</value>
+				<value>0.05984</value>
+				<property>crash-stress/vtail-factor</property> <!-- Crash and Stress -->
+			</product>
+		</function>
+		
+		<function name="aero/moment/Roll_wing_imbalance">
+			<description>Roll moment due to wing imbalance</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<property>metrics/bw-ft</property>
+				<value>-0.45712</value>
+				<property>crash-stress/wing-diff-factor</property> <!-- Crash and Stress -->
 			</product>
 		</function>
 	
@@ -441,7 +465,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/cbarw-ft</property>
-				<value>0.0253</value>
+				<value>0.0254</value>
 			</product>
 		</function>
 		
@@ -453,6 +477,7 @@
 				<property>metrics/cbarw-ft</property>
 				<property>aero/alpha-rad</property>
 				<value>-0.7314</value>
+				<property>crash-stress/wing-factor</property> <!-- Crash and Stress -->
 			</product>
 		</function>
 		
@@ -478,6 +503,7 @@
 						1.570  0.1  0.1  0.4
 					</tableData>
 				</table>
+				<property>crash-stress/htail-factor</property> <!-- Crash and Stress -->
 			</product>
 		</function>
 		
@@ -490,6 +516,7 @@
 				<property>aero/ci2vel</property>
 				<property>velocities/q-aero-rad_sec</property>
 				<value>-22.6</value>
+				<property>crash-stress/htail-factor</property> <!-- Crash and Stress -->
 			</product>
 		</function>
 		
@@ -502,6 +529,7 @@
 				<property>aero/ci2vel</property>
 				<property>aero/alphadot-rad_sec</property>
 				<value>-6.2138</value>
+				<property>crash-stress/wing-factor</property> <!-- Crash and Stress -->
 			</product>
 		</function>
 	
@@ -535,6 +563,7 @@
 				<property>aero/bi2vel</property>
 				<property>velocities/r-aero-rad_sec</property>
 				<value>-0.23</value>
+				<property>crash-stress/vtail-factor</property> <!-- Crash and Stress -->
 			</product>
 		</function>
 		
@@ -545,7 +574,8 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<toradians><property>fcs/rudder-deg</property></toradians>
-				<value>0.02755</value>
+				<value>0.03755</value>
+				<property>crash-stress/vtail-factor</property> <!-- Crash and Stress -->
 			</product>
 		</function>
 		
@@ -566,6 +596,7 @@
 						0.144 -0.0020 -0.0025 -0.0020
 					</tableData>
 				</table>
+				<property>crash-stress/left-wing-factor</property> <!-- Crash and Stress -->
 			</product>
 		</function>
 		
@@ -586,6 +617,7 @@
 						0.144 -0.0020 -0.0025 -0.0020
 					</tableData>
 				</table>
+				<property>crash-stress/right-wing-factor</property> <!-- Crash and Stress -->
 			</product>
 		</function>
 		
@@ -595,7 +627,7 @@
 				<property>aero/function/qbar-propwash-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
-				<value>-0.025</value>
+				<value>-0.05</value>
 			</product>
 		</function> 
 		
