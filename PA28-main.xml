@@ -272,6 +272,7 @@
 				<float n="2" alias="/fdm/jsbsim/fcs/yaw-input"/>
 				<float n="3" alias="/fdm/jsbsim/fcs/steer-deg"/>
 				<float n="4" alias="/fdm/jsbsim/extra/door-main-norm"/>
+				<float n="5" alias="/fdm/jsbsim/extra/door-baggage-norm"/>
 				<string alias="/sim/multiplay/callsign"/>
 			</generic>
 		</multiplay>
@@ -381,6 +382,7 @@
 			</crash-stress>
 			<extra n="0">
 				<door-main-cmd type="double">0</door-main-cmd>
+				<door-baggage-cmd type="double">0</door-baggage-cmd>
 			</extra>
 			<fcs n="0">
 				<egt-feedback type="double">0</egt-feedback>

@@ -6,7 +6,10 @@
 	
 	<animation>
 		<type>material</type>
-		<object-name>GroupLighting</object-name>
+		<object-name>turn</object-name>
+		<object-name>disc</object-name>
+		<object-name>flag</object-name>
+		<object-name>ac</object-name>
 		<emission>
 			<red>0.6</red>
 			<green>0.6</green>

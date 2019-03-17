@@ -22,14 +22,6 @@
 		<texture>IDG-PA28XII.png</texture>
 	</animation>
 	
-	<!--animation>
-		<type>material</type>
-		<object-name>AC_Num</object-name>
-		<property-base>sim/model/acnum</property-base>
-		<texture-prop>texture</texture-prop>
-		<texture>AC_Num.jpg</texture>
-	</animation-->
-	
 	<!-- Nasal code -->
 	<nasal>
 		<load>
@@ -39,6 +31,71 @@
 			livery_update.stop();
 		</unload>
 	</nasal>
+	
+	<!--Define parts for crash+stress-->
+	<animation>
+		<name>NoseGear</name>
+		<object-name>WheelN</object-name>
+		<object-name>gear.F.low</object-name>
+		<object-name>gear.F.scissor1</object-name>
+		<object-name>gear.F.scissor2</object-name>
+		<object-name>gear.F.oleo</object-name>
+		<object-name>gear.F.high</object-name>
+	</animation>
+	<animation>
+		<name>LeftGear</name>
+		<object-name>WheelL</object-name>
+		<object-name>gear.low.L</object-name>
+		<object-name>gear.high.L</object-name>
+		<object-name>gear.oleo.L</object-name>
+		<object-name>gear.high.L</object-name>
+		<object-name>gear.low.scissor.L</object-name>
+		<object-name>gear.high.scissor.L</object-name>
+		<object-name>gear.fairing.L</object-name>
+	</animation>
+	<animation>
+		<name>RightGear</name>
+		<object-name>WheelR</object-name>
+		<object-name>gear.low.R</object-name>
+		<object-name>gear.high.R</object-name>
+		<object-name>gear.oleo.R</object-name>
+		<object-name>gear.high.R</object-name>
+		<object-name>gear.low.scissor.R</object-name>
+		<object-name>gear.high.scissor.R</object-name>
+		<object-name>gear.fairing.R</object-name>
+	</animation>
+	<animation>
+		<name>LeftWingGroup</name>
+		<object-name>wing.L</object-name>
+		<object-name>LeftAileron</object-name>
+		<object-name>LeftFlap</object-name>
+		<object-name>flap.ac.wing.L</object-name>
+	</animation>
+	<animation>
+		<name>RightWingGroup</name>
+		<object-name>wing.R</object-name>
+		<object-name>RightAileron</object-name>
+		<object-name>RightFlap</object-name>
+		<object-name>flap.ac.wing.R</object-name>
+	</animation>
+	<animation>
+		<name>PropGroup</name>
+		<object-name>propdisc</object-name>
+		<object-name>propblur</object-name>
+		<object-name>Propeller</object-name>
+	</animation>
+	<animation>
+		<name>VTailGroup</name>
+		<object-name>VTail</object-name>
+		<object-name>Rudder</object-name>
+		<object-name>beacon.glass</object-name>
+		<object-name>tailnav.glass</object-name>
+	</animation>
+	<animation>
+		<name>HTailGroup</name>
+		<object-name>Stabilator</object-name>
+		<object-name>AntiServoTab</object-name>
+	</animation>
 	
 	<!-- Begin Crash and Stress -->
 	<animation>
@@ -133,6 +190,8 @@
 		<object-name>placards_transparent</object-name>
 		<object-name>tailnav.glass</object-name>
 		<object-name>beacon.glass</object-name>
+		<object-name>windows</object-name>
+		<object-name>window.doorF</object-name>
 	</effect>
 	
 	<effect>
@@ -140,7 +199,8 @@
 		<object-name>Fuselage</object-name>
 		<object-name>VTail</object-name>
 		<object-name>Rudder</object-name>
-		<object-name>Wings</object-name>
+		<object-name>wing.L</object-name>
+		<object-name>wing.R</object-name>
 		<object-name>Door</object-name>
 		<object-name>Stabilator</object-name>
 		<object-name>AntiServoTab</object-name>
@@ -157,11 +217,13 @@
 		<object-name>doorB</object-name>
 	</effect>
 	
-	<!--animation>
+	<animation>
 		<type>material</type>
-		<object-name>Panel</object-name>
-		<object-name>PlacardsGroup</object-name>
-		<object-name>AC_Num</object-name>
+		<object-name>panel.main</object-name>
+		<object-name>panel.quadrant</object-name>
+		<object-name>panel.console</object-name>
+		<object-name>placards_transparent</object-name>
+		<object-name>annun.base</object-name>
 		<emission>
 			<red>0.1</red>
 			<green>0.1</green>
@@ -172,14 +234,83 @@
 	
 	<animation>
 		<type>material</type>
-		<object-name>Cabin</object-name>
+		<object-name>interior</object-name>
+		<object-name>seats</object-name>
 		<emission>
 			<red>0.05</red>
 			<green>0.05</green>
 			<blue>0.05</blue>
 			<factor-prop>controls/lighting/panel-norm</factor-prop>
 		</emission>
-	</animation-->
+	</animation>
+	
+	<!--Annunciator/Indicator Panel-->
+	<animation>
+		<type>material</type>
+		<object-name>annun.VAC</object-name>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+			<factor-prop>vac-annun-prop</factor-prop>
+		</emission>
+		<ambient>
+			<red>1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+			<factor-prop>vac-annun-prop</factor-prop>
+		</ambient>
+		<diffuse>
+			<red>1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+			<factor-prop>vac-annun-prop</factor-prop>
+		</diffuse>
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>annun.ALT</object-name>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+			<factor-prop>alt-annun-prop</factor-prop>
+		</emission>
+		<ambient>
+			<red>1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+			<factor-prop>alt-annun-prop</factor-prop>
+		</ambient>
+		<diffuse>
+			<red>1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+			<factor-prop>alt-annun-prop</factor-prop>
+		</diffuse>
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>annun.OIL</object-name>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+			<factor-prop>oil-annun-prop</factor-prop>
+		</emission>
+		<ambient>
+			<red>1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+			<factor-prop>oil-annun-prop</factor-prop>
+		</ambient>
+		<diffuse>
+			<red>1</red>
+			<green>1</green>
+			<blue>0.1</blue>
+			<factor-prop>oil-annun-prop</factor-prop>
+		</diffuse>
+	</animation>
 	
 	<model>
 		<name>SWITCHES</name>
@@ -851,15 +982,6 @@
 	
 	<!--   Radio Stack  -->
 	
-	<model>
-		<name>kx165-2</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/radio_stack/kx165-2.xml</path>
-		<offsets>
-			<x-m>-1.735</x-m>
-			<y-m>0.28167</y-m>
-			<z-m>0.24</z-m>
-		</offsets>
-	</model>
 	
 	<model>
 		<name>kma28</name>
@@ -902,40 +1024,50 @@
 	</model>-->
 	
 	<model>
+		<name>kx165-2</name>
+		<path>Aircraft/IDG-PA28X/Models/Instruments/radio_stack/kx165-2.xml</path>
+		<offsets>
+			<x-m>-1.74</x-m>
+			<y-m>0.28167</y-m>
+			<z-m>0.24</z-m>
+		</offsets>
+	</model>
+	
+	<model>
 		<name>dme</name>
 		<path>Aircraft/IDG-PA28X/Models/Instruments/ki266/ki266.xml</path>
 		<offsets>
-			<x-m>-1.715</x-m>
+			<x-m>-1.72</x-m>
 			<y-m>0.28167</y-m>
 			<z-m>0.19</z-m>
 		</offsets>
 	</model>
 	
-	<!--<model>
+	<model>
 		<name>kt70</name>
 		<path>Aircraft/IDG-PA28X/Models/Instruments/kt70/kt70.xml</path>
 		<condition>
 			<not><property>options/wip</property></not>
 		</condition>
 		<offsets>
-			<x-m>1.922</x-m>
-			<y-m>0.285</y-m>
-			<z-m>0.27</z-m>
+			<x-m>-1.73</x-m>
+			<y-m>0.28167</y-m>
+			<z-m>0.145</z-m>
 		</offsets>
-	</model>-->
+	</model>
 	
-	<!--<model>
+	<model>
 		<name>gtx-327</name>
 		<path>Aircraft/IDG-PA28X/Models/Instruments/gtx-327/gtx-327.xml</path>
 		<condition>
 			<property>options/wip</property>
 		</condition>
 		<offsets>
-			<x-m>1.922</x-m>
-			<y-m>0.285</y-m>
-			<z-m>0.271</z-m>
+			<x-m>-1.73</x-m>
+			<y-m>0.28167</y-m>
+			<z-m>0.145</z-m>
 		</offsets>
-	</model>-->
+	</model>
 	<!--
 	<model>
 		<name>kr87</name>
@@ -1420,6 +1552,37 @@
 		</axis>
 	</animation>
 
+
+	<animation>
+		<type>pick</type>
+		<object-name>RudderTrim</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>fdm/jsbsim/fcs/rudder-trim-knob</property>
+				<step>0.1</step>
+				<min>-1</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>fdm/jsbsim/fcs/rudder-trim-knob</property>
+				<step>-0.1</step>
+				<min>-1</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+		</action>
+	</animation>
 	<animation>
 		<name>NoseTrim</name>
 		<type>rotate</type>
@@ -1481,9 +1644,10 @@
 		</axis>
 	</animation-->
 	
-	<!--animation>
+	<animation>
 		<type>pick</type>
-		<object-name>DoorGroup</object-name>
+		<object-name>doorF</object-name>
+		<object-name>doorFint</object-name>
 		<action>
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
@@ -1496,20 +1660,52 @@
 	
 	<animation>
 		<type>rotate</type>
-		<object-name>DoorGroup</object-name>
+		<object-name>doorF</object-name>
+		<object-name>doorFint</object-name>
+		<object-name>window.doorF</object-name>
 		<property>sim/multiplay/generic/float[4]</property>
-		<factor>-70</factor>
+		<factor>70</factor>
 		<axis>
-			<x1-m>2.0285</x1-m>
-			<y1-m>0.56719</y1-m>
-			<z1-m>0.21468</z1-m>
-			<x2-m>2.0381</x2-m>
-			<y2-m>0.58657</y2-m>
-			<z2-m>-0.33076</z2-m>
+			<x1-m>-1.66144</x1-m>
+			<y1-m>0.547888</y1-m>
+			<z1-m>-0.220591</z1-m>
+			<x2-m>-1.6666</x2-m>
+			<y2-m>0.544431</y2-m>
+			<z2-m>0.065309</z2-m>
 		</axis>
 	</animation>
 	
 	<animation>
+		<type>pick</type>
+		<object-name>doorB</object-name>
+		<object-name>doorBint</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>fdm/jsbsim/extra/door-baggage-cmd</property>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>doorB</object-name>
+		<object-name>doorBint</object-name>
+		<property>sim/multiplay/generic/float[5]</property>
+		<factor>120</factor>
+		<axis>
+			<x1-m>-0.10233</x1-m>
+			<y1-m>0.535669</y1-m>
+			<z1-m>0.098337</z1-m>
+			<x2-m>0.46431</x2-m>
+			<y2-m>0.480714</y2-m>
+			<z2-m>0.123108</z2-m>
+		</axis>
+	</animation>
+	
+	<!--<animation>
 		<type>rotate</type>
 		<object-name>DoorLatch</object-name>
 		<property>sim/multiplay/generic/float[4]</property>
@@ -1527,7 +1723,7 @@
 			<y>1.0</y>
 			<z>0.1</z>
 		</axis>
-	</animation-->
+	</animation>-->
 	
 	<animation>
 		<type>rotate</type>
@@ -1554,7 +1750,7 @@
 		<object-name>gear.F.scissor1</object-name>
 		<object-name>gear.F.scissor2</object-name>
 		<object-name>gear.F.oleo</object-name>
-		<property>sim/multiplay/generic/float[0]</property>
+		<property>gear/gear[0]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.00</ind><dep>0</dep></entry>
 			<entry><ind>1</ind><dep>0.15</dep></entry>
@@ -1572,7 +1768,7 @@
 		<type>rotate</type>
 		<object-name>gear.F.scissor1</object-name>
 		<object-name>gear.F.scissor2</object-name>
-		<property>sim/multiplay/generic/float[0]</property>
+		<property>gear/gear[0]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.00</ind><dep>0</dep></entry>
 			<entry><ind>1</ind><dep>20.3</dep></entry>
@@ -1590,7 +1786,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>gear.F.scissor2</object-name>
-		<property>sim/multiplay/generic/float[0]</property>
+		<property>gear/gear[0]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.00</ind><dep>0</dep></entry>
 			<entry><ind>1</ind><dep>-62.2</dep></entry>
@@ -1630,7 +1826,7 @@
 		<object-name>gear.oleo.L</object-name>
 		<object-name>gear.high.L</object-name>
 		<object-name>gear.low.scissor.L</object-name>
-		<property>sim/multiplay/generic/float[1]</property>
+		<property>gear/gear[1]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.00</ind><dep>0</dep></entry>
 			<entry><ind>1</ind><dep>0.1048</dep></entry>
@@ -1647,7 +1843,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>gear.low.scissor.L</object-name>
-		<property>sim/multiplay/generic/float[1]</property>
+		<property>gear/gear[1]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.00</ind><dep>0</dep></entry>
 			<entry><ind>1</ind><dep>29</dep></entry>
@@ -1665,7 +1861,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>gear.high.scissor.L</object-name>
-		<property>sim/multiplay/generic/float[1]</property>
+		<property>gear/gear[1]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.00</ind><dep>0</dep></entry>
 			<entry><ind>1</ind><dep>-30.66</dep></entry>
@@ -1704,7 +1900,7 @@
 		<object-name>gear.oleo.R</object-name>
 		<object-name>gear.high.R</object-name>
 		<object-name>gear.low.scissor.R</object-name>
-		<property>sim/multiplay/generic/float[2]</property>
+		<property>gear/gear[2]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.00</ind><dep>0</dep></entry>
 			<entry><ind>1</ind><dep>0.1048</dep></entry>
@@ -1721,7 +1917,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>gear.low.scissor.R</object-name>
-		<property>sim/multiplay/generic/float[2]</property>
+		<property>gear/gear[2]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.00</ind><dep>0</dep></entry>
 			<entry><ind>1</ind><dep>29</dep></entry>
@@ -1739,7 +1935,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>gear.high.scissor.R</object-name>
-		<property>sim/multiplay/generic/float[2]</property>
+		<property>gear/gear[2]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.00</ind><dep>0</dep></entry>
 			<entry><ind>1</ind><dep>-30.66</dep></entry>

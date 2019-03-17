@@ -26,7 +26,7 @@
 			<red>0.6</red>
 			<green>0.6</green>
 			<blue>0.6</blue>
-			<factor-prop>sim/model/material/instruments/factor</factor-prop>
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
 		</emission>
 	</animation>
 
@@ -158,9 +158,7 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<not>
-						<property>devices/status/keyboard/shift</property>
-					</not>
+					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>property-adjust</command>
 				<property>instrumentation/heading-indicator/offset-deg</property>
@@ -171,7 +169,9 @@
 			</binding>
 			<binding>
 				<condition>
-					<property>devices/status/keyboard/shift</property>
+					<not>
+						<property>devices/status/keyboard/shift</property>
+					</not>
 				</condition>
 				<command>property-adjust</command>
 				<property>it-stec55x/input/hdg</property>
@@ -187,9 +187,7 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<not>
-						<property>devices/status/keyboard/shift</property>
-					</not>
+					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>property-adjust</command>
 				<property>instrumentation/heading-indicator/offset-deg</property>
@@ -200,7 +198,9 @@
 			</binding>
 			<binding>
 				<condition>
-					<property>devices/status/keyboard/shift</property>
+					<not>
+						<property>devices/status/keyboard/shift</property>
+					</not>
 				</condition>
 				<command>property-adjust</command>
 				<property>it-stec55x/input/hdg</property>
@@ -213,9 +213,7 @@
 		<hovered>
 			<binding>
 				<condition>
-					<not>
-						<property>devices/status/keyboard/shift</property>
-					</not>
+					<property>devices/status/keyboard/shift</property>
 				</condition>
 				<command>set-tooltip</command>
 				<tooltip-id>heading-offset</tooltip-id>
@@ -225,7 +223,9 @@
 			</binding>
 			<binding>
 				<condition>
-					<property>devices/status/keyboard/shift</property>
+					<not>
+						<property>devices/status/keyboard/shift</property>
+					</not>
 				</condition>
 				<command>set-tooltip</command>
 				<tooltip-id>heading-bug</tooltip-id>
@@ -241,9 +241,7 @@
 		<object-name>card.knob</object-name>
 		<property>instrumentation/heading-indicator/offset-deg</property>
 		<condition>
-			<not>
-				<property>devices/status/keyboard/shift</property>
-			</not>
+			<property>devices/status/keyboard/shift</property>
 		</condition>
 		<factor>6</factor>
 		<axis>
@@ -262,7 +260,9 @@
 		<object-name>card.knob</object-name>
 		<property>it-stec55x/input/hdg</property>
 		<condition>
-			<property>devices/status/keyboard/shift</property>
+			<not>
+				<property>devices/status/keyboard/shift</property>
+			</not>
 		</condition>
 		<factor>6</factor>
 		<axis>
