@@ -14,7 +14,7 @@
 			<y> 0 </y>
 			<z> -1.26984 </z>
 		</location>
-		<static_friction> 0.4 </static_friction>
+		<static_friction> 0.425 </static_friction> <!-- Helps nose wheel steering - no effect on braking -->
 		<dynamic_friction> 0.6 </dynamic_friction>
 		<rolling_friction> 0.02 </rolling_friction>
 		<spring_coeff unit="LBS/FT"> 1900 </spring_coeff>
@@ -30,7 +30,7 @@
 			<y> -1.52593 </y>
 			<z> -1.26621 </z>
 		</location>
-		<static_friction> 0.4 </static_friction>
+		<static_friction> 0.425 </static_friction>
 		<dynamic_friction> 0.6 </dynamic_friction>
 		<rolling_friction> 0.02 </rolling_friction>
 		<spring_coeff unit="LBS/FT"> 1900 </spring_coeff>
@@ -46,7 +46,7 @@
 			<y> 1.52593 </y>
 			<z> -1.26621 </z>
 		</location>
-		<static_friction> 0.4 </static_friction>
+		<static_friction> 0.425 </static_friction>
 		<dynamic_friction> 0.6 </dynamic_friction>
 		<rolling_friction> 0.02 </rolling_friction>
 		<spring_coeff unit="LBS/FT"> 1900 </spring_coeff>
