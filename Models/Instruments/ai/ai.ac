@@ -233,7 +233,7 @@ refs 16
 78 0.252476 0.865183
 kids 0
 OBJECT poly
-name "Circle"
+name "base"
 loc -0.0007615 0.0000000 0.0000000
 crease 35.0
 texture "ai.png"
@@ -1908,7 +1908,7 @@ refs 4
 218 0.168188 0.606999
 kids 0
 OBJECT poly
-name "Circle.002"
+name "bg"
 loc -0.0001339 0.0000000 0.0000000
 crease 35.0
 texture "ai.png"

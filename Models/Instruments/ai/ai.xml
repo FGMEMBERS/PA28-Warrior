@@ -10,6 +10,7 @@
 		<object-name>disc</object-name>
 		<object-name>flag</object-name>
 		<object-name>ac</object-name>
+		<object-name>bg</object-name>
 		<emission>
 			<red>0.6</red>
 			<green>0.6</green>

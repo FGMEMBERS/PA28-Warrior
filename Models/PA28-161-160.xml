@@ -246,6 +246,40 @@
 	
 	<!--Annunciator/Indicator Panel-->
 	<animation>
+		<type>pick</type>
+		<object-name>annun.test.btn</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/switches/annun-test</property>
+			</binding>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/switches/annun-test-btn</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/switches/annun-test-btn</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>annun.test.btn</object-name>
+		<property>controls/switches/annun-test-btn</property>
+		<axis>
+			<x>1</x>
+		</axis>
+		<factor>-0.0029</factor>
+	</animation>
+	
+	<animation>
 		<type>material</type>
 		<object-name>annun.VAC</object-name>
 		<emission>
@@ -779,7 +813,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>paneldim.knob</object-name>
-		<property>controls/switches/panel-lights-factor</property>
+		<property>controls/switches/panel-dim-todo</property>
 		<factor>-270</factor>
 		<axis>
 			<x>1</x>
@@ -801,7 +835,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/switches/panel-lights-factor</property>
+				<property>controls/switches/panel-dim-todo</property>
 				<step>0.2</step>
 				<min>0</min>
 				<max>1</max>
@@ -813,7 +847,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-adjust</command>
-				<property>controls/switches/panel-lights-factor</property>
+				<property>controls/switches/panel-dim-todo</property>
 				<step>-0.2</step>
 				<min>0</min>
 				<max>1</max>
@@ -825,10 +859,9 @@
 		<name>NAVSW</name>
 		<path>Aircraft/IDG-PA28X/Models/Instruments/nav-src-sw/nav-src-sw.xml</path>
 		<offsets>
-			<x-m>-1.72725</x-m>
-			<y-m>0.215625</y-m>
-			<z-m>0.275886</z-m>
-			<roll-deg>90</roll-deg>
+			<x-m>-1.73095</x-m>
+			<y-m>0.221189</y-m>
+			<z-m>0.276444</z-m>
 		</offsets>
 	</model>
 	
@@ -1562,7 +1595,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-adjust</command>
-				<property>fdm/jsbsim/fcs/rudder-trim-knob</property>
+				<property>controls/flight/rudder-trim</property>
 				<step>0.1</step>
 				<min>-1</min>
 				<max>1</max>
@@ -1575,7 +1608,7 @@
 			<repeatable type="bool">false</repeatable>
 			<binding>
 				<command>property-adjust</command>
-				<property>fdm/jsbsim/fcs/rudder-trim-knob</property>
+				<property>controls/flight/rudder-trim</property>
 				<step>-0.1</step>
 				<min>-1</min>
 				<max>1</max>
@@ -1604,7 +1637,7 @@
 		<type>translate</type>
 		<object-name>RudderTrimIndicator</object-name>
 		<property>fdm/jsbsim/fcs/rudder-trim-knob</property>
-		<factor>0.03</factor>
+		<factor>0.0063</factor>
 		<axis>
 			<x>1</x>
 			<y>0</y>
