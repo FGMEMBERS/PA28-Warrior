@@ -8,7 +8,7 @@ OBJECT poly
 name "ALT.sw"
 loc -1.7336998 0.0703200 -0.0553735
 crease 30.0
-texture "panel-parts.png"
+texture "../panel-parts.png"
 texrep 1 1
 numvert 150
 -0.0012496 0.0159861 0.0048195
@@ -701,7 +701,7 @@ OBJECT poly
 name "AntiCollLight.Fin"
 loc -1.7336998 0.0703200 -0.1226834
 crease 30.0
-texture "panel-parts.png"
+texture "../panel-parts.png"
 texrep 1 1
 numvert 150
 -0.0012496 0.0159861 0.0048195
@@ -1394,7 +1394,7 @@ OBJECT poly
 name "AntiCollLight.Wing"
 loc -1.7336998 0.0703200 -0.1331857
 crease 30.0
-texture "panel-parts.png"
+texture "../panel-parts.png"
 texrep 1 1
 numvert 150
 -0.0012496 0.0159861 0.0048195
@@ -2087,7 +2087,7 @@ OBJECT poly
 name "BAT.sw"
 loc -1.7337000 0.0703200 -0.0448712
 crease 30.0
-texture "panel-parts.png"
+texture "../panel-parts.png"
 texrep 1 1
 numvert 150
 -0.0012496 0.0159861 0.0048195
@@ -2780,7 +2780,7 @@ OBJECT poly
 name "FuelPump"
 loc -1.7336998 0.0703200 -0.0752861
 crease 30.0
-texture "panel-parts.png"
+texture "../panel-parts.png"
 texrep 1 1
 numvert 150
 -0.0012496 0.0159861 0.0102178
@@ -3473,7 +3473,7 @@ OBJECT poly
 name "LandingLight"
 loc -1.7336998 0.0703200 -0.1023908
 crease 30.0
-texture "panel-parts.png"
+texture "../panel-parts.png"
 texrep 1 1
 numvert 150
 -0.0012496 0.0159861 0.0102178
@@ -4166,7 +4166,7 @@ OBJECT poly
 name "NavDimmer"
 loc -1.7556015 0.0672196 -0.0277155
 crease 35.0
-texture "panel_placards.png"
+texture "../panel_placards.png"
 texrep 1 1
 numvert 320
 -0.0274033 -0.0000000 -0.0065151
@@ -6735,7 +6735,7 @@ OBJECT poly
 name "PanelDimmer"
 loc -1.7556000 0.0672200 -0.1765729
 crease 35.0
-texture "panel_placards.png"
+texture "../panel_placards.png"
 texrep 1 1
 numvert 320
 -0.0274033 -0.0000000 -0.0065985
@@ -9304,7 +9304,7 @@ OBJECT poly
 name "PitotHeat"
 loc -1.7336998 0.0703200 -0.1524425
 crease 30.0
-texture "panel-parts.png"
+texture "../panel-parts.png"
 texrep 1 1
 numvert 150
 -0.0012496 0.0159861 0.0102178

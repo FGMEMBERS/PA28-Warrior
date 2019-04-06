@@ -2,7 +2,7 @@
 
 <PropertyList>
 
-	<path>IDG-PA28XII.ac</path>
+	<path>PA28-161.ac</path>
 
 	<!-- LIVERY SELECT -->
 	<!-- Animation -->
@@ -1021,7 +1021,7 @@
 		<path>Aircraft/IDG-PA28X/Models/Instruments/kma28/kma28.ac</path>
 		<offsets>
 			<x-m>-1.73</x-m>
-			<y-m>0.10665</y-m>
+			<y-m>0.1068</y-m>
 			<z-m>0.291251</z-m>
 		</offsets>
 	</model>
@@ -1060,9 +1060,9 @@
 		<name>kx165-2</name>
 		<path>Aircraft/IDG-PA28X/Models/Instruments/radio_stack/kx165-2.xml</path>
 		<offsets>
-			<x-m>-1.74</x-m>
+			<x-m>-1.742</x-m>
 			<y-m>0.28167</y-m>
-			<z-m>0.24</z-m>
+			<z-m>0.236</z-m>
 		</offsets>
 	</model>
 	
@@ -1072,7 +1072,7 @@
 		<offsets>
 			<x-m>-1.72</x-m>
 			<y-m>0.28167</y-m>
-			<z-m>0.19</z-m>
+			<z-m>0.188</z-m>
 		</offsets>
 	</model>
 	
@@ -1085,7 +1085,7 @@
 		<offsets>
 			<x-m>-1.73</x-m>
 			<y-m>0.28167</y-m>
-			<z-m>0.145</z-m>
+			<z-m>0.138</z-m>
 		</offsets>
 	</model>
 	
@@ -1098,7 +1098,7 @@
 		<offsets>
 			<x-m>-1.73</x-m>
 			<y-m>0.28167</y-m>
-			<z-m>0.145</z-m>
+			<z-m>0.138</z-m>
 		</offsets>
 	</model>
 	<!--
