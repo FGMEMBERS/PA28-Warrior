@@ -1,8 +1,9 @@
-<!-- PA28-161 Engine -->
+<?xml version="1.0"?>
 
+<!-- Piper PA28 Engine -->
 <!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
 
-<system name="PA28-161: Engine">
+<system name="PA28: Engine">
 	
 	<channel name="Magnetos-Starter" execrate="8">
 		
@@ -170,13 +171,8 @@
 				/engines/engine[0]/running ne 1
 				fcs/oil-temp-feedback gt 0
 			</test>
-		</switch>
-		
-		<pure_gain name="fcs/oil-temp-update">
-			<input>fcs/oil-temp-switch</input>
-			<gain>1.0</gain>
 			<output>fcs/oil-temp-feedback</output>
-		</pure_gain>
+		</switch>
 		
 		<fcs_function name="fcs/egt-inc">
 			<function>
@@ -206,13 +202,8 @@
 				/engines/engine[0]/running ne 1
 				fcs/egt-feedback gt 0
 			</test>
-		</switch>
-		
-		<pure_gain name="fcs/egt-update">
-			<input>fcs/egt-switch</input>
-			<gain>1.0</gain>
 			<output>fcs/egt-feedback</output>
-		</pure_gain>
+		</switch>
 	
 	</channel>
 

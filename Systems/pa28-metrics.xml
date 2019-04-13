@@ -1,11 +1,7 @@
-<!-- PA28-161 JSBsim -->
-<!-- Joshua Davidson (it0uchpods) -->
+<?xml version="1.0"?>
 
-<!--
-##############################################
-# Copyright (c) Joshua Davidson (it0uchpods) #
-##############################################
--->
+<!-- Piper PA28 JSBsim -->
+<!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
 
 <metrics>
 	<wingarea unit="FT2">  160.00 </wingarea>

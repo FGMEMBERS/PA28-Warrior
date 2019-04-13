@@ -1,8 +1,9 @@
-<!-- PA28-161 Fuel System -->
+<?xml version="1.0"?>
 
+<!-- Piper PA28 Fuel System -->
 <!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
 
-<system name="fuel">
+<system name="PA28: Fuel">
 	
 	<channel name="Fuel Logic and Pressure" execrate="8">
 		
@@ -86,13 +87,8 @@
 				fuel/suck-psi-feedback gt 0
 				fuel/pump-psi-feedback lt 0.001
 			</test>
-		</switch>
-		
-		<pure_gain name="fuel/suck-psi-update">
-			<input>fuel/suck-psi-switch</input>
-			<gain>1.0</gain>
 			<output>fuel/suck-psi-feedback</output>
-		</pure_gain>
+		</switch>
 		
 		<summer name="fuel/pressure-psi">
 			<input>fuel/pump-psi-feedback</input>
@@ -132,7 +128,7 @@
 	
 	<channel name="Engine Pipe PPS">
 		
-		<summer name="tank0 and 1 to tank2">
+		<summer name="fuel/from-tank0-and-tank1-to-tank2">
 			<input>fuel/from-tank0-to-tank2</input>
 			<input>fuel/from-tank1-to-tank2</input>
 			<output>propulsion/tank[2]/external-flow-rate-pps</output>

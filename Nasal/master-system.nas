@@ -1,9 +1,5 @@
-# PA28-161 Init File
+# PA28 Master System
 # Copyright (c) 2019 Joshua Davidson (it0uchpods)
-
-#############
-# Init Vars #
-#############
 
 var INIT = {
 	ENG: func() {

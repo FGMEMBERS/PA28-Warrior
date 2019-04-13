@@ -5,72 +5,26 @@
 <PropertyList>
 	
 	<sim>
-		
 		<author>it0uchpods Design Group: Joshua Davidson (it0uchpods), Jonathan Redpath (legoboyvdlp)</author>
-		
-		<rating>
-			<FDM type="int">5</FDM>
-			<systems type="int">5</systems>
-			<cockpit type="int">4</cockpit>
-			<model type="int">4</model>
-		</rating>
-		
-		<hud n="0">
-			<enable3d n="0">false</enable3d>
-			<enable3d n="1">false</enable3d>
-		</hud>
-		
+		<chase-distance-m type="double" archive="y">-20.0</chase-distance-m>
+		<checklists include="PA28-Checklists.xml"/>
+		<current-view>
+			<z-offset-default type="float">20.0</z-offset-default>
+			<z-offset-min-m type="float">10.0</z-offset-min-m>
+			<z-offset-max-m type="float">200.0</z-offset-max-m>
+		</current-view>
 		<flaps>
 			<setting>0.00</setting>
 			<setting>0.25</setting>
 			<setting>0.50</setting>
 			<setting>1.00</setting>
 		</flaps>
-		
-		<panel>
-			<visibility archive="y">false</visibility>
-		</panel>
-		
-		<startup>
-			<splash-texture>Aircraft/IDG-PA28X/Splash/splash1.png</splash-texture>
-		</startup>
-		
-		<tags>
-			<tag>ga</tag>
-			<tag>piper</tag>
-			<tag>1960s</tag>
-			<tag>1970s</tag>
-			<tag>1980s</tag>
-			<tag>1990s</tag>
-			<tag>2000s</tag>
-			<tag>ifr</tag>
-			<tag>fixed-gear</tag>
-			<tag>piston</tag>
-			<tag>1-engine</tag>
-		</tags>
-		
-		<previews>
-			<preview>
-				<type>exterior</type>
-				<splash type="bool">true</splash>
-				<path>Splash/Splash1.png</path>
-			</preview>	
-		</previews>
-		
-		<checklists include="PA28-Checklists.xml"/>
-		
-		<systems>
-			<electrical>
-				<path></path>
-			</electrical>
-			<autopilot n="0">
-				<path>Aircraft/IDG-PA28X/Systems/stec-55x.xml</path>
-			</autopilot>
-			<autopilot n="1">
-				<path>Aircraft/IDG-PA28X/Systems/libraries.xml</path>
-			</autopilot>
-		</systems>
-		
+		<flight-recorder include="Systems/flight-recorder.xml"/>
+		<gui n="0" include="gui/it-gui.xml"/>
+		<hud n="0">
+			<enable3d n="0">false</enable3d>
+			<enable3d n="1">false</enable3d>
+		</hud>
 		<menubar>
 			<default>
 				<menu n="100">
@@ -189,12 +143,68 @@
 				</menu>
 			</default>
 		</menubar>
-		
+		<multiplay>
+			<generic>
+				<int n="0" alias="/fdm/jsbsim/crash-stress/nose-damaged"/>
+				<int n="1" alias="/fdm/jsbsim/crash-stress/lwing-damaged"/>
+				<int n="2" alias="/fdm/jsbsim/crash-stress/rwing-damaged"/>
+				<int n="3" alias="/fdm/jsbsim/crash-stress/htail-damaged"/>
+				<int n="4" alias="/fdm/jsbsim/crash-stress/vtail-damaged"/>
+				<bool n="0" alias="/options/wheel-fairing"/>
+				<float n="0" alias="/fdm/jsbsim/fcs/aileron-yoke"/>
+				<float n="1" alias="/fdm/jsbsim/fcs/pitch-input"/>
+				<float n="2" alias="/fdm/jsbsim/fcs/yaw-input"/>
+				<float n="3" alias="/fdm/jsbsim/fcs/steer-deg"/>
+				<float n="4" alias="/fdm/jsbsim/extra/door-main-norm"/>
+				<string alias="/sim/multiplay/callsign"/>
+			</generic>
+		</multiplay>
+		<panel>
+			<visibility archive="y">false</visibility>
+		</panel>
+		<previews>
+			<preview>
+				<type>exterior</type>
+				<splash type="bool">true</splash>
+				<path>Splash/Splash1.png</path>
+			</preview>	
+		</previews>
+		<rating>
+			<FDM type="int">5</FDM>
+			<systems type="int">5</systems>
+			<cockpit type="int">4</cockpit>
+			<model type="int">4</model>
+		</rating>
 		<sound>
 			<path>Aircraft/IDG-PA28X/Sounds/sound.xml</path>
 		</sound>
-		
-		<chase-distance-m type="double" archive="y">-20.0</chase-distance-m>
+		<startup>
+			<splash-texture>Aircraft/IDG-PA28X/Splash/splash1.png</splash-texture>
+		</startup>
+		<systems>
+			<electrical>
+				<path></path>
+			</electrical>
+			<autopilot n="0">
+				<path>Aircraft/IDG-PA28X/Systems/stec-55x.xml</path>
+			</autopilot>
+			<autopilot n="1">
+				<path>Aircraft/IDG-PA28X/Systems/libraries.xml</path>
+			</autopilot>
+		</systems>
+		<tags>
+			<tag>ga</tag>
+			<tag>piper</tag>
+			<tag>1960s</tag>
+			<tag>1970s</tag>
+			<tag>1980s</tag>
+			<tag>1990s</tag>
+			<tag>2000s</tag>
+			<tag>ifr</tag>
+			<tag>fixed-gear</tag>
+			<tag>piston</tag>
+			<tag>1-engine</tag>
+		</tags>
 		<view n="0">
 			<name>Pilot View</name>
 			<internal archive="y">true</internal>
@@ -271,7 +281,6 @@
 				<default-field-of-view-deg type="double">82</default-field-of-view-deg>
 			</config>
 		</view>
-		
 		<weight n="0">
 			<name>Pilot</name>
 			<weight-lb>190</weight-lb>
@@ -282,33 +291,6 @@
 			<weight-lb>190</weight-lb>
 			<max-lb>200</max-lb>
 		</weight>
-		
-		<multiplay>
-			<generic>
-				<int n="0" alias="/fdm/jsbsim/crash-stress/nose-damaged"/>
-				<int n="1" alias="/fdm/jsbsim/crash-stress/lwing-damaged"/>
-				<int n="2" alias="/fdm/jsbsim/crash-stress/rwing-damaged"/>
-				<int n="3" alias="/fdm/jsbsim/crash-stress/htail-damaged"/>
-				<int n="4" alias="/fdm/jsbsim/crash-stress/vtail-damaged"/>
-				<bool n="0" alias="/options/wheel-fairing"/>
-				<float n="0" alias="/fdm/jsbsim/fcs/aileron-yoke"/>
-				<float n="1" alias="/fdm/jsbsim/fcs/pitch-input"/>
-				<float n="2" alias="/fdm/jsbsim/fcs/yaw-input"/>
-				<float n="3" alias="/fdm/jsbsim/fcs/steer-deg"/>
-				<float n="4" alias="/fdm/jsbsim/extra/door-main-norm"/>
-				<string alias="/sim/multiplay/callsign"/>
-			</generic>
-		</multiplay>
-		
-		<flight-recorder include="Systems/flight-recorder.xml"/>
-		
-		<gui n="0" include="gui/it-gui.xml"/>
-		
-		<current-view>
-			<z-offset-default type="float">20.0</z-offset-default>
-			<z-offset-min-m type="float">10.0</z-offset-min-m>
-			<z-offset-max-m type="float">200.0</z-offset-max-m>
-		</current-view>
 	</sim>
 	
 	<airport>
@@ -444,42 +426,6 @@
 	</gear>
 	
 	<input>
-		<mice n="0">
-			<mouse n="0">
-				<mode n="0">
-					<button n="3">
-						<binding n="0">
-							<script></script>
-						</binding>
-						<binding n="1">
-							<condition>
-								<and>
-									<property>/devices/status/mice/mouse[0]/button[2]</property>
-									<not><property>/sim/mouse/right-button-mode-cycle-enabled</property></not>
-								</and>
-							</condition>
-							<command>nasal</command>
-							<script>libraries.fovZoom(-1);</script>
-						</binding>
-					</button>
-					<button n="4">
-						<binding n="0">
-							<script></script>
-						</binding>
-						<binding n="1">
-							<condition>
-								<and>
-									<property>/devices/status/mice/mouse[0]/button[2]</property>
-									<not><property>/sim/mouse/right-button-mode-cycle-enabled</property></not>
-								</and>
-							</condition>
-							<command>nasal</command>
-							<script>libraries.fovZoom(1);</script>
-						</binding>
-					</button>
-				</mode>
-			</mouse>
-		</mice>
 		<keyboard>
 			<key n="12">
 				<name>Ctrl-L</name>
@@ -638,21 +584,54 @@
 				</binding>
 			</key>
 		</keyboard>
+		<mice n="0">
+			<mouse n="0">
+				<mode n="0">
+					<button n="3">
+						<binding n="0">
+							<script></script>
+						</binding>
+						<binding n="1">
+							<condition>
+								<and>
+									<property>/devices/status/mice/mouse[0]/button[2]</property>
+									<not><property>/sim/mouse/right-button-mode-cycle-enabled</property></not>
+								</and>
+							</condition>
+							<command>nasal</command>
+							<script>libraries.fovZoom(-1);</script>
+						</binding>
+					</button>
+					<button n="4">
+						<binding n="0">
+							<script></script>
+						</binding>
+						<binding n="1">
+							<condition>
+								<and>
+									<property>/devices/status/mice/mouse[0]/button[2]</property>
+									<not><property>/sim/mouse/right-button-mode-cycle-enabled</property></not>
+								</and>
+							</condition>
+							<command>nasal</command>
+							<script>libraries.fovZoom(1);</script>
+						</binding>
+					</button>
+				</mode>
+			</mouse>
+		</mice>
 	</input>
 	
 	<instrumentation n="0">
-		
 		<adf>
 			<model>ki228</model>
 			<volume-norm type="double">1</volume-norm>
 		</adf>
-		
 		<attitude-indicator>
 			<config>
 				<tumble-flag>true</tumble-flag>
 			</config>
 		</attitude-indicator>
-		
 		<comm n="0">
 			<frequencies>
 				<selected-mhz type="double">118.7</selected-mhz>
@@ -661,7 +640,6 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0.6</volume>
 		</comm>
-		
 		<comm n="1">
 			<frequencies>
 				<selected-mhz type="double">119.4</selected-mhz>
@@ -670,24 +648,19 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0.6</volume>
 		</comm>
-		
 		<dme>
-		
 			<switch-position type="int">1</switch-position>
 			<volume type="double">0</volume>
 		</dme>
-		
 		<elt>
 			<armed type="bool">false</armed>
 			<on type="bool">true</on>
 			<on-pos type="double">1</on-pos>
 			<test type="bool">false</test>
 		</elt>
-		
 		<encoder>
 			<serviceable type="bool">true</serviceable>
 		</encoder>
-		
 		<kcs55>
 			<ka51>
 				<slaved>true</slaved>
@@ -708,7 +681,6 @@
 				<input-power-max type="double">15.8</input-power-max>
 			</kg102>
 		</kcs55>
-		
 		<kma20>
 			<knob type="int" archive="y">-1</knob>
 			<auto type="int" archive="y">1</auto>
@@ -722,7 +694,6 @@
 			<sens type="int" archive="y">0</sens>
 			<test type="int" archive="y">0</test>
 		</kma20>
-		
 		<nav n="0">
 			<frequencies>
 				<selected-mhz type="double">111.15</selected-mhz>
@@ -734,7 +705,6 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</nav>
-		
 		<nav n="1">
 			<frequencies>
 				<selected-mhz type="double">109.55</selected-mhz>
@@ -746,11 +716,9 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</nav>
-		
 		<oat>
 			<mode type="int">0</mode>
 		</oat>
-	
 	</instrumentation>
 	
 	<it-stec55x n="0"> <!-- S-TEC 55X Settings -->
@@ -839,8 +807,8 @@
 			<file>Aircraft/IDG-PA28X/AircraftConfig/acconfig.nas</file>
 		</acconfig>
 		<systems>
+			<file>Aircraft/IDG-PA28X/Nasal/master-system.nas</file>
 			<file>Aircraft/IDG-PA28X/Nasal/electrical.nas</file>
-			<file>Aircraft/IDG-PA28X/Nasal/init.nas</file>
 		</systems>
 		<stec55x>
 			<file>Aircraft/IDG-PA28X/Nasal/stec-55x.nas</file>
