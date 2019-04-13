@@ -1,8 +1,9 @@
-<!-- Crash and Stress -->
+<?xml version="1.0"?>
 
+<!-- Piper PA28 Crash and Stress -->
 <!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
 
-<system name="Crash Stress">
+<system name="PA28: Crash and Stress">
 	
 	<channel name="Aero Effects">
 		
