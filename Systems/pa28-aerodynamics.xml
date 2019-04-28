@@ -42,7 +42,7 @@
 	<axis name="LIFT">
 		
 		<function name="aero/coefficient/CLpiv">
-			<description>Delta lift due to propeller induced velocity</description>
+			<description>Lift due to propeller induced velocity</description>
 			<product>
 				<property>propulsion/engine[0]/thrust-coefficient</property>
 				<property>aero/qbar-psf</property>
@@ -135,8 +135,8 @@
 			</product>
 		</function>
 		
-		<function name="aero/coefficient/dCLflap">
-			<description>Delta Lift due to flaps</description>
+		<function name="aero/coefficient/CLflap">
+			<description>Lift due to flaps</description>
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
