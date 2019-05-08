@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
+<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
 
 <!-- PA28-161 Aircraft Config Dialog -->
 
@@ -49,7 +49,7 @@
 		
 		<text>
 			<halign>center</halign>
-			<label>Welcome to the IDG PA28X Series!</label>
+			<label>Welcome to the IDG PA28 Series!</label>
 		</text>
 		<text>
 			<halign>center</halign>

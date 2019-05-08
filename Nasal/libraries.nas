@@ -1,8 +1,8 @@
 # PA28 Libraries
-# Joshua Davidson (it0uchpods)
+# Joshua Davidson (Octal450)
 
 print("-----------------------------------------------------------------------------");
-print("Copyright (c) 2017-2019 Joshua Davidson (it0uchpods)");
+print("Copyright (c) 2017-2019 Joshua Davidson (Octal450)");
 print("-----------------------------------------------------------------------------");
 
 setprop("/sim/menubar/default/menu[2]/item[2]/enabled", 0);

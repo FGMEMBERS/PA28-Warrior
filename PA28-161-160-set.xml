@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
+<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
 
 <PropertyList include="PA28-main.xml">
 
@@ -11,13 +11,13 @@
 		<primary-set>true</primary-set>
 		
 		<model>
-			<path type="string">Aircraft/IDG-PA28X/Models/PA28-161-160.xml</path>
+			<path type="string">Aircraft/IDG-PA28/Models/PA28-161-160.xml</path>
 		</model>
 	</sim>
 	
 	<nasal n="0">
 		<specific>
-			<file>Aircraft/IDG-PA28X/Nasal/liveries.nas</file>
+			<file>Aircraft/IDG-PA28/Nasal/liveries.nas</file>
 		</specific>
 	</nasal>
 
