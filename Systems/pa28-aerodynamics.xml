@@ -124,17 +124,6 @@
 			</product>
 		</function>
 		
-		<function name="aero/coefficient/CLde">
-			<description>Lift due to Elevator Deflection</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<toradians><property>fcs/elevator-deg</property></toradians>
-				<value>0.3401</value>
-				<property>crash-stress/htail-factor</property> <!-- Crash and Stress -->
-			</product>
-		</function>
-		
 		<function name="aero/coefficient/CLflap">
 			<description>Lift due to flaps</description>
 			<product>
@@ -143,6 +132,17 @@
 				<property>fcs/flap-pos-deg</property>
 				<value>0.00574</value>
 				<property>crash-stress/wing-factor</property> <!-- Crash and Stress -->
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/CLde">
+			<description>Lift due to Elevator Deflection</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<toradians><property>fcs/elevator-deg</property></toradians>
+				<value>0.3401</value>
+				<property>crash-stress/htail-factor</property> <!-- Crash and Stress -->
 			</product>
 		</function>
 	
@@ -165,7 +165,6 @@
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<property>aero/function/kCDge</property>
 				<value>0.5724565</value> <!-- Tuning factor -->
 				<table>
 					<independentVar lookup="row">aero/alpha-rad</independentVar>
@@ -212,6 +211,7 @@
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<property>aero/cl-squared</property>
+				<property>aero/function/kCDge</property>
 				<value>0.002442</value>
 			</product>
 		</function>
@@ -363,6 +363,17 @@
 			</product>
 		</function>
 		
+		<function name="aero/coefficient/Clwi">
+			<description>Roll moment due to wing imbalance</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<property>metrics/bw-ft</property>
+				<value>-0.45712</value>
+				<property>crash-stress/wing-diff-factor</property> <!-- Crash and Stress -->
+			</product>
+		</function>
+		
 		<function name="aero/coefficient/Clda_l">
 			<description>Roll moment due to left aileron</description>
 			<product>
@@ -418,17 +429,6 @@
 				<property>crash-stress/vtail-factor</property> <!-- Crash and Stress -->
 			</product>
 		</function>
-		
-		<function name="aero/coefficient/Clwi">
-			<description>Roll moment due to wing imbalance</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<property>metrics/bw-ft</property>
-				<value>-0.45712</value>
-				<property>crash-stress/wing-diff-factor</property> <!-- Crash and Stress -->
-			</product>
-		</function>
 	
 	</axis>
 	
@@ -456,32 +456,6 @@
 			</product>
 		</function>
 		
-		<function name="aero/coefficient/Cmde">
-			<description>Pitch moment due to elevator</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<property>metrics/cbarw-ft</property>
-				<toradians><property>fcs/elevator-deg</property></toradians>
-				<value>-1.7329</value>
-				<table>
-					<independentVar lookup="row">aero/alpha-rad</independentVar>
-					<independentVar lookup="column">fcs/elevator-deg</independentVar>
-					<tableData>
-						      -12   0    12
-						0.314  1.0  1.0  1.0
-						0.436  0.6  0.7  0.9
-						0.610  0.3  0.4  0.8
-						0.785  0.2  0.3  0.7
-						0.959  0.1  0.1  0.6
-						1.134  0.1  0.1  0.5
-						1.570  0.1  0.1  0.4
-					</tableData>
-				</table>
-				<property>crash-stress/htail-factor</property> <!-- Crash and Stress -->
-			</product>
-		</function>
-		
 		<function name="aero/coefficient/Cmq">
 			<description>Pitch moment due to pitch rate</description>
 			<product>
@@ -505,6 +479,32 @@
 				<property>aero/alphadot-rad_sec</property>
 				<value>-6.2138</value>
 				<property>crash-stress/wing-factor</property> <!-- Crash and Stress -->
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/Cmde">
+			<description>Pitch moment due to elevator</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<property>metrics/cbarw-ft</property>
+				<toradians><property>fcs/elevator-deg</property></toradians>
+				<value>-1.7329</value>
+				<table>
+					<independentVar lookup="row">aero/alpha-rad</independentVar>
+					<independentVar lookup="column">fcs/elevator-deg</independentVar>
+					<tableData>
+						      -12   0    12
+						0.314  1.0  1.0  1.0
+						0.436  0.6  0.7  0.9
+						0.610  0.3  0.4  0.8
+						0.785  0.2  0.3  0.7
+						0.959  0.1  0.1  0.6
+						1.134  0.1  0.1  0.5
+						1.570  0.1  0.1  0.4
+					</tableData>
+				</table>
+				<property>crash-stress/htail-factor</property> <!-- Crash and Stress -->
 			</product>
 		</function>
 	
@@ -539,6 +539,40 @@
 				<property>velocities/r-aero-rad_sec</property>
 				<value>-0.23</value>
 				<property>crash-stress/vtail-factor</property> <!-- Crash and Stress -->
+			</product>
+		</function>
+		
+		<function name="aero/coefficient/Cnspw">
+			<description>Yaw moment due to spiraling propwash</description>
+			<product>
+				<property>aero/function/qbar-propwash-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<property>metrics/bw-ft</property>
+				<value>-0.05</value>
+			</product>
+		</function> 
+		
+		<function name="aero/coefficient/Cnrf">
+			<description>Yaw moment due to flat spin</description>
+			<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<property>metrics/bw-ft</property>
+				<property>aero/bi2vel</property>
+				<table>
+					<independentVar lookup="row">velocities/r-aero-rad_sec</independentVar>
+					<independentVar lookup="column">aero/alpha-rad</independentVar>
+					<tableData>
+						    0.29  0.41
+						-5  0.00  0.00
+						-3  0.00 -0.21
+						-1  0.00  0.00
+						 0  0.00  0.00
+						 1  0.00  0.00
+						 3  0.00  0.21
+						 5  0.00  0.00
+					</tableData>
+				</table>
 			</product>
 		</function>
 		
@@ -593,40 +627,6 @@
 					</tableData>
 				</table>
 				<property>crash-stress/right-wing-factor</property> <!-- Crash and Stress -->
-			</product>
-		</function>
-		
-		<function name="aero/coefficient/Cnspw">
-			<description>Yaw moment due to spiraling propwash</description>
-			<product>
-				<property>aero/function/qbar-propwash-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<property>metrics/bw-ft</property>
-				<value>-0.05</value>
-			</product>
-		</function> 
-		
-		<function name="aero/coefficient/Cnrf">
-			<description>Yaw moment due to flat spin</description>
-			<product>
-				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<property>metrics/bw-ft</property>
-				<property>aero/bi2vel</property>
-				<table>
-					<independentVar lookup="row">velocities/r-aero-rad_sec</independentVar>
-					<independentVar lookup="column">aero/alpha-rad</independentVar>
-					<tableData>
-						    0.29  0.41
-						-5  0.00  0.00
-						-3  0.00 -0.21
-						-1  0.00  0.00
-						 0  0.00  0.00
-						 1  0.00  0.00
-						 3  0.00  0.21
-						 5  0.00  0.00
-					</tableData>
-				</table>
 			</product>
 		</function>
 		
