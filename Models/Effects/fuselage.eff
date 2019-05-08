@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PropertyList>
-	<name>Aircraft/IDG-PA28X/Models/Effects/fuselage</name>
+	<name>Aircraft/IDG-PA28/Models/Effects/fuselage</name>
 	<inherits-from>Effects/model-combined-deferred</inherits-from>
 	<parameters>
 		<!-- Light map -->
@@ -14,14 +14,14 @@
 		<texture n="3">
 			<filter>linear-mipmap-linear</filter>
 			<internal-format>normalized</internal-format>
-			<image>Aircraft/IDG-PA28X/Models/Effects/lightmap.png</image>
+			<image>Aircraft/IDG-PA28/Models/Effects/lightmap.png</image>
 		</texture>
 		<!-- Normal Map -->
 		<normalmap-enabled type="int">  1   </normalmap-enabled>
 		<normalmap-dds type="int">      0   </normalmap-dds>
 		<normalmap-tiling type="float"> 1.0 </normalmap-tiling>
 		<texture n="2">
-		<image>Aircraft/IDG-PA28X/Models/body-normal.png</image>
+		<image>Aircraft/IDG-PA28/Models/body-normal.png</image>
 		</texture>
 		<!-- Reflection -->
 		<reflection-enabled type="int">      1   </reflection-enabled>
@@ -29,7 +29,7 @@
 		<reflection-correction type="float">-1.0 </reflection-correction>
 		<reflection-dynamic type="int">      1   </reflection-dynamic>
 		<!-- <texture n="4"> -->
-		<!--   <image>Aircraft/IDG-PA28X/Models/Effects/exterior-chrome.png</image> -->
+		<!--   <image>Aircraft/IDG-PA28/Models/Effects/exterior-chrome.png</image> -->
 		<!-- </texture> -->
 		<texture n="5">
 		<type>cubemap</type>
@@ -58,7 +58,7 @@
 	</parameters>
 
   <!--WARNING: Do not edit below this line -->
-  <!-- ####################
+  <!-- #########################
        ### NORMALMAP INCLUDE ###
        ######################### -->
   <generate>
@@ -110,7 +110,7 @@
       </program>
     </pass>
   </technique>
-  <!-- ########################
+  <!-- #############################
        ### END NORMALMAP INCLUDE ###
        ############################# -->
 </PropertyList>

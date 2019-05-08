@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
+<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
 
 <!-- PA28-161 Control Panel Dialog -->
 
@@ -33,7 +33,7 @@
 		<legend>?</legend>
 		<binding>
 			<command>open-browser</command>
-			<path>Aircraft/IDG-PA28X/Docs/About_Mini_Panel.pdf</path>
+			<path>Aircraft/IDG-PA28/Docs/About_Mini_Panel.pdf</path>
 		</binding>
 	</button>
 	

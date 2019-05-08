@@ -1,5 +1,5 @@
 # S-TEC Fifty Five X Autopilot System
-# Copyright (c) 2019 Joshua Davidson (it0uchpods)
+# Copyright (c) 2019 Joshua Davidson (Octal450)
 
 # Initialize variables
 var cdiDefl = 0;

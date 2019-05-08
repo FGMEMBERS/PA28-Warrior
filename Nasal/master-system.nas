@@ -1,5 +1,5 @@
 # PA28 Master System
-# Copyright (c) 2019 Joshua Davidson (it0uchpods)
+# Copyright (c) 2019 Joshua Davidson (Octal450)
 
 var INIT = {
 	ENG: func() {

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
   
 <!-- Warrior II Sound Configuration -->
-<!-- Joshua Davidson (it0uchpods) -->
+<!-- Joshua Davidson (Octal450) -->
 
 <PropertyList>
 	
@@ -10,7 +10,7 @@
 		<crank>
 			<name>engstart</name>
 			<mode>once</mode>
-			<path>Aircraft/IDG-PA28X/Sounds/engine-start.wav</path>
+			<path>Aircraft/IDG-PA28/Sounds/engine-start.wav</path>
 			<property>/engines/engine[0]/running</property>
 			<position>
 				<x>-1.0</x>
@@ -28,7 +28,7 @@
 		<crank>
 			<name>crank</name>
 			<mode>looped</mode>
-			<path>Aircraft/IDG-PA28X/Sounds/engine-crank.wav</path>
+			<path>Aircraft/IDG-PA28/Sounds/engine-crank.wav</path>
 			<condition>
 				<property>/engines/engine[0]/cranking</property>
 				<not>
@@ -51,7 +51,7 @@
 		<engine-idle>
 			<name>engine-idle</name>
 			<mode>looped</mode>
-			<path>Aircraft/IDG-PA28X/Sounds/engine-idle.wav</path>
+			<path>Aircraft/IDG-PA28/Sounds/engine-idle.wav</path>
 			<condition>
 				<greater-than>
 					<property>/engines/engine[0]/rpm</property>
@@ -71,7 +71,7 @@
 		<engine>
 			<name>engine</name>
 			<mode>looped</mode>
-			<path>Aircraft/IDG-PA28X/Sounds/engine.wav</path>
+			<path>Aircraft/IDG-PA28/Sounds/engine.wav</path>
 			<condition>
 				<greater-than>
 					<property>/engines/engine[0]/rpm</property>
@@ -102,7 +102,7 @@
 		<roll>
 			<name>roll on runway</name>
 			<mode>looped</mode>
-			<path>Aircraft/IDG-PA28X/Sounds/roll.wav</path>
+			<path>Aircraft/IDG-PA28/Sounds/roll.wav</path>
 			<condition>
 				<property>/sim/current-view/internal</property>
 				<or>
@@ -166,7 +166,7 @@
 		<avfan>
 			<name>avfan</name>
 			<mode>looped</mode>
-			<path>Aircraft/IDG-PA28X/Sounds/avfan.wav</path>
+			<path>Aircraft/IDG-PA28/Sounds/avfan.wav</path>
 			<volume>
 				<property>/fdm/jsbsim/libraries/av-fan-rpm</property>
 				<factor>0.00001089</factor>
@@ -180,7 +180,7 @@
 		
 		<apoff>
 			<name>apoff</name>
-			<path>Aircraft/IDG-PA28X/Sounds/apoff.wav</path>
+			<path>Aircraft/IDG-PA28/Sounds/apoff.wav</path>
 			<condition>
 				<property>/it-stec55x/sound/disc</property>
 			</condition>
@@ -194,7 +194,7 @@
 		<rain>
 			<name>rain</name>
 			<mode>looped</mode>
-			<path>Aircraft/IDG-PA28X/Sounds/rain.wav</path>
+			<path>Aircraft/IDG-PA28/Sounds/rain.wav</path>
 			<volume>
 				<property>/environment/rain-norm</property>
 				<factor>1.2</factor>
@@ -216,7 +216,7 @@
 		<switch>
 			<name>Switch1</name>
 			<mode>once</mode>
-			<path>Aircraft/IDG-PA28X/Sounds/switch1.wav</path>
+			<path>Aircraft/IDG-PA28/Sounds/switch1.wav</path>
 			<condition>
 				<property>/sim/sounde/switch1</property>
 			</condition>
@@ -228,7 +228,7 @@
 		<switch>
 			<name>Switch2</name>
 			<mode>once</mode>
-			<path>Aircraft/IDG-PA28X/Sounds/switch2.wav</path>
+			<path>Aircraft/IDG-PA28/Sounds/switch2.wav</path>
 			<condition>
 				<property>/sim/sounde/switch2</property>
 			</condition>
@@ -240,7 +240,7 @@
 		<switch>
 			<name>Switch3</name>
 			<mode>once</mode>
-			<path>Aircraft/IDG-PA28X/Sounds/switch3.wav</path>
+			<path>Aircraft/IDG-PA28/Sounds/switch3.wav</path>
 			<condition>
 				<property>/sim/sounde/switch3</property>
 			</condition>
@@ -252,7 +252,7 @@
 		<switch>
 			<name>Knob</name>
 			<mode>once</mode>
-			<path>Aircraft/IDG-PA28X/Sounds/knob.wav</path>
+			<path>Aircraft/IDG-PA28/Sounds/knob.wav</path>
 			<condition>
 				<property>/sim/sounde/knb1</property>
 			</condition>

@@ -1,5 +1,5 @@
 # Garmin GTX-327 Transponder
-# Copyright (c) 2019 Joshua Davidson (it0uchpods)
+# Copyright (c) 2019 Joshua Davidson (Octal450)
 
 # Initialize variables
 var annuns = ["off", "stby", "off", "off", "on", "alt"];
@@ -173,4 +173,4 @@ var identChk = maketimer(0.5, func {
 });
 
 var update = maketimer(0.1, system, system.loop);
-#setprop("/options/wip", 1); # This should be commented out, or it0uchpods is an idiot! :)
+#setprop("/options/wip", 1); # This should be commented out, or Octal450 is an idiot! :)

@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 
-<!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
+<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
 
 <PropertyList>
 	
 	<sim>
-		<author>it0uchpods Design Group: Joshua Davidson (it0uchpods), Jonathan Redpath (legoboyvdlp)</author>
+		<author>Octal450 Design Group: Joshua Davidson (Octal450), Jonathan Redpath (legoboyvdlp)</author>
 		<chase-distance-m type="double" archive="y">-20.0</chase-distance-m>
 		<checklists include="PA28-Checklists.xml"/>
 		<current-view>
@@ -116,28 +116,28 @@
 						<enabled type="bool">false</enabled> <!-- Needs to be updated -->
 						<binding>
 							<command>open-browser</command>
-							<path>Aircraft/IDG-PA28X/Docs/Cockpit.pdf</path>
+							<path>Aircraft/IDG-PA28/Docs/Cockpit.pdf</path>
 						</binding>
 					</item>
 					<item>
 						<label>General Settings</label>
 						<binding>
 							<command>open-browser</command>
-							<path>Aircraft/IDG-PA28X/Docs/General_Settings.pdf</path>
+							<path>Aircraft/IDG-PA28/Docs/General_Settings.pdf</path>
 						</binding>
 					</item>
 					<item>
 						<label>Fuel Management</label>
 						<binding>
 							<command>open-browser</command>
-							<path>Aircraft/IDG-PA28X/Docs/Fuel.pdf</path>
+							<path>Aircraft/IDG-PA28/Docs/Fuel.pdf</path>
 						</binding>
 					</item>
 					<item>
 						<label>About Mini Panel</label>
 						<binding>
 							<command>open-browser</command>
-							<path>Aircraft/IDG-PA28X/Docs/About_Mini_Panel.pdf</path>
+							<path>Aircraft/IDG-PA28/Docs/About_Mini_Panel.pdf</path>
 						</binding>
 					</item>
 				</menu>
@@ -177,20 +177,20 @@
 			<model type="int">4</model>
 		</rating>
 		<sound>
-			<path>Aircraft/IDG-PA28X/Sounds/sound.xml</path>
+			<path>Aircraft/IDG-PA28/Sounds/sound.xml</path>
 		</sound>
 		<startup>
-			<splash-texture>Aircraft/IDG-PA28X/Splash/splash1.png</splash-texture>
+			<splash-texture>Aircraft/IDG-PA28/Splash/splash1.png</splash-texture>
 		</startup>
 		<systems>
 			<electrical>
 				<path></path>
 			</electrical>
 			<autopilot n="0">
-				<path>Aircraft/IDG-PA28X/Systems/stec-55x.xml</path>
+				<path>Aircraft/IDG-PA28/Systems/stec-55x.xml</path>
 			</autopilot>
 			<autopilot n="1">
-				<path>Aircraft/IDG-PA28X/Systems/libraries.xml</path>
+				<path>Aircraft/IDG-PA28/Systems/libraries.xml</path>
 			</autopilot>
 		</systems>
 		<tags>
@@ -768,43 +768,43 @@
 	
 	<nasal n="0">
 		<libraries>
-			<file>Aircraft/IDG-PA28X/Nasal/libraries.nas</file>
-			<file>Aircraft/IDG-PA28X/Models/Instruments/ELT/ELTmessage.nas</file>
-			<file>Aircraft/IDG-PA28X/Nasal/kr87.nas</file>
-			<file>Aircraft/IDG-PA28X/Nasal/ki266.nas</file>
-			<file>Aircraft/IDG-PA28X/Nasal/kcs55.nas</file>
-			<file>Aircraft/IDG-PA28X/Nasal/kma20.nas</file>
-			<file>Aircraft/IDG-PA28X/Nasal/zoom-views.nas</file>
-			<file>Aircraft/IDG-PA28X/Nasal/crash-stress.nas</file>
+			<file>Aircraft/IDG-PA28/Nasal/libraries.nas</file>
+			<file>Aircraft/IDG-PA28/Models/Instruments/ELT/ELTmessage.nas</file>
+			<file>Aircraft/IDG-PA28/Nasal/kr87.nas</file>
+			<file>Aircraft/IDG-PA28/Nasal/ki266.nas</file>
+			<file>Aircraft/IDG-PA28/Nasal/kcs55.nas</file>
+			<file>Aircraft/IDG-PA28/Nasal/kma20.nas</file>
+			<file>Aircraft/IDG-PA28/Nasal/zoom-views.nas</file>
+			<file>Aircraft/IDG-PA28/Nasal/crash-stress.nas</file>
 			<script>
 				<![CDATA[ki266.new(0);
 				KCS55.new();]]>
 			</script>
 		</libraries>
 		<acconfig>
-			<file>Aircraft/IDG-PA28X/AircraftConfig/acconfig.nas</file>
+			<file>Aircraft/IDG-PA28/AircraftConfig/acconfig.nas</file>
 		</acconfig>
 		<systems>
-			<file>Aircraft/IDG-PA28X/Nasal/master-system.nas</file>
-			<file>Aircraft/IDG-PA28X/Nasal/electrical.nas</file>
+			<file>Aircraft/IDG-PA28/Nasal/master-system.nas</file>
+			<file>Aircraft/IDG-PA28/Nasal/electrical.nas</file>
 		</systems>
 		<stec55x>
-			<file>Aircraft/IDG-PA28X/Nasal/stec-55x.nas</file>
+			<file>Aircraft/IDG-PA28/Nasal/stec-55x.nas</file>
 		</stec55x>
 		<gtx327>
-			<file>Aircraft/IDG-PA28X/Nasal/gtx-327.nas</file>
+			<file>Aircraft/IDG-PA28/Nasal/gtx-327.nas</file>
 		</gtx327>
 		<lights>
-			<file>Aircraft/IDG-PA28X/Nasal/light-manager.nas</file>
+			<file>Aircraft/IDG-PA28/Nasal/light-manager.nas</file>
 		</lights>
 		<HobbsMeter>
-			<file>Aircraft/IDG-PA28X/Models/Instruments/Hobbs/hobbs.nas</file>
+			<file>Aircraft/IDG-PA28/Models/Instruments/Hobbs/hobbs.nas</file>
 			<script>
 				<![CDATA[HobbsMeter.new(index: 0, switchPath: 'gear/gear/wow', inverted: 1);]]>
 			</script>
 		</HobbsMeter>
 		<logger>
-			<file>Aircraft/IDG-PA28X/Nasal/logger.nas</file>
+			<file>Aircraft/IDG-PA28/Nasal/logger.nas</file>
 		</logger>
 	</nasal>
 

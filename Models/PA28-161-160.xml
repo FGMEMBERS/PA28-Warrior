@@ -19,13 +19,13 @@
 		<object-name>doorB</object-name>
 		<property-base>sim/model/livery</property-base>
 		<texture-prop>texture</texture-prop>
-		<texture>IDG-PA28XII.png</texture>
+		<texture>IDG-PA28II.png</texture>
 	</animation>
 	
 	<!-- Nasal code -->
 	<nasal>
 		<load>
-			var livery_update = aircraft.livery_update.new("Aircraft/IDG-PA28X/Models/Liveries");
+			var livery_update = aircraft.livery_update.new("Aircraft/IDG-PA28/Models/Liveries");
 		</load>
 		<unload>
 			livery_update.stop();
@@ -348,12 +348,12 @@
 	
 	<model>
 		<name>SWITCHES</name>
-		<path>Aircraft/IDG-PA28X/Models/SwitchPanel/switch_panel.xml</path>
+		<path>Aircraft/IDG-PA28/Models/SwitchPanel/switch_panel.xml</path>
 	</model>
 	
 	<model>
 		<name>PEDALS.L</name>
-		<path>Aircraft/IDG-PA28X/Models/Pedals/Pedals-L.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Pedals/Pedals-L.xml</path>
 		<offsets>
 			<x-m>-2.0</x-m>
 			<y-m>-0.315</y-m>
@@ -363,7 +363,7 @@
 	
 	<model>
 		<name>PEDALS.R</name>
-		<path>Aircraft/IDG-PA28X/Models/Pedals/Pedals-R.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Pedals/Pedals-R.xml</path>
 		<offsets>
 			<x-m>-2.0</x-m>
 			<y-m>0.31</y-m>
@@ -373,7 +373,7 @@
 	
 	<model>
 		<name>FLAP-TRIM</name>
-		<path>Aircraft/IDG-PA28X/Models/FlapTrim/FlapTrim.xml</path>
+		<path>Aircraft/IDG-PA28/Models/FlapTrim/FlapTrim.xml</path>
 		<offsets>
 			<x-m>-1.4176389</x-m>
 			<y-m>0.0</y-m>
@@ -385,7 +385,7 @@
 	
 	<model>
 		<name>Red nav light</name>
-		<path>Aircraft/IDG-PA28X/Models/light/RedLight.xml</path>
+		<path>Aircraft/IDG-PA28/Models/light/RedLight.xml</path>
 		<offsets>
 			<x-m>-0.767037</x-m>
 			<y-m>-5.36</y-m>
@@ -395,7 +395,7 @@
 	
 	<model>
 		<name>Green nav light</name>
-		<path>Aircraft/IDG-PA28X/Models/light/GreenLight.xml</path>
+		<path>Aircraft/IDG-PA28/Models/light/GreenLight.xml</path>
 		<offsets>
 			<x-m>-0.767037</x-m>
 			<y-m>5.36</y-m>
@@ -405,7 +405,7 @@
 	
 	<model>
 		<name>Red nav light ALS</name>
-		<path>Aircraft/IDG-PA28X/Models/light/ALS/rednav.xml</path>
+		<path>Aircraft/IDG-PA28/Models/light/ALS/rednav.xml</path>
 		<offsets>
 			<x-m>-0.767037</x-m>
 			<y-m>-5.36</y-m>
@@ -415,7 +415,7 @@
 	
 	<model>
 		<name>Green nav light ALS</name>
-		<path>Aircraft/IDG-PA28X/Models/light/ALS/greennav.xml</path>
+		<path>Aircraft/IDG-PA28/Models/light/ALS/greennav.xml</path>
 		<offsets>
 			<x-m>-0.767037</x-m>
 			<y-m>5.36</y-m>
@@ -425,7 +425,7 @@
 	
 	<model>
 		<name>White nav light ALS</name>
-		<path>Aircraft/IDG-PA28X/Models/light/ALS/tailnav.xml</path>
+		<path>Aircraft/IDG-PA28/Models/light/ALS/tailnav.xml</path>
 		<offsets>
 			<x-m>3.62153</x-m>
 			<y-m>-0.0358</y-m>
@@ -435,7 +435,7 @@
 
 	<model>
 		<name>Beacon light ALS</name>
-		<path>Aircraft/IDG-PA28X/Models/light/ALS/beacon.xml</path>
+		<path>Aircraft/IDG-PA28/Models/light/ALS/beacon.xml</path>
 		<offsets>
 			<x-m>3.19877</x-m>
 			<y-m>-0.036049</y-m>
@@ -445,7 +445,7 @@
 
 	<model>
 		<name>Left Strobe light ALS</name>
-		<path>Aircraft/IDG-PA28X/Models/light/ALS/left-strobe.xml</path>
+		<path>Aircraft/IDG-PA28/Models/light/ALS/left-strobe.xml</path>
 		<offsets>
 			<x-m>-0.767037</x-m>
 			<y-m>-5.36</y-m>
@@ -455,7 +455,7 @@
 
 	<model>
 		<name>Right Strobe light ALS</name>
-		<path>Aircraft/IDG-PA28X/Models/light/ALS/right-strobe.xml</path>
+		<path>Aircraft/IDG-PA28/Models/light/ALS/right-strobe.xml</path>
 		<offsets>
 			<x-m>-0.767037</x-m>
 			<y-m>5.36</y-m>
@@ -465,7 +465,7 @@
 
 	<model>
 		<name>LandingLight-ALS</name>
-		<path>Aircraft/IDG-PA28X/Models/light/ALS/landinglight.xml</path>
+		<path>Aircraft/IDG-PA28/Models/light/ALS/landinglight.xml</path>
 		<offsets>
 		<x-m>-3.09914</x-m>
 		<y-m>0.0</y-m>
@@ -476,7 +476,7 @@
 	
 	<model>
 		<name>LandingLight-Left</name>
-		<path>Aircraft/IDG-PA28X/Models/light/Landinglight.xml</path>
+		<path>Aircraft/IDG-PA28/Models/light/Landinglight.xml</path>
 		<offsets>
 		<x-m>-3.09914</x-m>
 		<y-m>0.0</y-m>
@@ -515,7 +515,7 @@
 	<!-- Effects -->
 
 	<model>
-		<path>Aircraft/IDG-PA28X/Models/Effects/tyre-smoke-nose.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Effects/tyre-smoke-nose.xml</path>
 		<name>tyre-smoke-n</name>
 		<offsets>
 			<x-m>-2.58677</x-m>
@@ -525,7 +525,7 @@
 	</model>
 
 	<model>
-		<path>Aircraft/IDG-PA28X/Models/Effects/tyre-smoke-right.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Effects/tyre-smoke-right.xml</path>
 		<name>tyre-smoke-r</name>
 		<offsets>
 			<x-m>-0.706201</x-m>
@@ -535,7 +535,7 @@
 	</model>
 
 	<model>
-		<path>Aircraft/IDG-PA28X/Models/Effects/tyre-smoke-left.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Effects/tyre-smoke-left.xml</path>
 		<name>tyre-smoke-l</name>
 		<offsets>
 			<x-m>-0.706201</x-m>
@@ -546,7 +546,7 @@
 
 	<model>
 		<name>YokeLeft</name>
-		<path>Aircraft/IDG-PA28X/Models/yoke/yoke-l.xml</path>
+		<path>Aircraft/IDG-PA28/Models/yoke/yoke-l.xml</path>
 		<offsets>
 			<x-m>-1.72869</x-m>
 			<y-m>-0.259453</y-m>
@@ -556,7 +556,7 @@
 
 	<model>
 		<name>YokeRight</name>
-		<path>Aircraft/IDG-PA28X/Models/yoke/yoke-r.xml</path>
+		<path>Aircraft/IDG-PA28/Models/yoke/yoke-r.xml</path>
 		<offsets>
 			<x-m>-1.72869</x-m>
 			<y-m> 0.248367</y-m>
@@ -567,7 +567,7 @@
 	<!-- Instruments -->
 	<model>
 		<name>rpm</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/RPM/RPM.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/RPM/RPM.xml</path>
 		<offsets>
 			<x-m>-1.73172</x-m>
 			<y-m>-0.084042</y-m>
@@ -578,7 +578,7 @@
 	
 	<model>
 		<name>blank</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/blend/blend.ac</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/blend/blend.ac</path>
 		<offsets>
 			<x-m>-1.73172</x-m>
 			<y-m>-0.168217</y-m>
@@ -589,7 +589,7 @@
 	
 	<model>
 		<name>ELT</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/ELT/ArtexELT.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/ELT/ArtexELT.xml</path>
 		<offsets>
 			<x-m>-1.73172</x-m>
 			<y-m>-0.168217</y-m>
@@ -600,7 +600,7 @@
 
 	<model>
 		<name>COMP</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/comp/comp.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/comp/comp.xml</path>
 		<offsets>
 			<x-m>-1.67249</x-m>
 			<y-m>-0.03013</y-m>
@@ -610,7 +610,7 @@
 
 	<!--<model>
 		<name>deviation</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/deviation/deviation.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/deviation/deviation.xml</path>
 		<offsets>
 			<x-m>1.962</x-m>
 			<y-m>-0.014</y-m>
@@ -622,7 +622,7 @@
 
 	<!--<model>
 		<name>casque</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/Casque/casque.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/Casque/casque.xml</path>
 		<offsets>
 			<x-m>1.925</x-m>
 			<y-m>0.245</y-m>
@@ -634,7 +634,7 @@
 
 	<model>
 		<name>charts</name>
-		<path>Aircraft/IDG-PA28X/Models/charts/charts.xml</path>
+		<path>Aircraft/IDG-PA28/Models/charts/charts.xml</path>
 		<offsets>
 			<x-m>-1.2</x-m>
 			<y-m>0.280277</y-m>
@@ -649,7 +649,7 @@
 	
 	<model>
 		<name>ASI</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/asi/asi.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/asi/asi.xml</path>
 		<offsets>
 			<x-m>-1.737</x-m>
 			<y-m>-0.34459</y-m>
@@ -659,7 +659,7 @@
 	
 	<model>
 		<name>AI</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/ai/ai.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/ai/ai.xml</path>
 		<offsets>
 			<x-m>-1.732</x-m>
 			<y-m>-0.241622</y-m>
@@ -669,7 +669,7 @@
 	
 	<model>
 		<name>ALT</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/alt/alt.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/alt/alt.xml</path>
 		<offsets>
 			<x-m>-1.729</x-m>
 			<y-m>-0.138615</y-m>
@@ -679,7 +679,7 @@
 	
 	<!--<model>
 		<name>ADF1</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/adfki228/ki227_228.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/adfki228/ki227_228.xml</path>
 		<offsets>
 			<x-m>1.925</x-m>
 			<y-m>-0.433</y-m>
@@ -689,7 +689,7 @@
 	
 	<model>
 		<name>VOR1</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/ki209a/ki209a-1.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/ki209a/ki209a-1.xml</path>
 		<condition>
 			<equals>
 				<property>options/panel</property>
@@ -705,7 +705,7 @@
 	
 	<model>
 		<name>blank</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/blend/blend.ac</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/blend/blend.ac</path>
 		<condition>
 			<equals>
 				<property>options/panel</property>
@@ -721,7 +721,7 @@
 	
 	<model>
 		<name>VOR2</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/ki209a/ki209a-2.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/ki209a/ki209a-2.xml</path>
 		<offsets>
 			<x-m>-1.734</x-m>
 			<y-m>-0.035613</y-m>
@@ -731,7 +731,7 @@
 	
 	<model>
 		<name>blank2</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/blend/blend.ac</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/blend/blend.ac</path>
 		<offsets>
 			<x-m>-1.734</x-m>
 			<y-m>-0.447625</y-m>
@@ -741,7 +741,7 @@
 	
 	<model>
 		<name>CLOCK</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/Clock/Clock.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/Clock/Clock.xml</path>
 		<offsets>
 			<x-m>-1.72955</x-m>
 			<y-m>-0.419649</y-m>
@@ -786,7 +786,7 @@
 	<!--Left Switch Panel-->
 	<model>
 		<name>APSW</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/ap-sw/ap-sw.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/ap-sw/ap-sw.xml</path>
 	</model>
 	<animation>
 		<type>select</type>
@@ -857,7 +857,7 @@
 	
 	<model>
 		<name>NAVSW</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/nav-src-sw/nav-src-sw.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/nav-src-sw/nav-src-sw.xml</path>
 		<offsets>
 			<x-m>-1.73095</x-m>
 			<y-m>0.221189</y-m>
@@ -867,7 +867,7 @@
 	
 	<model>
 		<name>TC</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/tc/tc.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/tc/tc.xml</path>
 		<offsets>
 			<x-m>-1.73</x-m>
 			<y-m>-0.34461</y-m>
@@ -876,7 +876,7 @@
 	</model>
  	<model>
  		<name>HSI</name>
- 		<path>Aircraft/IDG-PA28X/Models/Instruments/NSA360/NSA360.xml</path>
+ 		<path>Aircraft/IDG-PA28/Models/Instruments/NSA360/NSA360.xml</path>
  		<condition>
  			<equals>
  				<property>options/panel</property>
@@ -892,7 +892,7 @@
 	
 	<model>
 		<name>DG</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/dg/dg.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/dg/dg.xml</path>
 		<condition>
 			<equals>
 				<property>options/panel</property>
@@ -919,7 +919,7 @@
 	
 	<model>
 		<name>VSI</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/vsi/vsi.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/vsi/vsi.xml</path>
 		<offsets>
 			<x-m>-1.732</x-m>
 			<y-m>-0.138597</y-m>
@@ -929,18 +929,18 @@
 	
 	<model>
 		<name>FUEL_OIL</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/pa28-fuel-oil/pa28-fuel-oil.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/pa28-fuel-oil/pa28-fuel-oil.xml</path>
 	</model>
 	
 	<model>
 		<name>CircuitBreakers</name>
-		<path>Aircraft/IDG-PA28X/Models/CircuitBreakers/circuitbreakers.xml</path>
+		<path>Aircraft/IDG-PA28/Models/CircuitBreakers/circuitbreakers.xml</path>
 	</model>
 	
 	
 	<model>
 		<name>Primer</name>
-		<path>Aircraft/IDG-PA28X/Models/PrimerPump/primer.xml</path>
+		<path>Aircraft/IDG-PA28/Models/PrimerPump/primer.xml</path>
 		<offsets>
 			<x-m>-1.73327</x-m>
 			<y-m>-0.029056</y-m>
@@ -950,7 +950,7 @@
 	
 	<model>
 		<name>AMPVOL</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/BatteryGauge/BatteryGauge.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/BatteryGauge/BatteryGauge.xml</path>
 		<offsets>
 			<x-m>-1.743</x-m>
 			<y-m>0.170712</y-m>
@@ -961,7 +961,7 @@
 	
 	<!--<model>
 		<name>Vacuum</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/vac/vac.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/vac/vac.xml</path>
 		<offsets>
 			<x-m>1.928</x-m>
 			<y-m>0.436</y-m>
@@ -971,7 +971,7 @@
 	
 	<model>
 		<name>mags</name>
-		<path>Aircraft/IDG-PA28X/Models/magneto-switch/mags.xml</path>
+		<path>Aircraft/IDG-PA28/Models/magneto-switch/mags.xml</path>
 		<offsets>
 			<x-m>-1.729</x-m>
 			<y-m>-0.23459</y-m>
@@ -983,7 +983,7 @@
 
 	<!--<model>
 		<name>oat</name>TODO find/make EGT/OHT instrument
-		<path>Aircraft/IDG-PA28X/Models/Instruments/oat/oat_m303.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/oat/oat_m303.xml</path>
 		<offsets>
 			<x-m>-1.73191</x-m>
 			<y-m>-0.296079</y-m>
@@ -993,7 +993,7 @@
 	</model>-->
 	<model>
 		<name>EGT</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/egt/egt.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/egt/egt.xml</path>
 		<offsets>
 			<x-m>-1.73191</x-m>
 			<y-m>-0.296079</y-m>
@@ -1004,7 +1004,7 @@
 	
 	<model>
 		<name>HOBBS</name> <!--TODO find/make instrument-->
-		<path>Aircraft/IDG-PA28X/Models/Instruments/Hobbs/HobbsMeter.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/Hobbs/HobbsMeter.xml</path>
 		<offsets>
 			<x-m>-1.73191</x-m>
 			<y-m>-0.363777</y-m>
@@ -1018,7 +1018,7 @@
 	
 	<model>
 		<name>kma28</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/kma28/kma28.ac</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/kma28/kma28.ac</path>
 		<offsets>
 			<x-m>-1.73</x-m>
 			<y-m>0.1068</y-m>
@@ -1028,7 +1028,7 @@
 	
 	<model>
 		<name>GNS530</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/GNS530/GNS530.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/GNS530/GNS530.xml</path>
 		<offsets>
 			<x-m>-1.73</x-m>
 			<y-m>0.10665</y-m>
@@ -1038,7 +1038,7 @@
 	
 	<model>
 		<name>STEC-55X</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/stec-55x/stec-55x.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/stec-55x/stec-55x.xml</path>
 		<offsets>
 			<x-m>-1.73</x-m>
 			<y-m>0.10665</y-m>
@@ -1048,7 +1048,7 @@
 	
 	<!--<model>
 		<name>kma20</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/kma20/kma20.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/kma20/kma20.xml</path>
 		<offsets>
 			<x-m>1.915</x-m>
 			<y-m>0.285</y-m>
@@ -1058,7 +1058,7 @@
 	
 	<model>
 		<name>kx165-2</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/radio_stack/kx165-2.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/radio_stack/kx165-2.xml</path>
 		<offsets>
 			<x-m>-1.742</x-m>
 			<y-m>0.28167</y-m>
@@ -1068,7 +1068,7 @@
 	
 	<model>
 		<name>dme</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/ki266/ki266.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/ki266/ki266.xml</path>
 		<offsets>
 			<x-m>-1.72</x-m>
 			<y-m>0.28167</y-m>
@@ -1078,7 +1078,7 @@
 	
 	<model>
 		<name>kt70</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/kt70/kt70.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/kt70/kt70.xml</path>
 		<condition>
 			<not><property>options/wip</property></not>
 		</condition>
@@ -1091,7 +1091,7 @@
 	
 	<model>
 		<name>gtx-327</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/gtx-327/gtx-327.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/gtx-327/gtx-327.xml</path>
 		<condition>
 			<property>options/wip</property>
 		</condition>
@@ -1104,7 +1104,7 @@
 	<!--
 	<model>
 		<name>kr87</name>
-		<path>Aircraft/IDG-PA28X/Models/Instruments/kr87-adf/kr87.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/kr87-adf/kr87.xml</path>
 		<offsets>
 			<x-m>1.915</x-m>
 			<y-m>0.124</y-m>
