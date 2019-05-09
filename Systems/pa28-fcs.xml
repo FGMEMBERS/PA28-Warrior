@@ -355,26 +355,6 @@
 			<input>extra/door-main-input</input>
 			<c1>16.0</c1>
 		</lag_filter>
-		
-		<fcs_function name="extra/door-baggage-input">
-			<function>
-				<min>
-					<property>extra/door-baggage-cmd</property>
-					<table>
-						<independentVar lookup="row">velocities/vc-kts</independentVar>
-						<tableData>
-							15  1.00
-							45  0.05
-						</tableData>
-					</table>
-				</min>
-			</function>
-		</fcs_function>
-		
-		<lag_filter name="extra/door-baggage-norm">
-			<input>extra/door-baggage-input</input>
-			<c1>16.0</c1>
-		</lag_filter>
 	
 	</channel>
 	

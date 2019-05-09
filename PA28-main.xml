@@ -5,7 +5,7 @@
 <PropertyList>
 	
 	<sim>
-		<author>Octal450 Design Group: Joshua Davidson (Octal450), Jonathan Redpath (legoboyvdlp)</author>
+		<author>Immersive Design Group: Joshua Davidson (Octal450), Jonathan Redpath (legoboyvdlp)</author>
 		<chase-distance-m type="double" archive="y">-20.0</chase-distance-m>
 		<checklists include="PA28-Checklists.xml"/>
 		<current-view>
@@ -182,6 +182,7 @@
 		<startup>
 			<splash-texture>Aircraft/IDG-PA28/Splash/splash1.png</splash-texture>
 		</startup>
+		<status>Pre V1.0</status>
 		<systems>
 			<electrical>
 				<path></path>
