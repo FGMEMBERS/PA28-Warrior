@@ -6,9 +6,9 @@
 <ground_reactions>
 	<contact type="BOGEY" name="NOSE">
 		<location unit="M">
-			<x>0.95194</x>
+			<x>-2.5864</x>
 			<y>0</y>
-			<z>-1.26984</z>
+			<z>-1.27345</z>
 		</location>
 		<static_friction>0.425</static_friction> <!-- Helps nose wheel steering - no effect on braking -->
 		<dynamic_friction>0.6</dynamic_friction>
@@ -22,9 +22,9 @@
 	</contact>
 	<contact type="BOGEY" name="LEFT_MAIN">
 		<location unit="M">
-			<x>2.89843</x>
-			<y>-1.52593</y>
-			<z>-1.26621</z>
+			<x>-0.70604</x>
+			<y>-1.51374</y>
+			<z>-1.10219</z>
 		</location>
 		<static_friction>0.425</static_friction>
 		<dynamic_friction>0.6</dynamic_friction>
@@ -38,9 +38,9 @@
 	</contact>
 	<contact type="BOGEY" name="RIGHT_MAIN">
 		<location unit="M">
-			<x>2.89843</x>
-			<y>1.52593</y>
-			<z>-1.26621</z>
+			<x>-0.70604</x>
+			<y>1.51374</y>
+			<z>-1.10219</z>
 		</location>
 		<static_friction>0.425</static_friction>
 		<dynamic_friction>0.6</dynamic_friction>
@@ -55,9 +55,9 @@
 	
 	<contact type="STRUCTURE" name="NOSE_1">
 		<location unit="M">
-			<x>0.45556</x>
+			<x>-3.14027</x>
 			<y>0</y>
-			<z>0.21913</z>
+			<z>0.12269</z>
 		</location>
 		<static_friction>1.0</static_friction>
 		<dynamic_friction>0.4</dynamic_friction>
@@ -70,9 +70,9 @@
 	</contact>
 	<contact type="STRUCTURE" name="NOSE_2">
 		<location unit="M">
-			<x>0.65344</x>
+			<x>-2.91863</x>
 			<y>0</y>
-			<z>-0.40887</z>
+			<z>-0.50858</z>
 		</location>
 		<static_friction>1.0</static_friction>
 		<dynamic_friction>0.4</dynamic_friction>
@@ -86,9 +86,9 @@
 	
 	<contact type="STRUCTURE" name="BOTTOM_1">
 		<location unit="M">
-			<x>1.46045</x>
+			<x>-2.08902</x>
 			<y>0</y>
-			<z>-0.5312</z>
+			<z>-0.58016</z>
 		</location>
 		<static_friction>1.0</static_friction>
 		<dynamic_friction>0.4</dynamic_friction>
@@ -101,9 +101,9 @@
 	</contact>
 	<contact type="STRUCTURE" name="BOTTOM_2">
 		<location unit="M">
-			<x>4.01798</x>
+			<x>0.19787</x>
 			<y>0</y>
-			<z>-0.48431</z>
+			<z>-0.54246</z>
 		</location>
 		<static_friction>1.0</static_friction>
 		<dynamic_friction>0.4</dynamic_friction>
@@ -117,9 +117,9 @@
 	
 	<contact type="STRUCTURE" name="TOP_1">
 		<location unit="M">
-			<x>2.17024</x>
+			<x>-1.46831</x>
 			<y>0</y>
-			<z>0.63716</z>
+			<z>0.61453</z>
 		</location>
 		<static_friction>1.0</static_friction>
 		<dynamic_friction>0.4</dynamic_friction>
@@ -132,9 +132,9 @@
 	</contact>
 	<contact type="STRUCTURE" name="TOP_2">
 		<location unit="M">
-			<x>5.35269</x>
+			<x>1.7288</x>
 			<y>0</y>
-			<z>0.59428</z>
+			<z>0.49472</z>
 		</location>
 		<static_friction>1.0</static_friction>
 		<dynamic_friction>0.4</dynamic_friction>
@@ -148,9 +148,9 @@
 
 	<contact type="STRUCTURE" name="ENG">
 		<location unit="M">
-			<x>0.09597</x>
+			<x>-3.63084</x>
 			<y>0</y>
-			<z>0</z>
+			<z>-0.07598</z>
 		</location>
 		<static_friction>1.0</static_friction>
 		<dynamic_friction>0.4</dynamic_friction>
@@ -164,9 +164,9 @@
 
 	<contact type="STRUCTURE" name="TAIL_1">
 		<location unit="M">
-			<x>6.81551</x>
+			<x>3.23764</x>
 			<y>0</y>
-			<z>0.11124</z>
+			<z>-0.13195</z>
 		</location>
 		<static_friction>1.0</static_friction>
 		<dynamic_friction>0.4</dynamic_friction>
@@ -179,9 +179,9 @@
 	</contact>
 	<contact type="STRUCTURE" name="TAIL_2">
 		<location unit="M">
-			<x>6.73816</x>
+			<x>3.34081</x>
 			<y>0</y>
-			<z>1.68697</z>
+			<z>1.50898</z>
 		</location>
 		<static_friction>1.0</static_friction>
 		<dynamic_friction>0.4</dynamic_friction>
@@ -195,9 +195,9 @@
 	
 	<contact type="STRUCTURE" name="WING_TIP_1">
 		<location unit="M">
-			<x>2.70937</x>
-			<y>-5.179</y>
-			<z>0.10837</z>
+			<x>-0.67958</x>
+			<y>-5.26317</y>
+			<z>0.11078</z>
 		</location>
 		<static_friction>1.0</static_friction>
 		<dynamic_friction>0.4</dynamic_friction>
@@ -210,13 +210,13 @@
 	</contact>
 	<contact type="STRUCTURE" name="WING_TIP_2">
 		<location unit="M">
-			<x>2.70937</x>
-			<y>5.179</y>
-			<z>0.10837</z>
+			<x>-0.67958</x>
+			<y>5.26317</y>
+			<z>0.11078</z>
 		</location>
 		<static_friction>1.0</static_friction>
-		<dynamic_friction>1</dynamic_friction>
-		<rolling_friction>1</rolling_friction>
+		<dynamic_friction>0.4</dynamic_friction>
+		<rolling_friction>0.4</rolling_friction>
 		<spring_coeff unit="LBS/FT">2000</spring_coeff>
 		<damping_coeff unit="LBS/FT/SEC">1000</damping_coeff>
 		<max_steer unit="DEG">0</max_steer>
@@ -226,9 +226,9 @@
 	
 	<contact type="STRUCTURE" name="STAB_TIP_1">
 		<location unit="M">
-			<x>6.59285</x>
-			<y>-1.79783</y>
-			<z>0.1539</z>
+			<x>3.11269</x>
+			<y>-1.93713</y>
+			<z>0.08491</z>
 		</location>
 		<static_friction>1.0</static_friction>
 		<dynamic_friction>0.4</dynamic_friction>
@@ -241,13 +241,13 @@
 	</contact>
 	<contact type="STRUCTURE" name="STAB_TIP_2">
 		<location unit="M">
-			<x>6.59285</x>
-			<y>1.79783</y>
-			<z>0.1539</z>
+			<x>3.11269</x>
+			<y>1.93713</y>
+			<z>0.08491</z>
 		</location>
 		<static_friction>1.0</static_friction>
-		<dynamic_friction>1</dynamic_friction>
-		<rolling_friction>1</rolling_friction>
+		<dynamic_friction>0.4</dynamic_friction>
+		<rolling_friction>0.4</rolling_friction>
 		<spring_coeff unit="LBS/FT">2000</spring_coeff>
 		<damping_coeff unit="LBS/FT/SEC">1000</damping_coeff>
 		<max_steer unit="DEG">0</max_steer>
@@ -257,9 +257,9 @@
 	
 	<contact type="STRUCTURE" name="BODY_1">
 		<location unit="M">
-			<x>2.78009</x>
-			<y>-0.61515</y>
-			<z>0.02357</z>
+			<x>-0.84439</x>
+			<y>-0.5912</y>
+			<z>-0.04694</z>
 		</location>
 		<static_friction>1.0</static_friction>
 		<dynamic_friction>0.4</dynamic_friction>
@@ -272,9 +272,9 @@
 	</contact>
 	<contact type="STRUCTURE" name="BODY_2">
 		<location unit="M">
-			<x>2.78009</x>
-			<y>0.61515</y>
-			<z>0.02357</z>
+			<x>-0.84439</x>
+			<y>0.5912</y>
+			<z>-0.04694</z>
 		</location>
 		<static_friction>1.0</static_friction>
 		<dynamic_friction>0.4</dynamic_friction>
@@ -287,9 +287,9 @@
 	</contact>
 	<contact type="STRUCTURE" name="BODY_3">
 		<location unit="M">
-			<x>2.79076</x>
-			<y>-0.38815</y>
-			<z>0.65551</z>
+			<x>-0.84439</x>
+			<y>-0.5912</y>
+			<z>-0.04694</z>
 		</location>
 		<static_friction>1.0</static_friction>
 		<dynamic_friction>0.4</dynamic_friction>
@@ -302,9 +302,9 @@
 	</contact>
 	<contact type="STRUCTURE" name="BODY_4">
 		<location unit="M">
-			<x>2.79076</x>
-			<y>0.38815</y>
-			<z>0.65551</z>
+			<x>-0.84439</x>
+			<y>0.5912</y>
+			<z>-0.04694</z>
 		</location>
 		<static_friction>1.0</static_friction>
 		<dynamic_friction>0.4</dynamic_friction>
@@ -317,9 +317,9 @@
 	</contact>
 	<contact type="STRUCTURE" name="BODY_5">
 		<location unit="M">
-			<x>2.78009</x>
-			<y>-0.54154</y>
-			<z>-0.55143</z>
+			<x>-0.84439</x>
+			<y>-0.49807</y>
+			<z>-0.59215</z>
 		</location>
 		<static_friction>1.0</static_friction>
 		<dynamic_friction>0.4</dynamic_friction>
@@ -332,9 +332,9 @@
 	</contact>
 	<contact type="STRUCTURE" name="BODY_6">
 		<location unit="M">
-			<x>2.78009</x>
-			<y>0.54154</y>
-			<z>-0.55143</z>
+			<x>-0.84439</x>
+			<y>0.49807</y>
+			<z>-0.59215</z>
 		</location>
 		<static_friction>1.0</static_friction>
 		<dynamic_friction>0.4</dynamic_friction>

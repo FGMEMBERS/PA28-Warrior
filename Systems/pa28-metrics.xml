@@ -17,9 +17,9 @@
 	</location>
 
 	<location name="EYEPOINT" unit="M">
-		<x>1.9543</x>
-		<y>-0.2618</y>
-		<z>0.5289</z>
+		<x>-1.78141</x>
+		<y>0</y>
+		<z>0.37593</z>
 	</location>
 
 	<location name="VRP" unit="M">
