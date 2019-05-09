@@ -597,7 +597,7 @@
 			<pitch-deg>-7.4</pitch-deg>
 		</offsets>
 	</model>
-
+	
 	<model>
 		<name>COMP</name>
 		<path>Aircraft/IDG-PA28/Models/Instruments/comp/comp.xml</path>
@@ -607,31 +607,7 @@
 			<z-m>0.427</z-m>
 		</offsets>
 	</model>
-
-	<!--<model>
-		<name>deviation</name>
-		<path>Aircraft/IDG-PA28/Models/Instruments/deviation/deviation.xml</path>
-		<offsets>
-			<x-m>1.962</x-m>
-			<y-m>-0.014</y-m>
-			<z-m>0.390</z-m>
-			<pitch-deg>-15</pitch-deg>
-			<roll-deg>-3</roll-deg>
-		</offsets>
-	</model>-->
-
-	<!--<model>
-		<name>casque</name>
-		<path>Aircraft/IDG-PA28/Models/Instruments/Casque/casque.xml</path>
-		<offsets>
-			<x-m>1.925</x-m>
-			<y-m>0.245</y-m>
-			<z-m>0.395</z-m>
-			<roll-deg>-3</roll-deg>
-			<pitch-deg>1</pitch-deg>
-		</offsets>
-	</model>-->
-
+	
 	<model>
 		<name>charts</name>
 		<path>Aircraft/IDG-PA28/Models/charts/charts.xml</path>
@@ -676,16 +652,6 @@
 			<z-m>0.246767</z-m>
 		</offsets>
 	</model>
-	
-	<!--<model>
-		<name>ADF1</name>
-		<path>Aircraft/IDG-PA28/Models/Instruments/adfki228/ki227_228.xml</path>
-		<offsets>
-			<x-m>1.925</x-m>
-			<y-m>-0.433</y-m>
-			<z-m>0.185</z-m>
-		</offsets>
-	</model>-->
 	
 	<model>
 		<name>VOR1</name>
@@ -937,7 +903,6 @@
 		<path>Aircraft/IDG-PA28/Models/CircuitBreakers/circuitbreakers.xml</path>
 	</model>
 	
-	
 	<model>
 		<name>Primer</name>
 		<path>Aircraft/IDG-PA28/Models/PrimerPump/primer.xml</path>
@@ -980,7 +945,6 @@
 		</offsets>
 	</model>
 	
-
 	<!--<model>
 		<name>oat</name>TODO find/make EGT/OHT instrument
 		<path>Aircraft/IDG-PA28/Models/Instruments/oat/oat_m303.xml</path>
@@ -991,6 +955,7 @@
 			<pitch-deg>-7</pitch-deg>
 		</offsets>
 	</model>-->
+	
 	<model>
 		<name>EGT</name>
 		<path>Aircraft/IDG-PA28/Models/Instruments/egt/egt.xml</path>
@@ -1046,19 +1011,9 @@
 		</offsets>
 	</model>
 	
-	<!--<model>
-		<name>kma20</name>
-		<path>Aircraft/IDG-PA28/Models/Instruments/kma20/kma20.xml</path>
-		<offsets>
-			<x-m>1.915</x-m>
-			<y-m>0.285</y-m>
-			<z-m>0.226</z-m>
-		</offsets>
-	</model>-->
-	
 	<model>
 		<name>kx165-2</name>
-		<path>Aircraft/IDG-PA28/Models/Instruments/radio_stack/kx165-2.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/kx165/kx165-2.xml</path>
 		<offsets>
 			<x-m>-1.742</x-m>
 			<y-m>0.28167</y-m>
@@ -1077,40 +1032,14 @@
 	</model>
 	
 	<model>
-		<name>kt70</name>
-		<path>Aircraft/IDG-PA28/Models/Instruments/kt70/kt70.xml</path>
-		<condition>
-			<not><property>options/wip</property></not>
-		</condition>
-		<offsets>
-			<x-m>-1.73</x-m>
-			<y-m>0.28167</y-m>
-			<z-m>0.138</z-m>
-		</offsets>
-	</model>
-	
-	<model>
 		<name>gtx-327</name>
 		<path>Aircraft/IDG-PA28/Models/Instruments/gtx-327/gtx-327.xml</path>
-		<condition>
-			<property>options/wip</property>
-		</condition>
 		<offsets>
 			<x-m>-1.73</x-m>
 			<y-m>0.28167</y-m>
 			<z-m>0.138</z-m>
 		</offsets>
 	</model>
-	<!--
-	<model>
-		<name>kr87</name>
-		<path>Aircraft/IDG-PA28/Models/Instruments/kr87-adf/kr87.xml</path>
-		<offsets>
-			<x-m>1.915</x-m>
-			<y-m>0.124</y-m>
-			<z-m>0.173</z-m>
-		</offsets>
-	</model>-->
 	
 	<animation>
 		<name>InstrumentGroup</name>

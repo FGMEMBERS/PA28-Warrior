@@ -45,9 +45,7 @@ var system = {
 		R_annun.setBoolValue(0);
 		TEST_annun.setBoolValue(0);
 		system.setMode(mode);
-		if (getprop("/options/wip") == 1) {
-			update.start();
-		}
+		update.start();
 	},
 	loop: func() {
 		if (powerSrc.getValue() >= 8) {
@@ -173,4 +171,3 @@ var identChk = maketimer(0.5, func {
 });
 
 var update = maketimer(0.1, system, system.loop);
-#setprop("/options/wip", 1); # This should be commented out, or Octal450 is an idiot! :)
