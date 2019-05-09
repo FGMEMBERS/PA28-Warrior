@@ -301,7 +301,7 @@
 		<input>
 			<condition>
 				<greater-than-equals>
-					<property>/it-autoflight/internal/heading-predicted-cmd</property>
+					<property>/it-stec55x/nav/nav-course-reciprocal-cmd</property>
 					<value>360.5</value>
 				</greater-than-equals>
 			</condition>
@@ -315,7 +315,7 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/it-autoflight/internal/heading-predicted-cmd</property>
+					<property>/it-stec55x/nav/nav-course-reciprocal-cmd</property>
 					<value>0.5</value>
 				</less-than>
 			</condition>
