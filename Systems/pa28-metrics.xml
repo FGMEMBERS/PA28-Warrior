@@ -11,9 +11,9 @@
 	<vtailarea unit="FT2">28.6</vtailarea>
 	
 	<location name="AERORP" unit="M">
-		<x>2.5003</x>
+		<x>-1.10417</x>
 		<y>0</y>
-		<z>0.2512</z>
+		<z>0.21522</z>
 	</location>
 
 	<location name="EYEPOINT" unit="M">

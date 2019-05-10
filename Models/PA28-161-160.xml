@@ -1672,7 +1672,7 @@
 		<object-name>DoorLatch</object-name>
 		<property>sim/multiplay/generic/float[4]</property>
 		<interpolation>
-			<entry><ind>0.00</ind><dep> 0</dep></entry>
+			<entry><ind>0</ind><dep> 0</dep></entry>
 			<entry><ind>0.01</ind><dep>60</dep></entry>
 		</interpolation>
 		<center>
@@ -1694,7 +1694,7 @@
 		<object-name>gear.F.scissor1</object-name>
 		<object-name>gear.F.scissor2</object-name>
 		<object-name>gear.F.oleo</object-name>
-		<property>sim/multiplay/generic/float[9]</property>
+		<property>sim/multiplay/generic/float[3]</property>
 		<factor>-1.25</factor>
 		<axis>
 			<x1-m>-2.5229</x1-m>
@@ -1714,8 +1714,8 @@
 		<object-name>gear.F.oleo</object-name>
 		<property>gear/gear[0]/compression-norm</property>
 		<interpolation>
-			<entry><ind>0.00</ind><dep>0</dep></entry>
-			<entry><ind>1</ind><dep>0.15</dep></entry>
+			<entry><ind>0.0</ind><dep>0</dep></entry>
+			<entry><ind>0.5</ind><dep>0.15</dep></entry>
 		</interpolation>
 		<axis>
 			<x1-m>-2.5229</x1-m>
@@ -1732,8 +1732,8 @@
 		<object-name>gear.F.scissor2</object-name>
 		<property>gear/gear[0]/compression-norm</property>
 		<interpolation>
-			<entry><ind>0.00</ind><dep>0</dep></entry>
-			<entry><ind>1</ind><dep>20.3</dep></entry>
+			<entry><ind>0.0</ind><dep>0</dep></entry>
+			<entry><ind>0.5</ind><dep>20.3</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>-2.48501</x-m>
@@ -1750,8 +1750,8 @@
 		<object-name>gear.F.scissor2</object-name>
 		<property>gear/gear[0]/compression-norm</property>
 		<interpolation>
-			<entry><ind>0.00</ind><dep>0</dep></entry>
-			<entry><ind>1</ind><dep>-62.2</dep></entry>
+			<entry><ind>0.0</ind><dep>0</dep></entry>
+			<entry><ind>0.5</ind><dep>-62.2</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>-2.34609</x-m>
@@ -1780,7 +1780,6 @@
 		</center>
 	</animation>
 	
-	
 	<animation>
 		<type>translate</type>
 		<object-name>WheelL</object-name>
@@ -1790,8 +1789,8 @@
 		<object-name>gear.low.scissor.L</object-name>
 		<property>gear/gear[1]/compression-norm</property>
 		<interpolation>
-			<entry><ind>0.00</ind><dep>0</dep></entry>
-			<entry><ind>1</ind><dep>0.1048</dep></entry>
+			<entry><ind>0.0</ind><dep>0</dep></entry>
+			<entry><ind>0.5</ind><dep>0.1048</dep></entry>
 		</interpolation>
 		<axis>
 			<x1-m>0.0</x1-m>
@@ -1807,8 +1806,8 @@
 		<object-name>gear.low.scissor.L</object-name>
 		<property>gear/gear[1]/compression-norm</property>
 		<interpolation>
-			<entry><ind>0.00</ind><dep>0</dep></entry>
-			<entry><ind>1</ind><dep>29</dep></entry>
+			<entry><ind>0.0</ind><dep>0</dep></entry>
+			<entry><ind>0.5</ind><dep>29</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>-0.673348</x-m>
@@ -1825,8 +1824,8 @@
 		<object-name>gear.high.scissor.L</object-name>
 		<property>gear/gear[1]/compression-norm</property>
 		<interpolation>
-			<entry><ind>0.00</ind><dep>0</dep></entry>
-			<entry><ind>1</ind><dep>-30.66</dep></entry>
+			<entry><ind>0.0</ind><dep>0</dep></entry>
+			<entry><ind>0.5</ind><dep>-30.66</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>-0.673337</x-m>
@@ -1854,7 +1853,6 @@
 		</center>
 	</animation>
 	
-	
 	<animation>
 		<type>translate</type>
 		<object-name>WheelR</object-name>
@@ -1864,8 +1862,8 @@
 		<object-name>gear.low.scissor.R</object-name>
 		<property>gear/gear[2]/compression-norm</property>
 		<interpolation>
-			<entry><ind>0.00</ind><dep>0</dep></entry>
-			<entry><ind>1</ind><dep>0.1048</dep></entry>
+			<entry><ind>0.0</ind><dep>0</dep></entry>
+			<entry><ind>0.5</ind><dep>0.1048</dep></entry>
 		</interpolation>
 		<axis>
 			<x1-m>0.0</x1-m>
@@ -1881,8 +1879,8 @@
 		<object-name>gear.low.scissor.R</object-name>
 		<property>gear/gear[2]/compression-norm</property>
 		<interpolation>
-			<entry><ind>0.00</ind><dep>0</dep></entry>
-			<entry><ind>1</ind><dep>29</dep></entry>
+			<entry><ind>0.0</ind><dep>0</dep></entry>
+			<entry><ind>0.5</ind><dep>29</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>-0.673348</x-m>
@@ -1899,8 +1897,8 @@
 		<object-name>gear.high.scissor.R</object-name>
 		<property>gear/gear[2]/compression-norm</property>
 		<interpolation>
-			<entry><ind>0.00</ind><dep>0</dep></entry>
-			<entry><ind>1</ind><dep>-30.66</dep></entry>
+			<entry><ind>0.0</ind><dep>0</dep></entry>
+			<entry><ind>0.5</ind><dep>-30.66</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>-0.673337</x-m>
