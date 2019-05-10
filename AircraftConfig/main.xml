@@ -206,30 +206,6 @@
 
 			<hrule/>
 			
-			<checkbox>
-				<label>Flt Dir Equipped</label>
-				<halign>left</halign>
-				<enable>
-					<equals> <!-- Changing this while the AP is running could cause problems -->
-						<property>/it-stec55x/output/roll</property>
-						<value>-1</value>
-					</equals>
-				</enable>
-				<property>/it-stec55x/settings/fd-equipped</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<binding>
-					<command>nasal</command>
-					<script>
-					acconfig.writeSettings();
-					</script>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
-			<hrule/>
-			
 			<text>
 				<halign>left</halign>
 				<label>There are 2 panels:</label>

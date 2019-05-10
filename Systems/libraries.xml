@@ -8,7 +8,7 @@
 		<name>Gear AGL Altitude FT</name>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<update-interval-secs type="double">0.05</update-interval-secs>
+		<update-interval-secs>0.05</update-interval-secs>
 		<input>
 			<expression>
 				<dif>
@@ -18,15 +18,13 @@
 			</expression>
 		</input>
 		<output>/position/gear-agl-ft</output>
-		<min>0</min>
-		<max>50000</max>
 	</filter>
 	
 	<filter>
 		<name>Gear AGL Altitude M</name>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<update-interval-secs type="double">0.05</update-interval-secs>
+		<update-interval-secs>0.05</update-interval-secs>
 		<input>
 			<expression>
 				<product>
@@ -36,8 +34,6 @@
 			</expression>
 		</input>
 		<output>/position/gear-agl-m</output>
-		<min>0</min>
-		<max>50000</max>
 	</filter>
 	
 	<logic> <!-- Because this is a "bound" property, whatever that is, so directly from JSBsim doesn't work... -->
@@ -55,18 +51,18 @@
 		<name>CDI0 lowpass</name>
 		<debug>false</debug>
 		<type>exponential</type>
-		<input>/instrumentation/nav[0]/heading-needle-deflection</input>
-		<output>/instrumentation/nav[0]/filtered-cdiNAV0-deflection</output>
-		<filter-time>2.0</filter-time>
+		<input>/instrumentation/nav[0]/heading-needle-deflection-norm</input>
+		<output>/instrumentation/nav[0]/heading-needle-deflection-norm-lag</output>
+		<filter-time>0.64</filter-time>
 	</filter>
 
 	<filter>
 		<name>CDI1 lowpass</name>
 		<debug>false</debug>
 		<type>exponential</type>
-		<input>/instrumentation/nav[1]/heading-needle-deflection</input>
-		<output>/instrumentation/nav[1]/filtered-cdiNAV1-deflection</output>
-		<filter-time>2.0</filter-time>
+		<input>/instrumentation/nav[1]/heading-needle-deflection-norm</input>
+		<output>/instrumentation/nav[1]/heading-needle-deflection-norm-lag</output>
+		<filter-time>0.64</filter-time>
 	</filter>
 
 	<filter>
@@ -74,8 +70,8 @@
 		<debug>false</debug>
 		<type>exponential</type>
 		<input>/instrumentation/nav[0]/gs-needle-deflection-norm</input>
-		<output>/instrumentation/nav[0]/filtered-gsNAV0-deflection</output>
-		<filter-time>2.0</filter-time>
+		<output>/instrumentation/nav[0]/gs-needle-deflection-norm-lag</output>
+		<filter-time>0.64</filter-time>
 	</filter>
 
 	<filter>
@@ -83,8 +79,8 @@
 		<debug>false</debug>
 		<type>exponential</type>
 		<input>/instrumentation/nav[1]/gs-needle-deflection-norm</input>
-		<output>/instrumentation/nav[1]/filtered-gsNAV1-deflection</output>
-		<filter-time>2.0</filter-time>
+		<output>/instrumentation/nav[0]/gs-needle-deflection-norm-lag</output>
+		<filter-time>0.64</filter-time>
 	</filter>
 	
 	<filter>

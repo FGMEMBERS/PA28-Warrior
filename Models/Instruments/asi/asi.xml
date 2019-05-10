@@ -28,7 +28,7 @@
 			<binding>
 				<command>property-adjust</command>
 				<property>instrumentation/airspeed-indicator/pressure-alt-offset-deg</property>
-				<step>-1</step>
+				<step>1</step>
 				<min>0</min>
 				<max>360</max>
 				<wrap>1</wrap>
@@ -41,7 +41,7 @@
 			<binding>
 				<command>property-adjust</command>
 				<property>instrumentation/airspeed-indicator/pressure-alt-offset-deg</property>
-				<step>1</step>
+				<step>-1</step>
 				<min>0</min>
 				<max>360</max>
 				<wrap>1</wrap>
@@ -55,7 +55,7 @@
 		<property>instrumentation/airspeed-indicator/pressure-alt-offset-deg</property>
 		<factor>1</factor>
 		<axis>
-			<x>-1</x>
+			<x>1</x>
 			<y>0</y>
 			<z>0</z>
 		</axis>

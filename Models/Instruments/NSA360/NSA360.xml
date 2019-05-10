@@ -6,7 +6,6 @@
 	
 	<effect>
 		<inherits-from>Effects/model-transparent</inherits-from>
-<!--		<object-name>NSA360.glass</object-name>-->
 		<object-name>heading.card</object-name>
 		<object-name>loc.scale</object-name>
 		<object-name>gs.scale</object-name>
@@ -29,7 +28,6 @@
 			<factor-prop>controls/lighting/panel-norm</factor-prop>
 		</emission>
 	</animation>
-
 	
 	<animation>
 		<type>select</type>
@@ -37,32 +35,32 @@
 		<condition>
 			<less-than>
 				<property>instrumentation/heading-indicator/spin</property>
-				<value>0.9</value>
+				<value>0.2</value>
 			</less-than>
 		</condition>
 	</animation>
 	
-	<animation>
+	<animation> <!-- TODO: Rotate -->
 		<type>select</type>
 		<object-name>nav.flag</object-name>
 		<condition>
-			<not>
+			<less-than>
 				<property>instrumentation/nav[0]/nav-flag</property>
-			</not>
+				<value>0.1</value>
+			</less-than>
 		</condition>
 	</animation>
 	
-	<animation>
+	<animation> <!-- TODO: Rotate -->
 		<type>select</type>
 		<object-name>gs.flag</object-name>
 		<condition>
 			<or>
-				<not>
+				<less-than>
 					<property>instrumentation/nav[0]/gs-flag</property>
-				</not>
-				<not>
-					<property>instrumentation/nav[0]/has-gs</property>
-				</not>
+					<value>0.1</value>
+				</less-than>
+				<not><property>instrumentation/nav[0]/has-gs</property></not>
 			</or>
 		</condition>
 	</animation>
@@ -127,7 +125,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>cdi.needle.1</object-name>
-		<property>instrumentation/nav[0]/heading-needle-deflection-norm</property>
+		<property>instrumentation/nav[0]/heading-needle-deflection-norm-lag</property>
 		<factor>0.0129</factor>
 		<axis>
 			<x>0</x>
@@ -139,7 +137,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>gs.needle</object-name>
-		<property>instrumentation/nav[0]/gs-needle-deflection-norm</property>
+		<property>instrumentation/nav[0]/gs-needle-deflection-norm-lag</property>
 		<factor>0.0115</factor>
 		<axis>
 			<x>0</x>
@@ -148,7 +146,7 @@
 		</axis>
 	</animation>
 
-	<!-- Heading Offset -->
+	<!-- Heading Offset/Bug -->
 	<animation>
 		<type>pick</type>
 		<object-name>card.knob</object-name>
@@ -158,27 +156,45 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<property>devices/status/keyboard/shift</property>
-				</condition>
-				<command>property-adjust</command>
-				<property>instrumentation/heading-indicator/offset-deg</property>
-				<step>1</step>
-				<min>0</min>
-				<max>360</max>
-				<wrap>1</wrap>
-			</binding>
-			<binding>
-				<condition>
-					<not>
-						<property>devices/status/keyboard/shift</property>
-					</not>
+					<and>
+						<not><property>devices/status/keyboard/ctrl</property></not>
+						<not><property>devices/status/keyboard/shift</property></not>
+					</and>
 				</condition>
 				<command>property-adjust</command>
 				<property>it-stec55x/input/hdg</property>
 				<step>1</step>
-				<min>0</min>
-				<max>360</max>
-				<wrap>1</wrap>
+				<min>1</min>
+				<max>361</max>
+				<wrap>true</wrap>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<not><property>devices/status/keyboard/ctrl</property></not>
+						<property>devices/status/keyboard/shift</property>
+					</and>
+				</condition>
+				<command>property-adjust</command>
+				<property>instrumentation/heading-indicator/offset-deg</property>
+				<step>1</step>
+				<min>1</min>
+				<max>361</max>
+				<wrap>true</wrap>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>devices/status/keyboard/ctrl</property>
+						<not><property>devices/status/keyboard/shift</property></not>
+					</and>
+				</condition>
+				<command>property-adjust</command>
+				<property>instrumentation/heading-indicator/offset-deg</property>
+				<step>0.1</step>
+				<min>1</min>
+				<max>361</max>
+				<wrap>true</wrap>
 			</binding>
 		</action>
 		<action>
@@ -187,51 +203,79 @@
 			<repeatable>true</repeatable>
 			<binding>
 				<condition>
-					<property>devices/status/keyboard/shift</property>
-				</condition>
-				<command>property-adjust</command>
-				<property>instrumentation/heading-indicator/offset-deg</property>
-				<step>-1</step>
-				<min>0</min>
-				<max>360</max>
-				<wrap>1</wrap>
-			</binding>
-			<binding>
-				<condition>
-					<not>
-						<property>devices/status/keyboard/shift</property>
-					</not>
+					<and>
+						<not><property>devices/status/keyboard/ctrl</property></not>
+						<not><property>devices/status/keyboard/shift</property></not>
+					</and>
 				</condition>
 				<command>property-adjust</command>
 				<property>it-stec55x/input/hdg</property>
 				<step>-1</step>
-				<min>0</min>
-				<max>360</max>
-				<wrap>1</wrap>
+				<min>1</min>
+				<max>361</max>
+				<wrap>true</wrap>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<not><property>devices/status/keyboard/ctrl</property></not>
+						<property>devices/status/keyboard/shift</property>
+					</and>
+				</condition>
+				<command>property-adjust</command>
+				<property>instrumentation/heading-indicator/offset-deg</property>
+				<step>-1</step>
+				<min>1</min>
+				<max>361</max>
+				<wrap>true</wrap>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>devices/status/keyboard/ctrl</property>
+						<not><property>devices/status/keyboard/shift</property></not>
+					</and>
+				</condition>
+				<command>property-adjust</command>
+				<property>instrumentation/heading-indicator/offset-deg</property>
+				<step>-0.1</step>
+				<min>1</min>
+				<max>361</max>
+				<wrap>true</wrap>
 			</binding>
 		</action>
 		<hovered>
 			<binding>
 				<condition>
-					<property>devices/status/keyboard/shift</property>
+					<and>
+						<not><property>devices/status/keyboard/ctrl</property></not>
+						<not><property>devices/status/keyboard/shift</property></not>
+					</and>
 				</condition>
 				<command>set-tooltip</command>
-				<tooltip-id>heading-offset</tooltip-id>
-				<mapping>heading</mapping>
-				<label>Offset: %3d</label>
-				<property>instrumentation/heading-indicator/offset-deg</property>
-			</binding>
-			<binding>
-				<condition>
-					<not>
-						<property>devices/status/keyboard/shift</property>
-					</not>
-				</condition>
-				<command>set-tooltip</command>
-				<tooltip-id>heading-bug</tooltip-id>
+				<tooltip-id>nsa360-bug</tooltip-id>
 				<mapping>heading</mapping>
 				<label>Heading Bug: %3d</label>
 				<property>it-stec55x/input/hdg</property>
+			</binding>
+			<binding>
+				<condition>
+					<or> <!-- XOR -->
+						<and>
+							<property>devices/status/keyboard/ctrl</property>
+							<not><property>devices/status/keyboard/shift</property></not>
+						</and>
+						<and>
+							<not><property>devices/status/keyboard/ctrl</property></not>
+							<property>devices/status/keyboard/shift</property>
+						</and>
+					</or>
+				</condition>
+				<command>set-tooltip</command>
+				<tooltip-id>nsa360-offset</tooltip-id>
+				<mapping>heading</mapping>
+				<label>Card Offset: %3d</label>
+				<property>instrumentation/heading-indicator/offset-deg</property>
 			</binding>
 		</hovered>
 	</animation>
@@ -240,9 +284,6 @@
 		<type>rotate</type>
 		<object-name>card.knob</object-name>
 		<property>instrumentation/heading-indicator/offset-deg</property>
-		<condition>
-			<property>devices/status/keyboard/shift</property>
-		</condition>
 		<factor>6</factor>
 		<axis>
 			<x>-1</x>
@@ -259,11 +300,6 @@
 		<type>rotate</type>
 		<object-name>card.knob</object-name>
 		<property>it-stec55x/input/hdg</property>
-		<condition>
-			<not>
-				<property>devices/status/keyboard/shift</property>
-			</not>
-		</condition>
 		<factor>6</factor>
 		<axis>
 			<x>-1</x>
@@ -276,7 +312,8 @@
 			<z-m>-0.034725</z-m>
 		</center>
 	</animation>
-	<!-- Heading Bug control -->
+	
+	<!-- Course control -->
 	<animation>
 		<type>pick</type>
 		<object-name>crs.knob</object-name>
@@ -309,9 +346,9 @@
 		<hovered>
 			<binding>
 				<command>set-tooltip</command>
-				<tooltip-id>radial-knob</tooltip-id>
+				<tooltip-id>nsa360-crs</tooltip-id>
 				<mapping>heading</mapping>
-				<label>Radial: %3d</label>
+				<label>NAV1 Course: %3d</label>
 				<property>instrumentation/nav[0]/radials/selected-deg</property>
 			</binding>
 		</hovered>
@@ -333,6 +370,5 @@
 			<z-m>-0.034725</z-m>
 		</center>
 	</animation>
-
 
 </PropertyList>
