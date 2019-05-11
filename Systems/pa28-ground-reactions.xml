@@ -8,7 +8,7 @@
 		<location unit="M">
 			<x>-2.5864</x>
 			<y>0</y>
-			<z>-1.275</z>
+			<z>-1.13582</z>
 		</location>
 		<static_friction>0.425</static_friction> <!-- Helps nose wheel steering - no effect on braking -->
 		<dynamic_friction>0.6</dynamic_friction>
@@ -24,7 +24,7 @@
 		<location unit="M">
 			<x>-0.70604</x>
 			<y>-1.51374</y>
-			<z>-1.20519</z>
+			<z>-1.11219</z>
 		</location>
 		<static_friction>0.425</static_friction>
 		<dynamic_friction>0.6</dynamic_friction>
@@ -40,7 +40,7 @@
 		<location unit="M">
 			<x>-0.70604</x>
 			<y>1.51374</y>
-			<z>-1.20519</z>
+			<z>-1.11219</z>
 		</location>
 		<static_friction>0.425</static_friction>
 		<dynamic_friction>0.6</dynamic_friction>
