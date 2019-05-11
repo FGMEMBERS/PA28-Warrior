@@ -14,10 +14,10 @@
 			<z-offset-max-m type="float">200.0</z-offset-max-m>
 		</current-view>
 		<flaps>
-			<setting>0.00</setting>
-			<setting>0.25</setting>
-			<setting>0.50</setting>
-			<setting>1.00</setting>
+			<setting>0.000</setting>
+			<setting>0.250</setting>
+			<setting>0.625</setting>
+			<setting>1.000</setting>
 		</flaps>
 		<flight-recorder include="Systems/flight-recorder.xml"/>
 		<gui n="0" include="gui/it-gui.xml"/>
