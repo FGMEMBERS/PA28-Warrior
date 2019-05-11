@@ -19,16 +19,16 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>NavDimmer</object-name>
-		<property>controls/switches/nav-lights-factor</property>
-		<factor>-90</factor>
+		<property>controls/switches/nav-lights-knob</property>
+		<factor>170</factor>
 		<axis>
-			<x>-0.00578</x>
-			<y>1.0</y>
-			<z>0.0</z>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
 		</axis>
 		<center>
 			<x-m>-1.7556</x-m>
-			<y-m>0.0</y-m>
+			<y-m>0</y-m>
 			<z-m>0.06722</z-m>
 		</center>
 	</animation>
@@ -38,8 +38,8 @@
 		<object-name>NavDimmer</object-name>
 		<action>
 			<button>0</button>
-			<button>3</button>
-			<repeatable type="bool">false</repeatable>
+			<button>4</button>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/switches/nav-lights-factor</property>
@@ -50,8 +50,8 @@
 		</action>
 		<action>
 			<button>1</button>
-			<button>4</button>
-			<repeatable type="bool">false</repeatable>
+			<button>3</button>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/switches/nav-lights-factor</property>
@@ -84,7 +84,7 @@
 		<object-name>BAT.sw</object-name>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
 				<property>controls/electrical/battery</property>
@@ -118,7 +118,7 @@
 		<object-name>ALT.sw</object-name>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
 				<property>controls/electrical/alternator</property>
@@ -152,7 +152,7 @@
 		<object-name>FuelPump</object-name>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
 				<property>controls/switches/fuel-pump</property>
@@ -186,7 +186,7 @@
 		<object-name>LandingLight</object-name>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
 				<property>controls/switches/landing-light</property>
@@ -220,7 +220,7 @@
 		<object-name>AntiCollLight.Fin</object-name>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
 				<property>controls/switches/beacon</property>
@@ -254,7 +254,7 @@
 		<object-name>AntiCollLight.Wing</object-name>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
 				<property>controls/switches/strobe-lights</property>
@@ -288,7 +288,7 @@
 		<object-name>PitotHeat</object-name>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
 				<property>controls/switches/pitot-heat</property>
@@ -303,16 +303,16 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>PanelDimmer</object-name>
-		<property>controls/switches/panel-lights-factor</property>
-		<factor>-90</factor>
+		<property>controls/switches/panel-lights-knob</property>
+		<factor>170</factor>
 		<axis>
-			<x>-0.00578</x>
-			<y>1.0</y>
-			<z>0.0</z>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
 		</axis>
 		<center>
 			<x-m>-1.7556</x-m>
-			<y-m>0.0</y-m>
+			<y-m>0</y-m>
 			<z-m>0.06722</z-m>
 		</center>
 	</animation>
@@ -322,8 +322,8 @@
 		<object-name>PanelDimmer</object-name>
 		<action>
 			<button>0</button>
-			<button>3</button>
-			<repeatable type="bool">false</repeatable>
+			<button>4</button>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/switches/panel-lights-factor</property>
@@ -334,8 +334,8 @@
 		</action>
 		<action>
 			<button>1</button>
-			<button>4</button>
-			<repeatable type="bool">false</repeatable>
+			<button>3</button>
+			<repeatable>true</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/switches/panel-lights-factor</property>

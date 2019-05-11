@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 
+<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
+
 <PropertyList>
 
 	<path>PA28-161.ac</path>
@@ -1149,14 +1151,14 @@
 		<factor>35</factor>
 		<property>fdm/jsbsim/fcs/parking-brake-lever</property>
 		<center>
-			<x-m>-1.7506</x-m><!--TODO check coordinates-->
-			<y-m>-0.0</y-m>
-			<z-m>-0.146144</z-m>
+			<x-m>-1.75637</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.08182</z-m>
 		</center>
 		<axis>
-			<x>0.0</x>
-			<y>-1.0</y>
-			<z>0.0</z>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
 		</axis>
 	</animation>
 	

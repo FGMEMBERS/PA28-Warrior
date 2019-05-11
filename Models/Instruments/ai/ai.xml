@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 
+<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
+
 <PropertyList>
 	
 	<path>ai.ac</path>
@@ -64,7 +66,7 @@
 		<type>translate</type>
 		<object-name>ac</object-name>
 		<property>instrumentation/attitude-indicator/pitch-offset-deg</property>
-		<factor>-0.00042</factor>
+		<factor>0.00042</factor>
 		<axis>
 			<x>0</x>
 			<y>0</y>
@@ -76,9 +78,8 @@
 		<type>rotate</type>
 		<object-name>offset.knob</object-name>
 		<property>instrumentation/attitude-indicator/pitch-offset-deg</property>
-		<factor>1</factor>
+		<factor>-12</factor>
 		<center>
-			<y-m>0.0</y-m>
 			<z-m>-0.032829</z-m>
 		</center>
 		<axis>
@@ -120,7 +121,7 @@
 		<hovered>
 			<binding>
 				<command>set-tooltip</command>
-				<tooltip-id>ai-horizon-offset</tooltip-id>
+				<tooltip-id>ai-offset</tooltip-id>
 				<label>Horizon Offset: %1.1f</label>
 				<property>instrumentation/attitude-indicator/pitch-offset-deg</property>
 			</binding>

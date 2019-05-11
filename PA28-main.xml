@@ -5,7 +5,7 @@
 <PropertyList>
 	
 	<sim>
-		<author>Immersive Design Group: Joshua Davidson (Octal450), Jonathan Redpath (legoboyvdlp)</author>
+		<author>Immersive Design Group: Joshua Davidson (Octal450), Jonathan Redpath (legoboyvdlp), D-ECHO</author>
 		<chase-distance-m type="double" archive="y">-20.0</chase-distance-m>
 		<checklists include="PA28-Checklists.xml"/>
 		<current-view>
@@ -777,8 +777,7 @@
 			<file>Aircraft/IDG-PA28/Nasal/zoom-views.nas</file>
 			<file>Aircraft/IDG-PA28/Nasal/crash-stress.nas</file>
 			<script>
-				<![CDATA[ki266.new(0);
-				KCS55.new();]]>
+				<![CDATA[ki266.new(0);]]>
 			</script>
 		</libraries>
 		<acconfig>

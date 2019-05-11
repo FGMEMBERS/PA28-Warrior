@@ -3,7 +3,21 @@
 <!-- Piper PA28 Cockpit -->
 <!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
 
-<system name="PA28: Cockpit">
+<system name="PA28: Cockpit"> <!-- Everything here is after all systems -->
+	
+	<channel name="Animations">
+		
+		<lag_filter name="/controls/switches/nav-lights-knob">
+			<input>/controls/switches/nav-lights-factor</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/switches/panel-lights-knob">
+			<input>/controls/switches/panel-lights-factor</input>
+			<c1>20</c1>
+		</lag_filter>
+	
+	</channel>
 	
 	<channel name="Avionics Fan">
 		
