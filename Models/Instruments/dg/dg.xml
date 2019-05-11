@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 
+<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
+
 <PropertyList>
 
 	<path>dg.ac</path>
@@ -91,7 +93,7 @@
 		<hovered>
 			<binding>
 				<command>set-tooltip</command>
-				<tooltip-id>heading-bug</tooltip-id>
+				<tooltip-id>dg-bug</tooltip-id>
 				<mapping>heading</mapping>
 				<label>Heading Bug: %3d</label>
 				<property>it-stec55x/input/hdg</property>
@@ -128,9 +130,9 @@
 				<command>property-adjust</command>
 				<property>instrumentation/heading-indicator/offset-deg</property>
 				<step>1</step>
-				<min>0</min>
-				<max>360</max>
-				<wrap>1</wrap>
+				<min>1</min>
+				<max>361</max>
+				<wrap>true</wrap>
 			</binding>
 		</action>
 		<action>
@@ -141,17 +143,17 @@
 				<command>property-adjust</command>
 				<property>instrumentation/heading-indicator/offset-deg</property>
 				<step>-1</step>
-				<min>0</min>
-				<max>360</max>
-				<wrap>1</wrap>
+				<min>1</min>
+				<max>361</max>
+				<wrap>true</wrap>
 			</binding>
 		</action>
 		<hovered>
 			<binding>
 				<command>set-tooltip</command>
-				<tooltip-id>heading-bug</tooltip-id>
+				<tooltip-id>dg-offset</tooltip-id>
 				<mapping>heading</mapping>
-				<label>Offset: %3d</label>
+				<label>Card Offset: %3d</label>
 				<property>instrumentation/heading-indicator/offset-deg</property>
 			</binding>
 		</hovered>
