@@ -768,17 +768,16 @@
 	</systems>
 	
 	<nasal n="0">
+		<setup>
+			<script>aircraft.livery.init("Aircraft/IDG-PA28/Models/Liveries");</script>
+		</setup>
 		<libraries>
 			<file>Aircraft/IDG-PA28/Nasal/libraries.nas</file>
 			<file>Aircraft/IDG-PA28/Models/Instruments/ELT/ELTmessage.nas</file>
-			<file>Aircraft/IDG-PA28/Nasal/kr87.nas</file>
 			<file>Aircraft/IDG-PA28/Nasal/ki266.nas</file>
-			<file>Aircraft/IDG-PA28/Nasal/kma20.nas</file>
 			<file>Aircraft/IDG-PA28/Nasal/zoom-views.nas</file>
 			<file>Aircraft/IDG-PA28/Nasal/crash-stress.nas</file>
-			<script>
-				<![CDATA[ki266.new(0);]]>
-			</script>
+			<script>ki266.new(0);</script>
 		</libraries>
 		<acconfig>
 			<file>Aircraft/IDG-PA28/AircraftConfig/acconfig.nas</file>
@@ -798,13 +797,8 @@
 		</lights>
 		<HobbsMeter>
 			<file>Aircraft/IDG-PA28/Models/Instruments/Hobbs/hobbs.nas</file>
-			<script>
-				<![CDATA[HobbsMeter.new(index: 0, switchPath: 'gear/gear/wow', inverted: 1);]]>
-			</script>
+			<script>HobbsMeter.new(index: 0, switchPath: 'gear/gear/wow', inverted: 1);</script>
 		</HobbsMeter>
-		<logger>
-			<file>Aircraft/IDG-PA28/Nasal/logger.nas</file>
-		</logger>
 	</nasal>
 
 </PropertyList>

@@ -27,9 +27,9 @@
 		<type>material</type>
 		<object-name>Screen.Day</object-name>
 		<emission>
-			<red>0.2</red>
-			<green>0.2</green>
-			<blue>0.2</blue>
+			<red>0.1</red>
+			<green>0.1</green>
+			<blue>0.1</blue>
 		</emission>
 	</animation>
 	
@@ -37,9 +37,9 @@
 		<type>material</type>
 		<object-name>Screen.Night</object-name>
 		<emission>
-			<red>0.4</red>
-			<green>0.4</green>
-			<blue>0.4</blue>
+			<red>0.6</red>
+			<green>0.6</green>
+			<blue>0.6</blue>
 		</emission>
 	</animation>
 	

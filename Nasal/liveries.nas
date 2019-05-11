@@ -1,1 +1,0 @@
-aircraft.livery.init("Aircraft/IDG-PA28/Models/Liveries");
