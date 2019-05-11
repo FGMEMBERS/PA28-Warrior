@@ -25,149 +25,6 @@ refs 4
 3 5e-05 0.24548
 kids 0
 OBJECT group
-name "Screen.Day"
-loc -0.00618609 0.00131474 -0.00127261
-kids 2
-OBJECT poly
-name "Display"
-loc -0.00385501 -0.00131474 0.00127261
-data 8
-Cube.003
-texture "gtx-327.png"
-crease 40.000000
-numvert 4
-0.015344 0.0158348 0.0379918
-0.015344 0.0158348 -0.0481727
-0.015344 -0.00531692 -0.0481727
-0.015344 -0.00531692 0.0379918
-numsurf 1
-SURF 0x10
-mat 0
-refs 4
-3 5e-05 5e-05
-2 0.99995 5e-05
-1 0.99995 0.24548
-0 5e-05 0.24548
-kids 0
-OBJECT group
-name "Indicators"
-loc 0.00385501 0.00131474 -0.00127261
-kids 6
-OBJECT poly
-name "ALT.ind"
-loc 0.00771002 0.00262947 0.0345074
-texture "day/alt.png"
-crease 45.000000
-numvert 4
-0 0.00223232 -0.0054874
-0 0.00223232 0.0054874
-0 -0.00223232 0.0054874
-0 -0.00223232 -0.0054874
-numsurf 1
-SURF 0x30
-mat 2
-refs 4
-0 1 1
-1 0 1
-2 0 0
-3 1 0
-kids 0
-OBJECT poly
-name "IDENT.ind"
-loc 0.00771002 0.00905867 0.0336752
-texture "day/ident.png"
-crease 45.000000
-numvert 4
-0 -0.00223 -0.00632
-0 -0.00223 0.00632
-0 0.00223 0.00632
-0 0.00223 -0.00632
-numsurf 1
-SURF 0x30
-mat 2
-refs 4
-3 1 1
-2 0 1
-1 0 0
-0 1 0
-kids 0
-OBJECT poly
-name "ON.ind"
-loc 0.00771002 0.00262947 0.0345074
-texture "day/on.png"
-crease 45.000000
-numvert 4
-0 -0.00223232 -0.0054874
-0 -0.00223232 0.0054874
-0 0.00223232 0.0054874
-0 0.00223232 -0.0054874
-numsurf 1
-SURF 0x30
-mat 2
-refs 4
-3 1 1
-2 0 1
-1 0 0
-0 1 0
-kids 0
-OBJECT poly
-name "STBY.ind"
-loc 0.00771002 0.00262947 0.0345074
-texture "day/stby.png"
-crease 45.000000
-numvert 4
-0 0.00223232 -0.0054874
-0 0.00223232 0.0054874
-0 -0.00223232 0.0054874
-0 -0.00223232 -0.0054874
-numsurf 1
-SURF 0x30
-mat 2
-refs 4
-0 1 1
-1 0 1
-2 0 0
-3 1 0
-kids 0
-OBJECT poly
-name "SelfTest.ind"
-loc 0.00771002 0.00262947 -0.00254522
-texture "day/selftest.png"
-crease 45.000000
-numvert 4
-0 -0.0105758 -0.0430822
-0 -0.0105758 0.0430822
-0 0.0105758 0.0430822
-0 0.0105758 -0.0430822
-numsurf 1
-SURF 0x30
-mat 2
-refs 4
-3 1 1
-2 0 1
-1 0 0
-0 1 0
-kids 0
-OBJECT poly
-name "TestFail.ind"
-loc 0.00771002 0.00262947 -0.00254522
-texture "day/testfail.png"
-crease 45.000000
-numvert 4
-0 0.0105758 -0.0430822
-0 0.0105758 0.0430822
-0 -0.0105758 0.0430822
-0 -0.0105758 -0.0430822
-numsurf 1
-SURF 0x30
-mat 2
-refs 4
-0 1 1
-1 0 1
-2 0 0
-3 1 0
-kids 0
-OBJECT group
 name "Screen.Night"
 loc -0.00618609 0.00131474 -0.00127261
 kids 2
@@ -195,7 +52,159 @@ kids 0
 OBJECT group
 name "Indicators"
 loc 0.00385501 0.00131474 -0.00127261
-kids 6
+kids 14
+OBJECT poly
+name "Numbers1.ind"
+loc 0.00771002 0.0659738 0.0174378
+texture "night/numbers.png"
+crease 45.000000
+numvert 4
+0 -0.0561696 -0.0042111
+0 -0.070517 -0.0042111
+0 -0.0561696 0.00455024
+0 -0.070517 0.00455025
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 0.675073 0.112309
+2 0.310827 0.112309
+3 0.310827 0.0132807
+1 0.675073 0.0132807
+kids 0
+OBJECT poly
+name "Numbers2.ind"
+loc 0.00771002 0.0659738 0.00867352
+texture "night/numbers.png"
+crease 45.000000
+numvert 4
+0 -0.070517 0.00455025
+0 -0.0561696 0.00455025
+0 -0.070517 -0.0042111
+0 -0.0561696 -0.0042111
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 0.675073 0.112309
+1 0.310827 0.112309
+0 0.310827 0.0132807
+2 0.675073 0.0132807
+kids 0
+OBJECT poly
+name "Numbers3.ind"
+loc 0.00771002 0.0659738 -9.75705e-05
+texture "night/numbers.png"
+crease 45.000000
+numvert 4
+0 -0.0561696 -0.0042111
+0 -0.070517 -0.0042111
+0 -0.0561696 0.00455025
+0 -0.070517 0.00455025
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 0.675073 0.112309
+2 0.310827 0.112309
+3 0.310827 0.0132807
+1 0.675073 0.0132807
+kids 0
+OBJECT poly
+name "Numbers4.ind"
+loc 0.00771002 0.0659738 -0.00886865
+texture "night/numbers.png"
+crease 45.000000
+numvert 4
+0 -0.070517 0.00455025
+0 -0.0561696 0.00455024
+0 -0.070517 -0.0042111
+0 -0.0561696 -0.0042111
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 0.675073 0.112309
+1 0.310827 0.112309
+0 0.310827 0.0132807
+2 0.675073 0.0132807
+kids 0
+OBJECT poly
+name "Numbers1Sel.ind"
+loc 0.00771002 0.0659738 0.0174378
+texture "night/numbers-sel.png"
+crease 45.000000
+numvert 4
+0 -0.070517 0.00455025
+0 -0.0561696 0.00455024
+0 -0.070517 -0.0042111
+0 -0.0561696 -0.0042111
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 0.675073 0.112309
+1 0.310827 0.112309
+0 0.310827 0.0132807
+2 0.675073 0.0132807
+kids 0
+OBJECT poly
+name "Numbers2Sel.ind"
+loc 0.00771002 0.0659738 0.00867352
+texture "night/numbers-sel.png"
+crease 45.000000
+numvert 4
+0 -0.0561696 -0.0042111
+0 -0.070517 -0.0042111
+0 -0.0561696 0.00455025
+0 -0.070517 0.00455025
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 0.675073 0.112309
+2 0.310827 0.112309
+3 0.310827 0.0132807
+1 0.675073 0.0132807
+kids 0
+OBJECT poly
+name "Numbers3Sel.ind"
+loc 0.00771002 0.0659738 -9.75705e-05
+texture "night/numbers-sel.png"
+crease 45.000000
+numvert 4
+0 -0.070517 0.00455025
+0 -0.0561696 0.00455025
+0 -0.070517 -0.0042111
+0 -0.0561696 -0.0042111
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 0.675073 0.112309
+1 0.310827 0.112309
+0 0.310827 0.0132807
+2 0.675073 0.0132807
+kids 0
+OBJECT poly
+name "Numbers4Sel.ind"
+loc 0.00771002 0.0659738 -0.00886865
+texture "night/numbers-sel.png"
+crease 45.000000
+numvert 4
+0 -0.0561696 -0.0042111
+0 -0.070517 -0.0042111
+0 -0.0561696 0.00455024
+0 -0.070517 0.00455025
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 0.675073 0.112309
+2 0.310827 0.112309
+3 0.310827 0.0132807
+1 0.675073 0.0132807
+kids 0
 OBJECT poly
 name "ALT.ind"
 loc 0.00771002 0.00262947 0.0345074
@@ -309,6 +318,303 @@ refs 4
 2 0 1
 1 0 0
 0 1 0
+kids 0
+OBJECT group
+name "Screen.Day"
+loc -0.00618609 0.00131474 -0.00127261
+kids 2
+OBJECT poly
+name "Display"
+loc -0.00385501 -0.00131474 0.00127261
+data 8
+Cube.003
+texture "gtx-327.png"
+crease 40.000000
+numvert 4
+0.015344 0.0158348 0.0379918
+0.015344 0.0158348 -0.0481727
+0.015344 -0.00531692 -0.0481727
+0.015344 -0.00531692 0.0379918
+numsurf 1
+SURF 0x10
+mat 0
+refs 4
+3 5e-05 5e-05
+2 0.99995 5e-05
+1 0.99995 0.24548
+0 5e-05 0.24548
+kids 0
+OBJECT group
+name "Indicators"
+loc 0.00385501 0.00131474 -0.00127261
+kids 14
+OBJECT poly
+name "Numbers1.ind"
+loc 0.00771002 0.0659738 0.0174378
+texture "day/numbers.png"
+crease 45.000000
+numvert 4
+0 -0.070517 0.00455025
+0 -0.0561696 0.00455024
+0 -0.070517 -0.0042111
+0 -0.0561696 -0.0042111
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 0.675073 0.112309
+1 0.310827 0.112309
+0 0.310827 0.0132807
+2 0.675073 0.0132807
+kids 0
+OBJECT poly
+name "Numbers2.ind"
+loc 0.00771002 0.0659738 0.00867352
+texture "day/numbers.png"
+crease 45.000000
+numvert 4
+0 -0.0561696 -0.0042111
+0 -0.070517 -0.0042111
+0 -0.0561696 0.00455025
+0 -0.070517 0.00455025
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 0.675073 0.112309
+2 0.310827 0.112309
+3 0.310827 0.0132807
+1 0.675073 0.0132807
+kids 0
+OBJECT poly
+name "Numbers3.ind"
+loc 0.00771002 0.0659738 -9.75705e-05
+texture "day/numbers.png"
+crease 45.000000
+numvert 4
+0 -0.070517 0.00455025
+0 -0.0561696 0.00455025
+0 -0.070517 -0.0042111
+0 -0.0561696 -0.0042111
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 0.675073 0.112309
+1 0.310827 0.112309
+0 0.310827 0.0132807
+2 0.675073 0.0132807
+kids 0
+OBJECT poly
+name "Numbers4.ind"
+loc 0.00771002 0.0659738 -0.00886865
+texture "day/numbers.png"
+crease 45.000000
+numvert 4
+0 -0.0561696 -0.0042111
+0 -0.070517 -0.0042111
+0 -0.0561696 0.00455024
+0 -0.070517 0.00455025
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 0.675073 0.112309
+2 0.310827 0.112309
+3 0.310827 0.0132807
+1 0.675073 0.0132807
+kids 0
+OBJECT poly
+name "Numbers1Sel.ind"
+loc 0.00771002 0.0659738 0.0174378
+texture "day/numbers-sel.png"
+crease 45.000000
+numvert 4
+0 -0.0561696 -0.0042111
+0 -0.070517 -0.0042111
+0 -0.0561696 0.00455024
+0 -0.070517 0.00455025
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 0.675073 0.112309
+2 0.310827 0.112309
+3 0.310827 0.0132807
+1 0.675073 0.0132807
+kids 0
+OBJECT poly
+name "Numbers2Sel.ind"
+loc 0.00771002 0.0659738 0.00867352
+texture "day/numbers-sel.png"
+crease 45.000000
+numvert 4
+0 -0.070517 0.00455025
+0 -0.0561696 0.00455025
+0 -0.070517 -0.0042111
+0 -0.0561696 -0.0042111
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 0.675073 0.112309
+1 0.310827 0.112309
+0 0.310827 0.0132807
+2 0.675073 0.0132807
+kids 0
+OBJECT poly
+name "Numbers3Sel.ind"
+loc 0.00771002 0.0659738 -9.75705e-05
+texture "day/numbers-sel.png"
+crease 45.000000
+numvert 4
+0 -0.0561696 -0.0042111
+0 -0.070517 -0.0042111
+0 -0.0561696 0.00455025
+0 -0.070517 0.00455025
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 0.675073 0.112309
+2 0.310827 0.112309
+3 0.310827 0.0132807
+1 0.675073 0.0132807
+kids 0
+OBJECT poly
+name "Numbers4Sel.ind"
+loc 0.00771002 0.0659738 -0.00886865
+texture "day/numbers-sel.png"
+crease 45.000000
+numvert 4
+0 -0.070517 0.00455025
+0 -0.0561696 0.00455024
+0 -0.070517 -0.0042111
+0 -0.0561696 -0.0042111
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 0.675073 0.112309
+1 0.310827 0.112309
+0 0.310827 0.0132807
+2 0.675073 0.0132807
+kids 0
+OBJECT poly
+name "ALT.ind"
+loc 0.00771002 0.00262947 0.0345074
+texture "day/alt.png"
+crease 45.000000
+numvert 4
+0 0.00223232 -0.0054874
+0 0.00223232 0.00548739
+0 -0.00223232 0.00548739
+0 -0.00223232 -0.0054874
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 1 1
+1 0 1
+2 0 0
+3 1 0
+kids 0
+OBJECT poly
+name "IDENT.ind"
+loc 0.00771002 0.00905867 0.0336752
+texture "day/ident.png"
+crease 45.000000
+numvert 4
+0 -0.00223 -0.00632
+0 -0.00223 0.00632
+0 0.00223 0.00632
+0 0.00223 -0.00632
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 1 1
+2 0 1
+1 0 0
+0 1 0
+kids 0
+OBJECT poly
+name "ON.ind"
+loc 0.00771002 0.00262947 0.0345074
+texture "day/on.png"
+crease 45.000000
+numvert 4
+0 -0.00223232 -0.0054874
+0 -0.00223232 0.00548739
+0 0.00223232 0.00548739
+0 0.00223232 -0.0054874
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 1 1
+2 0 1
+1 0 0
+0 1 0
+kids 0
+OBJECT poly
+name "STBY.ind"
+loc 0.00771002 0.00262947 0.0345074
+texture "day/stby.png"
+crease 45.000000
+numvert 4
+0 0.00223232 -0.0054874
+0 0.00223232 0.00548739
+0 -0.00223232 0.00548739
+0 -0.00223232 -0.0054874
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 1 1
+1 0 1
+2 0 0
+3 1 0
+kids 0
+OBJECT poly
+name "SelfTest.ind"
+loc 0.00771002 0.00262947 -0.00254522
+texture "day/selftest.png"
+crease 45.000000
+hidden
+numvert 4
+0 -0.0105758 -0.0430822
+0 -0.0105758 0.0430822
+0 0.0105758 0.0430822
+0 0.0105758 -0.0430822
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 1 1
+2 0 1
+1 0 0
+0 1 0
+kids 0
+OBJECT poly
+name "TestFail.ind"
+loc 0.00771002 0.00262947 -0.00254522
+texture "day/testfail.png"
+crease 45.000000
+hidden
+numvert 4
+0 0.0105758 -0.0430822
+0 0.0105758 0.0430822
+0 -0.0105758 0.0430822
+0 -0.0105758 -0.0430822
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 1 1
+1 0 1
+2 0 0
+3 1 0
 kids 0
 OBJECT group
 name "GroupLighting"
