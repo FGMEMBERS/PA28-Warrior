@@ -4,12 +4,25 @@
 
 <PropertyList> 
 	
-	<path>yoke-sw.ac</path> 
+	<path>yoke.ac</path> 
 	
+	<model>
+		<name>buttons</name>
+		<path>yoke-sw.ac</path>
+	</model>
+	<!--
+	<animation>
+		<object-name>sw.base</object-name>
+		<object-name>sw.placards</object-name>
+		<object-name>sw.apdisc.btn</object-name>
+		<object-name>sw.cws.btn</object-name>
+		<object-name>sw.trim.btn</object-name>
+	</animation>
+	-->
 	<animation>
 		<type>translate</type>
-		<object-name>Yoke</object-name>
-		<object-name>Buttons</object-name>
+		<object-name>yoke</object-name>
+		<object-name>buttons</object-name>
 		<property>sim/multiplay/generic/float[1]</property>
 		<factor>-0.12</factor>
 		<axis>
@@ -21,8 +34,8 @@
 
 	<animation>
 		<type>rotate</type>
-		<object-name>Yoke</object-name>
-		<object-name>Buttons</object-name>
+		<object-name>yoke</object-name>
+		<object-name>buttons</object-name>
 		<property>sim/multiplay/generic/float[0]</property>
 		<factor>-90.0</factor>
 		<axis>
@@ -39,7 +52,7 @@
 	
 	<animation>
 		<type>select</type>
-		<object-name>Stud</object-name>
+		<object-name>pick.obj</object-name>
 		<condition>
 			<not><property>options/show-l-yoke</property></not>
 		</condition>
@@ -47,8 +60,8 @@
 	
 	<animation>
 		<type>select</type>
-		<object-name>Yoke</object-name>
-		<object-name>Buttons</object-name>
+		<object-name>yoke</object-name>
+		<object-name>buttons</object-name>
 		<condition>
 			<property>options/show-l-yoke</property>
 		</condition>
@@ -56,8 +69,26 @@
  
  	<animation>
 		<type>pick</type>
-		<object-name>rod</object-name>
-		<object-name>Stud</object-name>
+		<object-name>yoke</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>options/show-l-yoke</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>
+				acconfig.writeSettings();
+				</script>
+			</binding>
+		</action>
+	</animation>
+ 	<animation>
+		<type>pick</type>
+		<object-name>pick.obj</object-name>
+		<visible>0</visible>
 		<action>
 			<button>0</button>
 			<repeatable type="bool">false</repeatable>
@@ -78,7 +109,7 @@
 	
 	<animation>
 		<type>material</type>
-		<object-name>Buttons</object-name>
+		<object-name>buttons</object-name>
 		<emission>
 			<red>0.05</red>
 			<green>0.05</green>
@@ -89,7 +120,7 @@
 	
 	<animation>
 		<type>pick</type>
-		<object-name>button.DISC</object-name>
+		<object-name>sw.apdisc.btn</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -114,7 +145,7 @@
 	
 	<animation>
 		<type>translate</type>
-		<object-name>button.DISC</object-name>
+		<object-name>sw.apdisc.btn</object-name>
 		<property>/it-stec55x/input/disc</property>
 		<factor>-0.002</factor>
 		<axis>
@@ -126,7 +157,7 @@
 	
 	<animation>
 		<type>pick</type>
-		<object-name>button.CWS</object-name>
+		<object-name>sw.cws.btn</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -145,7 +176,7 @@
 	
 	<animation>
 		<type>translate</type>
-		<object-name>button.CWS</object-name>
+		<object-name>sw.cws.btn</object-name>
 		<property>/it-stec55x/input/cws</property>
 		<factor>-0.002</factor>
 		<axis>
@@ -157,8 +188,7 @@
 	
 	<animation>
 		<type>pick</type>
-		<object-name>Trim.UP</object-name>
-		<object-name>Trim.DN</object-name>
+		<object-name>sw.trim.btn</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -192,7 +222,7 @@
 			</mod-up>
 		</action>
 	</animation>
-	
+	<!--
 	<animation>
 		<type>translate</type>
 		<object-name>Trim.UP</object-name>
@@ -204,6 +234,6 @@
 			<y>0</y>
 			<z>0</z>
 		</axis>
-	</animation>
+	</animation>-->
 
 </PropertyList>

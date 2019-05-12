@@ -14,7 +14,8 @@
 	<animation>
 		<type>pick</type>
 		<object-name>key</object-name>
-		<object-name>magsw</object-name>
+		<object-name>mags.outer</object-name>
+		<object-name>mags.inner</object-name>
 		<action>
 			<button>0</button>
 			<button>3</button>
@@ -86,6 +87,7 @@
 	<animation>
 		<name>mags-key</name>
 		<type>rotate</type>
+		<object-name>mags.inner</object-name>
 		<object-name>key</object-name>
 		<property>controls/engines/engine[0]/magnetos-switch</property>
 		<factor>30</factor>

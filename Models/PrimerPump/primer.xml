@@ -6,8 +6,7 @@
 
  <animation> 
    <type>translate</type>
-   <object-name>PrimeFace</object-name>
-   <object-name>PrimeShaft</object-name>
+   <object-name>primer.pump</object-name>
    <property>controls/engines/engine/primer-pump</property>
    <factor>-0.035</factor>
    <axis> 
@@ -19,7 +18,7 @@
 
   <animation>
     <type>pick</type>
-    <object-name>PrimeFace</object-name>
+   <object-name>primer.pump</object-name>
     <visible>true</visible>
     <action>
       <button>0</button>
