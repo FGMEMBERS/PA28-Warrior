@@ -90,6 +90,7 @@ var variousReset = func {
 	setprop("/controls/engines/engine[0]/magnetos-switch", 0);
 	setprop("/controls/engines/engine[0]/mixture", 0);
 	setprop("/fdm/jsbsim/extra/door-main-cmd", 0);
+	setprop("/fdm/jsbsim/extra/door-baggage-cmd", 0);
 }
 
 if (getprop("/controls/flight/auto-coordination") == 1) {

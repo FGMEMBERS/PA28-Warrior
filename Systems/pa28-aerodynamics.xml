@@ -9,7 +9,7 @@
 		<description>Change in drag due to ground effect</description>
 		<product>
 			<table>
-				<independentVar>aero/h_b-mac-ft</independentVar>
+				<independentVar lookup="row">aero/h_b-mac-ft</independentVar>
 				<tableData>
 					0.0000  0.4800
 					0.1000  0.5150
@@ -519,7 +519,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/bw-ft</property>
 				<table>
-					<independentVar>aero/beta-rad</independentVar>
+					<independentVar lookup="row">aero/beta-rad</independentVar>
 					<tableData>
 						-0.349 -0.0205
 						 0.000  0.0000

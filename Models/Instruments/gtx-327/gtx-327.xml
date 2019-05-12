@@ -112,6 +112,14 @@
 	
 	<animation>
 		<type>select</type>
+		<object-name>Dash1.ind</object-name>
+		<object-name>Dash1Sel.ind</object-name>
+		<object-name>Dash2.ind</object-name>
+		<object-name>Dash2Sel.ind</object-name>
+		<object-name>Dash3.ind</object-name>
+		<object-name>Dash3Sel.ind</object-name>
+		<object-name>Dash4.ind</object-name>
+		<object-name>Dash4Sel.ind</object-name>
 		<object-name>Numbers1.ind</object-name>
 		<object-name>NumbersSel1.ind</object-name>
 		<object-name>Numbers2.ind</object-name>
@@ -175,6 +183,142 @@
 				<property>instrumentation/it-gtx327/annun/mode</property>
 				<value>stby</value>
 			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Dash1.ind</object-name>
+		<condition>
+			<and>
+				<not-equals>
+					<property>instrumentation/it-gtx327/annun/sel</property>
+					<value>1</value>
+				</not-equals>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/code-1</property>
+					<value>-1</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Dash2.ind</object-name>
+		<condition>
+			<and>
+				<not-equals>
+					<property>instrumentation/it-gtx327/annun/sel</property>
+					<value>2</value>
+				</not-equals>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/code-2</property>
+					<value>-1</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Dash3.ind</object-name>
+		<condition>
+			<and>
+				<not-equals>
+					<property>instrumentation/it-gtx327/annun/sel</property>
+					<value>3</value>
+				</not-equals>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/code-3</property>
+					<value>-1</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Dash4.ind</object-name>
+		<condition>
+			<and>
+				<not-equals>
+					<property>instrumentation/it-gtx327/annun/sel</property>
+					<value>4</value>
+				</not-equals>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/code-4</property>
+					<value>-1</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Dash1Sel.ind</object-name>
+		<condition>
+			<and>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/sel</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/code-1</property>
+					<value>-1</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Dash2Sel.ind</object-name>
+		<condition>
+			<and>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/sel</property>
+					<value>2</value>
+				</equals>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/code-2</property>
+					<value>-1</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Dash3Sel.ind</object-name>
+		<condition>
+			<and>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/sel</property>
+					<value>3</value>
+				</equals>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/code-3</property>
+					<value>-1</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Dash4Sel.ind</object-name>
+		<condition>
+			<and>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/sel</property>
+					<value>4</value>
+				</equals>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/code-4</property>
+					<value>-1</value>
+				</equals>
+			</and>
 		</condition>
 	</animation>
 	

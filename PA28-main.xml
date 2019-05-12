@@ -326,6 +326,7 @@
 		</gear>
 		<switches>
 			<avionics-master type="bool">0</avionics-master>
+			<avionics-secondary type="bool">0</avionics-secondary>
 			<beacon type="bool">1</beacon>
 			<fuel-pump type="bool">0</fuel-pump>
 			<landing-light type="bool">0</landing-light>

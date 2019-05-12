@@ -252,7 +252,7 @@
 		<object-name>annun.test.btn</object-name>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
 				<property>controls/switches/annun-test</property>
@@ -751,6 +751,39 @@
 		</center>
 	</animation>
 	
+	<animation>
+		<type>pick</type>
+		<object-name>avionics.secondary.switch</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+					<property>controls/switches/avionics-secondary</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/switch1", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>avionics.secondary.switch</object-name>
+		<property>controls/switches/avionics-secondary</property>
+		<factor>-32</factor>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-1.7332</x-m>
+			<z-m>0.075774</z-m>
+		</center>
+	</animation>
+	
 	<!--Left Switch Panel-->
 	<model>
 		<name>APSW</name>
@@ -800,7 +833,7 @@
 		<action>
 			<button>0</button>
 			<button>3</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/switches/panel-dim-todo</property>
@@ -812,7 +845,7 @@
 		<action>
 			<button>1</button>
 			<button>4</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/switches/panel-dim-todo</property>
@@ -1226,7 +1259,7 @@
 		<action>
 			<button>0</button>
 			<button>3</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/engines/engine[0]/throttle</property>
@@ -1239,7 +1272,7 @@
 		<action>
 			<button>1</button>
 			<button>4</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/engines/engine[0]/throttle</property>
@@ -1274,7 +1307,7 @@
 		<action>
 			<button>0</button>
 			<button>3</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/engines/engine[0]/mixture</property>
@@ -1287,7 +1320,7 @@
 		<action>
 			<button>1</button>
 			<button>4</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/engines/engine[0]/mixture</property>
@@ -1321,7 +1354,7 @@
 		<object-name>carbheat.lever</object-name>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
 				<property>controls/anti-ice/engine[0]/carb-heat-cmd</property>
@@ -1350,7 +1383,7 @@
 		<object-name>cabinheat.lever</object-name>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
 				<property>controls/anti-ice/cabin-heat-cmd</property>
@@ -1379,7 +1412,7 @@
 		<object-name>defroster.lever</object-name>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
 				<property>controls/anti-ice/defroster-cmd</property>
@@ -1523,7 +1556,7 @@
 		<action>
 			<button>0</button>
 			<button>3</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/flight/rudder-trim</property>
@@ -1536,7 +1569,7 @@
 		<action>
 			<button>1</button>
 			<button>4</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/flight/rudder-trim</property>
@@ -1614,7 +1647,7 @@
 		<object-name>doorFint</object-name>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
 				<property>fdm/jsbsim/extra/door-main-cmd</property>
@@ -1645,7 +1678,7 @@
 		<object-name>doorBint</object-name>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
 				<property>fdm/jsbsim/extra/door-baggage-cmd</property>

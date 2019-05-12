@@ -27,7 +27,7 @@ var displayOn = props.globals.initNode("/instrumentation/it-gtx327/internal/disp
 var codeEntryActive = props.globals.initNode("/instrumentation/it-gtx327/internal/code-entry-active", 0, "BOOL");
 
 var Annun = {
-	code: ["1200", props.globals.initNode("/instrumentation/it-gtx327/annun/code-1", 1, "INT"), props.globals.initNode("/instrumentation/it-gtx327/annun/code-2", 2, "INT"), props.globals.initNode("/instrumentation/it-gtx327/annun/code-3", 0, "INT"), props.globals.initNode("/instrumentation/it-gtx327/annun/code-4", 0, "INT")],
+	code: [nil, props.globals.initNode("/instrumentation/it-gtx327/annun/code-1", 1, "INT"), props.globals.initNode("/instrumentation/it-gtx327/annun/code-2", 2, "INT"), props.globals.initNode("/instrumentation/it-gtx327/annun/code-3", 0, "INT"), props.globals.initNode("/instrumentation/it-gtx327/annun/code-4", 0, "INT")],
 	fail: props.globals.initNode("/instrumentation/it-gtx327/annun/fail", 0, "BOOL"),
 	ident: props.globals.initNode("/instrumentation/it-gtx327/annun/ident", 0, "BOOL"),
 	mode: props.globals.initNode("/instrumentation/it-gtx327/annun/mode", "off", "STRING"),
@@ -129,6 +129,9 @@ var system = {
 			me.setMode(0);
 		}
 	},
+	compileCode: func() {
+		system.setCode(Annun.code[1].getValue() ~ Annun.code[2].getValue() ~ Annun.code[3].getValue() ~ Annun.code[4].getValue());
+	},
 	setCode: func(c) {
 		me.endCodeEntry();
 		code = c;
@@ -216,20 +219,16 @@ var button = {
 				if (codeEntryActive.getBoolValue()) {
 					if (Annun.code[1].getValue() == -1) {
 						Annun.code[1].setValue(n);
-						Annun.code[0] = Annun.code[0] ~ n;
 						Annun.sel.setValue(2);
 					} else if (Annun.code[2].getValue() == -1) {
 						Annun.code[2].setValue(n);
-						Annun.code[0] = Annun.code[0] ~ n;
 						Annun.sel.setValue(3);
 					} else if (Annun.code[3].getValue() == -1) {
 						Annun.code[3].setValue(n);
-						Annun.code[0] = Annun.code[0] ~ n;
 						Annun.sel.setValue(4);
 					} else if (Annun.code[4].getValue() == -1) {
 						Annun.code[4].setValue(n);
-						Annun.code[0] = Annun.code[0] ~ n;
-						system.setCode(Annun.code[0]);
+						system.compileCode();
 					}
 				} else {
 					system.beginCodeEntry();
@@ -237,7 +236,6 @@ var button = {
 					Annun.code[2].setValue(-1);
 					Annun.code[3].setValue(-1);
 					Annun.code[4].setValue(-1);
-					Annun.code[0] = n;
 				}
 			}
 		}

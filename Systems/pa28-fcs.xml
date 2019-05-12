@@ -355,6 +355,11 @@
 			<input>extra/door-main-input</input>
 			<c1>16.0</c1>
 		</lag_filter>
+		
+		<lag_filter name="extra/door-baggage-norm">
+			<input>extra/door-baggage-cmd</input>
+			<c1>16.0</c1>
+		</lag_filter>
 	
 	</channel>
 	
