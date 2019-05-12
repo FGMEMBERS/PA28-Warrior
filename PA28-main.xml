@@ -301,33 +301,36 @@
 	</consumables>
 	
 	<controls n="0">
-		<anti-ice>
+		<anti-ice n="0">
 			<engine n="0">
 				<carb-heat-cmd type="bool">0</carb-heat-cmd>
 			</engine>
 		</anti-ice>
-		<electrical>
+		<electrical n="0">
 			<battery type="bool">0</battery>
 			<alternator type="bool">0</alternator>
 		</electrical>
-		<engines>
+		<engines n="0">
 			<engine n="0">
 				<magnetos type="int">0</magnetos>
 				<magnetos-switch type="int">0</magnetos-switch>
 				<mixture type="double">0</mixture>
+				<primer-pump type="bool">0</primer-pump>
 			</engine>
 		</engines>
-		<flight>
+		<flight n="0">
 			<aileron-drives-tiller type="bool">0</aileron-drives-tiller>
 			<elevator-trim type="double">0.11</elevator-trim>
 		</flight>
-		<gear>
+		<gear n="0">
 			<brake-parking type="double">0</brake-parking>
 		</gear>
-		<switches>
+		<switches n="0">
 			<avionics-master type="bool">0</avionics-master>
 			<avionics-secondary type="bool">0</avionics-secondary>
 			<beacon type="bool">1</beacon>
+			<cabin-heat-cmd type="bool">0</cabin-heat-cmd>
+			<defroster-cmd type="bool">0</defroster-cmd>
 			<fuel-pump type="bool">0</fuel-pump>
 			<landing-light type="bool">0</landing-light>
 			<nav-lights type="double">0</nav-lights>

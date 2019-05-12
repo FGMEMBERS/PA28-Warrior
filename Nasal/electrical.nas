@@ -39,6 +39,7 @@ var ELEC = {
 		setprop("/controls/electrical/battery", 0);
 		setprop("/controls/electrical/alternator", 0);
 		setprop("/controls/switches/avionics-master", 0);
+		setprop("/controls/switches/avionics-secondary", 0);
 		src = "XX";
 		setprop("/systems/electrical/batt-volt", 12);
 		setprop("/systems/electrical/batt-amp", 35);

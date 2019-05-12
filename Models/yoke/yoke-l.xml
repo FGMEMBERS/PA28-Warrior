@@ -29,7 +29,7 @@
 		<object-name>yoke</object-name>
 		<object-name>buttons</object-name>
 		<property>sim/multiplay/generic/float[0]</property>
-		<factor>-90.0</factor>
+		<factor>-92</factor>
 		<axis>
 			<x>1.0</x>
 			<y>0.0</y>
