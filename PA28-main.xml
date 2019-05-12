@@ -562,6 +562,22 @@
 					<script>libraries.fovZoom(-1);</script>
 				</binding>
 			</key>
+			<key n="362">
+				<name>Home</name>
+				<desc>Elevator Trim Down</desc>
+				<binding>
+					<command>nasal</command>
+					<script>controls.elevatorTrim(1);</script>
+				</binding>
+			</key>
+			<key n="363">
+				<name>End</name>
+				<desc>Elevator Trim Up</desc>
+				<binding>
+					<command>nasal</command>
+					<script>controls.elevatorTrim(-1);</script>
+				</binding>
+			</key>
 		</keyboard>
 		<mice n="0">
 			<mouse n="0">

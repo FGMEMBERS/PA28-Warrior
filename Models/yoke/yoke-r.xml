@@ -37,57 +37,28 @@
 	
 	<animation>
 		<type>select</type>
-		<object-name>pick.obj</object-name>
-		<condition>
-			<not><property>options/show-r-yoke</property></not>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>select</type>
 		<object-name>yoke</object-name>
 		<condition>
 			<property>options/show-r-yoke</property>
 		</condition>
 	</animation>
- 
- 	<animation>
-		<type>pick</type>
-		<object-name>yoke</object-name>
-		<action>
-			<button>0</button>
-			<repeatable type="bool">false</repeatable>
-			<binding>
-				<command>property-toggle</command>
-				<property>options/show-r-yoke</property>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>
-				acconfig.writeSettings();
-				</script>
-			</binding>
-		</action>
-	</animation>
+	
  	<animation>
 		<type>pick</type>
 		<object-name>pick.obj</object-name>
 		<visible>0</visible>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
 				<property>options/show-r-yoke</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>
-				acconfig.writeSettings();
-				</script>
+				<script>acconfig.writeSettings();</script>
 			</binding>
 		</action>
 	</animation>
-	
 
 </PropertyList>
