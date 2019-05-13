@@ -155,7 +155,6 @@
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<property>aero/function/kCDge</property>
 				<value>0.037521</value>
 			</product>
 		</function>
@@ -210,8 +209,8 @@
 			<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<property>aero/cl-squared</property>
 				<property>aero/function/kCDge</property>
+				<property>aero/cl-squared</property>
 				<value>0.002442</value>
 			</product>
 		</function>
