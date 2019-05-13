@@ -1614,7 +1614,7 @@
 		<object-name>White nav light ALS</object-name>
 		<object-name>tailnav.glass</object-name>
 		<property>surface-positions/rudder-pos-norm</property>
-		<factor>1</factor>
+		<factor>-1</factor>
 		<axis>
 			<x1-m>3.01317</x1-m>
 			<y1-m>0.0</y1-m>

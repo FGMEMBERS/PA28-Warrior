@@ -92,7 +92,7 @@
 	
 	</channel>
 	
-	<channel name="Roll">
+	<channel name="Ailerons">
 		
 		<aerosurface_scale name="fcs/aileron-left-deg">
 			<input>fcs/aileron-yoke</input>
@@ -114,7 +114,7 @@
 	
 	</channel>
 	
-	<channel name="Pitch">
+	<channel name="Stabilator"> <!-- TODO: redo trim a bit better -->
 		
 		<aerosurface_scale name="fcs/elevator-trim-input">
 			<input>fcs/elevator-trim-knob</input>
@@ -173,7 +173,7 @@
 	
 	</channel>
 	
-	<channel name="Yaw">
+	<channel name="Rudder">
 		
 		<summer name="fcs/yaw-input">
 			<input>fcs/rudder-pedal</input>
