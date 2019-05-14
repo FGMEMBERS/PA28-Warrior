@@ -1118,7 +1118,7 @@
 		<object-name>Spinner</object-name>
 		<object-name>propblur</object-name>
 		<property>engines/engine/rpm[0]</property>
-		<factor>-1</factor>
+		<factor>1</factor>
 		<axis>
 			<x1-m>-3.15106</x1-m>
 			<y1-m>0.0</y1-m>
@@ -1714,7 +1714,7 @@
 		<object-name>gear.F.scissor2</object-name>
 		<object-name>gear.F.oleo</object-name>
 		<property>sim/multiplay/generic/float[3]</property>
-		<factor>-1.25</factor>
+		<factor>-1</factor>
 		<axis>
 			<x1-m>-2.5229</x1-m>
 			<y1-m>0.0</y1-m>
@@ -1807,7 +1807,7 @@
 		<property>gear/gear[1]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0</dep></entry>
-			<entry><ind>0.5</ind><dep>0.2135</dep></entry>
+			<entry><ind>0.7</ind><dep>0.2135</dep></entry>
 		</interpolation>
 		<axis>
 			<x1-m>0.0</x1-m>
@@ -1824,7 +1824,7 @@
 		<property>gear/gear[1]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0</dep></entry>
-			<entry><ind>0.5</ind><dep>43.7</dep></entry>
+			<entry><ind>0.7</ind><dep>43.7</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>-0.679105</x-m>
@@ -1842,7 +1842,7 @@
 		<property>gear/gear[1]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0</dep></entry>
-			<entry><ind>0.5</ind><dep>-49.6</dep></entry>
+			<entry><ind>0.7</ind><dep>-49.6</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>-0.680897</x-m>
@@ -1878,7 +1878,7 @@
 		<property>gear/gear[2]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0</dep></entry>
-			<entry><ind>0.5</ind><dep>0.2135</dep></entry>
+			<entry><ind>0.7</ind><dep>0.2135</dep></entry>
 		</interpolation>
 		<axis>
 			<x1-m>0.0</x1-m>
@@ -1895,7 +1895,7 @@
 		<property>gear/gear[2]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0</dep></entry>
-			<entry><ind>0.5</ind><dep>43.7</dep></entry>
+			<entry><ind>0.7</ind><dep>43.7</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>-0.679105</x-m>
@@ -1913,7 +1913,7 @@
 		<property>gear/gear[2]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0</dep></entry>
-			<entry><ind>0.5</ind><dep>-49.6</dep></entry>
+			<entry><ind>0.7</ind><dep>-49.6</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>-0.680897</x-m>
