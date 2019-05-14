@@ -1786,21 +1786,19 @@
 		<type>translate</type>
 		<object-name>WheelL</object-name>
 		<object-name>gear.low.L</object-name>
-		<object-name>gear.oleo.L</object-name>
-		<object-name>gear.high.L</object-name>
 		<object-name>gear.low.scissor.L</object-name>
 		<property>gear/gear[1]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0</dep></entry>
-			<entry><ind>0.5</ind><dep>0.1048</dep></entry>
+			<entry><ind>0.5</ind><dep>0.2135</dep></entry>
 		</interpolation>
 		<axis>
 			<x1-m>0.0</x1-m>
-			<y1-m>-1.39714</y1-m>
-			<z1-m>-0.907152</z1-m>
+			<y1-m>-1.40305</y1-m>
+			<z1-m>-1.04287</z1-m>
 			<x2-m>0.0</x2-m>
-			<y2-m>-1.3653</y2-m>
-			<z2-m>-0.6258</z2-m>
+			<y2-m>-1.37332</y2-m>
+			<z2-m>-0.761388</z2-m>
 		</axis>
 	</animation>
 	<animation>
@@ -1809,11 +1807,11 @@
 		<property>gear/gear[1]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0</dep></entry>
-			<entry><ind>0.5</ind><dep>29</dep></entry>
+			<entry><ind>0.5</ind><dep>43.7</dep></entry>
 		</interpolation>
 		<center>
-			<x-m>-0.673348</x-m>
-			<z-m>-0.891219</z-m>
+			<x-m>-0.679105</x-m>
+			<z-m>-1.03984</z-m>
 		</center>
 		<axis>
 			<x>0.0</x>
@@ -1827,11 +1825,11 @@
 		<property>gear/gear[1]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0</dep></entry>
-			<entry><ind>0.5</ind><dep>-30.66</dep></entry>
+			<entry><ind>0.5</ind><dep>-49.6</dep></entry>
 		</interpolation>
 		<center>
-			<x-m>-0.673337</x-m>
-			<z-m>-0.688226</z-m>
+			<x-m>-0.680897</x-m>
+			<z-m>-0.72983</z-m>
 		</center>
 		<axis>
 			<x>0.0</x>
@@ -1850,30 +1848,28 @@
 			<z>0</z>
 		</axis>
 		<center>
-			<x-m>-0.70604</x-m>
-			<z-m>-0.89011</z-m>
+			<x-m>-0.753602</x-m>
+			<z-m>-1.04513</z-m>
 		</center>
 	</animation>
-	
+
 	<animation>
 		<type>translate</type>
 		<object-name>WheelR</object-name>
 		<object-name>gear.low.R</object-name>
-		<object-name>gear.oleo.R</object-name>
-		<object-name>gear.high.R</object-name>
 		<object-name>gear.low.scissor.R</object-name>
 		<property>gear/gear[2]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0</dep></entry>
-			<entry><ind>0.5</ind><dep>0.1048</dep></entry>
+			<entry><ind>0.5</ind><dep>0.2135</dep></entry>
 		</interpolation>
 		<axis>
 			<x1-m>0.0</x1-m>
-			<y1-m>1.39714</y1-m>
-			<z1-m>-0.907152</z1-m>
+			<y1-m>1.40305</y1-m>
+			<z1-m>-1.04287</z1-m>
 			<x2-m>0.0</x2-m>
-			<y2-m>1.3653</y2-m>
-			<z2-m>-0.6258</z2-m>
+			<y2-m>1.37332</y2-m>
+			<z2-m>-0.761388</z2-m>
 		</axis>
 	</animation>
 	<animation>
@@ -1882,11 +1878,11 @@
 		<property>gear/gear[2]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0</dep></entry>
-			<entry><ind>0.5</ind><dep>29</dep></entry>
+			<entry><ind>0.5</ind><dep>43.7</dep></entry>
 		</interpolation>
 		<center>
-			<x-m>-0.673348</x-m>
-			<z-m>-0.891219</z-m>
+			<x-m>-0.679105</x-m>
+			<z-m>-1.03984</z-m>
 		</center>
 		<axis>
 			<x>0.0</x>
@@ -1900,11 +1896,11 @@
 		<property>gear/gear[2]/compression-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0</dep></entry>
-			<entry><ind>0.5</ind><dep>-30.66</dep></entry>
+			<entry><ind>0.5</ind><dep>-49.6</dep></entry>
 		</interpolation>
 		<center>
-			<x-m>-0.673337</x-m>
-			<z-m>-0.688226</z-m>
+			<x-m>-0.680897</x-m>
+			<z-m>-0.72983</z-m>
 		</center>
 		<axis>
 			<x>0.0</x>
@@ -1923,9 +1919,8 @@
 			<z>0</z>
 		</axis>
 		<center>
-			<x-m>-0.70604</x-m>
-			<z-m>-0.89011</z-m>
+			<x-m>-0.753602</x-m>
+			<z-m>-1.04513</z-m>
 		</center>
 	</animation>
-
 </PropertyList>
