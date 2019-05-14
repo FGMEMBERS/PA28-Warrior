@@ -34,7 +34,7 @@
 		</unload>
 	</nasal>
 	
-	<!--Define parts for crash+stress-->
+	<!-- Define Parts for Crash and Stress -->
 	<animation>
 		<name>NoseGear</name>
 		<object-name>WheelN</object-name>
@@ -252,7 +252,7 @@
 		<object-name>annun.test.btn</object-name>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
 				<property>controls/switches/annun-test</property>
@@ -751,6 +751,39 @@
 		</center>
 	</animation>
 	
+	<animation>
+		<type>pick</type>
+		<object-name>avionics.secondary.switch</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+					<property>controls/switches/avionics-secondary</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/switch1", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>avionics.secondary.switch</object-name>
+		<property>controls/switches/avionics-secondary</property>
+		<factor>-32</factor>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-1.7332</x-m>
+			<z-m>0.075774</z-m>
+		</center>
+	</animation>
+	
 	<!--Left Switch Panel-->
 	<model>
 		<name>APSW</name>
@@ -800,7 +833,7 @@
 		<action>
 			<button>0</button>
 			<button>3</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/switches/panel-dim-todo</property>
@@ -812,7 +845,7 @@
 		<action>
 			<button>1</button>
 			<button>4</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/switches/panel-dim-todo</property>
@@ -1067,7 +1100,7 @@
 		<object-name>EGT</object-name>
 		<object-name>mags</object-name>
 	</animation>
-
+	
 	<animation>
 		<type>select</type>
 		<object-name>Propeller</object-name>
@@ -1078,7 +1111,7 @@
 			</less-than>
 		</condition>
 	</animation>
-
+	
 	<animation>
 		<type>spin</type>
 		<object-name>Propeller</object-name>
@@ -1095,7 +1128,7 @@
 			<z2-m>-0.075996</z2-m>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>select</type>
 		<object-name>propblur</object-name>
@@ -1121,7 +1154,7 @@
 			</less-than>
 		</condition>
 	</animation>
-
+	
 	<animation>
 		<type>blend</type>
 		<object-name>propblur</object-name>
@@ -1131,7 +1164,7 @@
 		<max>1.0</max>
 		<min>0.8</min>
 	</animation>
-
+	
 	<model>
 		<name>fuel selector</name>
 		<path>Models/Instruments/fuel-selector/fuel-selector.xml</path>
@@ -1144,7 +1177,7 @@
 			<z-m>-0.234251</z-m>
 		</offsets>
 	</model>
-
+	
 	<animation>
 		<type>rotate</type>
 		<object-name>ParkingBrakeControl</object-name>
@@ -1174,7 +1207,7 @@
 			</binding>
 		</action>
 	</animation>
-
+	
 	<!--animation>
 		<type>pick</type>
 		<object-name>DoorLatch</object-name>
@@ -1188,7 +1221,7 @@
 			</binding>
 		</action>
 	</animation>
-
+	
 	<animation>
 		<type>pick</type>
 		<object-name>DoorLatchExt</object-name>
@@ -1202,7 +1235,7 @@
 			</binding>
 		</action>
 	</animation>-->
-
+	
 	<animation>
 		<type>rotate</type>
 		<object-name>throttle.lever</object-name>
@@ -1219,14 +1252,14 @@
 			<z>0.0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>pick</type>
 		<object-name>throttle.lever</object-name>
 		<action>
 			<button>0</button>
 			<button>3</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/engines/engine[0]/throttle</property>
@@ -1239,7 +1272,7 @@
 		<action>
 			<button>1</button>
 			<button>4</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/engines/engine[0]/throttle</property>
@@ -1250,7 +1283,7 @@
 			</binding>
 		</action>
 	</animation>
-
+	
 	<animation>
 		<type>rotate</type>
 		<object-name>mixture.lever</object-name>
@@ -1267,14 +1300,14 @@
 			<z>0.0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>pick</type>
 		<object-name>mixture.lever</object-name>
 		<action>
 			<button>0</button>
 			<button>3</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/engines/engine[0]/mixture</property>
@@ -1287,7 +1320,7 @@
 		<action>
 			<button>1</button>
 			<button>4</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/engines/engine[0]/mixture</property>
@@ -1298,7 +1331,7 @@
 			</binding>
 		</action>
 	</animation>
-
+	
 	<animation>
 		<type>rotate</type>
 		<object-name>carbheat.lever</object-name>
@@ -1315,13 +1348,13 @@
 			<z>0.0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>pick</type>
 		<object-name>carbheat.lever</object-name>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
 				<property>controls/anti-ice/engine[0]/carb-heat-cmd</property>
@@ -1332,7 +1365,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>cabinheat.lever</object-name>
-		<property>controls/anti-ice/cabin-heat-cmd</property>
+		<property>controls/switches/cabin-heat-lag</property>
 		<factor>57.8</factor>
 		<center>
 			<x-m>-1.76583</x-m>
@@ -1344,16 +1377,16 @@
 			<z>1.0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>pick</type>
 		<object-name>cabinheat.lever</object-name>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/anti-ice/cabin-heat-cmd</property>
+				<property>controls/switches/cabin-heat-cmd</property>
 			</binding>
 		</action>
 	</animation>
@@ -1361,7 +1394,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>defroster.lever</object-name>
-		<property>controls/anti-ice/defroster-cmd</property>
+		<property>controls/switches/defroster-lag</property>
 		<factor>57.8</factor>
 		<center>
 			<x-m>-1.76583</x-m>
@@ -1373,25 +1406,25 @@
 			<z>1.0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>pick</type>
 		<object-name>defroster.lever</object-name>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/anti-ice/defroster-cmd</property>
+				<property>controls/switches/defroster-cmd</property>
 			</binding>
 		</action>
 	</animation>
-
+	
 	<animation>
 		<type>rotate</type>
 		<object-name>LeftAileron</object-name>
 		<property>surface-positions/left-aileron-pos-norm</property>
-		<factor>-20</factor>
+		<factor>-1</factor>
 		<axis>
 			<x1-m>-0.25121</x1-m>
 			<y1-m>-2.70551</y1-m>
@@ -1401,12 +1434,12 @@
 			<z2-m>0.08607</z2-m>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>rotate</type>
 		<object-name>RightAileron</object-name>
 		<property>surface-positions/right-aileron-pos-norm</property>
-		<factor>20</factor>
+		<factor>1</factor>
 		<axis>
 			<x1-m>-0.25121</x1-m>
 			<y1-m>2.70551</y1-m>
@@ -1416,7 +1449,7 @@
 			<z2-m>0.08607</z2-m>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>rotate</type>
 		<object-name>LeftFlap</object-name>
@@ -1448,7 +1481,7 @@
 			<z>0.0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>rotate</type>
 		<object-name>RightFlap</object-name>
@@ -1480,13 +1513,13 @@
 			<z>0.0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>rotate</type>
 		<object-name>Stabilator</object-name>
 		<object-name>AntiServoTab</object-name>
 		<property>surface-positions/elevator-pos-norm</property>
-		<factor>12</factor>
+		<factor>1</factor>
 		<center>
 			<x-m>3.00905</x-m>
 			<y-m>0.0</y-m>
@@ -1498,12 +1531,12 @@
 			<z>0.0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>rotate</type>
 		<object-name>AntiServoTab</object-name>
 		<property>surface-positions/speedbrake-pos-norm</property>
-		<factor>15</factor>
+		<factor>1</factor>
 		<center>
 			<x-m>3.39382</x-m>
 			<y-m>0.0</y-m>
@@ -1515,15 +1548,14 @@
 			<z>0.0</z>
 		</axis>
 	</animation>
-
-
+	
 	<animation>
 		<type>pick</type>
 		<object-name>RudderTrim</object-name>
 		<action>
 			<button>0</button>
 			<button>3</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/flight/rudder-trim</property>
@@ -1536,7 +1568,7 @@
 		<action>
 			<button>1</button>
 			<button>4</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-adjust</command>
 				<property>controls/flight/rudder-trim</property>
@@ -1563,7 +1595,7 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>translate</type>
 		<object-name>RudderTrimIndicator</object-name>
@@ -1575,14 +1607,14 @@
 			<z>0</z>
 		</axis>
 	</animation>
-
+	
 	<animation>
 		<type>rotate</type>
 		<object-name>Rudder</object-name>
 		<object-name>White nav light ALS</object-name>
 		<object-name>tailnav.glass</object-name>
 		<property>surface-positions/rudder-pos-norm</property>
-		<factor>16</factor>
+		<factor>-1</factor>
 		<axis>
 			<x1-m>3.01317</x1-m>
 			<y1-m>0.0</y1-m>
@@ -1592,21 +1624,6 @@
 			<z2-m>1.4045</z2-m>
 		</axis>
 	</animation>
-
-	<!--animation>
-		<type>rotate</type>
-		<object-name>NoseGear</object-name>
-		<property>sim/multiplay/generic/float[3]</property>
-		<factor>1</factor>
-		<axis>
-			<x1-m>1.0471</x1-m>
-			<y1-m>0.0</y1-m>
-			<z1-m>-0.65873</z1-m>
-			<x2-m>1.01881</x2-m>
-			<y2-m>0.0</y2-m>
-			<z2-m>-0.77222</z2-m>
-		</axis>
-	</animation-->
 	
 	<animation>
 		<type>pick</type>
@@ -1614,7 +1631,7 @@
 		<object-name>doorFint</object-name>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
 				<property>fdm/jsbsim/extra/door-main-cmd</property>
@@ -1645,7 +1662,7 @@
 		<object-name>doorBint</object-name>
 		<action>
 			<button>0</button>
-			<repeatable type="bool">false</repeatable>
+			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
 				<property>fdm/jsbsim/extra/door-baggage-cmd</property>

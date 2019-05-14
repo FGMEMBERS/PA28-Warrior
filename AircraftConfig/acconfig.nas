@@ -1,6 +1,4 @@
 # Aircraft Config Center
-# Joshua Davidson (Octal450)
-
 # Copyright (c) 2019 Joshua Davidson (Octal450)
 
 var spinning = maketimer(0.05, func {
@@ -57,6 +55,7 @@ setprop("/systems/acconfig/options/panel", "HSI Panel");
 setprop("/systems/acconfig/options/show-l-yoke", 1);
 setprop("/systems/acconfig/options/show-r-yoke", 1);
 setprop("/systems/acconfig/options/mini-panel", 0);
+setprop("/systems/acconfig/options/no-rendering-warn", 0);
 var main_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/main/dialog", "Aircraft/IDG-PA28/AircraftConfig/main.xml");
 var welcome_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/welcome/dialog", "Aircraft/IDG-PA28/AircraftConfig/welcome.xml");
 var ps_load_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/psload/dialog", "Aircraft/IDG-PA28/AircraftConfig/psload.xml");
@@ -69,6 +68,7 @@ var updated_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/updated/dialog", "Air
 var fail_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/fail/dialog", "Aircraft/IDG-PA28/AircraftConfig/fail.xml");
 var controlpanel_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/controlpanel/dialog", "Aircraft/IDG-PA28/AircraftConfig/control-panel.xml");
 var minipanel_dlg = gui.Dialog.new("sim/gui/dialogs/acconfig/minipanel/dialog", "Aircraft/IDG-PA28/AircraftConfig/mini-panel.xml");
+var rendering_dlg = gui.Dialog.new("sim/gui/dialogs/rendering/dialog", "Aircraft/IDG-PA28/AircraftConfig/rendering.xml");
 spinning.start();
 init_dlg.open();
 
@@ -95,8 +95,14 @@ setlistener("/sim/signals/fdm-initialized", func {
 	readSettings();
 	if (getprop("/systems/acconfig/out-of-date") != 1 and getprop("/systems/acconfig/options/revision") < current_revision) {
 		updated_dlg.open();
+		if (getprop("/systems/acconfig/options/no-rendering-warn") != 1) {
+			renderingSettings.check();
+		}
 	} else if (getprop("/systems/acconfig/out-of-date") != 1 and getprop("/systems/acconfig/options/welcome-skip") != 1) {
 		welcome_dlg.open();
+		if (getprop("/systems/acconfig/options/no-rendering-warn") != 1) {
+			renderingSettings.check();
+		}
 	}
 	setprop("/systems/acconfig/options/revision", current_revision);
 	writeSettings();
@@ -105,6 +111,35 @@ setlistener("/sim/signals/fdm-initialized", func {
 		minipanel_dlg.open();
 	}
 });
+
+var renderingSettings = {
+	check: func() {
+		var rembrandt = getprop("/sim/rendering/rembrandt/enabled");
+		var ALS = getprop("/sim/rendering/shaders/skydome");
+		var customSettings = getprop("/sim/rendering/shaders/custom-settings") == 1;
+		var landmass = getprop("/sim/rendering/shaders/landmass") >= 4;
+		var model = getprop("/sim/rendering/shaders/model") >= 2;
+		if (!rembrandt and (!ALS or !customSettings or !landmass or !model)) {
+			rendering_dlg.open();
+		}
+	},
+	fixAll: func() {
+		me.fixCore();
+		var landmass = getprop("/sim/rendering/shaders/landmass") >= 4;
+		var model = getprop("/sim/rendering/shaders/model") >= 2;
+		if (!landmass) {
+			setprop("/sim/rendering/shaders/landmass", 4);
+		}
+		if (!model) {
+			setprop("/sim/rendering/shaders/model", 2);
+		}
+	},
+	fixCore: func() {
+		setprop("/sim/rendering/shaders/skydome", 1); # ALS on
+		setprop("/sim/rendering/shaders/custom-settings", 1);
+		gui.popupTip("Rendering Settings updated!");
+	},
+};
 
 var readSettings = func {
 	io.read_properties(getprop("/sim/fg-home") ~ "/Export/IDG-PA28-config.xml", "/systems/acconfig/options");

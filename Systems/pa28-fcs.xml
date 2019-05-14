@@ -89,20 +89,10 @@
 			<input>/controls/flight/rudder-trim</input>
 			<c1>20</c1>
 		</lag_filter>
-		
-		<lag_filter name="fcs/parking-brake-lever">
-			<input>/controls/gear/brake-parking</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="/systems/fuel/selected-tank-knb">
-			<input>/systems/fuel/selected-tank</input>
-			<c1>20</c1>
-		</lag_filter>
 	
 	</channel>
 	
-	<channel name="Roll">
+	<channel name="Ailerons">
 		
 		<aerosurface_scale name="fcs/aileron-left-deg">
 			<input>fcs/aileron-yoke</input>
@@ -110,19 +100,7 @@
 				<min>-20</min>
 				<max>15</max>
 			</range>
-		</aerosurface_scale>
-		
-		<aerosurface_scale name="fcs/aileron-left-norm">
-			<input>fcs/aileron-left-deg</input>
-			<domain>
-				<min>-20</min>
-				<max>15</max>
-			</domain>
-			<range>
-				<min>-1.0</min>
-				<max>0.75</max>
-			</range>
-			<output>fcs/left-aileron-pos-norm</output>
+			<output>fcs/left-aileron-pos-norm</output> <!-- Is really degrees, for MP transit -->
 		</aerosurface_scale>
 		
 		<aerosurface_scale name="fcs/aileron-right-deg">
@@ -131,24 +109,12 @@
 				<min>-20</min>
 				<max>15</max>
 			</range>
-		</aerosurface_scale>
-		
-		<aerosurface_scale name="fcs/aileron-right-norm">
-			<input>fcs/aileron-right-deg</input>
-			<domain>
-				<min>-20</min>
-				<max>15</max>
-			</domain>
-			<range>
-				<min>-1.0</min>
-				<max>0.75</max>
-			</range>
-			<output>fcs/right-aileron-pos-norm</output>
+			<output>fcs/right-aileron-pos-norm</output> <!-- Is really degrees, for MP transit -->
 		</aerosurface_scale>
 	
 	</channel>
 	
-	<channel name="Pitch">
+	<channel name="Stabilator"> <!-- TODO: redo trim a bit better -->
 		
 		<aerosurface_scale name="fcs/elevator-trim-input">
 			<input>fcs/elevator-trim-knob</input>
@@ -184,20 +150,7 @@
 				<min>-12</min>
 				<max>12</max>
 			</range>
-			<output>/surface-positions/elevator-pos-norm</output>
-		</aerosurface_scale>
-		
-		<aerosurface_scale name="fcs/elevator-norm">
-			<input>fcs/elevator-deg</input>
-			<domain>
-				<min>-12</min>
-				<max>12</max>
-			</domain>
-			<range>
-				<min>-1</min>
-				<max>1</max>
-			</range>
-			<output>fcs/elevator-pos-norm</output>
+			<output>fcs/elevator-pos-norm</output> <!-- Is really degrees, but for MP transit -->
 		</aerosurface_scale>
 		
 		<fcs_function name="fcs/elevator-tab-deg">
@@ -211,28 +164,16 @@
 					<value>-3</value>
 				</sum>
 			</function>
+			<output>fcs/speedbrake-pos-norm</output> <!-- Is really degrees, but for MP transit -->
 			<clipto>
 				<min>-15</min>
 				<max>9</max>
 			</clipto>
 		</fcs_function>
-		
-		<aerosurface_scale name="fcs/elevator-tab-norm">
-			<input>fcs/elevator-tab-deg</input>
-			<domain>
-				<min>-15</min>
-				<max>9</max>
-			</domain>
-			<range>
-				<min>-1.0</min>
-				<max>0.6</max>
-			</range>
-			<output>fcs/speedbrake-pos-norm</output> <!-- Just to get it over MP -->
-		</aerosurface_scale>
 	
 	</channel>
 	
-	<channel name="Yaw">
+	<channel name="Rudder">
 		
 		<summer name="fcs/yaw-input">
 			<input>fcs/rudder-pedal</input>
@@ -249,19 +190,7 @@
 				<min>-16</min>
 				<max>16</max>
 			</range>
-		</aerosurface_scale>
-		
-		<aerosurface_scale name="fcs/rudder-norm">
-			<input>fcs/rudder-deg</input>
-			<domain>
-				<min>-16</min>
-				<max>16</max>
-			</domain>
-			<range>
-				<min>1</min>
-				<max>-1</max>
-			</range>
-			<output>fcs/rudder-pos-norm</output>
+			<output>fcs/rudder-pos-norm</output> <!-- Is really degrees, but for MP transit -->
 		</aerosurface_scale>
 	
 	</channel>
@@ -353,6 +282,11 @@
 		
 		<lag_filter name="extra/door-main-norm">
 			<input>extra/door-main-input</input>
+			<c1>16.0</c1>
+		</lag_filter>
+		
+		<lag_filter name="extra/door-baggage-norm">
+			<input>extra/door-baggage-cmd</input>
 			<c1>16.0</c1>
 		</lag_filter>
 	

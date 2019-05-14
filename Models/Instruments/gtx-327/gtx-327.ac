@@ -52,7 +52,7 @@ kids 0
 OBJECT group
 name "Indicators"
 loc 0.00385501 0.00131474 -0.00127261
-kids 14
+kids 22
 OBJECT poly
 name "Numbers1.ind"
 loc 0.00771002 0.0659738 0.0174378
@@ -204,6 +204,158 @@ refs 4
 2 0.310827 0.112309
 3 0.310827 0.0132807
 1 0.675073 0.0132807
+kids 0
+OBJECT poly
+name "Dash1.ind"
+loc 0.00771002 0.0026305 0.0176074
+texture "night/dash.png"
+crease 45.000000
+numvert 4
+0 0.0071737 -0.00438068
+0 0.0071737 0.00438068
+0 -0.0071737 0.00438068
+0 -0.0071737 -0.00438068
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 1 1
+1 0 1
+2 0 0
+3 1 0
+kids 0
+OBJECT poly
+name "Dash2.ind"
+loc 0.00771002 0.0026305 0.0088431
+texture "night/dash.png"
+crease 45.000000
+numvert 4
+0 -0.0071737 -0.00438068
+0 -0.0071737 0.00438068
+0 0.0071737 0.00438068
+0 0.0071737 -0.00438068
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 1 1
+2 0 1
+1 0 0
+0 1 0
+kids 0
+OBJECT poly
+name "Dash3.ind"
+loc 0.00771002 0.0026305 7.19989e-05
+texture "night/dash.png"
+crease 45.000000
+numvert 4
+0 0.0071737 -0.00438068
+0 0.0071737 0.00438068
+0 -0.0071737 0.00438068
+0 -0.0071737 -0.00438068
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 1 1
+1 0 1
+2 0 0
+3 1 0
+kids 0
+OBJECT poly
+name "Dash4.ind"
+loc 0.00771002 0.0026305 -0.00869908
+texture "night/dash.png"
+crease 45.000000
+numvert 4
+0 -0.0071737 -0.00438068
+0 -0.0071737 0.00438068
+0 0.0071737 0.00438068
+0 0.0071737 -0.00438068
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 1 1
+2 0 1
+1 0 0
+0 1 0
+kids 0
+OBJECT poly
+name "Dash1Sel.ind"
+loc 0.00771002 0.0026305 0.0176074
+texture "night/dash-sel.png"
+crease 45.000000
+numvert 4
+0 -0.0071737 -0.00438068
+0 -0.0071737 0.00438068
+0 0.0071737 0.00438068
+0 0.0071737 -0.00438068
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 1 1
+2 0 1
+1 0 0
+0 1 0
+kids 0
+OBJECT poly
+name "Dash2Sel.ind"
+loc 0.00771002 0.0026305 0.0088431
+texture "night/dash-sel.png"
+crease 45.000000
+numvert 4
+0 0.0071737 -0.00438068
+0 0.0071737 0.00438068
+0 -0.0071737 0.00438068
+0 -0.0071737 -0.00438068
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 1 1
+1 0 1
+2 0 0
+3 1 0
+kids 0
+OBJECT poly
+name "Dash3Sel.ind"
+loc 0.00771002 0.0026305 7.19989e-05
+texture "night/dash-sel.png"
+crease 45.000000
+numvert 4
+0 -0.0071737 -0.00438068
+0 -0.0071737 0.00438068
+0 0.0071737 0.00438068
+0 0.0071737 -0.00438068
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 1 1
+2 0 1
+1 0 0
+0 1 0
+kids 0
+OBJECT poly
+name "Dash4Sel.ind"
+loc 0.00771002 0.0026305 -0.00869908
+texture "night/dash-sel.png"
+crease 45.000000
+numvert 4
+0 0.0071737 -0.00438068
+0 0.0071737 0.00438068
+0 -0.0071737 0.00438068
+0 -0.0071737 -0.00438068
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 1 1
+1 0 1
+2 0 0
+3 1 0
 kids 0
 OBJECT poly
 name "ALT.ind"
@@ -347,7 +499,7 @@ kids 0
 OBJECT group
 name "Indicators"
 loc 0.00385501 0.00131474 -0.00127261
-kids 14
+kids 22
 OBJECT poly
 name "Numbers1.ind"
 loc 0.00771002 0.0659738 0.0174378
@@ -501,6 +653,158 @@ refs 4
 2 0.675073 0.0132807
 kids 0
 OBJECT poly
+name "Dash1.ind"
+loc 0.00771002 0.0026305 0.0176074
+texture "day/dash.png"
+crease 45.000000
+numvert 4
+0 -0.0071737 -0.00438068
+0 -0.0071737 0.00438068
+0 0.0071737 0.00438068
+0 0.0071737 -0.00438068
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 1 1
+2 0 1
+1 0 0
+0 1 0
+kids 0
+OBJECT poly
+name "Dash2.ind"
+loc 0.00771002 0.0026305 0.0088431
+texture "day/dash.png"
+crease 45.000000
+numvert 4
+0 0.0071737 -0.00438068
+0 0.0071737 0.00438068
+0 -0.0071737 0.00438068
+0 -0.0071737 -0.00438068
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 1 1
+1 0 1
+2 0 0
+3 1 0
+kids 0
+OBJECT poly
+name "Dash3.ind"
+loc 0.00771002 0.0026305 7.19989e-05
+texture "day/dash.png"
+crease 45.000000
+numvert 4
+0 -0.0071737 -0.00438068
+0 -0.0071737 0.00438068
+0 0.0071737 0.00438068
+0 0.0071737 -0.00438068
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 1 1
+2 0 1
+1 0 0
+0 1 0
+kids 0
+OBJECT poly
+name "Dash4.ind"
+loc 0.00771002 0.0026305 -0.00869908
+texture "day/dash.png"
+crease 45.000000
+numvert 4
+0 0.0071737 -0.00438068
+0 0.0071737 0.00438068
+0 -0.0071737 0.00438068
+0 -0.0071737 -0.00438068
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 1 1
+1 0 1
+2 0 0
+3 1 0
+kids 0
+OBJECT poly
+name "Dash1Sel.ind"
+loc 0.00771002 0.0026305 0.0176074
+texture "day/dash-sel.png"
+crease 45.000000
+numvert 4
+0 0.0071737 -0.00438068
+0 0.0071737 0.00438068
+0 -0.0071737 0.00438068
+0 -0.0071737 -0.00438068
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 1 1
+1 0 1
+2 0 0
+3 1 0
+kids 0
+OBJECT poly
+name "Dash2Sel.ind"
+loc 0.00771002 0.0026305 0.0088431
+texture "day/dash-sel.png"
+crease 45.000000
+numvert 4
+0 -0.0071737 -0.00438068
+0 -0.0071737 0.00438068
+0 0.0071737 0.00438068
+0 0.0071737 -0.00438068
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 1 1
+2 0 1
+1 0 0
+0 1 0
+kids 0
+OBJECT poly
+name "Dash3Sel.ind"
+loc 0.00771002 0.0026305 7.19989e-05
+texture "day/dash-sel.png"
+crease 45.000000
+numvert 4
+0 0.0071737 -0.00438068
+0 0.0071737 0.00438068
+0 -0.0071737 0.00438068
+0 -0.0071737 -0.00438068
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 1 1
+1 0 1
+2 0 0
+3 1 0
+kids 0
+OBJECT poly
+name "Dash4Sel.ind"
+loc 0.00771002 0.0026305 -0.00869908
+texture "day/dash-sel.png"
+crease 45.000000
+numvert 4
+0 -0.0071737 -0.00438068
+0 -0.0071737 0.00438068
+0 0.0071737 0.00438068
+0 0.0071737 -0.00438068
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 1 1
+2 0 1
+1 0 0
+0 1 0
+kids 0
+OBJECT poly
 name "ALT.ind"
 loc 0.00771002 0.00262947 0.0345074
 texture "day/alt.png"
@@ -581,7 +885,6 @@ name "SelfTest.ind"
 loc 0.00771002 0.00262947 -0.00254522
 texture "day/selftest.png"
 crease 45.000000
-hidden
 numvert 4
 0 -0.0105758 -0.0430822
 0 -0.0105758 0.0430822
@@ -601,7 +904,6 @@ name "TestFail.ind"
 loc 0.00771002 0.00262947 -0.00254522
 texture "day/testfail.png"
 crease 45.000000
-hidden
 numvert 4
 0 0.0105758 -0.0430822
 0 0.0105758 0.0430822

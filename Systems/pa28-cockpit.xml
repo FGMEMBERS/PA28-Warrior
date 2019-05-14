@@ -7,6 +7,16 @@
 	
 	<channel name="Animations">
 		
+		<lag_filter name="fcs/parking-brake-lever">
+			<input>/controls/gear/brake-parking</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/systems/fuel/selected-tank-knb">
+			<input>/systems/fuel/selected-tank</input>
+			<c1>20</c1>
+		</lag_filter>
+		
 		<lag_filter name="/controls/switches/nav-lights-knob">
 			<input>/controls/switches/nav-lights-factor</input>
 			<c1>20</c1>
@@ -14,6 +24,21 @@
 		
 		<lag_filter name="/controls/switches/panel-lights-knob">
 			<input>/controls/switches/panel-lights-factor</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/switches/cabin-heat-lag">
+			<input>/controls/switches/cabin-heat-cmd</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/switches/defroster-lag">
+			<input>/controls/switches/defroster-cmd</input>
+			<c1>20</c1>
+		</lag_filter>
+		
+		<lag_filter name="/controls/engines/engine[0]/primer-pump-lag">
+			<input>/controls/engines/engine[0]/primer-pump</input>
 			<c1>20</c1>
 		</lag_filter>
 	
