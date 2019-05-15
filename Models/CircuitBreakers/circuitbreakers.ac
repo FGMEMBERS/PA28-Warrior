@@ -67083,7 +67083,7 @@ refs 4
 104 0.161285 0.108324
 kids 0
 OBJECT poly
-name "cb.altntrfield.2"
+name "cb.lightsoverhead"
 loc -1.73625 -0.0145679 -0.293258
 texture "../panel_placards.png"
 crease 30.000000
@@ -87782,7 +87782,7 @@ refs 4
 104 0.161285 0.108324
 kids 0
 OBJECT poly
-name "cb.spare.1"
+name "cb.spare"
 loc -1.73983 0.0140085 -0.230089
 texture "../panel_placards.png"
 crease 30.000000
@@ -89489,7 +89489,7 @@ refs 32
 192 0.0518 0.092582
 kids 0
 OBJECT poly
-name "cb.spare.2"
+name "cb.instrumentpanel"
 loc -1.73983 0.0140085 -0.230089
 texture "../panel_placards.png"
 crease 30.000000

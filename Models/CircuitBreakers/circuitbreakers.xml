@@ -88,5 +88,102 @@
 			<z2-m>0.015145</z2-m>
 		</axis>
 	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>cb.turnbank</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding> <!-- No toggle -->
+				<command>property-assign</command>
+				<property>controls/electrical/circuit-breakers/turn-bank</property>
+				<value>0</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/switch3", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>cb.turnbank</object-name>
+		<property>controls/electrical/circuit-breakers/turn-bank</property>
+		<factor>0.0045</factor>
+		<axis>
+			<x1-m>-1.73766</x1-m>
+			<y1-m>0.0</y1-m>
+			<z1-m>0.014312</z1-m>
+			<x2-m>-1.73107</x2-m>
+			<y2-m>0.0</y2-m>
+			<z2-m>0.015145</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>cb.trim</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/electrical/circuit-breakers/trim</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/switch3", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>cb.trim</object-name>
+		<property>controls/electrical/circuit-breakers/trim</property>
+		<factor>0.0045</factor>
+		<axis>
+			<x1-m>-1.73766</x1-m>
+			<y1-m>0.0</y1-m>
+			<z1-m>0.014312</z1-m>
+			<x2-m>-1.73107</x2-m>
+			<y2-m>0.0</y2-m>
+			<z2-m>0.015145</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>cb.autopilot</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-toggle</command>
+				<property>controls/electrical/circuit-breakers/autopilot</property>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>setprop("/sim/sounde/switch3", 1);</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>cb.autopilot</object-name>
+		<property>controls/electrical/circuit-breakers/autopilot</property>
+		<factor>0.0045</factor>
+		<axis>
+			<x1-m>-1.73766</x1-m>
+			<y1-m>0.0</y1-m>
+			<z1-m>0.014312</z1-m>
+			<x2-m>-1.73107</x2-m>
+			<y2-m>0.0</y2-m>
+			<z2-m>0.015145</z2-m>
+		</axis>
+	</animation>
 
 </PropertyList>

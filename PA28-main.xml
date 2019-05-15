@@ -309,7 +309,11 @@
 		<electrical n="0">
 			<circuit-breakers n="0">
 				<alternator-field type="bool">0</alternator-field>
+				<autopilot type="bool">0</autopilot>
 				<fuel-pump type="bool">0</fuel-pump>
+				<transponder type="bool">0</transponder>
+				<trim type="bool">0</trim>
+				<turn-bank type="bool">0</turn-bank>
 			</circuit-breakers>
 			<switches n="0">
 				<alternator type="bool">0</alternator>

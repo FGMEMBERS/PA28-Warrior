@@ -8,7 +8,11 @@ var ELEC = {
 	},
 	CB: {
 		alternatorField: props.globals.getNode("/controls/electrical/circuit-breakers/alternator-field"),
+		autopilot: props.globals.getNode("/controls/electrical/circuit-breakers/autopilot"),
 		fuelPump: props.globals.getNode("/controls/electrical/circuit-breakers/fuel-pump"),
+		transponder: props.globals.getNode("/controls/electrical/circuit-breakers/transponder"),
+		trim: props.globals.getNode("/controls/electrical/circuit-breakers/trim"),
+		turnBank: props.globals.getNode("/controls/electrical/circuit-breakers/turn-bank"),
 	},
 	Fail: {
 		alternator: props.globals.getNode("/systems/failures/electrical/alternator"),
@@ -54,7 +58,11 @@ var ELEC = {
 	},
 	resetCB: func() {
 		me.CB.alternatorField.setBoolValue(0);
+		me.CB.autopilot.setBoolValue(0);
 		me.CB.fuelPump.setBoolValue(0);
+		me.CB.transponder.setBoolValue(0);
+		me.CB.trim.setBoolValue(0);
+		me.CB.turnBank.setBoolValue(0);
 	},
 	resetFail: func() {
 		me.Fail.alternator.setBoolValue(0);
