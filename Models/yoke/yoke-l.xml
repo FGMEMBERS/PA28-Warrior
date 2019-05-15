@@ -11,6 +11,11 @@
 		<path>yoke-sw.ac</path>
 	</model>
 	
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<object-name>sw.placards</object-name>
+	</effect>
+	
 	<animation>
 		<type>translate</type>
 		<object-name>yoke</object-name>
