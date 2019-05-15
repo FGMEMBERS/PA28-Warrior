@@ -225,10 +225,12 @@
 			<gain>1.0</gain>
 		</pure_gain>
 		
-		<pure_gain name="/systems/electrical/outputs/transponder">
-			<input>/systems/electrical/bus/avionics</input>
-			<gain>1.0</gain>
-		</pure_gain>
+		<switch name="/systems/electrical/outputs/transponder">
+			<default value="0"/>
+			<test value="/systems/electrical/bus/avionics">
+				/controls/electrical/circuit-breakers/transponder ne 1
+			</test>
+		</switch>
 	
 	</channel>
 	
