@@ -67,16 +67,16 @@
 		<switch name="libraries/av-fan-rpm-switch">
 			<default value="libraries/av-fan-rpm-switch"/>
 			<test logic="AND" value="libraries/av-fan-rpm-inc">
-				/systems/electrical/bus/elec1 ge 8
+				/systems/electrical/bus/main ge 8
 				libraries/av-fan-rpm-feedback lt 6450
 			</test>
 			<test logic="AND" value="libraries/av-fan-rpm-inc">
-				/systems/electrical/bus/elec2 ge 8
+				/systems/electrical/bus/main ge 8
 				libraries/av-fan-rpm-feedback lt 6450
 			</test>
 			<test logic="AND" value="libraries/av-fan-rpm-dec">
-				/systems/electrical/bus/elec1 lt 8
-				/systems/electrical/bus/elec2 lt 8
+				/systems/electrical/bus/main lt 8
+				/systems/electrical/bus/main lt 8
 				libraries/av-fan-rpm-feedback gt 0
 			</test>
 			<output>libraries/av-fan-rpm-feedback</output>

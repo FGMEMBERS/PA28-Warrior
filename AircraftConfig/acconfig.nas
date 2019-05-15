@@ -19,12 +19,11 @@ var spinning = maketimer(0.05, func {
 });
 
 var failReset = func {
-	setprop("/systems/failures/battery", 0);
-	setprop("/systems/failures/alternator", 0);
-	setprop("/systems/failures/elec-1", 0);
-	setprop("/systems/failures/elec-2", 0);
-	setprop("/systems/failures/avionics-1", 0);
-	setprop("/systems/failures/avionics-2", 0);
+	systems.ELEC.resetFail();
+	failResetOld();
+}
+
+var failResetOld = func {
 	setprop("/systems/failures/eng-suck", 0);
 	setprop("/systems/failures/fuel-pump", 0);
 	setprop("/systems/failures/starter", 0);
@@ -36,14 +35,10 @@ var failReset = func {
 };
 
 setlistener("/systems/failures/stec-55x", func {
-	if (getprop("/systems/failures/stec-55x") == 1) {
-		setprop("/it-stec55x/serviceable", 0);
-	} else {
-		setprop("/it-stec55x/serviceable", 1);
-	}
+	setprop("/it-stec55x/serviceable", !getprop("/systems/failures/stec-55x"));
 });
 
-failReset();
+failResetOld();
 setprop("/systems/acconfig/autoconfig-running", 0);
 setprop("/systems/acconfig/spinning", 0);
 setprop("/systems/acconfig/spin", "-");
@@ -182,7 +177,7 @@ var colddark = func {
 	setprop("/controls/flight/elevator-trim", 0.11);
 	setprop("/controls/gear/brake-parking", 0);
 	libraries.systemsReset();
-	failReset();
+	failResetOld();
 	if (getprop("/engines/engine[0]/rpm") < 421) {
 		colddark_b();
 	} else {
@@ -213,14 +208,14 @@ var beforestart = func {
 	setprop("/controls/flight/elevator-trim", 0.11);
 	setprop("/controls/gear/brake-parking", 0);
 	libraries.systemsReset();
-	failReset();
+	failResetOld();
 	
 	# Now the Startup!
-	setprop("/controls/electrical/battery", 1);
-	setprop("/controls/electrical/alternator", 1);
+	setprop("/controls/electrical/switches/battery", 1);
+	setprop("/controls/electrical/switches/alternator", 1);
+	setprop("/controls/electrical/switches/avionics-master", 1);
 	setprop("/controls/switches/beacon", 1);
 	setprop("/controls/switches/strobe-lights", 1);
-	setprop("/controls/switches/avionics-master", 1);
 	setprop("/controls/engines/engine[0]/mixture", 1);
 	setprop("/systems/acconfig/autoconfig-running", 0);
 	ps_load_dlg.close();
@@ -239,15 +234,15 @@ var taxi = func {
 	setprop("/controls/flight/elevator-trim", 0.11);
 	setprop("/controls/gear/brake-parking", 0);
 	libraries.systemsReset();
-	failReset();
+	failResetOld();
 	
 	# Now the Startup!
-	setprop("/controls/electrical/battery", 1);
-	setprop("/controls/electrical/alternator", 1);
+	setprop("/controls/electrical/switches/battery", 1);
+	setprop("/controls/electrical/switches/alternator", 1);
+	setprop("/controls/electrical/switches/avionics-master", 1);
 	setprop("/controls/switches/beacon", 1);
 	setprop("/controls/switches/strobe-lights", 1);
 	setprop("/controls/switches/nav-lights-factor", 1);
-	setprop("/controls/switches/avionics-master", 1);
 	setprop("/controls/engines/engine[0]/mixture", 1);
 	setprop("/controls/engines/engine[0]/throttle", 0.25);
 	setprop("/controls/engines/engine[0]/magnetos-switch", 4);

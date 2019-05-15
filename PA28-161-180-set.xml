@@ -14,11 +14,5 @@
 			<path type="string">Aircraft/IDG-PA28/Models/PA28-161-180.xml</path>
 		</model>
 	</sim>
-	
-	<nasal n="0">
-		<specific>
-			<file>Aircraft/IDG-PA28/Nasal/liveries.nas</file>
-		</specific>
-	</nasal>
 
 </PropertyList>

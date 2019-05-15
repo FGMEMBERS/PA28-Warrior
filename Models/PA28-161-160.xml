@@ -254,18 +254,14 @@
 			<button>0</button>
 			<repeatable>false</repeatable>
 			<binding>
-				<command>property-toggle</command>
-				<property>controls/switches/annun-test</property>
-			</binding>
-			<binding>
 				<command>property-assign</command>
-				<property>controls/switches/annun-test-btn</property>
+				<property>controls/switches/annun-test</property>
 				<value>1</value>
 			</binding>
 			<mod-up>
 				<binding>
 					<command>property-assign</command>
-					<property>controls/switches/annun-test-btn</property>
+					<property>controls/switches/annun-test</property>
 					<value>0</value>
 				</binding>
 			</mod-up>
@@ -274,7 +270,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>annun.test.btn</object-name>
-		<property>controls/switches/annun-test-btn</property>
+		<property>controls/switches/annun-test</property>
 		<axis>
 			<x>1</x>
 		</axis>
@@ -288,19 +284,19 @@
 			<red>1</red>
 			<green>1</green>
 			<blue>0.1</blue>
-			<factor-prop>vac-annun-prop</factor-prop>
+			<factor-prop>systems/electrical/light/vac</factor-prop>
 		</emission>
 		<ambient>
 			<red>1</red>
 			<green>1</green>
 			<blue>0.1</blue>
-			<factor-prop>vac-annun-prop</factor-prop>
+			<factor-prop>systems/electrical/light/vac</factor-prop>
 		</ambient>
 		<diffuse>
 			<red>1</red>
 			<green>1</green>
 			<blue>0.1</blue>
-			<factor-prop>vac-annun-prop</factor-prop>
+			<factor-prop>systems/electrical/light/vac</factor-prop>
 		</diffuse>
 	</animation>
 	<animation>
@@ -310,19 +306,19 @@
 			<red>1</red>
 			<green>1</green>
 			<blue>0.1</blue>
-			<factor-prop>alt-annun-prop</factor-prop>
+			<factor-prop>systems/electrical/light/alt</factor-prop>
 		</emission>
 		<ambient>
 			<red>1</red>
 			<green>1</green>
 			<blue>0.1</blue>
-			<factor-prop>alt-annun-prop</factor-prop>
+			<factor-prop>systems/electrical/light/alt</factor-prop>
 		</ambient>
 		<diffuse>
 			<red>1</red>
 			<green>1</green>
 			<blue>0.1</blue>
-			<factor-prop>alt-annun-prop</factor-prop>
+			<factor-prop>systems/electrical/light/alt</factor-prop>
 		</diffuse>
 	</animation>
 	<animation>
@@ -332,19 +328,19 @@
 			<red>1</red>
 			<green>1</green>
 			<blue>0.1</blue>
-			<factor-prop>oil-annun-prop</factor-prop>
+			<factor-prop>systems/electrical/light/oil</factor-prop>
 		</emission>
 		<ambient>
 			<red>1</red>
 			<green>1</green>
 			<blue>0.1</blue>
-			<factor-prop>oil-annun-prop</factor-prop>
+			<factor-prop>systems/electrical/light/oil</factor-prop>
 		</ambient>
 		<diffuse>
 			<red>1</red>
 			<green>1</green>
 			<blue>0.1</blue>
-			<factor-prop>oil-annun-prop</factor-prop>
+			<factor-prop>systems/electrical/light/oil</factor-prop>
 		</diffuse>
 	</animation>
 	
@@ -726,7 +722,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-					<property>controls/switches/avionics-master</property>
+				<property>controls/electrical/switches/avionics-master</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -738,7 +734,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>avionics.primary.switch</object-name>
-		<property>controls/switches/avionics-master</property>
+		<property>controls/electrical/switches/avionics-master</property>
 		<factor>-32</factor>
 		<axis>
 			<x>0</x>
@@ -759,7 +755,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-					<property>controls/switches/avionics-secondary</property>
+				<property>controls/electrical/switches/avionics-secondary</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -771,7 +767,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>avionics.secondary.switch</object-name>
-		<property>controls/switches/avionics-secondary</property>
+		<property>controls/electrical/switches/avionics-secondary</property>
 		<factor>-32</factor>
 		<axis>
 			<x>0</x>

@@ -307,8 +307,16 @@
 			</engine>
 		</anti-ice>
 		<electrical n="0">
-			<battery type="bool">0</battery>
-			<alternator type="bool">0</alternator>
+			<circuit-breakers n="0">
+				<alternator-field type="bool">0</alternator-field>
+				<fuel-pump type="bool">0</fuel-pump>
+			</circuit-breakers>
+			<switches n="0">
+				<alternator type="bool">0</alternator>
+				<avionics-master type="bool">0</avionics-master>
+				<avionics-secondary type="bool">0</avionics-secondary>
+				<battery type="bool">0</battery>
+			</switches>
 		</electrical>
 		<engines n="0">
 			<engine n="0">
@@ -326,8 +334,7 @@
 			<brake-parking type="double">0</brake-parking>
 		</gear>
 		<switches n="0">
-			<avionics-master type="bool">0</avionics-master>
-			<avionics-secondary type="bool">0</avionics-secondary>
+			<annun-test type="bool">0</annun-test>
 			<beacon type="bool">1</beacon>
 			<cabin-heat-cmd type="bool">0</cabin-heat-cmd>
 			<defroster-cmd type="bool">0</defroster-cmd>
@@ -764,15 +771,18 @@
 	
 	<systems n="0">
 		<electrical n="0">
-			<bus n="0">
-				<elec1 type="double">0</elec1>
-				<elec2 type="double">0</elec2>
-			</bus>
-			<outputs n="0">
-				<fuel-pump type="double">0</fuel-pump>
-			</outputs>
+			<sources n="0">
+				<bat n="0">
+					<percent type="double">100</percent>
+				</bat>
+			</sources>
 		</electrical>
 		<failures n="0">
+			<electrical n="0">
+				<alternator type="bool">0</alternator>
+				<avionics-bus type="bool">0</avionics-bus>
+				<battery type="bool">0</battery>
+			</electrical>
 			<eng-suck type="bool">0</eng-suck>
 			<fuel-pump type="bool">0</fuel-pump>
 			<l-brake type="bool">0</l-brake>
@@ -785,12 +795,18 @@
 			<selected-tank type="int">1</selected-tank>
 			<suck-fuel type="bool">0</suck-fuel>
 		</fuel>
+		<vacuum n="0">
+			<suction-inhg-actual type="double">0</suction-inhg-actual>
+		</vacuum>
 	</systems>
 	
 	<nasal n="0">
 		<setup>
 			<script>aircraft.livery.init("Aircraft/IDG-PA28/Models/Liveries");</script>
 		</setup>
+		<pts>
+			<file>Aircraft/IDG-PA28/Nasal/property-tree-setup.nas</file>
+		</pts>
 		<libraries>
 			<file>Aircraft/IDG-PA28/Nasal/libraries.nas</file>
 			<file>Aircraft/IDG-PA28/Models/Instruments/ELT/ELTmessage.nas</file>
@@ -803,8 +819,7 @@
 			<file>Aircraft/IDG-PA28/AircraftConfig/acconfig.nas</file>
 		</acconfig>
 		<systems>
-			<file>Aircraft/IDG-PA28/Nasal/master-system.nas</file>
-			<file>Aircraft/IDG-PA28/Nasal/electrical.nas</file>
+			<file>Aircraft/IDG-PA28/Nasal/systems.nas</file>
 		</systems>
 		<stec55x>
 			<file>Aircraft/IDG-PA28/Nasal/stec-55x.nas</file>

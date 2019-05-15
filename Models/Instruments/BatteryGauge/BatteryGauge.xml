@@ -27,7 +27,7 @@
 		<type>rotate</type>
 		<object-name>Ptr</object-name>
 		<object-name>PtrTip</object-name>
-		<property>systems/electrical/altn-amp-lag</property>
+		<property>systems/electrical/sources/alt/amp-calc-lag</property>
 		<interpolation>
 			<entry>
 				<ind>60</ind>

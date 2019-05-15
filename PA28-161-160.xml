@@ -82,6 +82,7 @@
 	
 	<system file="pa28-libraries"/>
 	<system file="pa28-crash-stress"/>
+	<system file="pa28-electrical"/>
 	<system file="pa28-engine"/>
 	<system file="pa28-fuel"/>
 	<system file="pa28-fcs"/>

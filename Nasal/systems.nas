@@ -6,6 +6,10 @@ var ELEC = {
 		avionics: props.globals.getNode("/systems/electrical/bus/avionics"),
 		main: props.globals.getNode("/systems/electrical/bus/main"),
 	},
+	CB: {
+		alternatorField: props.globals.getNode("/controls/electrical/circuit-breakers/alternator-field"),
+		fuelPump: props.globals.getNode("/controls/electrical/circuit-breakers/fuel-pump"),
+	},
 	Fail: {
 		alternator: props.globals.getNode("/systems/failures/electrical/alternator"),
 		avionicsBus: props.globals.getNode("/systems/failures/electrical/avionics-bus"),
@@ -40,12 +44,17 @@ var ELEC = {
 	},
 	init: func() {
 		me.resetFail();
+		me.resetCB();
 		me.Switch.alternator.setBoolValue(0);
 		me.Switch.avionicsMaster.setBoolValue(0);
 		me.Switch.avionicsSecondary.setBoolValue(0);
 		me.Switch.battery.setBoolValue(0);
 		me.Source.Bat.percent.setValue(100);
 		ampereTimer.start();
+	},
+	resetCB: func() {
+		me.CB.alternatorField.setBoolValue(0);
+		me.CB.fuelPump.setBoolValue(0);
 	},
 	resetFail: func() {
 		me.Fail.alternator.setBoolValue(0);

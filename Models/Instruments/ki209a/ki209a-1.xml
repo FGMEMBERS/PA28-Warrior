@@ -29,8 +29,8 @@
 		<signal-quality>instrumentation/nav[0]/signal-quality-norm</signal-quality>
 		<to-flag>instrumentation/nav[0]/to-flag</to-flag>
 		<from-flag>instrumentation/nav[0]/from-flag</from-flag>
-		<gs-needle-deflection>instrumentation/nav[0]/gs-needle-deflection</gs-needle-deflection>
-		<heading-needle-deflection>instrumentation/nav[0]/heading-needle-deflection</heading-needle-deflection>
+		<gs-needle-deflection>instrumentation/nav[0]/gs-needle-deflection-norm-lag</gs-needle-deflection>
+		<heading-needle-deflection>instrumentation/nav[0]/heading-needle-deflection-norm-lag</heading-needle-deflection>
 		<has-gs>instrumentation/nav[0]/has-gs</has-gs>
 		<in-range>instrumentation/nav[0]/in-range</in-range>
 		<nav-flag>instrumentation/nav[0]/nav-flag</nav-flag>
@@ -134,7 +134,7 @@
 		<type>translate</type>
 		<object-name>LOCIndicator</object-name>
 		<property alias="../../params/heading-needle-deflection"/>
-		<factor>0.001612</factor>
+		<factor>0.01612</factor>
 		<axis>
 			<x>0.0</x>
 			<y>1.0</y>
@@ -146,10 +146,7 @@
 		<type>translate</type>
 		<object-name>GSIndicator</object-name>
 		<property alias="../../params/gs-needle-deflection"/>
-		<interpolation>
-			<entry><ind>-3.50</ind><dep>-0.01612</dep></entry>
-			<entry><ind> 3.50</ind><dep> 0.01612</dep></entry>
-		</interpolation>
+		<factor>0.01612</factor>
 		<axis>
 			<x>0.0</x>
 			<y>0.0</y>

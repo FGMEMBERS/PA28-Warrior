@@ -12,12 +12,12 @@
 			<test logic="AND" value="1"> <!-- L -->
 				/systems/failures/l-magneto ne 1
 				/controls/engines/engine[0]/magnetos-switch eq 2
-				/systems/electrical/bus/elec1 ge 8
+				/systems/electrical/bus/main ge 8
 			</test>
 			<test logic="AND" value="1"> <!-- BOTH or START -->
 				/systems/failures/l-magneto ne 1
 				/controls/engines/engine[0]/magnetos-switch ge 3
-				/systems/electrical/bus/elec1 ge 8
+				/systems/electrical/bus/main ge 8
 			</test>
 		</switch>
 		
@@ -26,12 +26,12 @@
 			<test logic="AND" value="1"> <!-- R -->
 				/systems/failures/r-magneto ne 1
 				/controls/engines/engine[0]/magnetos-switch eq 1
-				/systems/electrical/bus/elec2 ge 8
+				/systems/electrical/bus/main ge 8
 			</test>
 			<test logic="AND" value="1"> <!-- BOTH or START -->
 				/systems/failures/r-magneto ne 1
 				/controls/engines/engine[0]/magnetos-switch ge 3
-				/systems/electrical/bus/elec2 ge 8
+				/systems/electrical/bus/main ge 8
 			</test>
 		</switch>
 		

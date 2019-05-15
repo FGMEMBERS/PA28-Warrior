@@ -65,7 +65,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>BAT.sw</object-name>
-		<property>controls/electrical/battery</property>
+		<property>controls/electrical/switches/battery</property>
 		<factor>30</factor>
 		<axis>
 			<x>0.0</x>
@@ -87,7 +87,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/electrical/battery</property>
+				<property>controls/electrical/switches/battery</property>
 			</binding>
 			<binding>
 				<command>nasal</command>
@@ -99,7 +99,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>ALT.sw</object-name>
-		<property>controls/electrical/alternator</property>
+		<property>controls/electrical/switches/alternator</property>
 		<factor>30</factor>
 		<axis>
 			<x>0.0</x>
@@ -121,7 +121,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/electrical/alternator</property>
+				<property>controls/electrical/switches/alternator</property>
 			</binding>
 			<binding>
 				<command>nasal</command>

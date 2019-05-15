@@ -77,7 +77,7 @@
 		<debug>false</debug>
 		<type>exponential</type>
 		<input>/instrumentation/nav[1]/gs-needle-deflection-norm</input>
-		<output>/instrumentation/nav[0]/gs-needle-deflection-norm-lag</output>
+		<output>/instrumentation/nav[1]/gs-needle-deflection-norm-lag</output>
 		<filter-time>0.64</filter-time>
 	</filter>
 	
@@ -226,8 +226,8 @@
 		<name>Ampere lowpass</name>
 		<debug>false</debug>
 		<type>exponential</type>
-		<input>/systems/electrical/altn-amp-calc</input>
-		<output>/systems/electrical/altn-amp-lag</output>
+		<input>/systems/electrical/sources/alt/amp-calc</input>
+		<output>/systems/electrical/sources/alt/amp-calc-lag</output>
 		<filter-time>0.16</filter-time>
 	</filter>
 	
@@ -238,7 +238,7 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/systems/electrical/bus/elec1</property>
+					<property>/systems/electrical/bus/main</property>
 					<value>8</value>
 				</less-than>
 			</condition>
@@ -258,7 +258,7 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/systems/electrical/bus/elec1</property>
+					<property>/systems/electrical/bus/main</property>
 					<value>8</value>
 				</less-than>
 			</condition>
@@ -276,7 +276,7 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/systems/electrical/bus/elec1</property>
+					<property>/systems/electrical/bus/main</property>
 					<value>8</value>
 				</less-than>
 			</condition>
@@ -294,7 +294,7 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/systems/electrical/bus/elec1</property>
+					<property>/systems/electrical/bus/main</property>
 					<value>8</value>
 				</less-than>
 			</condition>
@@ -312,7 +312,7 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/systems/electrical/bus/elec1</property>
+					<property>/systems/electrical/bus/main</property>
 					<value>8</value>
 				</less-than>
 			</condition>
@@ -339,7 +339,7 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/systems/electrical/bus/elec1</property>
+					<property>/systems/electrical/bus/main</property>
 					<value>8</value>
 				</less-than>
 			</condition>
@@ -357,7 +357,7 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/systems/electrical/bus/elec1</property>
+					<property>/systems/electrical/bus/main</property>
 					<value>8</value>
 				</less-than>
 			</condition>
@@ -396,7 +396,7 @@
 		<name>Panel Lights lowpass</name>
 		<debug>false</debug>
 		<type>exponential</type>
-		<input>/controls/switches/panel-lights-cmd</input>
+		<input>/controls/lighting/panel-lights-cmd</input>
 		<output>/controls/lighting/panel-norm</output>
 		<filter-time>0.64</filter-time>
 	</filter>
