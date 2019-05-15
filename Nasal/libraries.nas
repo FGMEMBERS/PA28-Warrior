@@ -54,8 +54,8 @@ setlistener("/sim/sounde/knob", func {
 var systemsInit = func {
 	crashStress.reset();
 	systems.ELEC.init();
+	systems.FUEL.init();
 	systems.INIT.ENG();
-	systems.INIT.FUEL();
 	variousReset();
 	setprop("/engines/engine[0]/fuel-flow-gph", 0.0);
 	setprop("/sim/model/material/LandingLight/factor", 0.0);
@@ -81,13 +81,11 @@ var variousReset = func {
 	setprop("/controls/switches/beacon", 1);
 	setprop("/controls/switches/cabin-heat-cmd", 0);
 	setprop("/controls/switches/defroster-cmd", 0);
-	setprop("/controls/switches/fuel-pump", 0);
 	setprop("/controls/switches/landing-light", 0);
 	setprop("/controls/switches/nav-lights-factor", 0);
 	setprop("/controls/switches/panel-lights-factor", 0);
 	setprop("/controls/switches/pitot-heat", 0);
 	setprop("/controls/switches/strobe-lights", 0);
-	setprop("/systems/fuel/selected-tank", 1);
 	setprop("/controls/anti-ice/engine[0]/carb-heat-cmd", 0);
 	setprop("/controls/engines/engine[0]/magnetos-switch", 0);
 	setprop("/controls/engines/engine[0]/mixture", 0);

@@ -76,7 +76,7 @@
 			<row>2</row>
 			<col>1</col>
 			<halign>center</halign>
-			<property>/controls/electrical/battery</property>
+			<property>/controls/electrical/switches/battery</property>
 			<binding>
 				<command>dialog-apply</command>
 			</binding>
@@ -99,7 +99,7 @@
 			<row>2</row>
 			<col>2</col>
 			<halign>center</halign>
-			<property>/controls/electrical/alternator</property>
+			<property>/controls/electrical/switches/alternator</property>
 			<binding>
 				<command>dialog-apply</command>
 			</binding>
@@ -122,7 +122,7 @@
 			<row>2</row>
 			<col>3</col>
 			<halign>center</halign>
-			<property>controls/switches/fuel-pump</property>
+			<property>/controls/fuel/switches/pump</property>
 			<binding>
 				<command>dialog-apply</command>
 			</binding>
@@ -145,7 +145,7 @@
 			<row>2</row>
 			<col>4</col>
 			<halign>center</halign>
-			<property>controls/switches/landing-light</property>
+			<property>/controls/switches/landing-light</property>
 			<binding>
 				<command>dialog-apply</command>
 			</binding>
@@ -168,7 +168,7 @@
 			<row>2</row>
 			<col>5</col>
 			<halign>center</halign>
-			<property>controls/switches/beacon</property>
+			<property>/controls/switches/beacon</property>
 			<binding>
 				<command>dialog-apply</command>
 			</binding>
@@ -191,7 +191,7 @@
 			<row>2</row>
 			<col>6</col>
 			<halign>center</halign>
-			<property>controls/switches/strobe-lights</property>
+			<property>/controls/switches/strobe-lights</property>
 			<binding>
 				<command>dialog-apply</command>
 			</binding>
@@ -214,7 +214,7 @@
 			<row>2</row>
 			<col>7</col>
 			<halign>center</halign>
-			<property>controls/switches/pitot-heat</property>
+			<property>/controls/switches/pitot-heat</property>
 			<binding>
 				<command>dialog-apply</command>
 			</binding>

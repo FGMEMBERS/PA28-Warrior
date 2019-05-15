@@ -5,6 +5,8 @@
 
 <system name="PA28: Cockpit"> <!-- Everything here is after all systems -->
 	
+	<property value="0">libraries/av-fan-rpm-switch</property>
+	
 	<channel name="Animations">
 		
 		<lag_filter name="fcs/parking-brake-lever">
@@ -12,8 +14,8 @@
 			<c1>20</c1>
 		</lag_filter>
 		
-		<lag_filter name="/systems/fuel/selected-tank-knb">
-			<input>/systems/fuel/selected-tank</input>
+		<lag_filter name="/controls/fuel/switches/selected-tank-knob">
+			<input>/controls/fuel/switches/selected-tank</input>
 			<c1>20</c1>
 		</lag_filter>
 		
@@ -49,7 +51,7 @@
 		<fcs_function name="libraries/av-fan-rpm-inc">
 			<function>
 				<sum>
-					<property>libraries/av-fan-rpm-feedback</property>
+					<property>libraries/av-fan-rpm-switch</property>
 					<value>10.0</value>
 				</sum>
 			</function>
@@ -58,7 +60,7 @@
 		<fcs_function name="libraries/av-fan-rpm-dec">
 			<function>
 				<difference>
-					<property>libraries/av-fan-rpm-feedback</property>
+					<property>libraries/av-fan-rpm-switch</property>
 					<value>2.0</value>
 				</difference>
 			</function>
@@ -68,18 +70,18 @@
 			<default value="libraries/av-fan-rpm-switch"/>
 			<test logic="AND" value="libraries/av-fan-rpm-inc">
 				/systems/electrical/bus/main ge 8
-				libraries/av-fan-rpm-feedback lt 6450
+				libraries/av-fan-rpm-switch lt 6450
 			</test>
 			<test logic="AND" value="libraries/av-fan-rpm-inc">
 				/systems/electrical/bus/main ge 8
-				libraries/av-fan-rpm-feedback lt 6450
+				libraries/av-fan-rpm-switch lt 6450
 			</test>
 			<test logic="AND" value="libraries/av-fan-rpm-dec">
 				/systems/electrical/bus/main lt 8
 				/systems/electrical/bus/main lt 8
-				libraries/av-fan-rpm-feedback gt 0
+				libraries/av-fan-rpm-switch gt 0
 			</test>
-			<output>libraries/av-fan-rpm-feedback</output>
+			<output>libraries/av-fan-rpm-switch</output>
 		</switch>
 	
 	</channel>

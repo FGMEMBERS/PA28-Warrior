@@ -5,17 +5,20 @@
 
 <system name="PA28: Engine">
 	
+	<property value="0">fcs/egt-switch</property>
+	<property value="0">fcs/oil-temp-switch</property>
+	
 	<channel name="Magnetos-Starter" execrate="8">
 		
 		<switch name="fcs/magneto-l">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- L -->
-				/systems/failures/l-magneto ne 1
+				/systems/failures/eng/l-magneto ne 1
 				/controls/engines/engine[0]/magnetos-switch eq 2
 				/systems/electrical/bus/main ge 8
 			</test>
 			<test logic="AND" value="1"> <!-- BOTH or START -->
-				/systems/failures/l-magneto ne 1
+				/systems/failures/eng/l-magneto ne 1
 				/controls/engines/engine[0]/magnetos-switch ge 3
 				/systems/electrical/bus/main ge 8
 			</test>
@@ -24,12 +27,12 @@
 		<switch name="fcs/magneto-r">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- R -->
-				/systems/failures/r-magneto ne 1
+				/systems/failures/eng/r-magneto ne 1
 				/controls/engines/engine[0]/magnetos-switch eq 1
 				/systems/electrical/bus/main ge 8
 			</test>
 			<test logic="AND" value="1"> <!-- BOTH or START -->
-				/systems/failures/r-magneto ne 1
+				/systems/failures/eng/r-magneto ne 1
 				/controls/engines/engine[0]/magnetos-switch ge 3
 				/systems/electrical/bus/main ge 8
 			</test>
@@ -55,12 +58,12 @@
 		<switch name="fcs/start-switch">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/failures/starter ne 1
+				/systems/failures/eng/starter ne 1
 				fcs/magneto-l eq 1
 				/controls/engines/engine[0]/magnetos-switch eq 4
 			</test>
 			<test logic="AND" value="1">
-				/systems/failures/starter ne 1
+				/systems/failures/eng/starter ne 1
 				fcs/magneto-r eq 1
 				/controls/engines/engine[0]/magnetos-switch eq 4
 			</test>
@@ -146,7 +149,7 @@
 		<fcs_function name="fcs/oil-temp-inc">
 			<function>
 				<sum>
-					<property>fcs/oil-temp-feedback</property>
+					<property>fcs/oil-temp-switch</property>
 					<value>0.03</value>
 				</sum>
 			</function>
@@ -155,7 +158,7 @@
 		<fcs_function name="fcs/oil-temp-dec">
 			<function>
 				<difference>
-					<property>fcs/oil-temp-feedback</property>
+					<property>fcs/oil-temp-switch</property>
 					<value>0.01</value>
 				</difference>
 			</function>
@@ -165,19 +168,19 @@
 			<default value="fcs/oil-temp-switch"/>
 			<test logic="AND" value="fcs/oil-temp-inc">
 				/engines/engine[0]/running eq 1
-				fcs/oil-temp-feedback lt 177
+				fcs/oil-temp-switch lt 177
 			</test>
 			<test logic="AND" value="fcs/oil-temp-dec">
 				/engines/engine[0]/running ne 1
-				fcs/oil-temp-feedback gt 0
+				fcs/oil-temp-switch gt 0
 			</test>
-			<output>fcs/oil-temp-feedback</output>
+			<output>fcs/oil-temp-switch</output>
 		</switch>
 		
 		<fcs_function name="fcs/egt-inc">
 			<function>
 				<sum>
-					<property>fcs/egt-feedback</property>
+					<property>fcs/egt-switch</property>
 					<value>0.4</value>
 				</sum>
 			</function>
@@ -186,7 +189,7 @@
 		<fcs_function name="fcs/egt-dec">
 			<function>
 				<difference>
-					<property>fcs/egt-feedback</property>
+					<property>fcs/egt-switch</property>
 					<value>0.1</value>
 				</difference>
 			</function>
@@ -196,13 +199,13 @@
 			<default value="fcs/egt-switch"/>
 			<test logic="AND" value="fcs/egt-inc">
 				/engines/engine[0]/running eq 1
-				fcs/egt-feedback lt 1028
+				fcs/egt-switch lt 1028
 			</test>
 			<test logic="AND" value="fcs/egt-dec">
 				/engines/engine[0]/running ne 1
-				fcs/egt-feedback gt 0
+				fcs/egt-switch gt 0
 			</test>
-			<output>fcs/egt-feedback</output>
+			<output>fcs/egt-switch</output>
 		</switch>
 	
 	</channel>

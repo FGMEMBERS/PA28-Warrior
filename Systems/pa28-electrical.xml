@@ -146,7 +146,7 @@
 		<switch name="/systems/electrical/outputs/fuel-pump">
 			<default value="0"/>
 			<test logic="AND" value="/systems/electrical/bus/main">
-				/controls/switches/fuel-pump eq 1
+				/controls/fuel/switches/pump eq 1
 				/controls/electrical/circuit-breakers/fuel-pump ne 1
 			</test>
 		</switch>

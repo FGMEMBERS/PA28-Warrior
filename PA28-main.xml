@@ -215,7 +215,7 @@
 				<y-offset-m archive="y">0.44</y-offset-m>
 				<z-offset-m archive="y">-1.1</z-offset-m>
 				<pitch-offset-deg>-15</pitch-offset-deg>
-				<default-field-of-view-deg type="double">82</default-field-of-view-deg>
+				<default-field-of-view-deg type="double">85</default-field-of-view-deg>
 			</config>
 		</view>
 		<view n="100">
@@ -228,7 +228,7 @@
 				<y-offset-m archive="y">0.44</y-offset-m>
 				<z-offset-m archive="y">-1.1</z-offset-m>
 				<pitch-offset-deg>-15</pitch-offset-deg>
-				<default-field-of-view-deg type="double">82</default-field-of-view-deg>
+				<default-field-of-view-deg type="double">85</default-field-of-view-deg>
 			</config>
 		</view>
 		<view n="101">
@@ -242,7 +242,7 @@
 				<z-offset-m archive="y">-1.1</z-offset-m>
 				<pitch-offset-deg>-15</pitch-offset-deg>
 				<heading-offset-deg>-95</heading-offset-deg>
-				<default-field-of-view-deg type="double">82</default-field-of-view-deg>
+				<default-field-of-view-deg type="double">85</default-field-of-view-deg>
 			</config>
 		</view>
 		<view n="102">
@@ -256,7 +256,7 @@
 				<z-offset-m archive="y">-1.1</z-offset-m>
 				<pitch-offset-deg>-15</pitch-offset-deg>
 				<heading-offset-deg>95</heading-offset-deg>
-				<default-field-of-view-deg type="double">82</default-field-of-view-deg>
+				<default-field-of-view-deg type="double">85</default-field-of-view-deg>
 			</config>
 		</view>
 		<weight n="0">
@@ -334,6 +334,12 @@
 			<aileron-drives-tiller type="bool">0</aileron-drives-tiller>
 			<elevator-trim type="double">0.11</elevator-trim>
 		</flight>
+		<fuel n="0">
+			<switches n="0">
+				<pump type="bool">0</pump>
+				<selected-tank type="int">1</selected-tank>
+			</switches>
+		</fuel>
 		<gear n="0">
 			<brake-parking type="double">0</brake-parking>
 		</gear>
@@ -342,7 +348,6 @@
 			<beacon type="bool">1</beacon>
 			<cabin-heat-cmd type="bool">0</cabin-heat-cmd>
 			<defroster-cmd type="bool">0</defroster-cmd>
-			<fuel-pump type="bool">0</fuel-pump>
 			<landing-light type="bool">0</landing-light>
 			<nav-lights type="double">0</nav-lights>
 			<nav-lights-factor type="double">0</nav-lights-factor>
@@ -382,18 +387,6 @@
 				<door-baggage-cmd type="double">0</door-baggage-cmd>
 				<door-main-cmd type="double">0</door-main-cmd>
 			</extra>
-			<fcs n="0">
-				<egt-feedback type="double">0</egt-feedback>
-				<oil-temp-feedback type="double">0</oil-temp-feedback>
-			</fcs>
-			<fuel n="0">
-				<pump-psi-feedback type="double">0</pump-psi-feedback>
-				<suck-psi-feedback type="double">0</suck-psi-feedback>
-			</fuel>
-			<libraries>
-				<av-fan-rpm-feedback type="double">0</av-fan-rpm-feedback>
-			</libraries>
-			<tune type="double">1</tune>
 		</jsbsim>
 	</fdm>
 	
@@ -565,7 +558,7 @@
 				<desc>Kill starter-key</desc>
 				<binding>
 					<command>nasal</command>
-					<script>setprop("/sim/unused/nothing", 0);</script>
+					<script></script>
 				</binding>
 			</key>
 			<key n="120">
@@ -633,10 +626,6 @@
 	</input>
 	
 	<instrumentation n="0">
-		<adf>
-			<model>ki228</model>
-			<volume-norm type="double">1</volume-norm>
-		</adf>
 		<attitude-indicator>
 			<config>
 				<tumble-flag>true</tumble-flag>
@@ -668,42 +657,6 @@
 			<on-pos type="double">1</on-pos>
 			<test type="bool">false</test>
 		</elt>
-		<encoder>
-			<serviceable type="bool">true</serviceable>
-		</encoder>
-		<kcs55>
-			<ka51>
-				<slaved>true</slaved>
-			</ka51>
-			<ki525>
-				<selected-course-property>instrumentation/nav[0]/radials/selected-deg</selected-course-property>
-				<cdi-deflection-property type="string">instrumentation/nav[0]/heading-needle-deflection</cdi-deflection-property>
-				<gs-deflection-property type="string">instrumentation/nav[0]/gs-needle-deflection-filtered</gs-deflection-property>
-				<to-flag-property type="string">instrumentation/nav[0]/to-flag</to-flag-property>
-				<from-flag-property type="string">instrumentation/nav[0]/from-flag</from-flag-property>
-				<nav-flag-property type="string">instrumentation/nav[0]/signal-quality-norm</nav-flag-property>
-				<course-error-property type="string">autopilot/internal/course-error-deg</course-error-property>
-				<heading-error-property type="string">autopilot/internal/heading-error-deg</heading-error-property>
-			</ki525>
-			<kg102>
-				<input-power-node>systems/electrical/outputs/hsi</input-power-node>
-				<input-power-min type="double">11.0</input-power-min>
-				<input-power-max type="double">15.8</input-power-max>
-			</kg102>
-		</kcs55>
-		<kma20>
-			<knob type="int" archive="y">-1</knob>
-			<auto type="int" archive="y">1</auto>
-			<com1 type="int" archive="y">0</com1>
-			<com2 type="int" archive="y">0</com2>
-			<nav1 type="int" archive="y">0</nav1>
-			<nav2 type="int" archive="y">0</nav2>
-			<adf  type="int" archive="y">0</adf>
-			<dme  type="int" archive="y">0</dme>
-			<mkr  type="int" archive="y">-1</mkr>
-			<sens type="int" archive="y">0</sens>
-			<test type="int" archive="y">0</test>
-		</kma20>
 		<nav n="0">
 			<frequencies>
 				<selected-mhz type="double">111.15</selected-mhz>
@@ -726,9 +679,6 @@
 			<serviceable type="bool">true</serviceable>
 			<volume type="double">0</volume>
 		</nav>
-		<oat>
-			<mode type="int">0</mode>
-		</oat>
 	</instrumentation>
 	
 	<it-stec55x n="0"> <!-- S-TEC 55X Settings -->
@@ -787,18 +737,21 @@
 				<avionics-bus type="bool">0</avionics-bus>
 				<battery type="bool">0</battery>
 			</electrical>
-			<eng-suck type="bool">0</eng-suck>
-			<fuel-pump type="bool">0</fuel-pump>
-			<l-brake type="bool">0</l-brake>
-			<l-magneto type="bool">0</l-magneto>
-			<r-brake type="bool">0</r-brake>
-			<r-magneto type="bool">0</r-magneto>
-			<starter type="bool">0</starter>
+			<eng n="0">
+				<l-magneto type="bool">0</l-magneto>
+				<r-magneto type="bool">0</r-magneto>
+				<starter type="bool">0</starter>
+			</eng>
+			<fuel n="0">
+				<eng-suck type="bool">0</eng-suck>
+				<pump type="bool">0</pump>
+			</fuel>
+			<misc n="0">
+				<l-brake type="bool">0</l-brake>
+				<r-brake type="bool">0</r-brake>
+				<stec-55x type="bool">0</stec-55x>
+			</misc>
 		</failures>
-		<fuel n="0">
-			<selected-tank type="int">1</selected-tank>
-			<suck-fuel type="bool">0</suck-fuel>
-		</fuel>
 		<vacuum n="0">
 			<suction-inhg-actual type="double">0</suction-inhg-actual>
 		</vacuum>

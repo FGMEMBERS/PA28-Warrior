@@ -1,6 +1,7 @@
 # Piper PA28 Systems
 # Copyright (c) 2019 Joshua Davidson (Octal450)
 
+# Electrical
 var ELEC = {
 	Bus: {
 		avionics: props.globals.getNode("/systems/electrical/bus/avionics"),
@@ -48,7 +49,6 @@ var ELEC = {
 	},
 	init: func() {
 		me.resetFail();
-		me.resetCB();
 		me.Switch.alternator.setBoolValue(0);
 		me.Switch.avionicsMaster.setBoolValue(0);
 		me.Switch.avionicsSecondary.setBoolValue(0);
@@ -68,6 +68,7 @@ var ELEC = {
 		me.Fail.alternator.setBoolValue(0);
 		me.Fail.avionicsBus.setBoolValue(0);
 		me.Fail.battery.setBoolValue(0);
+		me.resetCB();
 	},
 	loop: func() {
 		me.Fail.batteryTemp = me.Fail.battery.getBoolValue();
@@ -116,17 +117,29 @@ var ELEC = {
 
 var ampereTimer = maketimer(0.05, ELEC, ELEC.ampereCalc);
 
+# Fuel
+var FUEL = {
+	Fail: {
+		engSuck: props.globals.getNode("/systems/failures/fuel/eng-suck"),
+		pump: props.globals.getNode("/systems/failures/fuel/pump"),
+	},
+	Switch: {
+		pump: props.globals.getNode("/controls/fuel/switches/pump"),
+		selectedTank: props.globals.getNode("/controls/fuel/switches/selected-tank"),
+	},
+	init: func() {
+		me.Switch.pump.setBoolValue(0);
+		me.Switch.selectedTank.setValue(1);
+	},
+	resetFail: func() {
+		me.Fail.engSuck.setBoolValue(0);
+		me.Fail.pump.setBoolValue(0);
+	},
+};
+
 # TODO: Rewrite completely as IntegratedSystems node
 var INIT = {
 	ENG: func() {
 		setprop("/controls/engines/engine[0]/magnetos-switch", 0);
-	},
-	FUEL: func() {
-		setprop("/systems/fuel/selected-tank", 1);
-		setprop("/controls/switches/fuel-pump", 0);
-		setprop("/systems/fuel/suck-psi", 0);
-		setprop("/systems/fuel/pump-psi", 0);
-		setprop("/fdm/jsbsim/fuel/pump-psi-feedback", 0);
-		setprop("/fdm/jsbsim/fuel/suck-psi-feedback", 0);
 	},
 };

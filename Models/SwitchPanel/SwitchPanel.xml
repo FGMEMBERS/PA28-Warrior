@@ -133,7 +133,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>FuelPump</object-name>
-		<property>controls/switches/fuel-pump</property>
+		<property>controls/fuel/switches/pump</property>
 		<factor>30</factor>
 		<axis>
 			<x>0.0</x>
@@ -155,7 +155,7 @@
 			<repeatable>false</repeatable>
 			<binding>
 				<command>property-toggle</command>
-				<property>controls/switches/fuel-pump</property>
+				<property>controls/fuel/switches/pump</property>
 			</binding>
 			<binding>
 				<command>nasal</command>

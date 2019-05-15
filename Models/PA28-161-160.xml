@@ -346,7 +346,7 @@
 	
 	<model>
 		<name>SWITCHES</name>
-		<path>Aircraft/IDG-PA28/Models/SwitchPanel/switch_panel.xml</path>
+		<path>Aircraft/IDG-PA28/Models/SwitchPanel/SwitchPanel.xml</path>
 	</model>
 	
 	<model>
@@ -1163,7 +1163,7 @@
 	
 	<model>
 		<name>fuel selector</name>
-		<path>Models/Instruments/fuel-selector/fuel-selector.xml</path>
+		<path>Aircraft/IDG-PA28/Models/FuelSelector/FuelSelector.xml</path>
 		<offsets>
 			<pitch-deg>90</pitch-deg>
 			<roll-deg>180</roll-deg>

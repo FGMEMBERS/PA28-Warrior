@@ -20,21 +20,20 @@ var spinning = maketimer(0.05, func {
 
 var failReset = func {
 	systems.ELEC.resetFail();
+	systems.FUEL.resetFail();
 	failResetOld();
 }
 
 var failResetOld = func {
-	setprop("/systems/failures/eng-suck", 0);
-	setprop("/systems/failures/fuel-pump", 0);
-	setprop("/systems/failures/starter", 0);
-	setprop("/systems/failures/l-magneto", 0);
-	setprop("/systems/failures/r-magneto", 0);
-	setprop("/systems/failures/l-brake", 0);
-	setprop("/systems/failures/r-brake", 0);
-	setprop("/systems/failures/stec-55x", 0);
+	setprop("/systems/failures/eng/starter", 0);
+	setprop("/systems/failures/eng/l-magneto", 0);
+	setprop("/systems/failures/eng/r-magneto", 0);
+	setprop("/systems/failures/misc/l-brake", 0);
+	setprop("/systems/failures/misc/r-brake", 0);
+	setprop("/systems/failures/misc/stec-55x", 0);
 };
 
-setlistener("/systems/failures/stec-55x", func {
+setlistener("/systems/failures/misc/stec-55x", func {
 	setprop("/it-stec55x/serviceable", !getprop("/systems/failures/stec-55x"));
 });
 
@@ -269,7 +268,7 @@ var takeoff = func {
 	var rpmchk = setlistener("/engines/engine[0]/rpm", func {
 		if (getprop("/engines/engine[0]/rpm") >= 421) {
 			removelistener(rpmchk);
-			setprop("/controls/switches/fuel-pump", 1);
+			setprop("/controls/fuel/switches/pump", 1);
 			setprop("/controls/switches/landing-light", 1);
 		}
 	});

@@ -5,10 +5,10 @@
 <!-- PA28-161 Control Panel Dialog -->
 
 <PropertyList>
-
+	
 	<name>aircraft-config-fail</name>
 	<layout>vbox</layout>
-
+	
 	<group>
 		<layout>hbox</layout>
 		<text>
@@ -49,9 +49,9 @@
 	</group>
 	
 	<checkbox>
-		<label>BATTERY</label>
+		<label>Battery</label>
 		<halign>left</halign>
-		<property>/systems/failures/battery</property>
+		<property>/systems/failures/electrical/battery</property>
 		<binding>
 			<command>dialog-apply</command>
 		</binding>
@@ -59,9 +59,9 @@
 	</checkbox>
 	
 	<checkbox>
-		<label>ALTERNATOR</label>
+		<label>Alternator</label>
 		<halign>left</halign>
-		<property>/systems/failures/alternator</property>
+		<property>/systems/failures/electrical/alternator</property>
 		<binding>
 			<command>dialog-apply</command>
 		</binding>
@@ -69,39 +69,9 @@
 	</checkbox>
 	
 	<checkbox>
-		<label>ELEC BUS 1</label>
+		<label>Avionics Bus</label>
 		<halign>left</halign>
-		<property>/systems/failures/elec-1</property>
-		<binding>
-			<command>dialog-apply</command>
-		</binding>
-		<live>true</live>
-	</checkbox>
-	
-	<checkbox>
-		<label>ELEC BUS 2</label>
-		<halign>left</halign>
-		<property>/systems/failures/elec-2</property>
-		<binding>
-			<command>dialog-apply</command>
-		</binding>
-		<live>true</live>
-	</checkbox>
-	
-	<checkbox>
-		<label>AVIONICS BUS 1</label>
-		<halign>left</halign>
-		<property>/systems/failures/avionics-1</property>
-		<binding>
-			<command>dialog-apply</command>
-		</binding>
-		<live>true</live>
-	</checkbox>
-	
-	<checkbox>
-		<label>AVIONICS BUS 2</label>
-		<halign>left</halign>
-		<property>/systems/failures/avionics-2</property>
+		<property>/systems/failures/electrical/avionics-bus</property>
 		<binding>
 			<command>dialog-apply</command>
 		</binding>
@@ -123,9 +93,9 @@
 	</group>
 	
 	<checkbox>
-		<label>ENG SUCK</label>
+		<label>Eng Suck</label>
 		<halign>left</halign>
-		<property>/systems/failures/eng-suck</property>
+		<property>/systems/failures/fuel/eng-suck</property>
 		<binding>
 			<command>dialog-apply</command>
 		</binding>
@@ -133,9 +103,9 @@
 	</checkbox>
 	
 	<checkbox>
-		<label>FUEL PUMP</label>
+		<label>Fuel Pump</label>
 		<halign>left</halign>
-		<property>/systems/failures/fuel-pump</property>
+		<property>/systems/failures/fuel/pump</property>
 		<binding>
 			<command>dialog-apply</command>
 		</binding>
@@ -159,7 +129,7 @@
 	<checkbox>
 		<label>STARTER</label>
 		<halign>left</halign>
-		<property>/systems/failures/starter</property>
+		<property>/systems/failures/eng/starter</property>
 		<binding>
 			<command>dialog-apply</command>
 		</binding>
@@ -169,7 +139,7 @@
 	<checkbox>
 		<label>L MAGNETO</label>
 		<halign>left</halign>
-		<property>/systems/failures/l-magneto</property>
+		<property>/systems/failures/eng/l-magneto</property>
 		<binding>
 			<command>dialog-apply</command>
 		</binding>
@@ -179,7 +149,7 @@
 	<checkbox>
 		<label>R MAGNETO</label>
 		<halign>left</halign>
-		<property>/systems/failures/r-magneto</property>
+		<property>/systems/failures/eng/r-magneto</property>
 		<binding>
 			<command>dialog-apply</command>
 		</binding>
@@ -203,7 +173,7 @@
 	<checkbox>
 		<label>L BRAKE</label>
 		<halign>left</halign>
-		<property>/systems/failures/l-brake</property>
+		<property>/systems/failures/misc/l-brake</property>
 		<binding>
 			<command>dialog-apply</command>
 		</binding>
@@ -213,7 +183,7 @@
 	<checkbox>
 		<label>R BRAKE</label>
 		<halign>left</halign>
-		<property>/systems/failures/r-brake</property>
+		<property>/systems/failures/misc/r-brake</property>
 		<binding>
 			<command>dialog-apply</command>
 		</binding>
@@ -223,7 +193,7 @@
 	<checkbox>
 		<label>S-TEC 55X</label>
 		<halign>left</halign>
-		<property>/systems/failures/stec-55x</property>
+		<property>/systems/failures/misc/stec-55x</property>
 		<binding>
 			<command>dialog-apply</command>
 		</binding>
@@ -239,9 +209,7 @@
 		<pref-width>120</pref-width>
 		<binding>
 			<command>nasal</command>
-			<script>
-			acconfig.failReset();
-			</script>
+			<script>acconfig.failReset();</script>
 		</binding>
 	</button>
 
