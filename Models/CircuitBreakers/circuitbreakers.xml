@@ -24,6 +24,48 @@
 	cb.~text~ with ~text~ being placard text without blanks and without symbols in all small (e.g. cb.altntrfield), multiple cbs with the same name: cb.~text~.1; cb.~text~.2 etc. -->
 	
 	<animation>
+		<type>select</type>
+		<object-name>placard.g5.spare</object-name>
+		<condition>
+			<not-equals>
+				<property>options/panel</property>
+				<value>G5 Panel</value>
+			</not-equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>placard.g5</object-name>
+		<condition>
+			<equals>
+				<property>options/panel</property>
+				<value>G5 Panel</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>placard.nsd360.spare</object-name>
+		<condition>
+			<not-equals>
+				<property>options/panel</property>
+				<value>HSI Panel</value>
+			</not-equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>placard.nsd360</object-name>
+		<condition>
+			<equals>
+				<property>options/panel</property>
+				<value>HSI Panel</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
 		<type>pick</type>
 		<object-name>cb.altntrfield</object-name>
 		<action>
