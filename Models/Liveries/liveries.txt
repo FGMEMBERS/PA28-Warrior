@@ -1,8 +1,5 @@
 Livery		status
 N307MM		current, default livery
 G-OPTI		current
-C-GGFS		is actually Piper Cadet
-D-ETIX		is a PA28-161 Warrior III not II?
-G-WARY		is a PA28-161 Warrior III not II?
 N-2436Y		current
 N-47508		current
