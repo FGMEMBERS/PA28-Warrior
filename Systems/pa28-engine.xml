@@ -13,12 +13,12 @@
 		<switch name="fcs/magneto-l">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- L -->
-				/systems/failures/eng/l-magneto ne 1
+				/systems/failures/eng/magneto-l ne 1
 				/controls/engines/engine[0]/magnetos-switch eq 2
 				/systems/electrical/bus/main ge 8
 			</test>
 			<test logic="AND" value="1"> <!-- BOTH or START -->
-				/systems/failures/eng/l-magneto ne 1
+				/systems/failures/eng/magneto-l ne 1
 				/controls/engines/engine[0]/magnetos-switch ge 3
 				/systems/electrical/bus/main ge 8
 			</test>
@@ -27,12 +27,12 @@
 		<switch name="fcs/magneto-r">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- R -->
-				/systems/failures/eng/r-magneto ne 1
+				/systems/failures/eng/magneto-r ne 1
 				/controls/engines/engine[0]/magnetos-switch eq 1
 				/systems/electrical/bus/main ge 8
 			</test>
 			<test logic="AND" value="1"> <!-- BOTH or START -->
-				/systems/failures/eng/r-magneto ne 1
+				/systems/failures/eng/magneto-r ne 1
 				/controls/engines/engine[0]/magnetos-switch ge 3
 				/systems/electrical/bus/main ge 8
 			</test>

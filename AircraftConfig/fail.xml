@@ -139,7 +139,7 @@
 	<checkbox>
 		<label>L MAGNETO</label>
 		<halign>left</halign>
-		<property>/systems/failures/eng/l-magneto</property>
+		<property>/systems/failures/eng/magneto-l</property>
 		<binding>
 			<command>dialog-apply</command>
 		</binding>
@@ -149,7 +149,7 @@
 	<checkbox>
 		<label>R MAGNETO</label>
 		<halign>left</halign>
-		<property>/systems/failures/eng/r-magneto</property>
+		<property>/systems/failures/eng/magneto-r</property>
 		<binding>
 			<command>dialog-apply</command>
 		</binding>
@@ -173,7 +173,7 @@
 	<checkbox>
 		<label>L BRAKE</label>
 		<halign>left</halign>
-		<property>/systems/failures/misc/l-brake</property>
+		<property>/systems/failures/misc/brake-l</property>
 		<binding>
 			<command>dialog-apply</command>
 		</binding>
@@ -183,7 +183,7 @@
 	<checkbox>
 		<label>R BRAKE</label>
 		<halign>left</halign>
-		<property>/systems/failures/misc/r-brake</property>
+		<property>/systems/failures/misc/brake-r</property>
 		<binding>
 			<command>dialog-apply</command>
 		</binding>

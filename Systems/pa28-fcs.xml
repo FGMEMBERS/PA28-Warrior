@@ -312,7 +312,7 @@
 		<switch name="rubbish/left-brake-cmd-norm">
 			<default value="fcs/left-brake-summer"/>
 			<test value="0">
-				/systems/failures/misc/l-brake eq 1
+				/systems/failures/misc/brake-l eq 1
 			</test>
 			<output>fcs/left-brake-cmd-norm</output>
 		</switch>
@@ -335,7 +335,7 @@
 		<switch name="rubbish/right-brake-cmd-norm">
 			<default value="fcs/right-brake-summer"/>
 			<test value="0">
-				/systems/failures/misc/r-brake eq 1
+				/systems/failures/misc/brake-r eq 1
 			</test>
 			<output>fcs/right-brake-cmd-norm</output>
 		</switch>
