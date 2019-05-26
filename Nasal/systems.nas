@@ -137,9 +137,35 @@ var FUEL = {
 	},
 };
 
-# TODO: Rewrite completely as IntegratedSystems node
-var INIT = {
-	ENG: func() {
-		setprop("/controls/engines/engine[0]/magnetos-switch", 0);
+var ENG = {
+	Fail: {
+		magnetoL: props.globals.getNode("/systems/failures/eng/l-magneto"),
+		magnetoR: props.globals.getNode("/systems/failures/eng/r-magneto"),
+		starter: props.globals.getNode("/systems/failures/eng/starter"),
+	},
+	Switch: {
+		carbHeat: props.globals.getNode("/controls/anti-ice/engine[0]/carb-heat-cmd"),
+		magnetos: props.globals.getNode("/controls/engines/engine[0]/magnetos-switch"),
+		mixture: props.globals.getNode("/controls/engines/engine[0]/mixture"),
+		primer: props.globals.getNode("/controls/engines/engine[0]/primer-pump"),
+	},
+	init: func() {
+		me.Switch.carbHeat.setBoolValue(0);
+		me.Switch.magnetos.setValue(0);
+		me.Switch.mixture.setValue(0);
+		me.Switch.primer.setBoolValue(0);
+	},
+	resetFail: func() {
+		me.Fail.magnetoL.setBoolValue(0);
+		me.Fail.magnetoR.setBoolValue(0);
+		me.Fail.starter.setBoolValue(0);
+	},
+};
+
+var MISC = {
+	Fail: {
+		brakeL: props.globals.getNode("/systems/failures/misc/brake-l"),
+		brakeR: props.globals.getNode("/systems/failures/misc/brake-r"),
+		stec55x: props.globals.getNode("/systems/failures/misc/stec-55x"),
 	},
 };

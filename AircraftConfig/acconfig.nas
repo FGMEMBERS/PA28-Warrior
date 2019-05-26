@@ -20,24 +20,14 @@ var spinning = maketimer(0.05, func {
 
 var failReset = func {
 	systems.ELEC.resetFail();
+	systems.ENG.resetFail();
 	systems.FUEL.resetFail();
-	failResetOld();
 }
-
-var failResetOld = func {
-	setprop("/systems/failures/eng/starter", 0);
-	setprop("/systems/failures/eng/l-magneto", 0);
-	setprop("/systems/failures/eng/r-magneto", 0);
-	setprop("/systems/failures/misc/l-brake", 0);
-	setprop("/systems/failures/misc/r-brake", 0);
-	setprop("/systems/failures/misc/stec-55x", 0);
-};
 
 setlistener("/systems/failures/misc/stec-55x", func {
 	setprop("/it-stec55x/serviceable", !getprop("/systems/failures/stec-55x"));
 });
 
-failResetOld();
 setprop("/systems/acconfig/autoconfig-running", 0);
 setprop("/systems/acconfig/spinning", 0);
 setprop("/systems/acconfig/spin", "-");
@@ -176,7 +166,6 @@ var colddark = func {
 	setprop("/controls/flight/elevator-trim", 0.11);
 	setprop("/controls/gear/brake-parking", 0);
 	libraries.systemsReset();
-	failResetOld();
 	if (getprop("/engines/engine[0]/rpm") < 421) {
 		colddark_b();
 	} else {
@@ -207,7 +196,6 @@ var beforestart = func {
 	setprop("/controls/flight/elevator-trim", 0.11);
 	setprop("/controls/gear/brake-parking", 0);
 	libraries.systemsReset();
-	failResetOld();
 	
 	# Now the Startup!
 	setprop("/controls/electrical/switches/battery", 1);
@@ -233,7 +221,6 @@ var taxi = func {
 	setprop("/controls/flight/elevator-trim", 0.11);
 	setprop("/controls/gear/brake-parking", 0);
 	libraries.systemsReset();
-	failResetOld();
 	
 	# Now the Startup!
 	setprop("/controls/electrical/switches/battery", 1);

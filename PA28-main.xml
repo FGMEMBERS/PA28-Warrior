@@ -738,8 +738,8 @@
 				<battery type="bool">0</battery>
 			</electrical>
 			<eng n="0">
-				<l-magneto type="bool">0</l-magneto>
-				<r-magneto type="bool">0</r-magneto>
+				<magneto-l type="bool">0</magneto-l>
+				<magneto-r type="bool">0</magneto-r>
 				<starter type="bool">0</starter>
 			</eng>
 			<fuel n="0">
@@ -747,8 +747,8 @@
 				<pump type="bool">0</pump>
 			</fuel>
 			<misc n="0">
-				<l-brake type="bool">0</l-brake>
-				<r-brake type="bool">0</r-brake>
+				<brake-l type="bool">0</brake-l>
+				<brake-r type="bool">0</brake-r>
 				<stec-55x type="bool">0</stec-55x>
 			</misc>
 		</failures>

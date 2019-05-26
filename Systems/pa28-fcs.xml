@@ -114,33 +114,32 @@
 	
 	</channel>
 	
-	<channel name="Stabilator"> <!-- TODO: redo trim a bit better -->
+	<channel name="Stabilator">
 		
-		<aerosurface_scale name="fcs/elevator-trim-input">
-			<input>fcs/elevator-trim-knob</input>
-			<range>
-				<min>-0.75</min>
-				<max>0.75</max>
-			</range>
-		</aerosurface_scale>
-		
-		<scheduled_gain name="fcs/elevator-trim-offset">
-			<input>fcs/elevator-trim-input</input>
-			<table>
-				<independentVar lookup="row">velocities/vc-kts</independentVar>
-				<tableData>
-					15  0.0
-					25  1.0
-				</tableData>
-			</table>
-		</scheduled_gain> 
+		<fcs_function name="fcs/elevator-trim-offset">
+			<description>Pretends to slew neutral force point on stabilator without limiting range of yoke</description>
+			<function>
+				<product>
+					<property>fcs/elevator-trim-knob</property>
+					<value>0.75</value>
+					<table>
+						<independentVar lookup="row">fcs/elevator-yoke</independentVar>
+						<tableData>
+							-1  0
+							 0  1
+							 1  0
+						</tableData>
+					</table>
+				</product>
+			</function>
+		</fcs_function>
 		
 		<summer name="fcs/pitch-input">
 			<input>fcs/elevator-yoke</input>
 			<input>fcs/elevator-trim-offset</input>
 			<clipto>
-				<min>-1</min>
-				<max>1</max>
+				<min>-1.0</min>
+				<max>1.0</max>
 			</clipto>
 		</summer>
 		
@@ -158,17 +157,13 @@
 				<sum>
 					<property>fcs/elevator-deg</property>
 					<product>
-						<property>fcs/elevator-trim-input</property>
+						<property>fcs/elevator-trim-knob</property>
 						<value>-9</value>
 					</product>
-					<value>-3</value>
+					<value>-2</value>
 				</sum>
 			</function>
 			<output>fcs/speedbrake-pos-norm</output> <!-- Is really degrees, but for MP transit -->
-			<clipto>
-				<min>-15</min>
-				<max>9</max>
-			</clipto>
 		</fcs_function>
 	
 	</channel>
@@ -312,7 +307,7 @@
 		<switch name="rubbish/left-brake-cmd-norm">
 			<default value="fcs/left-brake-summer"/>
 			<test value="0">
-				/systems/failures/misc/l-brake eq 1
+				/systems/failures/misc/brake-l eq 1
 			</test>
 			<output>fcs/left-brake-cmd-norm</output>
 		</switch>
@@ -335,7 +330,7 @@
 		<switch name="rubbish/right-brake-cmd-norm">
 			<default value="fcs/right-brake-summer"/>
 			<test value="0">
-				/systems/failures/misc/r-brake eq 1
+				/systems/failures/misc/brake-r eq 1
 			</test>
 			<output>fcs/right-brake-cmd-norm</output>
 		</switch>
