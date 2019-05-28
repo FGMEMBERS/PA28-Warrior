@@ -11,7 +11,7 @@ loc 1.0543600 -1.0831300 -0.2830430
 kids 0
 OBJECT poly
 name "sw.apdisc.btn"
-loc 0.1851090 0.1248952 0.1013901
+loc 0.1851090 0.1248952 0.0863901
 crease 30.0
 texture "../panel-parts.png"
 texrep 1 1
@@ -1015,7 +1015,7 @@ refs 4
 kids 0
 OBJECT poly
 name "sw.base"
-loc 0.2173422 -0.0029809 -0.0021440
+loc 0.2173422 -0.0029809 -0.0171440
 crease 45.0
 texture "../panel-parts.png"
 texrep 1 1
@@ -2569,7 +2569,7 @@ refs 4
 kids 0
 OBJECT poly
 name "sw.cws.btn"
-loc 0.1788709 0.1401240 0.1068847
+loc 0.1788709 0.1401240 0.0918847
 crease 35.0
 texture "../panel-parts.png"
 texrep 1 1
@@ -3125,7 +3125,7 @@ refs 4
 kids 0
 OBJECT poly
 name "sw.placards"
-loc 0.2091033 0.1096211 0.1433124
+loc 0.2091033 0.1096211 0.1283124
 crease 35.0
 texture "../panel_placards.png"
 texrep 1 1
@@ -3207,7 +3207,7 @@ refs 4
 kids 0
 OBJECT poly
 name "sw.trim.btn"
-loc 0.2016309 0.1177212 0.1360703
+loc 0.2016309 0.1177212 0.1210703
 crease 35.0
 texture "../panel-parts.png"
 texrep 1 1
