@@ -123,11 +123,13 @@
 					<property>fcs/elevator-trim-knob</property>
 					<value>0.75</value>
 					<table>
-						<independentVar lookup="row">fcs/elevator-yoke</independentVar>
+						<independentVar lookup="row">fcs/elevator-yoke</independentVar> <!-- Fade out trim bias with yoke movement, prevents authority loss due to trim which doesn't happen on the PA28 -->
+						<independentVar lookup="column">aero/qbar-psf</independentVar> <!-- Need airflow for trim tab to effect -->
 						<tableData>
-							-1  0
-							 0  1
-							 1  0
+							    2     5
+							-1  0.00  0.00
+							 0  0.00  0.75
+							 1  0.00  0.00
 						</tableData>
 					</table>
 				</product>
