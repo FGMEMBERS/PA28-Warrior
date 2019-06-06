@@ -7,13 +7,13 @@ name "Blender_export__yoke-sw.ac"
 kids 7
 OBJECT group
 name "Stud"
-loc 1.0543600 -1.0831300 -0.2830430
+loc 1.0543600 -1.0831300 -0.2780430
 kids 0
 OBJECT poly
 name "sw.apdisc.btn"
-loc 0.1851090 0.1248952 0.0863901
+loc 0.1851090 0.1248952 0.0913901
 crease 30.0
-texture "../panel-parts.png"
+texture "panel-parts.png"
 texrep 1 1
 numvert 192
 -0.0008501 -0.0035230 -0.0022902
@@ -1015,9 +1015,9 @@ refs 4
 kids 0
 OBJECT poly
 name "sw.base"
-loc 0.2173422 -0.0029809 -0.0171440
+loc 0.2173422 -0.0029809 -0.0121440
 crease 45.0
-texture "../panel-parts.png"
+texture "panel-parts.png"
 texrep 1 1
 numvert 403
 -0.0071118 0.1213816 0.1275762
@@ -2569,9 +2569,9 @@ refs 4
 kids 0
 OBJECT poly
 name "sw.cws.btn"
-loc 0.1788709 0.1401240 0.0918847
+loc 0.1788709 0.1401240 0.0968847
 crease 35.0
-texture "../panel-parts.png"
+texture "panel-parts.png"
 texrep 1 1
 numvert 80
 -0.0006383 0.0044904 0.0007287
@@ -3125,9 +3125,9 @@ refs 4
 kids 0
 OBJECT poly
 name "sw.placards"
-loc 0.2091033 0.1096211 0.1283124
+loc 0.2091033 0.1096211 0.1333124
 crease 35.0
-texture "../panel_placards.png"
+texture "panel_placards.png"
 texrep 1 1
 numvert 24
 0.0034159 0.0013371 -0.0040901
@@ -3207,9 +3207,9 @@ refs 4
 kids 0
 OBJECT poly
 name "sw.trim.btn"
-loc 0.2016309 0.1177212 0.1210703
+loc 0.2016309 0.1177212 0.1260703
 crease 35.0
-texture "../panel-parts.png"
+texture "panel-parts.png"
 texrep 1 1
 numvert 160
 0.0065981 -0.0000000 -0.0074234
@@ -4307,5 +4307,5 @@ refs 32
 kids 0
 OBJECT group
 name "Yoke.001"
-loc 2.0064800 -1.3715400 -0.2915260
+loc 2.0064800 -1.3715400 -0.2865260
 kids 0
