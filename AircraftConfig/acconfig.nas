@@ -96,7 +96,7 @@ setlistener("/sim/signals/fdm-initialized", func {
 	readSettings();
 	if (getprop("/systems/acconfig/out-of-date") != 1 and getprop("/systems/acconfig/options/revision") < current_revision) {
 		updated_dlg.open();
-	} else if (getprop("/systems/acconfig/out-of-date") != 1 and getprop("/systems/acconfig/options/welcome-skip") != 1) {
+	} else if (getprop("/systems/acconfig/out-of-date") != 1) {
 		welcome_dlg.open();
 	}
 	setprop("/systems/acconfig/options/revision", current_revision);
