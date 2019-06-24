@@ -244,7 +244,7 @@
 			</condition>
 			<value>0</value>
 		</input>
-		<input>/fdm/jsbsim/fcs/egt-feedback</input>
+		<input>/fdm/jsbsim/fcs/egt-switch</input>
 		<output>/engines/engine[0]/egt-actual</output>
 		<filter-time>0.16</filter-time>
 		<min>0</min>
@@ -282,7 +282,7 @@
 			</condition>
 			<value>0</value>
 		</input>
-		<input>/fdm/jsbsim/fcs/oil-temp-feedback</input>
+		<input>/fdm/jsbsim/fcs/oil-temp-switch</input>
 		<output>/engines/engine[0]/oil-temperature-actual</output>
 		<filter-time>0.16</filter-time>
 	</filter>
