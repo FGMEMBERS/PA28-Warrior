@@ -3,8 +3,8 @@ A very advanced simulation of the Piper PA28 Warrior II for FlightGear by Immers
 
 - FDM: Joshua Davidson (Octal450)
 - Systems: Joshua Davidson (Octal450)
-- Cockpit: Joshua Davidson (Octal450), Gerhard Kick (gkick), Gabriel Hernandez (YV3399)
-- Instruments: Joshua Davidson (Octal450), Gerhard Kick (gkick)
+- Cockpit: D-ECHO, Joshua Davidson (Octal450)
+- Instruments: D-ECHO, Joshua Davidson (Octal450), c172p-team
 
 Present pack includes the following variants:
 - PA28-161 Warror II (160HP)
