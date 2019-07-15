@@ -38,18 +38,14 @@
 						<label>Aircraft Config</label>
 						<binding>
 							<command>nasal</command>
-							<script>
-							acconfig.main_dlg.open();
-							</script>
+							<script>acconfig.main_dlg.open();</script>
 						</binding>
 					</item>
 					<item>
 						<label>About This Aircraft</label>
 						<binding>
 							<command>nasal</command>
-							<script>
-							acconfig.about_dlg.open();
-							</script>
+							<script>acconfig.about_dlg.open();</script>
 						</binding>
 					</item>
 				</menu>
@@ -60,9 +56,7 @@
 						<label>Select Livery</label>
 						<binding>
 							<command>nasal</command>
-							<script>
-							aircraft.livery.dialog.toggle();
-							</script>
+							<script>aircraft.livery.dialog.toggle();</script>
 						</binding>
 					</item>
 					<item>
@@ -70,9 +64,9 @@
 						<binding>
 							<command>nasal</command>
 							<script>
-							acconfig.minipanel_dlg.open();
-							setprop("/options/mini-panel", 1);
-							acconfig.writeSettings();
+								acconfig.minipanel_dlg.open();
+								setprop("/options/mini-panel", 1);
+								acconfig.writeSettings();
 							</script>
 						</binding>
 					</item>
@@ -80,18 +74,14 @@
 						<label>Control Panel</label>
 						<binding>
 							<command>nasal</command>
-							<script>
-							acconfig.controlpanel_dlg.open();
-							</script>
+							<script>acconfig.controlpanel_dlg.open();</script>
 						</binding>
 					</item>
 					<item>
 						<label>Failures</label>
 						<binding>
 							<command>nasal</command>
-							<script>
-							acconfig.fail_dlg.open();
-							</script>
+							<script>acconfig.fail_dlg.open();</script>
 						</binding>
 					</item>
 					<item>
@@ -99,11 +89,14 @@
 						<binding>
 							<command>nasal</command>
 							<script>
-							if (getprop("/fdm/jsbsim/position/wow") == 1) {
-								libraries.crashStress.reset();
-							} else {
-								gui.popupTip("How can you repair the aircraft in flight? Please land first! :)");
-							}
+								<![CDATA[
+									if (getprop("/position/gear-agl-ft") <= 1) {
+										libraries.crashStress.reset();
+										acconfig.failReset();
+									} else {
+										gui.popupTip("How can you repair the aircraft in flight? Please land first! :)");
+									}
+								]]>
 							</script>
 						</binding>
 					</item>

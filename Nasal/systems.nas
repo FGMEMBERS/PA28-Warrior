@@ -139,8 +139,8 @@ var FUEL = {
 
 var ENG = {
 	Fail: {
-		magnetoL: props.globals.getNode("/systems/failures/eng/l-magneto"),
-		magnetoR: props.globals.getNode("/systems/failures/eng/r-magneto"),
+		magnetoL: props.globals.getNode("/systems/failures/eng/magneto-l"),
+		magnetoR: props.globals.getNode("/systems/failures/eng/magneto-r"),
 		starter: props.globals.getNode("/systems/failures/eng/starter"),
 	},
 	Switch: {

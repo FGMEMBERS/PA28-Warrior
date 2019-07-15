@@ -161,6 +161,7 @@ var colddark = func {
 	ps_loaded_dlg.close();
 	ps_load_dlg.open();
 	setprop("/systems/acconfig/autoconfig-running", 1);
+	libraries.crashStress.reset();
 	# Initial shutdown, and reinitialization.
 	setprop("/controls/flight/flaps", 0.0);
 	setprop("/controls/flight/elevator-trim", 0.11);
@@ -191,6 +192,7 @@ var beforestart = func {
 	ps_loaded_dlg.close();
 	ps_load_dlg.open();
 	setprop("/systems/acconfig/autoconfig-running", 1);
+	libraries.crashStress.reset();
 	# First, we set everything to cold and dark.
 	setprop("/controls/flight/flaps", 0.0);
 	setprop("/controls/flight/elevator-trim", 0.11);
@@ -216,6 +218,7 @@ var taxi = func {
 	ps_loaded_dlg.close();
 	ps_load_dlg.open();
 	setprop("/systems/acconfig/autoconfig-running", 1);
+	libraries.crashStress.reset();
 	# First, we set everything to cold and dark.
 	setprop("/controls/flight/flaps", 0.0);
 	setprop("/controls/flight/elevator-trim", 0.11);
