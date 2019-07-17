@@ -233,8 +233,8 @@
 	<contact type="STRUCTURE" name="BODY_1">
 		<location unit="M">
 			<x>-0.84439</x>
-			<y>-0.5912</y>
-			<z>0.66036</z>
+			<y>-0.45786</y>
+			<z>0.60605</z>
 		</location>
 		<static_friction>1.0</static_friction>
 		<dynamic_friction>0.4</dynamic_friction>
@@ -246,8 +246,8 @@
 	<contact type="STRUCTURE" name="BODY_2">
 		<location unit="M">
 			<x>-0.84439</x>
-			<y>0.5912</y>
-			<z>0.66036</z>
+			<y>0.45786</y>
+			<z>0.60605</z>
 		</location>
 		<static_friction>1.0</static_friction>
 		<dynamic_friction>0.4</dynamic_friction>
