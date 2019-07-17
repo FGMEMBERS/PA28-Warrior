@@ -3,11 +3,12 @@
 <!-- No clue who made it, no author was listed -->
 
 <propeller name="fixed-pitch-2-blade">
-    <ixx>                1.67 </ixx>
-    <diameter unit="IN"> 74.0 </diameter>
-    <numblades>             2 </numblades>
-    <minpitch>             22 </minpitch>
-    <maxpitch>             22 </maxpitch>
+	
+    <ixx>1.67</ixx>
+    <diameter unit="IN">74.0</diameter>
+    <numblades>2</numblades>
+    <minpitch>22</minpitch>
+    <maxpitch>22</maxpitch>
 	
 	<table name="C_THRUST" type="internal">
 		<tableData>
