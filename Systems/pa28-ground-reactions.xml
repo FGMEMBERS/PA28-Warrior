@@ -234,7 +234,7 @@
 		<location unit="M">
 			<x>-0.84439</x>
 			<y>-0.5912</y>
-			<z>-0.04694</z>
+			<z>0.66036</z>
 		</location>
 		<static_friction>1.0</static_friction>
 		<dynamic_friction>0.4</dynamic_friction>
@@ -247,7 +247,7 @@
 		<location unit="M">
 			<x>-0.84439</x>
 			<y>0.5912</y>
-			<z>-0.04694</z>
+			<z>0.66036</z>
 		</location>
 		<static_friction>1.0</static_friction>
 		<dynamic_friction>0.4</dynamic_friction>
