@@ -5,9 +5,9 @@
 
 <metrics>
 	
-	<wingarea unit="FT2">160</wingarea>
-	<wingspan unit="FT">30</wingspan>
-	<chord unit="FT">5.18</chord>
+	<wingarea unit="FT2">170</wingarea>
+	<wingspan unit="FT">35</wingspan>
+	<chord unit="FT">5.25</chord>
 	<htailarea unit="FT2">37.18</htailarea>
 	<vtailarea unit="FT2">28.6</vtailarea>
 	
