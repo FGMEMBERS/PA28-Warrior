@@ -67,7 +67,7 @@
 		</tank>
 		<tank type="FUEL">    <!-- Engine Pipe -->
 			<location unit="M">
-				<x>-1.10417</x>
+				<x>-1.07567</x>
 				<y>0</y>
 				<z>0.21522</z>
 			</location>

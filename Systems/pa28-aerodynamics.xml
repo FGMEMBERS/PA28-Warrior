@@ -486,7 +486,7 @@
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/cbarw-ft</property>
 				<toradians><property>fcs/elevator-deg</property></toradians>
-				<value>-0.88485</value>
+				<value>-0.92485</value>
 				<table>
 					<independentVar lookup="row">aero/alpha-deg</independentVar>
 					<independentVar lookup="column">fcs/elevator-deg</independentVar>
@@ -515,9 +515,9 @@
 				<table>
 					<independentVar lookup="row">aero/beta-rad</independentVar>
 					<tableData>
-						-0.349 -0.0165
-						 0.000  0.0000
-						 0.349  0.0165
+						-0.349 -0.014
+						 0.000  0.000
+						 0.349  0.014
 					</tableData>
 				</table>
 			</product>
