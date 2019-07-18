@@ -380,8 +380,8 @@
 		</gear>
 	</gear>
 	
-	<input>
-		<keyboard>
+	<input n="0">
+		<keyboard n="0">
 			<key n="12">
 				<name>Ctrl-L</name>
 				<desc>toggle panel lights</desc>
