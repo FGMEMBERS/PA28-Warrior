@@ -403,7 +403,6 @@
 			<key n="49">
 				<name>1</name>
 				<desc>Elevator trim up</desc>
-				<repeatable>true</repeatable>
 				<binding>
 					<command>nasal</command>
 					<script>controls.elevatorTrim(-1);</script>
@@ -420,7 +419,6 @@
 			<key n="55">
 				<name>7</name>
 				<desc>Elevator trim down</desc>
-				<repeatable>true</repeatable>
 				<binding>
 					<command>nasal</command>
 					<script>controls.elevatorTrim(1);</script>
@@ -471,7 +469,6 @@
 			<key n="88">
 				<name>X</name>
 				<desc>Increase field of view</desc>
-				<repeatable type="bool">true</repeatable>
 				<binding>
 					<command>nasal</command>
 					<script>libraries.fovZoom(1);</script>
@@ -496,9 +493,7 @@
 				<desc>Thrust Lever Idle</desc>
 				<binding>
 					<command>nasal</command>
-					<script>
-					libraries.doIdleThrust();
-					</script>
+					<script>libraries.doIdleThrust();</script>
 				</binding>
 			</key>
 			<key n="102">
@@ -506,9 +501,7 @@
 				<desc>Thrust Lever Full</desc>
 				<binding>
 					<command>nasal</command>
-					<script>
-					libraries.doFullThrust();
-					</script>
+					<script>libraries.doFullThrust();</script>
 				</binding>
 			</key>
 			<key n="106">
@@ -532,7 +525,6 @@
 			<key n="120">
 				<name>x</name>
 				<desc>Decrease field of view</desc>
-				<repeatable type="bool">true</repeatable>
 				<binding>
 					<command>nasal</command>
 					<script>libraries.fovZoom(-1);</script>
