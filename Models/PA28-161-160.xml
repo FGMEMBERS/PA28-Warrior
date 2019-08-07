@@ -1042,9 +1042,9 @@
 		</offsets>
 	</model>
 	
-	<model>
+	<model> <!-- Remove once GPS working -->
 		<name>kx165-2</name>
-		<path>Aircraft/IDG-PA28/Models/Instruments/kx165/kx165-2.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/kx165/kx165-1.xml</path>
 		<offsets>
 			<x-m>-1.742</x-m>
 			<y-m>0.28167</y-m>
@@ -1053,20 +1053,32 @@
 	</model>
 	
 	<model>
+		<name>kx165-2</name>
+		<path>Aircraft/IDG-PA28/Models/Instruments/kx165/kx165-2.xml</path>
+		<offsets>
+			<x-m>-1.742</x-m>
+			<y-m>0.28167</y-m>
+			<!--z-m>0.236</z-m-->
+			<z-m>0.185</z-m>
+		</offsets>
+	</model>
+	
+	<!-- Need a DME still - the one that was here is fubar -->
+	<!--model>
 		<name>dme</name>
-		<path>Aircraft/IDG-PA28/Models/Instruments/ki266/ki266.xml</path>
+		<path>Aircraft/IDG-PA28/Models/Instruments/</path>
 		<offsets>
 			<x-m>-1.72</x-m>
 			<y-m>0.28167</y-m>
 			<z-m>0.188</z-m>
 		</offsets>
-	</model>
+	</model-->
 	
 	<model>
 		<name>gtx-327</name>
 		<path>Aircraft/IDG-PA28/Models/Instruments/gtx-327/gtx-327.xml</path>
 		<offsets>
-			<x-m>-1.73</x-m>
+			<x-m>-1.735</x-m>
 			<y-m>0.28167</y-m>
 			<z-m>0.138</z-m>
 		</offsets>
