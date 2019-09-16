@@ -16,7 +16,7 @@
 	<location name="CG" unit="M">
 		<x>-1.07567</x>
 		<y>0</y>
-		<z>0.21522</z>
+		<z>-0.07598</z>
 	</location>
 	
 	<pointmass name="Left Front Seat">
@@ -24,7 +24,7 @@
 		<location name="POINTMASS" unit="M">
 			<x>-1.07567</x>
 			<y>-0.27743</y>
-			<z>0.21522</z>
+			<z>-0.07598</z>
 		</location>
 	</pointmass>
 	
@@ -33,7 +33,7 @@
 		<location name="POINTMASS" unit="M">
 			<x>-1.07567</x>
 			<y>0.27743</y>
-			<z>0.21522</z>
+			<z>-0.07598</z>
 		</location>
 	</pointmass>
 	
@@ -42,7 +42,7 @@
 		<location name="POINTMASS" unit="M">
 			<x>-1.07567</x>
 			<y>-0.27743</y>
-			<z>0.21522</z>
+			<z>-0.07598</z>
 		</location>
 	</pointmass>
 	
@@ -51,7 +51,7 @@
 		<location name="POINTMASS" unit="M">
 			<x>-1.07567</x>
 			<y>0.27743</y>
-			<z>0.21522</z>
+			<z>-0.07598</z>
 		</location>
 	</pointmass>
 	
@@ -60,7 +60,7 @@
 		<location name="POINTMASS" unit="M">
 			<x>-1.07567</x>
 			<y>0.16143</y>
-			<z>0.21522</z>
+			<z>-0.07598</z>
 		</location>
 	</pointmass>
 
