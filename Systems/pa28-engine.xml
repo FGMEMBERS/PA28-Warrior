@@ -84,8 +84,8 @@
 			<output>/controls/anti-ice/engine[0]/carb-heat</output>
 		</lag_filter>
 		
-        <fcs_function name="fcs/carb-heat-factor">
-            <function>
+		<fcs_function name="fcs/carb-heat-factor">
+			<function>
 				<table>
 					<independentVar lookup="row">fcs/carb-heat-lever</independentVar>
 					<tableData>
@@ -93,9 +93,9 @@
 						1.0  0.47500
 					</tableData>
 				</table>
-            </function>
-            <output>propulsion/engine[0]/air-intake-impedance-factor</output>
-        </fcs_function>
+			</function>
+			<output>propulsion/engine[0]/air-intake-impedance-factor</output>
+		</fcs_function>
 		
 		<fcs_function name="fcs/throttle-cmd-modified">
 			<description>Tries to make RPM behave like the real plane</description>
