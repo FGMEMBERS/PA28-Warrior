@@ -138,3 +138,9 @@ var doFullThrust = func {
 	setprop("/controls/engines/engine[0]/throttle", 1.0);
 	setprop("/controls/engines/engine[1]/throttle", 1.0);
 }
+
+var APPanel = {
+	APDisc: func() {
+		stec55x.button.DISC();
+	},
+};
