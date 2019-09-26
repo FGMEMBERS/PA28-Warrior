@@ -181,8 +181,8 @@
 					</and>
 				</condition>
 				<command>property-adjust</command>
-				<property>instrumentation/heading-indicator/offset-deg</property>
-				<step>1</step>
+				<property>it-stec55x/input/hdg</property>
+				<step>10</step>
 				<min>1</min>
 				<max>361</max>
 				<wrap>true</wrap>
@@ -196,7 +196,21 @@
 				</condition>
 				<command>property-adjust</command>
 				<property>instrumentation/heading-indicator/offset-deg</property>
-				<step>0.1</step>
+				<step>1</step>
+				<min>1</min>
+				<max>361</max>
+				<wrap>true</wrap>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>devices/status/keyboard/ctrl</property>
+						<property>devices/status/keyboard/shift</property>
+					</and>
+				</condition>
+				<command>property-adjust</command>
+				<property>instrumentation/heading-indicator/offset-deg</property>
+				<step>10</step>
 				<min>1</min>
 				<max>361</max>
 				<wrap>true</wrap>
@@ -228,8 +242,8 @@
 					</and>
 				</condition>
 				<command>property-adjust</command>
-				<property>instrumentation/heading-indicator/offset-deg</property>
-				<step>-1</step>
+				<property>it-stec55x/input/hdg</property>
+				<step>-10</step>
 				<min>1</min>
 				<max>361</max>
 				<wrap>true</wrap>
@@ -243,7 +257,21 @@
 				</condition>
 				<command>property-adjust</command>
 				<property>instrumentation/heading-indicator/offset-deg</property>
-				<step>-0.1</step>
+				<step>-1</step>
+				<min>1</min>
+				<max>361</max>
+				<wrap>true</wrap>
+			</binding>
+			<binding>
+				<condition>
+					<and>
+						<property>devices/status/keyboard/ctrl</property>
+						<property>devices/status/keyboard/shift</property>
+					</and>
+				</condition>
+				<command>property-adjust</command>
+				<property>instrumentation/heading-indicator/offset-deg</property>
+				<step>-10</step>
 				<min>1</min>
 				<max>361</max>
 				<wrap>true</wrap>
@@ -252,10 +280,7 @@
 		<hovered>
 			<binding>
 				<condition>
-					<and>
-						<not><property>devices/status/keyboard/ctrl</property></not>
-						<not><property>devices/status/keyboard/shift</property></not>
-					</and>
+					<not><property>devices/status/keyboard/ctrl</property></not>
 				</condition>
 				<command>set-tooltip</command>
 				<tooltip-id>nsa360-bug</tooltip-id>
@@ -265,16 +290,7 @@
 			</binding>
 			<binding>
 				<condition>
-					<or> <!-- XOR -->
-						<and>
-							<property>devices/status/keyboard/ctrl</property>
-							<not><property>devices/status/keyboard/shift</property></not>
-						</and>
-						<and>
-							<not><property>devices/status/keyboard/ctrl</property></not>
-							<property>devices/status/keyboard/shift</property>
-						</and>
-					</or>
+					<property>devices/status/keyboard/ctrl</property>
 				</condition>
 				<command>set-tooltip</command>
 				<tooltip-id>nsa360-offset</tooltip-id>
@@ -318,6 +334,18 @@
 		</center>
 	</animation>
 	
+	<animation>
+		<type>translate</type>
+		<object-name>card.knob</object-name>
+		<property>devices/status/keyboard/ctrl</property>
+		<factor>-0.004</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
 	<!-- Course control -->
 	<animation>
 		<type>pick</type>
@@ -327,9 +355,23 @@
 			<button>3</button>
 			<repeatable>true</repeatable>
 			<binding>
+				<condition>
+					<not><property>devices/status/keyboard/shift</property></not>
+				</condition>
 				<command>property-adjust</command>
 				<property>instrumentation/nav[0]/radials/selected-deg</property>
 				<step>1</step>
+				<min>1</min>
+				<max>361</max>
+				<wrap>true</wrap>
+			</binding>
+			<binding>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>property-adjust</command>
+				<property>instrumentation/nav[0]/radials/selected-deg</property>
+				<step>10</step>
 				<min>1</min>
 				<max>361</max>
 				<wrap>true</wrap>
@@ -340,9 +382,23 @@
 			<button>4</button>
 			<repeatable>true</repeatable>
 			<binding>
+				<condition>
+					<not><property>devices/status/keyboard/shift</property></not>
+				</condition>
 				<command>property-adjust</command>
 				<property>instrumentation/nav[0]/radials/selected-deg</property>
 				<step>-1</step>
+				<min>1</min>
+				<max>361</max>
+				<wrap>true</wrap>
+			</binding>
+			<binding>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>property-adjust</command>
+				<property>instrumentation/nav[0]/radials/selected-deg</property>
+				<step>-10</step>
 				<min>1</min>
 				<max>361</max>
 				<wrap>true</wrap>

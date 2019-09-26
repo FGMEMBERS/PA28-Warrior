@@ -70,9 +70,23 @@
 			<button>3</button>
 			<repeatable>true</repeatable>
 			<binding>
+				<condition>
+					<not><property>devices/status/keyboard/shift</property></not>
+				</condition>
 				<command>property-adjust</command>
 				<property>it-stec55x/input/hdg</property>
 				<step>1</step>
+				<min>1</min>
+				<max>361</max>
+				<wrap>true</wrap>
+			</binding>
+			<binding>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>property-adjust</command>
+				<property>it-stec55x/input/hdg</property>
+				<step>10</step>
 				<min>1</min>
 				<max>361</max>
 				<wrap>true</wrap>
@@ -83,9 +97,23 @@
 			<button>4</button>
 			<repeatable>true</repeatable>
 			<binding>
+				<condition>
+					<not><property>devices/status/keyboard/shift</property></not>
+				</condition>
 				<command>property-adjust</command>
 				<property>it-stec55x/input/hdg</property>
 				<step>-1</step>
+				<min>1</min>
+				<max>361</max>
+				<wrap>true</wrap>
+			</binding>
+			<binding>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>property-adjust</command>
+				<property>it-stec55x/input/hdg</property>
+				<step>-10</step>
 				<min>1</min>
 				<max>361</max>
 				<wrap>true</wrap>
@@ -128,9 +156,23 @@
 			<button>3</button>
 			<repeatable>true</repeatable>
 			<binding>
+				<condition>
+					<not><property>devices/status/keyboard/shift</property></not>
+				</condition>
 				<command>property-adjust</command>
 				<property>instrumentation/heading-indicator/offset-deg</property>
 				<step>1</step>
+				<min>1</min>
+				<max>361</max>
+				<wrap>true</wrap>
+			</binding>
+			<binding>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>property-adjust</command>
+				<property>instrumentation/heading-indicator/offset-deg</property>
+				<step>10</step>
 				<min>1</min>
 				<max>361</max>
 				<wrap>true</wrap>
@@ -141,9 +183,23 @@
 			<button>4</button>
 			<repeatable>true</repeatable>
 			<binding>
+				<condition>
+					<not><property>devices/status/keyboard/shift</property></not>
+				</condition>
 				<command>property-adjust</command>
 				<property>instrumentation/heading-indicator/offset-deg</property>
 				<step>-1</step>
+				<min>1</min>
+				<max>361</max>
+				<wrap>true</wrap>
+			</binding>
+			<binding>
+				<condition>
+					<property>devices/status/keyboard/shift</property>
+				</condition>
+				<command>property-adjust</command>
+				<property>instrumentation/heading-indicator/offset-deg</property>
+				<step>-10</step>
 				<min>1</min>
 				<max>361</max>
 				<wrap>true</wrap>
