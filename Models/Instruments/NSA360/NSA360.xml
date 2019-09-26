@@ -16,6 +16,7 @@
 	<animation>
 		<type>material</type>
 		<object-name>heading.card</object-name>
+		<object-name>heading.bug</object-name>
 		<object-name>hdg.flag</object-name>
 		<object-name>nav.flag</object-name>
 		<object-name>gs.flag</object-name>
@@ -23,6 +24,8 @@
 		<object-name>gs.scale</object-name>
 		<object-name>cdi.needle.1</object-name>
 		<object-name>cdi.needle.2</object-name>
+		<object-name>Plane</object-name>
+		<object-name>Plane.004</object-name>
 		<emission>
 			<red>0.6</red>
 			<green>0.6</green>

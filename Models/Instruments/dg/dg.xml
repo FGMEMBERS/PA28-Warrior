@@ -17,6 +17,7 @@
 		<object-name>Face</object-name>
 		<object-name>Front</object-name>
 		<object-name>HdgBug</object-name>
+		<object-name>transparent</object-name>
 		<emission>
 			<red>0.6</red>
 			<green>0.6</green>
