@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <!-- Garmin GTX-327 Transponder -->
-<!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
+<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
 <!-- 3D and Texture by Jonathan Redpath (legoboyvdlp) -->
 
 <PropertyList>
@@ -27,9 +27,9 @@
 		<type>material</type>
 		<object-name>Screen.Day</object-name>
 		<emission>
-			<red>0.2</red>
-			<green>0.2</green>
-			<blue>0.2</blue>
+			<red>0.1</red>
+			<green>0.1</green>
+			<blue>0.1</blue>
 		</emission>
 	</animation>
 	
@@ -37,9 +37,9 @@
 		<type>material</type>
 		<object-name>Screen.Night</object-name>
 		<emission>
-			<red>0.4</red>
-			<green>0.4</green>
-			<blue>0.4</blue>
+			<red>0.6</red>
+			<green>0.6</green>
+			<blue>0.6</blue>
 		</emission>
 	</animation>
 	
@@ -112,6 +112,38 @@
 	
 	<animation>
 		<type>select</type>
+		<object-name>Dash1.ind</object-name>
+		<object-name>Dash1Sel.ind</object-name>
+		<object-name>Dash2.ind</object-name>
+		<object-name>Dash2Sel.ind</object-name>
+		<object-name>Dash3.ind</object-name>
+		<object-name>Dash3Sel.ind</object-name>
+		<object-name>Dash4.ind</object-name>
+		<object-name>Dash4Sel.ind</object-name>
+		<object-name>Numbers1.ind</object-name>
+		<object-name>NumbersSel1.ind</object-name>
+		<object-name>Numbers2.ind</object-name>
+		<object-name>NumbersSel2.ind</object-name>
+		<object-name>Numbers3.ind</object-name>
+		<object-name>NumbersSel3.ind</object-name>
+		<object-name>Numbers4.ind</object-name>
+		<object-name>NumbersSel4.ind</object-name>
+		<condition>
+			<and>
+				<not-equals>
+					<property>instrumentation/it-gtx327/annun/test</property>
+					<value>1</value>
+				</not-equals>
+				<not-equals>
+					<property>instrumentation/it-gtx327/annun/fail</property>
+					<value>1</value>
+				</not-equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
 		<object-name>ALT.ind</object-name>
 		<condition>
 			<equals>
@@ -152,6 +184,330 @@
 				<value>stby</value>
 			</equals>
 		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Dash1.ind</object-name>
+		<condition>
+			<and>
+				<not-equals>
+					<property>instrumentation/it-gtx327/annun/sel</property>
+					<value>1</value>
+				</not-equals>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/code-1</property>
+					<value>-1</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Dash2.ind</object-name>
+		<condition>
+			<and>
+				<not-equals>
+					<property>instrumentation/it-gtx327/annun/sel</property>
+					<value>2</value>
+				</not-equals>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/code-2</property>
+					<value>-1</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Dash3.ind</object-name>
+		<condition>
+			<and>
+				<not-equals>
+					<property>instrumentation/it-gtx327/annun/sel</property>
+					<value>3</value>
+				</not-equals>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/code-3</property>
+					<value>-1</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Dash4.ind</object-name>
+		<condition>
+			<and>
+				<not-equals>
+					<property>instrumentation/it-gtx327/annun/sel</property>
+					<value>4</value>
+				</not-equals>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/code-4</property>
+					<value>-1</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Dash1Sel.ind</object-name>
+		<condition>
+			<and>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/sel</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/code-1</property>
+					<value>-1</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Dash2Sel.ind</object-name>
+		<condition>
+			<and>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/sel</property>
+					<value>2</value>
+				</equals>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/code-2</property>
+					<value>-1</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Dash3Sel.ind</object-name>
+		<condition>
+			<and>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/sel</property>
+					<value>3</value>
+				</equals>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/code-3</property>
+					<value>-1</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Dash4Sel.ind</object-name>
+		<condition>
+			<and>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/sel</property>
+					<value>4</value>
+				</equals>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/code-4</property>
+					<value>-1</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Numbers1.ind</object-name>
+		<condition>
+			<and>
+				<not-equals>
+					<property>instrumentation/it-gtx327/annun/sel</property>
+					<value>1</value>
+				</not-equals>
+				<not-equals>
+					<property>instrumentation/it-gtx327/annun/code-1</property>
+					<value>-1</value>
+				</not-equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Numbers2.ind</object-name>
+		<condition>
+			<and>
+				<not-equals>
+					<property>instrumentation/it-gtx327/annun/sel</property>
+					<value>2</value>
+				</not-equals>
+				<not-equals>
+					<property>instrumentation/it-gtx327/annun/code-2</property>
+					<value>-1</value>
+				</not-equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Numbers3.ind</object-name>
+		<condition>
+			<and>
+				<not-equals>
+					<property>instrumentation/it-gtx327/annun/sel</property>
+					<value>3</value>
+				</not-equals>
+				<not-equals>
+					<property>instrumentation/it-gtx327/annun/code-3</property>
+					<value>-1</value>
+				</not-equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Numbers4.ind</object-name>
+		<condition>
+			<and>
+				<not-equals>
+					<property>instrumentation/it-gtx327/annun/sel</property>
+					<value>4</value>
+				</not-equals>
+				<not-equals>
+					<property>instrumentation/it-gtx327/annun/code-4</property>
+					<value>-1</value>
+				</not-equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Numbers1Sel.ind</object-name>
+		<condition>
+			<and>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/sel</property>
+					<value>1</value>
+				</equals>
+				<not-equals>
+					<property>instrumentation/it-gtx327/annun/code-1</property>
+					<value>-1</value>
+				</not-equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Numbers2Sel.ind</object-name>
+		<condition>
+			<and>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/sel</property>
+					<value>2</value>
+				</equals>
+				<not-equals>
+					<property>instrumentation/it-gtx327/annun/code-2</property>
+					<value>-1</value>
+				</not-equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Numbers3Sel.ind</object-name>
+		<condition>
+			<and>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/sel</property>
+					<value>3</value>
+				</equals>
+				<not-equals>
+					<property>instrumentation/it-gtx327/annun/code-3</property>
+					<value>-1</value>
+				</not-equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Numbers4Sel.ind</object-name>
+		<condition>
+			<and>
+				<equals>
+					<property>instrumentation/it-gtx327/annun/sel</property>
+					<value>4</value>
+				</equals>
+				<not-equals>
+					<property>instrumentation/it-gtx327/annun/code-4</property>
+					<value>-1</value>
+				</not-equals>
+			</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>textranslate</type>
+		<object-name>Numbers1.ind</object-name>
+		<object-name>Numbers1Sel.ind</object-name>
+		<property>instrumentation/it-gtx327/annun/code-1</property>
+		<factor>0.0975</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>textranslate</type>
+		<object-name>Numbers2.ind</object-name>
+		<object-name>Numbers2Sel.ind</object-name>
+		<property>instrumentation/it-gtx327/annun/code-2</property>
+		<factor>0.0975</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>textranslate</type>
+		<object-name>Numbers3.ind</object-name>
+		<object-name>Numbers3Sel.ind</object-name>
+		<property>instrumentation/it-gtx327/annun/code-3</property>
+		<factor>0.0975</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>textranslate</type>
+		<object-name>Numbers4.ind</object-name>
+		<object-name>Numbers4Sel.ind</object-name>
+		<property>instrumentation/it-gtx327/annun/code-4</property>
+		<factor>0.0975</factor>
+		<step>1</step>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+		</axis>
 	</animation>
 	
 	<animation>
@@ -368,6 +724,376 @@
 		<type>translate</type>
 		<object-name>BTNVFR</object-name>
 		<property>instrumentation/it-gtx327/input/vfr-button</property>
+		<factor alias="../../params/button-translate"/>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>BTN0</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/it-gtx327/input/btn0-button</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/it-gtx327/input/btn0-button</property>
+					<value>0</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>gtx327.button.Number(0);</script>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>BTN0</object-name>
+		<property>instrumentation/it-gtx327/input/btn0-button</property>
+		<factor alias="../../params/button-translate"/>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>BTN1</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/it-gtx327/input/btn1-button</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/it-gtx327/input/btn1-button</property>
+					<value>0</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>gtx327.button.Number(1);</script>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>BTN1</object-name>
+		<property>instrumentation/it-gtx327/input/btn1-button</property>
+		<factor alias="../../params/button-translate"/>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>BTN2</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/it-gtx327/input/btn2-button</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/it-gtx327/input/btn2-button</property>
+					<value>0</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>gtx327.button.Number(2);</script>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>BTN2</object-name>
+		<property>instrumentation/it-gtx327/input/btn2-button</property>
+		<factor alias="../../params/button-translate"/>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>BTN3</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/it-gtx327/input/btn3-button</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/it-gtx327/input/btn3-button</property>
+					<value>0</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>gtx327.button.Number(3);</script>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>BTN3</object-name>
+		<property>instrumentation/it-gtx327/input/btn3-button</property>
+		<factor alias="../../params/button-translate"/>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>BTN4</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/it-gtx327/input/btn4-button</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/it-gtx327/input/btn4-button</property>
+					<value>0</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>gtx327.button.Number(4);</script>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>BTN4</object-name>
+		<property>instrumentation/it-gtx327/input/btn4-button</property>
+		<factor alias="../../params/button-translate"/>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>BTN5</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/it-gtx327/input/btn5-button</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/it-gtx327/input/btn5-button</property>
+					<value>0</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>gtx327.button.Number(5);</script>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>BTN5</object-name>
+		<property>instrumentation/it-gtx327/input/btn5-button</property>
+		<factor alias="../../params/button-translate"/>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>BTN6</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/it-gtx327/input/btn6-button</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/it-gtx327/input/btn6-button</property>
+					<value>0</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>gtx327.button.Number(6);</script>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>BTN6</object-name>
+		<property>instrumentation/it-gtx327/input/btn6-button</property>
+		<factor alias="../../params/button-translate"/>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>BTN7</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/it-gtx327/input/btn7-button</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/it-gtx327/input/btn7-button</property>
+					<value>0</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>gtx327.button.Number(7);</script>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>BTN7</object-name>
+		<property>instrumentation/it-gtx327/input/btn7-button</property>
+		<factor alias="../../params/button-translate"/>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>BTNCLR</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/it-gtx327/input/clr-button</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/it-gtx327/input/clr-button</property>
+					<value>0</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>gtx327.button.CLR();</script>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>BTNCLR</object-name>
+		<property>instrumentation/it-gtx327/input/clr-button</property>
+		<factor alias="../../params/button-translate"/>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>BTNCRSR</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<binding>
+				<command>property-assign</command>
+				<property>instrumentation/it-gtx327/input/crsr-button</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>instrumentation/it-gtx327/input/crsr-button</property>
+					<value>0</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>gtx327.button.CRSR();</script>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>BTNCRSR</object-name>
+		<property>instrumentation/it-gtx327/input/crsr-button</property>
 		<factor alias="../../params/button-translate"/>
 		<axis>
 			<x>1</x>

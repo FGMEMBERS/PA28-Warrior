@@ -5,11 +5,8 @@
 		<model>
 			<livery>
 				<name>N3077M</name>
-				<texture>Liveries/N3077M.png</texture>
+				<texture>Liveries/PA28-WarriorII.png</texture>
 			</livery>
-			<acnum>
-				<texture>Liveries/N3077M-acnum.jpg</texture>
-			</acnum>
 		</model>
 	</sim>
 </PropertyList>

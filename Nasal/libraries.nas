@@ -1,8 +1,8 @@
-# PA28-161 Libraries
-# Joshua Davidson (it0uchpods)
+# PA28 Libraries
+# Joshua Davidson (Octal450)
 
 print("-----------------------------------------------------------------------------");
-print("Copyright (c) 2017-2019 Joshua Davidson (it0uchpods)");
+print("Copyright (c) 2017-2019 Joshua Davidson (Octal450)");
 print("-----------------------------------------------------------------------------");
 
 setprop("/sim/menubar/default/menu[2]/item[2]/enabled", 0);
@@ -52,9 +52,10 @@ setlistener("/sim/sounde/knob", func {
 });
 
 var systemsInit = func {
+	crashStress.reset();
 	systems.ELEC.init();
-	systems.INIT.ENG();
-	systems.INIT.FUEL();
+	systems.FUEL.init();
+	systems.ENG.init();
 	variousReset();
 	setprop("/engines/engine[0]/fuel-flow-gph", 0.0);
 	setprop("/sim/model/material/LandingLight/factor", 0.0);
@@ -78,17 +79,15 @@ var systemsLoop = maketimer(0.1, func {
 
 var variousReset = func {
 	setprop("/controls/switches/beacon", 1);
-	setprop("/controls/switches/fuel-pump", 0);
+	setprop("/controls/switches/cabin-heat-cmd", 0);
+	setprop("/controls/switches/defroster-cmd", 0);
 	setprop("/controls/switches/landing-light", 0);
 	setprop("/controls/switches/nav-lights-factor", 0);
 	setprop("/controls/switches/panel-lights-factor", 0);
 	setprop("/controls/switches/pitot-heat", 0);
 	setprop("/controls/switches/strobe-lights", 0);
-	setprop("/systems/fuel/selected-tank", 1);
-	setprop("/controls/anti-ice/engine[0]/carb-heat-cmd", 0);
-	setprop("/controls/engines/engine[0]/magnetos-switch", 0);
-	setprop("/controls/engines/engine[0]/mixture", 0);
 	setprop("/fdm/jsbsim/extra/door-main-cmd", 0);
+	setprop("/fdm/jsbsim/extra/door-baggage-cmd", 0);
 }
 
 if (getprop("/controls/flight/auto-coordination") == 1) {
@@ -128,3 +127,20 @@ var elevatorTrimTimer = maketimer(0.05, func {
 		setprop("/it-stec55x/input/man-trim", 0);
 	}
 });
+
+# Various Other Stuff
+var doIdleThrust = func {
+	setprop("/controls/engines/engine[0]/throttle", 0.0);
+	setprop("/controls/engines/engine[1]/throttle", 0.0);
+}
+
+var doFullThrust = func {
+	setprop("/controls/engines/engine[0]/throttle", 1.0);
+	setprop("/controls/engines/engine[1]/throttle", 1.0);
+}
+
+var APPanel = {
+	APDisc: func() {
+		stec55x.button.DISC();
+	},
+};

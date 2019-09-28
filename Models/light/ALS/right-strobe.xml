@@ -2,7 +2,7 @@
 
 <!--
 ##############################################
-# Copyright (c) Joshua Davidson (it0uchpods) #
+# Copyright (c) Joshua Davidson (Octal450) #
 ##############################################
 -->
 
@@ -14,7 +14,7 @@
 
  
 <effect>
-   <inherits-from>Aircraft/PA28-Warrior/Models/lights/ALS/right-strobe</inherits-from>
+   <inherits-from>Aircraft/IDG-PA28/Models/lights/ALS/right-strobe</inherits-from>
    <object-name>right-strobeals</object-name>
  </effect>
  

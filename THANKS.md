@@ -1,3 +1,2 @@
 Thank you to:
-c172p-team for many instruments, and 3D models, JSB engines,
-TheAlexP for major 3D contributions,
+c172p-team for some instruments, and 3D models, JSB engines base

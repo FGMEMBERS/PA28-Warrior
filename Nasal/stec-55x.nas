@@ -1,5 +1,5 @@
 # S-TEC Fifty Five X Autopilot System
-# Copyright (c) 2019 Joshua Davidson (it0uchpods)
+# Copyright (c) 2019 Joshua Davidson (Octal450)
 
 # Initialize variables
 var cdiDefl = 0;
@@ -197,7 +197,7 @@ var ITAF = {
 		} else {
 			systemAlive.setBoolValue(0);
 			if (rollMode != -1 or pitchMode != -1) {
-				ITAF.killAP(); # Called with ITAF.killAP not me.killAP because this function is called from the timer outside this class
+				me.killAP();
 			}
 		}
 		
@@ -214,7 +214,7 @@ var ITAF = {
 				powerUpTest.setValue(-1);
 			}
 			if (rollMode != -1 or pitchMode != -1) {
-				ITAF.killAP(); # Called with ITAF.killAP not me.killAP because this function is called from the timer outside this class
+				me.killAP();
 			}
 		}
 		
@@ -259,7 +259,7 @@ var ITAF = {
 				FAIL_annun.setBoolValue(1);
 				powerUpTest.setValue(0);
 				if (rollMode != -1 or pitchMode != -1) {
-					ITAF.killAP(); # Called with ITAF.killAP not me.killAP because this function is called from the timer outside this class
+					me.killAP();
 				}
 			} else if (powerUpTestAnnun == 1 or ((rollMode == 1 or rollMode == 3 or rollMode == 7 or CNAV or CREV) and OBSActive.getBoolValue() != 1)) {
 				FAIL_annun.setBoolValue(1);
@@ -540,7 +540,7 @@ var ITAF = {
 		
 		# Man Trim AP DISC
 		if (manTrimSW.getValue() != 0 and pitch.getValue() > -1 and masterSW.getValue() == 2) {
-			ITAF.killAPPitch(); # Called with ITAF.killAPPitch not me.killAPPitch because this function is called from the timer outside this class
+			me.killAPPitch();
 		}
 		
 		# Yaw Damper Logic
@@ -569,10 +569,14 @@ var ITAF = {
 	killAP: func() { # Kill all AP modes
 		NAVt.stop();
 		GPSt.stop();
+		GSt.stop();
+		GSArmed.setBoolValue(0);
 		roll.setValue(-1);
 		pitch.setValue(-1);
 	},
 	killAPPitch: func() { # Kill only the pitch modes
+		GSt.stop();
+		GSArmed.setBoolValue(0);
 		pitch.setValue(-1);
 	},
 };
@@ -968,5 +972,5 @@ var NAVt = maketimer(0.5, NAVchk);
 var GPSt = maketimer(0.5, GPSchk);
 var REVt = maketimer(0.5, REVchk);
 var GSt = maketimer(0.5, GSchk);
-var update = maketimer(0.1, ITAF.loop);
-var updateFast = maketimer(0.05, ITAF.loopFast);
+var update = maketimer(0.1, ITAF, ITAF.loop);
+var updateFast = maketimer(0.05, ITAF, ITAF.loopFast);

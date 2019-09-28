@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
+<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
 
 <!-- PA28-161 Aircraft Config Dialog -->
 
@@ -13,7 +13,7 @@
 		<layout>hbox</layout>
 		<text>
 			<halign>left</halign>
-			<label>Aircraft Configuration V1.5.0</label>
+			<label>Aircraft Configuration V1.5.1</label>
 		</text>
 		<empty><stretch>1</stretch></empty>
 		<button>
@@ -204,30 +204,6 @@
 				</binding>
 			</button>
 
-			<hrule/>
-			
-			<checkbox>
-				<label>Flt Dir Equipped</label>
-				<halign>left</halign>
-				<enable>
-					<equals> <!-- Changing this while the AP is running could cause problems -->
-						<property>/it-stec55x/output/roll</property>
-						<value>-1</value>
-					</equals>
-				</enable>
-				<property>/it-stec55x/settings/fd-equipped</property>
-				<binding>
-					<command>dialog-apply</command>
-				</binding>
-				<binding>
-					<command>nasal</command>
-					<script>
-					acconfig.writeSettings();
-					</script>
-				</binding>
-				<live>true</live>
-			</checkbox>
-			
 			<hrule/>
 			
 			<text>

@@ -3,11 +3,19 @@
 <PropertyList>
 
 	<path>mag_switch.ac</path>
+	
+	 <animation>
+		<type>scale</type>
+		<x-offset>0.85</x-offset>
+		<y-offset>0.85</y-offset>
+		<z-offset>0.85</z-offset>
+	</animation>
 
 	<animation>
 		<type>pick</type>
 		<object-name>key</object-name>
-		<object-name>magsw</object-name>
+		<object-name>mags.outer</object-name>
+		<object-name>mags.inner</object-name>
 		<action>
 			<button>0</button>
 			<button>3</button>
@@ -79,6 +87,7 @@
 	<animation>
 		<name>mags-key</name>
 		<type>rotate</type>
+		<object-name>mags.inner</object-name>
 		<object-name>key</object-name>
 		<property>controls/engines/engine[0]/magnetos-switch</property>
 		<factor>30</factor>

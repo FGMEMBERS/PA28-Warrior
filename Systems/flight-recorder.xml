@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
+<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
 
 <!-- PA28 Flight Recorder -->
 
@@ -11,15 +11,15 @@
 		<name>PA28 Flight Recorder</name>
 		
 		<!-- Include Generic Stuff -->
-		<signals include="/Aircraft/Generic/flightrecorder/components/position.xml" />
-		<signals include="/Aircraft/Generic/flightrecorder/components/controls.xml" />
-		<signals include="/Aircraft/Generic/flightrecorder/components/engine-piston-prop.xml">
+		<signals include="Aircraft/Generic/flightrecorder/components/position.xml" />
+		<signals include="Aircraft/Generic/flightrecorder/components/controls.xml" />
+		<signals include="Aircraft/Generic/flightrecorder/components/engine-piston-prop.xml">
 			<count type="int">1</count>
 		</signals>
-		<signals include="/Aircraft/Generic/flightrecorder/components/gear-fixed.xml">
+		<signals include="Aircraft/Generic/flightrecorder/components/gear-fixed.xml">
 			<count type="int">3</count>
 		</signals>
-		<signals include="/Aircraft/Generic/flightrecorder/components/tanks.xml">
+		<signals include="Aircraft/Generic/flightrecorder/components/tanks.xml">
 			<count type="int">3</count>
 		</signals>
 		
@@ -35,23 +35,23 @@
 			</signal>
 			<signal>
 				<type>double</type>
-				<property>/surface-positions/left-aileron-deg</property>
+				<property>/surface-positions/left-aileron-pos-norm</property>
 			</signal>
 			<signal>
 				<type>double</type>
-				<property>/surface-positions/right-aileron-deg</property>
+				<property>/surface-positions/right-aileron-pos-norm</property>
 			</signal>
 			<signal>
 				<type>double</type>
-				<property>/surface-positions/elevator-deg</property>
+				<property>/surface-positions/elevator-pos-norm</property>
 			</signal>
 			<signal>
 				<type>double</type>
-				<property>/surface-positions/elevator-tab-deg</property>
+				<property>/surface-positions/speedbrake-pos-norm</property> <!-- Trim Tab -->
 			</signal>
 			<signal>
 				<type>double</type>
-				<property>/surface-positions/rudder-deg</property>
+				<property>/surface-positions/rudder-pos-norm</property>
 			</signal>
 			<signal>
 				<type>double</type>

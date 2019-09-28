@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
+<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
 
 <!-- PA28-161 Aircraft Config Dialog -->
 
@@ -39,11 +39,7 @@
 		
 		<text>
 			<halign>left</halign>
-			<label>PA28-Warrior by it0uchpods Design Group</label>
-		</text>
-		<text>
-			<halign>left</halign>
-			<label>Joshua Davidson (it0uchpods), Jonanthan Redpath (legoboyvdlp)</label>
+			<label>IDG PA28 Pre V1.0</label>
 		</text>
 		
 		<hrule/>
@@ -79,11 +75,19 @@
 		</text>
 		<text>
 			<halign>left</halign>
-			<label>c - CWS Button (hold)</label>
+			<label>C - CWS Button (hold)</label>
 		</text>
 		<text>
 			<halign>left</halign>
-			<label>j - Switch Tanks</label>
+			<label>E - Set Idle Thrust</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>F - Set Full Thrust</label>
+		</text>
+		<text>
+			<halign>left</halign>
+			<label>J - Switch Tanks</label>
 		</text>
 		<text>
 			<halign>left</halign>

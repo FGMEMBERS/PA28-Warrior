@@ -1,8 +1,9 @@
-<!-- PA28-161 FCS -->
+<?xml version="1.0"?>
 
-<!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
+<!-- Piper PA28 FCS -->
+<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
 
-<system name="PA28-161: FCS">
+<system name="PA28: FCS">
 	
 	<channel name="Control Inputs">
 		
@@ -88,20 +89,10 @@
 			<input>/controls/flight/rudder-trim</input>
 			<c1>20</c1>
 		</lag_filter>
-		
-		<lag_filter name="fcs/parking-brake-lever">
-			<input>/controls/gear/brake-parking</input>
-			<c1>20</c1>
-		</lag_filter>
-		
-		<lag_filter name="/systems/fuel/selected-tank-knb">
-			<input>/systems/fuel/selected-tank</input>
-			<c1>20</c1>
-		</lag_filter>
 	
 	</channel>
 	
-	<channel name="Roll">
+	<channel name="Ailerons">
 		
 		<aerosurface_scale name="fcs/aileron-left-deg">
 			<input>fcs/aileron-yoke</input>
@@ -109,7 +100,7 @@
 				<min>-20</min>
 				<max>15</max>
 			</range>
-			<output>/surface-positions/left-aileron-deg</output>
+			<output>fcs/left-aileron-pos-norm</output> <!-- Is really degrees, for MP transit -->
 		</aerosurface_scale>
 		
 		<aerosurface_scale name="fcs/aileron-right-deg">
@@ -118,38 +109,39 @@
 				<min>-20</min>
 				<max>15</max>
 			</range>
-			<output>/surface-positions/right-aileron-deg</output>
+			<output>fcs/right-aileron-pos-norm</output> <!-- Is really degrees, for MP transit -->
 		</aerosurface_scale>
 	
 	</channel>
 	
-	<channel name="Pitch">
+	<channel name="Stabilator">
 		
-		<aerosurface_scale name="fcs/elevator-trim-input">
-			<input>fcs/elevator-trim-knob</input>
-			<range>
-				<min>-0.75</min>
-				<max>0.75</max>
-			</range>
-		</aerosurface_scale>
-		
-		<scheduled_gain name="fcs/elevator-trim-offset">
-			<input>fcs/elevator-trim-input</input>
-			<table>
-				<independentVar lookup="row">velocities/vc-kts</independentVar>
-				<tableData>
-					15 0.0
-					25 1.0
-				</tableData>
-			</table>
-		</scheduled_gain> 
+		<fcs_function name="fcs/elevator-trim-offset">
+			<description>Pretends to slew neutral force point on stabilator without limiting range of yoke</description>
+			<function>
+				<product>
+					<property>fcs/elevator-trim-knob</property>
+					<value>0.75</value>
+					<table>
+						<independentVar lookup="row">fcs/elevator-yoke</independentVar> <!-- Fade out trim bias with yoke movement, prevents authority loss due to trim which doesn't happen on the PA28 -->
+						<independentVar lookup="column">aero/qbar-psf</independentVar> <!-- Need airflow for trim tab to effect -->
+						<tableData>
+							    2     5
+							-1  0.00  0.00
+							 0  0.00  0.75
+							 1  0.00  0.00
+						</tableData>
+					</table>
+				</product>
+			</function>
+		</fcs_function>
 		
 		<summer name="fcs/pitch-input">
 			<input>fcs/elevator-yoke</input>
 			<input>fcs/elevator-trim-offset</input>
 			<clipto>
-				<min>-1</min>
-				<max>1</max>
+				<min>-1.0</min>
+				<max>1.0</max>
 			</clipto>
 		</summer>
 		
@@ -159,7 +151,7 @@
 				<min>-12</min>
 				<max>12</max>
 			</range>
-			<output>/surface-positions/elevator-deg</output>
+			<output>fcs/elevator-pos-norm</output> <!-- Is really degrees, but for MP transit -->
 		</aerosurface_scale>
 		
 		<fcs_function name="fcs/elevator-tab-deg">
@@ -167,22 +159,18 @@
 				<sum>
 					<property>fcs/elevator-deg</property>
 					<product>
-						<property>fcs/elevator-trim-input</property>
+						<property>fcs/elevator-trim-knob</property>
 						<value>-9</value>
 					</product>
-					<value>-3</value>
+					<value>-2</value>
 				</sum>
 			</function>
-			<output>/surface-positions/elevator-tab-deg</output>
-			<clipto>
-				<min>-15</min>
-				<max>9</max>
-			</clipto>
+			<output>fcs/speedbrake-pos-norm</output> <!-- Is really degrees, but for MP transit -->
 		</fcs_function>
 	
 	</channel>
 	
-	<channel name="Yaw">
+	<channel name="Rudder">
 		
 		<summer name="fcs/yaw-input">
 			<input>fcs/rudder-pedal</input>
@@ -199,7 +187,7 @@
 				<min>-16</min>
 				<max>16</max>
 			</range>
-			<output>/surface-positions/rudder-deg</output>
+			<output>fcs/rudder-pos-norm</output> <!-- Is really degrees, but for MP transit -->
 		</aerosurface_scale>
 	
 	</channel>
@@ -257,8 +245,8 @@
 					<independentVar lookup="column">fcs/steer-switch</independentVar>
 					<tableData>
 							   -1     0    1
-						 0.500  00.0  0.0  00.0
-						 1.000 -50.0  0.0  50.0
+						 0.250  00.0  0.0  00.0
+						 0.500 -30.0  0.0  30.0
 					</tableData>
 				</table>
 			</function>
@@ -266,7 +254,7 @@
 		
 		<actuator name="fcs/steer-deg">
 			<input>fcs/steer-function</input>
-			<rate_limit>190</rate_limit>
+			<rate_limit>80</rate_limit>
 			<output>fcs/steer-pos-deg</output>
 		</actuator>
 	
@@ -293,13 +281,24 @@
 			<input>extra/door-main-input</input>
 			<c1>16.0</c1>
 		</lag_filter>
+		
+		<lag_filter name="extra/door-baggage-norm">
+			<input>extra/door-baggage-cmd</input>
+			<c1>16.0</c1>
+		</lag_filter>
 	
 	</channel>
 	
 	<channel name="Brakes">
 		
-		<summer name="fcs/left-brake-summer">
+		<pure_gain name="fcs/left-brake-pedal">
 			<input>/controls/gear/brake-left</input>
+			<gain>1.0</gain>
+			<output>/engines/engine[3]/n1</output> <!-- Hack to bring left brake pedal over MP -->
+		</pure_gain>
+		
+		<summer name="fcs/left-brake-summer">
+			<input>fcs/left-brake-pedal</input>
 			<input>/controls/gear/brake-parking</input>
 			<clipto>
 				<min>0</min>
@@ -310,13 +309,19 @@
 		<switch name="rubbish/left-brake-cmd-norm">
 			<default value="fcs/left-brake-summer"/>
 			<test value="0">
-				/systems/failures/l-brake eq 1
+				/systems/failures/misc/brake-l eq 1
 			</test>
 			<output>fcs/left-brake-cmd-norm</output>
 		</switch>
 		
-		<summer name="fcs/right-brake-summer">
+		<pure_gain name="fcs/right-brake-pedal">
 			<input>/controls/gear/brake-right</input>
+			<gain>1.0</gain>
+			<output>/engines/engine[3]/n2</output> <!-- Hack to bring right brake pedal over MP -->
+		</pure_gain>
+		
+		<summer name="fcs/right-brake-summer">
+			<input>fcs/right-brake-pedal</input>
 			<input>/controls/gear/brake-parking</input>
 			<clipto>
 				<min>0</min>
@@ -327,7 +332,7 @@
 		<switch name="rubbish/right-brake-cmd-norm">
 			<default value="fcs/right-brake-summer"/>
 			<test value="0">
-				/systems/failures/r-brake eq 1
+				/systems/failures/misc/brake-r eq 1
 			</test>
 			<output>fcs/right-brake-cmd-norm</output>
 		</switch>

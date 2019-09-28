@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
+<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
 
 <PropertyList>
 
@@ -8,7 +8,6 @@
 		<name>Gear AGL Altitude FT</name>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<update-interval-secs type="double">0.05</update-interval-secs>
 		<input>
 			<expression>
 				<dif>
@@ -18,15 +17,12 @@
 			</expression>
 		</input>
 		<output>/position/gear-agl-ft</output>
-		<min>0</min>
-		<max>50000</max>
 	</filter>
 	
 	<filter>
 		<name>Gear AGL Altitude M</name>
 		<type>gain</type>
 		<gain>1.0</gain>
-		<update-interval-secs type="double">0.05</update-interval-secs>
 		<input>
 			<expression>
 				<product>
@@ -36,8 +32,6 @@
 			</expression>
 		</input>
 		<output>/position/gear-agl-m</output>
-		<min>0</min>
-		<max>50000</max>
 	</filter>
 	
 	<logic> <!-- Because this is a "bound" property, whatever that is, so directly from JSBsim doesn't work... -->
@@ -55,18 +49,18 @@
 		<name>CDI0 lowpass</name>
 		<debug>false</debug>
 		<type>exponential</type>
-		<input>/instrumentation/nav[0]/heading-needle-deflection</input>
-		<output>/instrumentation/nav[0]/filtered-cdiNAV0-deflection</output>
-		<filter-time>2.0</filter-time>
+		<input>/instrumentation/nav[0]/heading-needle-deflection-norm</input>
+		<output>/instrumentation/nav[0]/heading-needle-deflection-norm-lag</output>
+		<filter-time>0.64</filter-time>
 	</filter>
 
 	<filter>
 		<name>CDI1 lowpass</name>
 		<debug>false</debug>
 		<type>exponential</type>
-		<input>/instrumentation/nav[1]/heading-needle-deflection</input>
-		<output>/instrumentation/nav[1]/filtered-cdiNAV1-deflection</output>
-		<filter-time>2.0</filter-time>
+		<input>/instrumentation/nav[1]/heading-needle-deflection-norm</input>
+		<output>/instrumentation/nav[1]/heading-needle-deflection-norm-lag</output>
+		<filter-time>0.64</filter-time>
 	</filter>
 
 	<filter>
@@ -74,8 +68,8 @@
 		<debug>false</debug>
 		<type>exponential</type>
 		<input>/instrumentation/nav[0]/gs-needle-deflection-norm</input>
-		<output>/instrumentation/nav[0]/filtered-gsNAV0-deflection</output>
-		<filter-time>2.0</filter-time>
+		<output>/instrumentation/nav[0]/gs-needle-deflection-norm-lag</output>
+		<filter-time>0.64</filter-time>
 	</filter>
 
 	<filter>
@@ -83,8 +77,8 @@
 		<debug>false</debug>
 		<type>exponential</type>
 		<input>/instrumentation/nav[1]/gs-needle-deflection-norm</input>
-		<output>/instrumentation/nav[1]/filtered-gsNAV1-deflection</output>
-		<filter-time>2.0</filter-time>
+		<output>/instrumentation/nav[1]/gs-needle-deflection-norm-lag</output>
+		<filter-time>0.64</filter-time>
 	</filter>
 	
 	<filter>
@@ -232,8 +226,8 @@
 		<name>Ampere lowpass</name>
 		<debug>false</debug>
 		<type>exponential</type>
-		<input>/systems/electrical/altn-amp-calc</input>
-		<output>/systems/electrical/altn-amp-lag</output>
+		<input>/systems/electrical/sources/alt/amp-calc</input>
+		<output>/systems/electrical/sources/alt/amp-calc-lag</output>
 		<filter-time>0.16</filter-time>
 	</filter>
 	
@@ -244,13 +238,13 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/systems/electrical/bus/elec1</property>
+					<property>/systems/electrical/bus/main</property>
 					<value>8</value>
 				</less-than>
 			</condition>
 			<value>0</value>
 		</input>
-		<input>/fdm/jsbsim/fcs/egt-feedback</input>
+		<input>/fdm/jsbsim/fcs/egt-switch</input>
 		<output>/engines/engine[0]/egt-actual</output>
 		<filter-time>0.16</filter-time>
 		<min>0</min>
@@ -264,7 +258,7 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/systems/electrical/bus/elec1</property>
+					<property>/systems/electrical/bus/main</property>
 					<value>8</value>
 				</less-than>
 			</condition>
@@ -282,13 +276,13 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/systems/electrical/bus/elec1</property>
+					<property>/systems/electrical/bus/main</property>
 					<value>8</value>
 				</less-than>
 			</condition>
 			<value>0</value>
 		</input>
-		<input>/fdm/jsbsim/fcs/oil-temp-feedback</input>
+		<input>/fdm/jsbsim/fcs/oil-temp-switch</input>
 		<output>/engines/engine[0]/oil-temperature-actual</output>
 		<filter-time>0.16</filter-time>
 	</filter>
@@ -300,7 +294,7 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/systems/electrical/bus/elec1</property>
+					<property>/systems/electrical/bus/main</property>
 					<value>8</value>
 				</less-than>
 			</condition>
@@ -318,7 +312,7 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/systems/electrical/bus/elec1</property>
+					<property>/systems/electrical/bus/main</property>
 					<value>8</value>
 				</less-than>
 			</condition>
@@ -345,7 +339,7 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/systems/electrical/bus/elec1</property>
+					<property>/systems/electrical/bus/main</property>
 					<value>8</value>
 				</less-than>
 			</condition>
@@ -363,7 +357,7 @@
 		<input>
 			<condition>
 				<less-than>
-					<property>/systems/electrical/bus/elec1</property>
+					<property>/systems/electrical/bus/main</property>
 					<value>8</value>
 				</less-than>
 			</condition>
@@ -402,7 +396,7 @@
 		<name>Panel Lights lowpass</name>
 		<debug>false</debug>
 		<type>exponential</type>
-		<input>/controls/switches/panel-lights-cmd</input>
+		<input>/controls/lighting/panel-lights-cmd</input>
 		<output>/controls/lighting/panel-norm</output>
 		<filter-time>0.64</filter-time>
 	</filter>

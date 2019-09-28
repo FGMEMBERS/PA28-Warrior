@@ -16,8 +16,8 @@
 	
 	<animation>
 		<type>pick</type>
-		<object-name>Base</object-name>
-		<object-name>Lever</object-name>
+		<object-name>NavSrcBase</object-name>
+		<object-name>NavSrcSwitch</object-name>
 		<action>
 			<button>0</button>
 			<repeatable>false</repeatable>
@@ -36,9 +36,10 @@
 	
 	<animation>
 		<type>rotate</type>
-		<object-name>Lever</object-name>
+		<object-name>NavSrcSwitch</object-name>
 		<property>it-stec55x/input/nav-selector</property>
-		<factor>-32</factor>
+		<offset-deg>-15</offset-deg>
+		<factor>30</factor>
 		<axis>
 			<x>0</x>
 			<y>0</y>

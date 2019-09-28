@@ -1,36 +1,40 @@
-<!-- PA28-161 Engine -->
+<?xml version="1.0"?>
 
-<!-- Copyright (c) 2019 Joshua Davidson (it0uchpods) -->
+<!-- Piper PA28 Engine -->
+<!-- Copyright (c) 2019 Joshua Davidson (Octal450) -->
 
-<system name="PA28-161: Engine">
+<system name="PA28: Engine">
+	
+	<property value="0">fcs/egt-switch</property>
+	<property value="0">fcs/oil-temp-switch</property>
 	
 	<channel name="Magnetos-Starter" execrate="8">
 		
 		<switch name="fcs/magneto-l">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- L -->
-				/systems/failures/l-magneto ne 1
+				/systems/failures/eng/magneto-l ne 1
 				/controls/engines/engine[0]/magnetos-switch eq 2
-				/systems/electrical/bus/elec1 ge 8
+				/systems/electrical/bus/main ge 8
 			</test>
 			<test logic="AND" value="1"> <!-- BOTH or START -->
-				/systems/failures/l-magneto ne 1
+				/systems/failures/eng/magneto-l ne 1
 				/controls/engines/engine[0]/magnetos-switch ge 3
-				/systems/electrical/bus/elec1 ge 8
+				/systems/electrical/bus/main ge 8
 			</test>
 		</switch>
 		
 		<switch name="fcs/magneto-r">
 			<default value="0"/>
 			<test logic="AND" value="1"> <!-- R -->
-				/systems/failures/r-magneto ne 1
+				/systems/failures/eng/magneto-r ne 1
 				/controls/engines/engine[0]/magnetos-switch eq 1
-				/systems/electrical/bus/elec2 ge 8
+				/systems/electrical/bus/main ge 8
 			</test>
 			<test logic="AND" value="1"> <!-- BOTH or START -->
-				/systems/failures/r-magneto ne 1
+				/systems/failures/eng/magneto-r ne 1
 				/controls/engines/engine[0]/magnetos-switch ge 3
-				/systems/electrical/bus/elec2 ge 8
+				/systems/electrical/bus/main ge 8
 			</test>
 		</switch>
 		
@@ -54,12 +58,12 @@
 		<switch name="fcs/start-switch">
 			<default value="0"/>
 			<test logic="AND" value="1">
-				/systems/failures/starter ne 1
+				/systems/failures/eng/starter ne 1
 				fcs/magneto-l eq 1
 				/controls/engines/engine[0]/magnetos-switch eq 4
 			</test>
 			<test logic="AND" value="1">
-				/systems/failures/starter ne 1
+				/systems/failures/eng/starter ne 1
 				fcs/magneto-r eq 1
 				/controls/engines/engine[0]/magnetos-switch eq 4
 			</test>
@@ -80,8 +84,8 @@
 			<output>/controls/anti-ice/engine[0]/carb-heat</output>
 		</lag_filter>
 		
-        <fcs_function name="fcs/carb-heat-factor">
-            <function>
+		<fcs_function name="fcs/carb-heat-factor">
+			<function>
 				<table>
 					<independentVar lookup="row">fcs/carb-heat-lever</independentVar>
 					<tableData>
@@ -89,17 +93,18 @@
 						1.0  0.47500
 					</tableData>
 				</table>
-            </function>
-            <output>propulsion/engine[0]/air-intake-impedance-factor</output>
-        </fcs_function>
+			</function>
+			<output>propulsion/engine[0]/air-intake-impedance-factor</output>
+		</fcs_function>
 		
 		<fcs_function name="fcs/throttle-cmd-modified">
+			<description>Tries to make RPM behave like the real plane</description>
 			<function>
 				<table>
 					<independentVar lookup="row">fcs/throttle-cmd-lag</independentVar>
 					<independentVar lookup="column">velocities/vc-kts</independentVar>
 					<tableData>
-							  30     60     90     120    140
+						      30     60     90     120    140
 						0.00  0.000  0.000  0.000  0.000  0.000
 						0.16  0.420  0.386  0.365  0.351  0.325
 						0.48  0.740  0.680  0.643  0.617  0.573
@@ -121,16 +126,24 @@
 		</lag_filter>
 		
 		<fcs_function name="fcs/mixture-cmd-modified">
+			<description>Tries to make RPM behave like the real plane</description>
 			<function>
-				<table>
-					<independentVar lookup="row">fcs/mixture-cmd-lag</independentVar>
-					<independentVar lookup="column">atmosphere/pressure-altitude</independentVar>
-					<tableData>
-						   0     15000
-						0  0.55  0.25
-						1  1.00  1.00
-					</tableData>
-				</table>
+				<ifthen>
+					<eq> <!-- If the engine was smashed into the ground, kill it -->
+						<property>crash-stress/nose-damaged</property>
+						<value>1</value>
+					</eq>
+					<value>0</value>
+					<table>
+						<independentVar lookup="row">fcs/mixture-cmd-lag</independentVar>
+						<independentVar lookup="column">atmosphere/pressure-altitude</independentVar>
+						<tableData>
+							   0     15000
+							0  0.55  0.25
+							1  1.00  1.00
+						</tableData>
+					</table>
+				</ifthen>
 			</function>
 			<output>fcs/mixture-pos-norm[0]</output>
 		</fcs_function>
@@ -138,7 +151,7 @@
 		<fcs_function name="fcs/oil-temp-inc">
 			<function>
 				<sum>
-					<property>fcs/oil-temp-feedback</property>
+					<property>fcs/oil-temp-switch</property>
 					<value>0.03</value>
 				</sum>
 			</function>
@@ -147,7 +160,7 @@
 		<fcs_function name="fcs/oil-temp-dec">
 			<function>
 				<difference>
-					<property>fcs/oil-temp-feedback</property>
+					<property>fcs/oil-temp-switch</property>
 					<value>0.01</value>
 				</difference>
 			</function>
@@ -157,24 +170,19 @@
 			<default value="fcs/oil-temp-switch"/>
 			<test logic="AND" value="fcs/oil-temp-inc">
 				/engines/engine[0]/running eq 1
-				fcs/oil-temp-feedback lt 177
+				fcs/oil-temp-switch lt 177
 			</test>
 			<test logic="AND" value="fcs/oil-temp-dec">
 				/engines/engine[0]/running ne 1
-				fcs/oil-temp-feedback gt 0
+				fcs/oil-temp-switch gt 0
 			</test>
+			<output>fcs/oil-temp-switch</output>
 		</switch>
-		
-		<pure_gain name="fcs/oil-temp-update">
-			<input>fcs/oil-temp-switch</input>
-			<gain>1.0</gain>
-			<output>fcs/oil-temp-feedback</output>
-		</pure_gain>
 		
 		<fcs_function name="fcs/egt-inc">
 			<function>
 				<sum>
-					<property>fcs/egt-feedback</property>
+					<property>fcs/egt-switch</property>
 					<value>0.4</value>
 				</sum>
 			</function>
@@ -183,7 +191,7 @@
 		<fcs_function name="fcs/egt-dec">
 			<function>
 				<difference>
-					<property>fcs/egt-feedback</property>
+					<property>fcs/egt-switch</property>
 					<value>0.1</value>
 				</difference>
 			</function>
@@ -193,19 +201,14 @@
 			<default value="fcs/egt-switch"/>
 			<test logic="AND" value="fcs/egt-inc">
 				/engines/engine[0]/running eq 1
-				fcs/egt-feedback lt 1028
+				fcs/egt-switch lt 1028
 			</test>
 			<test logic="AND" value="fcs/egt-dec">
 				/engines/engine[0]/running ne 1
-				fcs/egt-feedback gt 0
+				fcs/egt-switch gt 0
 			</test>
+			<output>fcs/egt-switch</output>
 		</switch>
-		
-		<pure_gain name="fcs/egt-update">
-			<input>fcs/egt-switch</input>
-			<gain>1.0</gain>
-			<output>fcs/egt-feedback</output>
-		</pure_gain>
 	
 	</channel>
 
